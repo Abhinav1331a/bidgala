@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Bidgala | Verification</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!--===============================================================================================-->
+		<link rel="icon" type="image/png" href="{% static 'images/icons/favicon.ico' %}"/>
+		<style type="text/css">
+			iframe#twitter-widget-0 {
+			vertical-align : bottom;
+			margin-left: 4px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="bg-g1 size1 flex-w flex-col-c-sb p-l-15 p-r-15 p-t-55 p-b-35 respon1">
+			<span></span>
+			<div class="flex-col-c p-t-50 p-b-50">
+				<p class="l1-txt2 txt-center p-b-20">{{text}}</p>
+				<a href="{%url 'index'%}"class="btn btn-primary">Go to Home</a>
+			</div>
+		</div>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+	</body>
+</html>

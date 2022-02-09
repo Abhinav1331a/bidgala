@@ -1,0 +1,526 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} | FAQ {% endblock %}
+
+{% block cssfile %}
+<link rel="stylesheet" href="{% static 'css/faq.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="faq-content">
+    <div>
+        <h2 id="purchasing-art">Purchasing Art For Sale</h2>
+        <div id='what-is-the-process-for-buying-art-on-bidgala'>
+            <h5>What is the process for buying art on Bidgala?</h5>
+            <p>Browse Bidgala’s marketplace & find something you’re coveting. You then have 2 options:</p>
+            <ul>
+                <li>
+                    <strong>Find art you love & enter your payment information.</strong>
+                    <ul>
+                        <li><strong>Purchase</strong> straight away: this helps buyers avoid competing bids and speeds up the purchasing process. You will not be charged until the artist ships your order and submits a tracking number for your order. <em>You will not be charged until the order is shipped and a tracking number is provided in step 3 below.</em></li>
+                    </ul>
+                </li>
+                <li><strong>The artist will accept or decline your order.</strong> The artist has 5 business days to accept the order, or else the order is canceled and you will never be charged. Find details on your order in the <a href="{% url 'orders' %}">orders page</a> or in <a href="">your messages</a> with the artist. You will not be charged until the order is shipped and a tracking number is provided in step 3 below.</li>
+                <li><strong>The artist will submit a tracking number.</strong> The artist has 5 business days after accepting the order to submit a tracking number for the shipment, or else the order is canceled and you will never be charged. Find your tracking number in the <a href="{% url 'orders' %}">orders page</a> or in <a href="">your messages</a> with the artist. You will not be charged until the order is shipped and a tracking number is provided.</li>
+                <li>Happily receive your order. If you would like a refund, email us at <a href="mailto:info@bidgala.com">info@bidgala.com</a>.</li>
+            </ul>
+        </div>
+
+        <div id='why-is-your-website-in-usd-if-you-are-canadian-based'>
+            <h5>Why is your website in USD if you are Canadian-based?</h5>
+            <p>Most of our clientele, partners, and charities are based in the US. However, rest assured that all Canadian prices have been converted to USD using the appropriate conversion rate and that we will not charge you more than you should have been charged when a piece was in CAD.</p>
+            <p>For example, pieces that were listed at $100 CAD will show up as $70 USD on our website.</p>
+        </div>
+
+
+        <div id='where-can-i-find-information-on-my-present-and-past-orders'>
+            <h5>Where can I find information on my present and past orders?</h5>
+            <p>Check your “orders” page for information on all of your past and current orders. Or check your chats with each artist to access the same information.</p>
+        </div>
+
+
+        <div id='why-is-bidgala-the-best-website-to-buy-art-from'>
+            <h5>Why is Bidgala the best website to buy art from?</h5>
+            <p>Bidgala is the best art platform to purchase art from due to:</p>
+            <ul>
+                <li><strong>Low Prices:</strong> 24/7 access to student and emerging artists who offer affordable prices for their original art. <a href="art/search/art/all/">Find art you will love</a>.</li>
+                <li><strong>Support artists:</strong> Each purchase is in support of emerging artists.</li>
+                <li><strong>Security:</strong> You get our <a href="">100% money-back guarantee</a> on every Bidgala purchase.</li>
+                <li><strong>Community:</strong> Connect with artists before, during, and after each purchase using direct chat or artist profiles to make each artwork meaningful.</li>
+                <li><strong>Easy search criteria:</strong> Don’t know what you want? Simply explore thousands of inspiring artworks in Bidgala’s marketplace. But if you have some criteria in mind, our search filters will help you find what you need very quickly.</li>
+            </ul>
+        </div>
+
+
+        <div id='why-are-your-prices-lower-than-other-art-websites'>
+            <h5>Why are your prices lower than other art websites?</h5>
+            <p>One major issue with the art world is that patrons have limited access to student and emerging artists. Therefore, art lovers are faced with choosing between pricey original artworks and cheap carbon-copy prints.</p>
+            <p>But what about affordable, original art? Bidgala gives you 24/7 access to student and emerging artists who offer affordable prices for their original art. <a href="art/search/art/all/">Find art you will love</a>.</p>
+        </div>
+
+
+        <div id='how-am-i-supporting-artists-by-purchasing-on-bidgala'>
+            <h5>How am I supporting artists by purchasing on Bidgala?</h5>
+            <p>One big problem with the art world today is that it is inaccessible. Not only do other websites and galleries make their prices extremely high, but they restrict most artists from joining. Moreover, artists are not trained in business so many have a difficult time selling on other platforms they have access to such as Instagram or Etsy.</p>
+            <p>Bidgala is for emerging artists looking to expand their careers. Therefore, with each purchase, you are helping artists support themselves and develop professionally.</p>
+        </div>
+
+
+        <div id='how-does-bidgala-community-help-me-as-a-buyer'>
+            <h5>How does Bidgala’s community help me as a buyer?</h5>
+            <p>Bidgala enables you to connect with artists to make each piece more meaningful. Follow artists for updates on their work, ask questions through direct chat, read artists’ stories via their profile page, and create meaningful connections on Bidgala.</p>
+            <p>At your next dinner party, you will be able to tell your friends everything from the artist's background, to the deep conversation you had with them.</p>
+        </div>
+
+
+        <div id='what-is-the-100-money-back-guarantee-on-art-for-sale'>
+            <h5>What is the 100% money-back guarantee on art for sale?</h5>
+            <p>You are protected by Bidgala’s <strong>100% money-back guarantee</strong>. If your order arrives damaged or is different than advertised, you have seven (7) days upon receipt of the order to request a full (100%) refund on the purchase price and shipping. You then have five (5) days upon Bidgala’s approval of your return to ship the art back to the artist and submit a tracking number. If the artwork is lost then you have seven (7) days after the expected delivery date to request a refund.</p>
+            <p>Please contact us at <a href="mailto:info@bidgala.com">info@bidgala.com</a> if you would like a refund and our team will help to accommodate you.</p>
+        </div>
+
+
+        <div id='what-happens-if-i-buy-art-and-it-is-damaged-or-different-from-advertised'>
+            <h5>What happens if I buy art and it is damaged or different from advertised?</h5>
+            <p>We are sorry that you received your order damaged. Do not worry, all orders have a 100% money-back guarantee.</p>
+            <p>If you receive your order and it is damaged or different from advertised, please message the seller ASAP, as they may be able to fix or replace the order. You can find the seller’s account by going into your <a href="{% url 'orders' %}">orders page</a> and then clicking on their name or in <a href="">your messages</a>.</p>
+            <p>You should also email us at <a href="mailto:info@bidgala.com">info@bidgala.com</a>. Please make sure to also submit photos of the artwork you are returning.</p>
+            <p>You will have 7 days from the receipt of your shipment to request a full (100%) refund on the purchase price and shipping. You will then have 7 days from our approval of your return to submit a tracking number for your shipment back to the artist.</p>
+        </div>
+
+
+
+        <div id='what-happens-if-i-purchase-art-and-it-is-lost'>
+            <h5>What happens if I purchase art and it is lost?</h5>
+            <p>We are sorry that you are experiencing a potentially lost order. Do not worry, lost artwork qualifies for the 100% money-back guarantee</a>.</p>
+            <p>If you buy artwork and think it might be lost, kindly make sure to:</p>
+            <ul class="number">
+                <li>Check your order’s ETA by clicking on your <a href="{% url 'orders' %}">Orders Page</a>.</li>
+                <li>Contact the seller directly by sending them a personal message.</li>
+                <li>If steps 1 & 2 are not helpful please contact us at <a href="mailto:info@bidgala.com">info@bidgala.com</a>.</li>
+            </ul>
+        </div>
+
+
+        <div id='how-is-artwork-shipped'>
+            <h5>How is artwork shipped?</h5>
+            <p>All orders are packaged and shipped by the individual artists you order from.</p>
+            <p>An artist must accept the order within a max of 5 business days from receiving your order. The artist then has 5 business days from accepting your order to ship the artwork and submit a tracking number. If either of these deadlines are not met by the artist, your order will automatically be canceled and you will never be charged.</p>
+            <p>You can find your order’s tracking number in the orders page or in your chat with the artist. Click on the tracking number for your order’s ETA.</p>
+        </div>
+
+
+        <div id='how-long-will-it-take-to-receive-my-order'>
+            <h5>How long will it take to receive my order?</h5>
+            <p>Because artworks are shipped directly from artist to buyer, the length of the delivery period will vary. Tracking numbers will be submitted to you by the artists to the buyers once the item is shipped so that you can check your order’s ETA at any time.</p>
+            <p>You can find your order’s tracking number in the <a href="{% url 'orders' %}">orders page</a> or in your <a href="messages/contacts">chat</a> with the artist. Click on the tracking number for your order’s ETA.</p>
+        </div>
+
+
+        <div id='when-will-i-be-charged-for-the-artwork-i-purchase-or-bid-on'>
+            <h5>When will I be charged for the artwork I purchase or bid on?</h5>
+            <p>You will not be charged until the artist sends you a tracking number. The artist has a maximum of 5 business days to send you a tracking number after accepting the order.</p>
+            <p><em>Example: if the artist accepts your order but does not send you a tracking number, you will not be charged.</em></p>
+        </div>
+
+
+        <div id='are-artworks-already-framed'>
+            <h5>Are artworks already framed?</h5>
+            <p>Depending on the listing, the art you order may or may not be framed. Make sure to read the descriptions of artworks carefully before ordering and message the artist with any questions you have beforehand. You can also message the artist to confirm.</p>
+        </div>
+
+
+        <div id='what-countries-can-artworks-be-shipped-to'>
+            <h5>What countries can artworks be shipped to?</h5>
+            <p>Because artworks are shipped directly from independent artists to art-lovers, whether or not something can be shipped to a certain region depends on each artist and their listing.</p>
+            <p>When you find a piece you’re coveting, make sure to check which countries they ship to. You can also search for artwork based on regions the artists ship to.</p>
+        </div>
+
+
+        <div id='what-if-the-artist-doesnt-ship-to-my-region'>
+            <h5>What if the artist doesn’t ship to my region?</h5>
+            <p>Since each artist can select which countries they ship to, they may or may not ship to your region. Your best bet is to send them a message explaining where you are located and that you want to buy their work. Ask if they can make an exception for you and create a new listing for the piece.</p>
+        </div>
+
+
+
+        <div id='what-about-taxes-and-duties'>
+            <h5>What about taxes and duties?</h5>
+            <p>You may be required to pay taxes and duties to claim the work that you order, depending on where the artist ships from and where you are located. Since Bidgala is a global community, we have no way of calculating taxes and duties for every location. Therefore, please contact your customs bureau for specific information. Normally, extra taxes and duties only apply to artworks you purchase from outside your country.</p>
+        </div>
+    </div>
+
+
+
+    <div>
+        <h2 id="selling-bidgala">Selling On Bidgala</h2>
+
+
+        <div id='why-is-bidgala-the-best-website-to-sell-my-art-on'>
+            <h5>Why is Bidgala the best website to sell my art on?</h5>
+            <p>Bidgala is the best art platform to sell your art on because of our:</p>
+            <ul>
+                <li><strong>No barriers to entry:</strong> We have zero barriers to entry, anyone can sign up and sell.</li>
+                <li><strong>Zero Fees:</strong> It is free to sign up and post your art.</li>
+                <li><strong>Low Commissions:</strong> Bidgala’s 30% commission is the lowest in the game.</li>
+                <li><strong>Community:</strong> Create meaningful connections with collectors using direct messaging and your profile to create long term business relationships. Or use Bidgala’s community page to express yourself and ask other artists questions.</li>
+                <li><strong>Exposure:</strong> Our goal is to highlight artists and their stories because we believe that everyone’s story can change the world. We share our artist’s works or stories to millions of people via social media, the press, and in online galleries.</li>
+                <li><strong>Democratizing the art world:</strong> Help us shift the art world and foster accessibility, inclusiveness, fun, and inspiration.</li>
+                <li><strong>Be a part of our journey:</strong> We are not a traditional, corporately-run entity. Bidgala was founded by two university students to help spark change in the art world. We love art, people, and their stories. And we are so excited to have created such an inspiring community.</li>
+            </ul>
+        </div>
+
+
+        <div id='who-can-sell-on-bidgala'>
+            <h5>Who can sell on Bidgala?</h5>
+            <p>Anyone can sell their art on Bidgala. However, you must meet our legal requirements outlined in the <a href="">Terms of Service</a> (e.g. 18 years old+).</p>
+        </div>
+
+
+        <div id='how-do-i-go-about-selling-my-art-on-bidgala'>
+            <h5>How do i go about selling my art on Bidgala?</h5>
+            <ul class="number">
+                <li><a href="{% url 'register' %}">Create an account</a> on Bidgala.</li>
+                <li>Click on the Sell button located at the top of your page to post for free.</li>
+                <li><a href="">Connect Stripe</a> via your sellings so that buyers can pay you.</li>
+            </ul>
+            <p>Sign up to Stripe via your <a href="settings">settings page</a>.</p>
+        </div>
+
+
+
+        <div id='how-and-when-do-i-get-paid-when-i-sell-my-art'>
+
+            <h5>How & when do I get paid when I sell my art?</h5>
+            <p>To initiate your payment when you sell your art, follow these 4 steps:</p>
+            <ul class="number">
+                <li>Connect Stripe to your account via your <a href="settings">Settings Page</a>.</li>
+                <li>Accept the order in your <a href="{% url 'orders' %}">Orders Page</a>.</li>
+                <li>Ship your art & collect a tracking number</li>
+                <li>Submit the tracking number for your shipment in your <a href="{% url 'orders' %}">Orders Page</a>.</li>
+            </ul>
+            <p>You will be paid by buyers via Stripe, therefore, you cannot accept orders until you have connected a Stripe account to your Bidgala settings (step 1). You can <a href="">sign up to stripe via your settings page</a>.</p>
+            <p>Once you accept the order (step 2), ship your art (step 3), and then submit the tracking number (step 4), your funds will be released into your Stripe account.</p>
+            <p>Stripe is similar to Paypal, and depending on your location and payout schedule, funds from your sales will be paid out to your bank account, from your Stripe account, on a rolling basis. So you may be able to see “future” payouts in your Stripe balance, but the money will not be in your bank yet. This is because it hasn't reached the payout date, which Bidgala estimates at two to three weeks.</p>
+            <p>Email us at <a href="mailto:info@bidgala.com">info@bidgala.com</a> for any questions about Stripe.</p>
+        </div>
+
+
+
+        <div id='what-is-stripe-and-how-does-it-work'>
+            <h5>What is Stripe & how does it work?</h5>
+            <p>We use Stripe to pay you when you sell your art. They help to transfer money from an art buyer’s credit card to an artist’s bank account.</p>
+            <p>Stipe is a payment processing company similar to Paypal and we use them because their Fraud detection system is the best in the game. They are also a reputable company that buyers are comfortable using which helps to increase art sales. Stripe also has very competitive transaction fees, is easy to use, accepts a variety of cards/payment methods, and has excellent customer support. You can <a href="">sign up to stripe</a> through your Bidgala <a href="">settings</a>.</p>
+            <p>Email us at <a href="mailto:info@bidgala.com">info@bidgala.com</a> for any questions about Stripe.</p>
+        </div>
+
+
+        <div id='why-do-you-use-stripe'>
+            <h5>Why do you use Stripe?</h5>
+            <p>We provide Stripe as a payment processor for our artists to help lower transaction costs for them. Stripe is known as one of the most reliable and affordable payment processors, used by companies such as: Shopify, Wayfair, Google, Peloton, Instacart, Amazon, Notion and Figma.</p>
+        </div>
+
+        <div id='what-types-of-visual-arts-can-i-sell-on-bidgala'>
+            <h5>What types of visual arts can I sell on Bidgala?</h5>
+            <p>Our platform supports the sale of physical goods such as paintings, prints, illustrations, photography, sculptures and more.</p>
+        </div>
+        
+
+        <div id='can-i-sell-my-digital-art'>
+            <h5>Can I sell my digital art?</h5>
+            <p>Bidgala does not currently sell digital art. However, we do support the sale of prints.</p>
+        </div>
+
+
+        <div id='how-do-you-market-my-artwork-and-find-a-client-base'>
+            <h5>How do you market my artwork and find a client base?</h5>
+            <p>We have many channels through which we help find you clients including:</p>
+            <ul class="ml">
+                <li>Social Media</li>
+                <li>Influencers</li>
+                <li>News Outlets</li>
+                <li>Cross promotions</li>
+                <li>Paid Advertisements</li>
+                <li>Design professionals</li>
+            </ul>
+        </div>
+
+
+        <div id='the-amount-of-profit-i-made-was-correct-but-the-total-transaction-amount-was-lower-than-i-expected'>
+            <h5>The amount of profit I made was correct but the total transaction amount was lower than I expected.</h5>
+            <p>We may offer some users discounts on the purchase price to help increase your sales. But do not worry! We pay for discounts out of our own pocket to help get you sales.</p>
+            <p>The total transaction price may be lower but Bidgala makes sure that the profit you receive in the end is the same.</p>
+        </div>
+
+
+        <div id='where-is-my-profile-and-how-do-i-use-it-for-my-career'>
+            <h5>Where is my profile and how do I use it for my career?</h5>
+            <p>Sign in, and then:</p>
+            <ul class="ml">
+                <li>Post art using the <a href="art/upload">Sell</a> page.</li>
+                <li>Write your bio in the <a href="">Settings Page</a>.</li>
+                <li><a href="settings">Visit Your Profile</a> (click profile icon at the top right of your page > click My Profile). Fill in your personal details such as your education, experience, exhibitions, press, featured works, etc.</li>
+                <li>Share your profile with clients, to social media, via email, and more.</li>
+            </ul>
+            <p>Your profile outlines your story and listings in a very unique way that resonates with a lot more people. Our payment processors also help increase buyer comfort and therefore your number of sales.</p>
+        </div>
+
+
+        <div id='how-can-i-get-more-exposure-with-your-platform'>
+            <h5>How can I get more exposure with your platform?</h5>
+            <ul>
+                <li><strong>Share your Bidgala profile</strong> to your social media with a clear call to action (e.g. “Check out my Bidgala profile”). Shoot us a DM, and we will reshare your post to our followers.</li>
+                <li><strong>Post your art to Bidgala’s</strong> art community for design professionals, art-lovers, and artists from around the world to see. Access our Community at the top right of any Bidgala webpage.</li>
+                <li>
+                    <strong>Send us an email:</strong>
+                    <ul>
+                        <li>with pictures of your work for a great chance of being featured on our social media.</li>
+                        <li>requesting us to write and feature you in an article about your career.</li>
+                        <li>asking to be featured in an online gallery.</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+
+        <div id='what-are-your-fees-or-commissions'>
+            <h5>What are your fees or commissions?</h5>
+            <p>There are zero membership fees at Bidgala and it is free to post your art. Here is how our commission works:</p>
+            <ul>
+                <li><strong>30% transaction fee</strong> on the total amount of your listing (Price + Shipping). Fees may differ for international transactions and foreign exchange transactions.</li>
+                <li><strong>Stripe fees</strong> for processing your payout safely are estimated to be 2.9% + $0.30. Fees may differ for international transactions and foreign exchange transactions.</li>
+                <li><strong>Formula:</strong> Your final income = (Art price + Shipping fee) x (0.671) - $0.30.</li>
+            </ul>
+            <p>Keep in mind that you choose your prices and can adjust them upwards to get what you want in the end. For example, if the price of your art is $1550 and you charge $100 for shipping, you will end up with $1106.85 in your Stripe account.</p>
+        </div>
+
+
+        <div id='why-do-you-take-commission-on-shipping'>
+            <h5>Why do you take commission on shipping?</h5>
+            <p>We know that it may sound bizarre to take commission on shipping. However, we think you’ll understand once you hear our reasoning. Bidgala’s commission used to be 35% with zero commission on shipping. However, many users were charging their entire art prices in the shipping section and putting $0 in the price column to avoid commissions. Therefore, we lowered the commission to 30% on the total transaction to account for this issue.</p>
+        </div>
+
+        <div id='what-must-i-do-to-fulfill-my-orders'>
+            <h5>What must I do to fulfill my orders?</h5>
+            <ul class="number ml-4">
+                <li>Message the buyer (thank them for their interest in your artwork, answer their questions, etc.).</li>
+                <li>Make sure that Stripe is connected to <a href="">your settings page</a>.</li>
+                <li>Accept the order in the <a href="{% url 'orders' %}">orders page</a>.</li>
+                <li>Submit pictures of the shipment (pictures of the inside of the box, the outside the box & your personalized touch to the shipment) to your chat with the buyer so they know what to expect.</li>
+                <li>Ship the art and collect a tracking number (You get paid when you submit the tracking number).</li>
+                <li>Submit the tracking number your <a href="{% url 'orders' %}">orders page</a> → find the correct order → enter and submit the tracking number in the “Tracking ID” field.</li>
+                <li>Keep your customers up to date with any news concerning the order.</li>
+                <li>Contact us at <a href="mailto:info@bidgala.com">info@bidgala.com</a> with any questions or concerns.</li>
+            </ul>
+            <p>Learn more about <a href="">How To Ship Your Artwork</a>.</p>
+            <p class="tip"><strong>Tip:</strong> To help prevent buyers from returning an artwork, make sure to let the buyer know when you plan on shipping the package. Give yourself an extra day or two. For example, if you plan on shipping the art within 2 days, tell the customer it will be shipped out within 3 or 4 days for ultimate customer satisfaction.</p>
+        </div>
+
+
+        <div id='can-i-sell-my-art-on-your-website-if-i-also-want-to-sell-it-elsewhere'>
+            <h5>Can I sell my art on your website if I also want to sell it elsewhere?</h5>
+            <p>Yes, you can! We do not reserve the rights to our sellers’ works, and signing up to our website is not binding in any way.</p>
+        </div>
+
+
+        <div id='what-does-it-mean-when-someone-sends-me-an-offer-on-my-art'>
+            <h5>What does it mean when someone sends me an “offer” on my art?</h5>
+            <p>Art buyers can either purchase your artwork straight away at the asking price, or they can make you an offer. If they make you an offer, you will get an email with further instructions. You can either accept the offer, reject the offer, or make a counter-offer.</p>
+            <p>Should you make a counter-offer, the buyer will need to either accept the offer, reject the offer, or make a counter-offer. This process is repeated until an offer is accepted or rejected. You can access your offers and orders through your <a href="{% url 'orders' %}">orders page</a>.</p>
+        </div>
+
+
+        <div id='how-will-i-know-when-i-sell-my-artwork'>
+            <h5>How will I know when I sell my artwork?</h5>
+            <p>We will notify you by email with further instructions, you can check your <a href="{% url 'orders' %}">orders page</a> or <a href="messages/contacts">Your messages</a>.</p>
+        </div>
+
+
+        <div id='how-does-artwork-get-from-artist-to-collector'>
+            <h5>How does artwork get from artist to collector?</h5>
+            <p>Once an art piece is purchased, you will receive the buyer’s address and are responsible for shipping it out yourself. You should also submit pictures of the packaging (inside, outside, and your personal touch) and must submit a tracking ID once the order is shipped.</p>
+            <p>Contact us at any time for questions about shipping your art: <a href="mailto:info@bidgala.com">info@bidgala.com</a>.</p>
+            <p>Learn more about <a href="discover/useful-tips-for-packaging-your-art">How to package your art</a>.</p>
+        </div>
+
+
+        <div id='if-a-customer-requests-a-refund,-what-will-happen'>
+            <h5>If a customer requests a refund, what will happen?</h5>
+            <p>A customer may request a refund if the artwork arrives damaged, different from advertised, or if it is lost. To request a refund, your client must be eligible for the 100% money-back guarantee.</p>
+            <p>As long as you followed Bidgala’s <a href="">guidelines for shipping and packaging your art</a>, Bidgala will cover all of the transportation costs for returns, as well as for original shipping fees in accordance with our <a href="">Terms of Service</a>. However, you will be responsible for returning the price a buyer paid for the artwork.</p>
+            <p>To be eligible for Bidgala to pay you back for shipping costs if a client returns a piece, you must submit receipts for all shipping costs to <a href="mailto:info@bidgala.com">info@bidgala.com</a>.</p>
+        </div>
+
+
+        <div id='a-buyer-is-returning-artwork-how-do-i-give-a-buyer-a-refund'>
+            <h5>A buyer is returning artwork, how do I give a buyer a refund?</h5>
+            <p>If a buyer returns an artwork, the full transaction amount may be deducted from your Stripe account. Bidgala will refund you the commission, original shipping costs, as well as additional costs for returns that you may incur, if you followed the <a href="">guidelines for shipping and packaging your art</a>, in accordance with our <a href="">Terms of Service</a>.</p>
+            <p>If we determine that the information or pictures in your listing were misleading, inaccurate or not truthful, then you may be responsible for returning the purchase price of the artwork, paying the shipping all costs, paying Stripe any applicable fees, paying Bidgala our transaction fees, and any other applicable fees.</p>
+        </div>
+
+
+        <div div='if-the-customer-files-a-dispute-with-their-bank-what-will-happen'>
+            <h5>If the customer files a dispute with their bank, what will happen?</h5>
+            <p>Make sure to provide excellent customer service and accommodate requests for returns. If a customer files a dispute with their bank, Bidgala may no longer be able to help resolve the issue. The bank may request that our payment processor, Stripe, deal with the situation. If this happens, please contact us at <a href="mailto:info@bidgala.com">info@bidgala.com</a> and we will refund you our commission if you are eligible.</p>
+        </div>
+
+        <div id='my-country-is-not-supported-on-stripe'>
+            <h5>My country is not supported on Stripe.</h5>
+            <p>Check the countries supported by Stripe here: <a href="https://stripe.com/global" target="_blank" rel="noopener noreferrer">https://stripe.com/global</a>. If your country is not yet supported then you are not eligible to sell on Bidgala until it is.</p>
+        </div>
+    </div>
+    <div>
+        <h2 id="design-professionals">Design Professionals</h2>
+        <div id='who-qualifies-as-a-design-professional'>
+            <h5>Who qualifies as a design professional?</h5>
+            <p>Anyone who buys art for clients or for a living qualifies as a design professional. This includes but is not limited to interior designers, home stagers, and real estate professionals.</p>
+        </div>
+
+
+        <div id='what-added-features-do-i-get-if-i-am-a-design-professional'>
+            <h5>What added features do I get if I am a design professional?</h5>
+            <ul>
+                <li><strong>Get discounts:</strong> Enjoy 10% off every purchase automatically applied at checkout.</li>
+                <li><strong>Low Prices:</strong> 24/7 access to student and emerging artists who offer affordable prices for their original art. <a href="art/search/art/all/">Find art you will love</a>.</li>
+                <li><strong>Support artists:</strong> Each purchase is in support of emerging artists.</li>
+                <li><strong>Security:</strong> You get our 100% money-back guarantee on every Bidgala purchase.</li>
+                <li><strong>Community:</strong> Connect with artists before, during, and after each purchase using direct chat or artist profiles to make each artwork meaningful.</li>
+                <li><strong>Easy search criteria:</strong> Don’t know what you want? Simply explore thousands of inspiring artworks in Bidgala’s marketplace. But if you have some criteria in mind, our search filters will help you find what you need very quickly.</li>
+            </ul>
+        </div>
+
+
+        <div id='how-do-i-get-discounts-as-a-design-professional'>
+            <h5>How do I get discounts as a design professional?</h5>
+            <p>A 10% discount is automatically applied to your purchases as a design professional. There is no need for you to do anything.</p>
+        </div>
+
+
+        <div id='how-can-i-apply-to-be-a-design-professional'>
+            <h5>How can I apply to be a design professional?</h5>
+            <p>When you sign up to Bidgala, you will be prompted with a pop-up that asks what type of account you are registering for. Simply choose “buying for client.” If you are already signed up and would like to apply as a design professional, visit your profile, scroll to the bottom, and change your account type to “buying for client”.</p>
+            <p>Once you register as a design professional, we will confirm your account within 5 business days. Until your professional account is verified, you will have access to the same website features and services as other artists and consumers.</p>
+        </div>
+
+
+        <div id='how-can-i-contact-you-for-vip-support-as-a-design-professional'>
+            <h5>How can I contact you for VIP support as a design professional?</h5>
+            <p>Email us at <a href="mailto:info@bidgala.com">info@bidgala.com</a> and title the subject of the email as “DESIGN PROFESSIONAL” or call us at <a href="tel:5147061818">(514) 706-1818</a>.</p>
+        </div>
+    </div>
+
+
+    <div>
+        <h2 id="referral-program">Referral Program</h2>
+        <div id='how-does-the-referral-program-work'>
+            <h5>How does the referral program work?</h5>
+            <p>Refer your friends using the <a href="{% url 'invite' %}">Invite page</a>, you and each friend will get 50 credits once they sign up, and then you can donate your credits to charity via your <a href="">Settings page</a>. You can also view how many credits you’ve earned, donated, and have available via your <a href="">Settings page</a>. Bidgala will add up all credits donated over a quarter and donate on behalf of the Bidgala community.</p>
+        </div>
+
+        <div id='how-do-i-refer-my-friends'>
+            <h5>How do I refer my friends?</h5>
+            <p>Go to <a href="{% url 'invite' %}">Invite</a> at the top of any Bidgala webpage to visit our referral program. Copy the link and post it to one of your social media platforms or send the link to friends via email, SMS, messenger, and more! You can also use the social media icons and share it directly to another platform. We will track who signs us through your unique link and display your results in your <a href="">Settings page</a>. Thank you for helping us to expand Bidgala’s art-loving community!</p>
+        </div>
+        <div id='where-can-i-find-the-referral-program'>
+            <h5>Where can I find the Referral Program?</h5>
+            <p>Press on <a href="{% url 'invite' %}">Invite</a> at the top of the page to discover your unique link. Send this link to your friends and help us expand Bidgala’s art-loving community!</p>
+        </div>
+
+
+        <div id='how-much-money-do-you-donate-for-credits'>
+            <h5>How much money do you donate for credits?</h5>
+            <p>We donate money based on the total number of credits donated by the Bidgala community. Every friend you refer gives you 50 credits and your friend 50 credits which adds up to 100 credits. 100 credits is equivalent to a $1 donation.</p>
+        </div>
+
+
+        <div id='which-charity-do-you-donate-to'>
+            <h5>Which charity do you donate to?</h5>
+            <p>We may change the charity frequently. Check the <a href="{% url 'invite' %}">Invite</a> page for the latest news on which charity we are donating to or send us a message at <a href="mailto:info@bidgala.com">info@bidgala.com</a>. You and the rest of the community will also be notified via email once we donate.</p>
+        </div>
+    </div>
+
+
+    <div>
+        <h2 id="visual-arts-community">Visual Arts Community</h2>
+
+        <div id='what-are-follows'>
+            <h5>What are Follows?</h5>
+            <p>“Follow” users so that their posts show up in your feed once we build our community functions and to get email updates when they post more art.</p>
+        </div>
+
+
+        <div id='what-are-chats'>
+            <h5>What are Chats?</h5>
+            <p>Chat with other users to create meaningful connections and expand your art world network!</p>
+        </div>
+
+
+        <div id='how-can-i-chat-with-other-users'>
+            <h5>How can I chat with other users?</h5>
+            <p>Click on an art piece and then click on “Message” or visit a user’s profile and click on “Message” to chat with them.</p>
+            <p>Use Bidgala’s chat functions to network, ask questions, inform yourself on an artist before making a purchase, or to stay up to date on your orders.</p>
+            <p>Need some advice? Want someone to critique your work? Message other artists, art-lovers & professionals or post in the art forum. Bidgala’s art community is filled with knowledge & experience.</p>
+        </div>
+
+
+        <div id='how-can-i-find-an-artists-profile'>
+            <h5>How can I find an artist’s profile?</h5>
+            <p>Click on any piece and then click on the artist’s name below the title. Profiles are a unique representations of an artist’s story and works for sale.</p>
+        </div>
+    </div>
+
+
+    <div>
+        <h2 id="general-faq">General</h2>
+        <div id='who-founded-bidgala'>
+            <h5>Who founded Bidgala?</h5>
+            <p>Two university students, William Lande & Sam Tenenbaum, from Montreal, Canada, co-founded Bidgala.</p>
+        </div>
+
+
+        <div id='where-is-bidgala-based'>
+            <h5>Where is Bidgala based?</h5>
+            <p>Bidgala is based out of Montreal, Canada. Our users come from all over the world.</p>
+        </div>
+
+
+        <div id='how-do-i-contact-bidgala-as-a-buyer-or-seller'>
+            <h5>How do I Contact Bidgala as a Buyer or Seller?</h5>
+            <p>You can reach us 24/7 at <a href="mailto:info@bidgala.com">info@bidgala.com</a>.</p>
+        </div>
+
+
+        <div id='how-do-i-start-or-stop-receiving-artist-community-emails-from-you'>
+            <h5>How do I start or stop receiving artist community emails from you?</h5>
+            <p>Send us an email at <a href="mailto:info@bidgala.com">info@bidgala.com</a> requesting to unsubscribe.</p>
+        </div>
+    </div>
+    <div>
+        <h2 id="policies-faq">Policies</h2>
+        <div>
+            <h5>Terms and Conditions of Use:</h5>
+            <a href="terms-and-conditions">https://bidgala.com/terms-and-conditions</a>
+        </div>
+        <div>
+            <h5>Privacy Policy:</h5>
+            <a href="privacy">https://thebidgala.com/privacy</a>
+        </div>
+        <div>
+            <h5>Cookie Policy:</h5>
+            <a href="cookie">https://bidgala.com/cookie</a>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+ {% block jsfile %} 
+
+ <script type="text/javascript">
+    const queryString = window.location.search.replace('?id=', '');
+    
+    var element = document.getElementById(queryString);
+
+    element.scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
+ </script>
+
+ {% endblock %}

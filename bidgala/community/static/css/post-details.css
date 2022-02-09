@@ -1,0 +1,51 @@
+a:hover {
+    color: grey;
+}
+
+img.img-fluid{
+    width: 100%;
+}
+
+.profile-thumbnail {
+    height: 2.5em;
+    min-width: 2.5em;
+    max-width: 2.5em;
+}
+
+.profile-thumbnail img {
+    position: relative;
+    margin: 0 auto;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.container.for-details {
+    max-width: 1000px;
+}
+
+#like-btn {
+    border: none;
+    background: white;
+    color: #212529;
+}
+
+#like-btn:hover {
+    cursor: pointer;
+}
+
+#comment-body{
+    padding: .375rem .75rem;
+    border: 1px solid #e9ecef;
+}
+
+.login-to:hover {
+    cursor: pointer;
+}
+
+@media screen and (min-width: 768px){
+    img.img-fluid{
+        width: 50%;
+    }
+}

@@ -1,0 +1,21 @@
+.login-info-button {
+  background-color: black;
+  color:white;      
+}
+
+.login-info-button:hover {
+  cursor: pointer;
+  color: white;
+  background-color: #343a40;
+  transition: 0.5s ease-in-out;
+}
+
+#login-modal {
+  max-width: 420px;
+}
+
+.button-appearance {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+}

@@ -1,0 +1,55 @@
+{% load static %}
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    </head>
+    <body>
+        <!--[if lte IE 9]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+        <![endif]-->
+
+        <!-- Add your site or application content here -->
+        <div class="table-responsive text-nowrap">
+        <!--Table-->
+        <table class="table table-striped">
+
+          <!--Table head-->
+          <thead>
+            <tr>
+              
+              <th>Name</th>
+              <th>email</th>
+              <th>phone</th>
+              
+            </tr>
+          </thead>
+          <!--Table head-->
+
+          <!--Table body-->
+          <tbody>
+            {%for user in users%}
+            <tr>
+              
+              <td>{{user.user.first_name}} {{user.user.last_name}}</td>
+              <td>{{user.user.email}}</td>
+              <td>{{user.phone}}</td>
+             
+            </tr>
+            {%endfor%}
+          </tbody>
+          <!--Table body-->
+
+
+        </table>
+        <!--Table-->
+      </div>
+</section>
+    </body>
+</html>
+

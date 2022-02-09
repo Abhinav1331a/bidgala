@@ -1,0 +1,58 @@
+.help-index h2 {
+    color: white;
+}
+.help-index  .search {
+    background-color: black;
+}
+.help-index div {
+    padding: 25px 0;
+}
+.help-index .form-control, .form-control-lg {
+    width: 500px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+.help-index .btn {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    padding-right: 25px;
+    padding-left: 25px;
+}
+.help-index .btn-dark {
+    background-color: #1abbde;
+}
+.help-index .index {
+    background-color: #f5f4f2;
+    gap: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.help-index .title {
+    background-color: white;
+    width: 400px;
+}
+.help-index h3 {
+    margin-left: 40px;
+    margin-bottom: 20px;
+}
+.help-index li {
+    list-style-type: none;
+    margin-bottom: 15px;
+    padding-right: 25px;
+    padding-left: 25px;
+}
+.help-index li::before {
+    content: "📄";
+    padding-right: 5px;
+}
+.help-index a {
+    text-decoration: none;
+    color: inherit;
+}
+.help-index a:hover {
+    color: inherit;
+    text-decoration: underline;
+}
+.help-index .heading:hover {
+    text-decoration-style: double;
+}

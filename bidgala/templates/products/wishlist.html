@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+{% block title %} | Wishlist {% endblock %}
+
+{% block cssfile %}
+<link rel="stylesheet" href="{% static 'css/wishlist.css' %}">
+{%endblock%} 
+
+{% block content %}
+{% for contact in page_obj %}
+{% endfor %}
+
+<div class="mt-3">
+<h2 class="text-center mb-4">Wishlist</h2>
+{% if arts %}
+<div class="col-12">
+	<div class="grid">
+		<div class="grid-sizer"></div>
+		{%for art in arts%}
+		<div class="grid-item">
+			<a href="{%url 'product_view' id=art.product.id%}">
+				<img src="{{BASE_AWS_IMG_URL}}{{art.product.image}}{{img_optimize_param_large}}" class="w-100">
+				<h6 class="mt-2 mb-1 text-truncate font-weight-bold">{{art.product.art_title}}</h6>
+				<small class="text-muted">${{art.product.price | intcomma}}</small> <br/>
+				<small class="text-muted">{{art.product.width}}W x </small> <small class="text-muted"> {{art.product.height}}H</small>{%if art.product.depth > 0%}<small class="text-muted"> x {{art.product.depth}}D</small>{%endif%}<small class="text-muted"> {{art.product.dim_measure}}</small>
+			</a>
+		</div>	
+		{%endfor%}
+	</div>
+	<div class="row">
+		<div class="w-100 d-flex justify-content-center mt-50">
+			{% if arts.has_other_pages %}
+			<ul class="pagination pagination-sm center-block mt-2">
+				{% if arts.has_previous%}
+				<li class="page-item">
+					<a href="?page={{arts.previous_page_number}}" class="page-link">&laquo;</a>
+				</li>
+				{%else%}
+				<li class="page-item disabled">
+					<a class="page-link">&laquo;</a>
+				</li>
+				{%endif%}
+				{% for i in arts.paginator.page_range %}
+				{% if arts.number == i %}
+				<li class="page-item active">
+					<a class="page-link">{{i}}</a>
+				</li>
+				{%else%}
+				<li class="page-item">
+					<a href="?page={{i}}" class="page-link">{{i}}</a>
+				</li>
+				{%endif%}
+				{%endfor%}
+				{% if arts.has_next%}
+				<li class="page-item">
+					<a href="?page={{arts.next_page_number}}" class="page-link">&raquo;</a>
+				</li>
+				{%else%}
+				<li class="page-item disabled">
+					<a class="page-link">&raquo;</a>
+				</li>
+				{%endif%}
+			</ul>
+			{%endif%}
+		</div>
+	</div>
+</div>
+{% else %}
+<div class="container mt-2">
+	<div class='alert alert-primary text-center w-100' role='alert'>No art saved to your wishlist</div>
+</div>
+{% endif %}
+</div>
+
+{%endblock%}
+
+{% block jsfile %}
+<script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+<script type="text/javascript" src="{% static 'js/wishlist.js' %}"></script>
+{%endblock%}

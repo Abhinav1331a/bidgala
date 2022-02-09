@@ -1,0 +1,361 @@
+[
+  {
+    "model": "accounts.subcategory",
+    "pk": 1,
+    "fields": {
+      "subcategory_name": "abstract",
+      "subcategory_val": "Abstract"
+    }
+  },
+
+  {
+    "model": "accounts.subcategory",
+    "pk": 2,
+    "fields": {
+      "subcategory_name": "animalsBirdsFish",
+      "subcategory_val": "Animals, Birds & Fish"
+    }
+  },
+
+  {
+    "model": "accounts.subcategory",
+    "pk": 3,
+    "fields": {
+      "subcategory_name": "astronomySpace",
+      "subcategory_val": "Astronomy & Space"
+    }
+  },
+
+  {
+    "model": "accounts.subcategory",
+    "pk": 4,
+    "fields": {
+      "subcategory_name": "buildingsArchitecture",
+      "subcategory_val": "Buildings & Architecture"
+    }
+  },
+
+  {
+    "model": "accounts.subcategory",
+    "pk": 5,
+    "fields": {
+      "subcategory_name": "childrensArt",
+      "subcategory_val": "Children's Art"
+    }
+  },
+
+  {
+    "model": "accounts.subcategory",
+    "pk": 6,
+    "fields": {
+      "subcategory_name": "entertainment",
+      "subcategory_val": "Entertainment"
+    }
+  },
+
+  {
+    "model": "accounts.subcategory",
+    "pk": 7,
+    "fields": {
+      "subcategory_name": "ethnicCulturalTribal",
+      "subcategory_val": "Ethnic, Cultural & Tribal"
+    }
+  },
+
+  {
+    "model": "accounts.subcategory",
+    "pk": 8,
+    "fields": {
+      "subcategory_name": "fantasyMythology",
+      "subcategory_val": "Fantasy & Mythology"
+    }
+  },
+
+  {
+    "model": "accounts.subcategory",
+    "pk": 9,
+    "fields": {
+      "subcategory_name": "flowersPlantsTrees",
+      "subcategory_val": "Flowers, Plants & Trees"
+    }
+  },
+
+  {
+    "model": "accounts.subcategory",
+    "pk": 10,
+    "fields": {
+      "subcategory_name": "foodBeverage",
+      "subcategory_val": "Food & Beverage"
+    }
+  },
+
+  {
+    "model": "accounts.subcategory",
+    "pk": 11,
+    "fields": {
+      "subcategory_name": "holidaysOccasions",
+      "subcategory_val": "Holidays & Occasions"
+    }
+  },
+
+  {
+    "model": "accounts.subcategory",
+    "pk": 12,
+    "fields": {
+      "subcategory_name": "humorSatire",
+      "subcategory_val": "Humor & Satire"
+    }
+  },
+
+  {
+    "model": "accounts.subcategory",
+    "pk": 13,
+    "fields": {
+      "subcategory_name": "landscapesNature",
+      "subcategory_val": "Landscapes & Nature"
+    }
+  },
+
+  {
+    "model": "accounts.subcategory",
+    "pk": 14,
+    "fields": {
+      "subcategory_name": "peopleFigures",
+      "subcategory_val": "People & Figures"
+    }
+  },
+
+  {
+    "model": "accounts.subcategory",
+    "pk": 15,
+    "fields": {
+      "subcategory_name": "placesTravel",
+      "subcategory_val": "Places & Travel"
+    }
+  },
+
+  {
+    "model": "accounts.subcategory",
+    "pk": 16,
+    "fields": {
+      "subcategory_name": "politicsPatriotism",
+      "subcategory_val": "Politics & Patriotism"
+    }
+  },
+
+  {
+    "model": "accounts.subcategory",
+    "pk": 17,
+    "fields": {
+      "subcategory_name": "religionPhilosophyAstrology",
+      "subcategory_val": "Religion, Philosophy & Astrology"
+    }
+  },
+
+  {
+    "model": "accounts.subcategory",
+    "pk": 18,
+    "fields": {
+      "subcategory_name": "scienceTechnology",
+      "subcategory_val": "Science & Technology"
+    }
+  },
+
+  {
+    "model": "accounts.subcategory",
+    "pk": 19,
+    "fields": {
+      "subcategory_name": "sportsHobbies",
+      "subcategory_val": "Sports & Hobbies"
+    }
+  },
+
+  {
+    "model": "accounts.subcategory",
+    "pk": 20,
+    "fields": {
+      "subcategory_name": "stillLife",
+      "subcategory_val": "Still Life"
+    }
+  },
+
+  {
+    "model": "accounts.subcategory",
+    "pk": 21,
+    "fields": {
+      "subcategory_name": "vehiclesTransportation",
+      "subcategory_val": "Vehicles & Transportation"
+    }
+  },
+
+  {
+    "model": "accounts.subcategory",
+    "pk": 22,
+    "fields": {
+      "subcategory_name": "bowlsPots",
+      "subcategory_val": "Bowls & Pots"
+    }
+  },
+
+  {
+    "model": "accounts.subcategory",
+    "pk": 23,
+    "fields": {
+      "subcategory_name": "candleHolders",
+      "subcategory_val": "Candle Holders"
+    }
+  },
+
+   {
+    "model": "accounts.subcategory",
+    "pk": 24,
+    "fields": {
+      "subcategory_name": "cupsGoblets",
+      "subcategory_val": "Cups Goblets"
+    }
+  },
+
+  {
+    "model": "accounts.subcategory",
+    "pk": 25,
+    "fields": {
+      "subcategory_name": "figurative",
+      "subcategory_val": "Figurative"
+    }
+  },
+
+  {
+    "model": "accounts.subcategory",
+    "pk": 26,
+    "fields": {
+      "subcategory_name": "fountainsWaterwalls",
+      "subcategory_val": "Fountains & Waterwalls"
+    }
+  },
+
+  {
+    "model": "accounts.subcategory",
+    "pk": 27,
+    "fields": {
+      "subcategory_name": "jars",
+      "subcategory_val": "Jars"
+    }
+  },
+
+  {
+    "model": "accounts.subcategory",
+    "pk": 28,
+    "fields": {
+      "subcategory_name": "jewelry",
+      "subcategory_val": "Jewelry"
+    }
+  },
+
+  {
+    "model": "accounts.subcategory",
+    "pk": 29,
+    "fields": {
+      "subcategory_name": "masks",
+      "subcategory_val": "Masks"
+    }
+  },
+
+  {
+    "model": "accounts.subcategory",
+    "pk": 30,
+    "fields": {
+      "subcategory_name": "mugsTankards",
+      "subcategory_val": "Mugs & Tankards"
+    }
+  },
+
+  {
+    "model": "accounts.subcategory",
+    "pk": 31,
+    "fields": {
+      "subcategory_name": "ornaments",
+      "subcategory_val": "Ornaments"
+    }
+  },
+
+  {
+    "model": "accounts.subcategory",
+    "pk": 32,
+    "fields": {
+      "subcategory_name": "pitchersJugs",
+      "subcategory_val": "Pitchers & Jugs"
+    }
+  },
+
+  {
+    "model": "accounts.subcategory",
+    "pk": 33,
+    "fields": {
+      "subcategory_name": "platesSaucers",
+      "subcategory_val": "Plates & Saucers"
+    }
+  },
+
+  {
+    "model": "accounts.subcategory",
+    "pk": 34,
+    "fields": {
+      "subcategory_name": "plattersTrays",
+      "subcategory_val": "Platters & Trays"
+    }
+  },
+
+  {
+    "model": "accounts.subcategory",
+    "pk": 35,
+    "fields": {
+      "subcategory_name": "saltPepperShakers",
+      "subcategory_val": "Salt & Pepper Shakers"
+    }
+  },
+
+  {
+    "model": "accounts.subcategory",
+    "pk": 36,
+    "fields": {
+      "subcategory_name": "sculpturalArtistic",
+      "subcategory_val": "Sculptural & Artistic"
+    }
+  },
+
+  {
+    "model": "accounts.subcategory",
+    "pk": 37,
+    "fields": {
+      "subcategory_name": "teapotsSets",
+      "subcategory_val": "Teapots & Sets"
+    }
+  },
+
+  {
+    "model": "accounts.subcategory",
+    "pk": 38,
+    "fields": {
+      "subcategory_name": "tiles",
+      "subcategory_val": "Tiles"
+    }
+  },
+
+  {
+    "model": "accounts.subcategory",
+    "pk": 39,
+    "fields": {
+      "subcategory_name": "vasesUrns",
+      "subcategory_val": "Vases & Urns"
+    }
+  },
+
+  {
+    "model": "accounts.subcategory",
+    "pk": 40,
+    "fields": {
+      "subcategory_name": "otherCeramics",
+      "subcategory_val": "Other Ceramics"
+    }
+  }
+]

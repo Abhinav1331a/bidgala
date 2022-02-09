@@ -1,0 +1,155 @@
+[
+  {
+    "model": "accounts.material",
+    "pk": 1,
+    "fields": {
+      "material_value": "canvas",
+      "material_name": "Canvas"
+    }
+  },
+  
+  {
+    "model": "accounts.material",
+    "pk": 2,
+    "fields": {
+      "material_value": "paper",
+      "material_name": "Paper"
+    }
+  },
+
+  {
+    "model": "accounts.material",
+    "pk": 3,
+    "fields": {
+      "material_value": "wood",
+      "material_name": "Wood"
+    }
+  },
+
+  {
+    "model": "accounts.material",
+    "pk": 4,
+    "fields": {
+      "material_value": "cardboard",
+      "material_name": "Cardboard"
+    }
+  },
+
+  {
+    "model": "accounts.material",
+    "pk": 5,
+    "fields": {
+      "material_value": "soft",
+      "material_name": "Soft (Yam, Cotton, Fabric)"
+    }
+  },
+
+  {
+    "model": "accounts.material",
+    "pk": 6,
+    "fields": {
+      "material_value": "plastic",
+      "material_name": "Plastic"
+    }
+  },
+
+  {
+    "model": "accounts.material",
+    "pk": 7,
+    "fields": {
+      "material_value": "aluminum",
+      "material_name": "Aluminum"
+    }
+  },
+
+  {
+    "model": "accounts.material",
+    "pk": 8,
+    "fields": {
+      "material_value": "glass",
+      "material_name": "Glass"
+    }
+  },
+
+  {
+    "model": "accounts.material",
+    "pk": 9,
+    "fields": {
+      "material_value": "carbonfibre",
+      "material_name": "Carbon Fibre"
+    }
+  },
+
+  {
+    "model": "accounts.material",
+    "pk": 10,
+    "fields": {
+      "material_value": "steel",
+      "material_name": "Steel"
+    }
+  },
+
+  {
+    "model": "accounts.material",
+    "pk": 11,
+    "fields": {
+      "material_value": "iron",
+      "material_name": "Iron"
+    }
+  },
+
+  {
+    "model": "accounts.material",
+    "pk": 12,
+    "fields": {
+      "material_value": "bronze",
+      "material_name": "Bronze"
+    }
+  },
+
+  {
+    "model": "accounts.material",
+    "pk": 13,
+    "fields": {
+      "material_value": "ceramic",
+      "material_name": "Ceramic"
+    }
+  },
+
+  {
+    "model": "accounts.material",
+    "pk": 14,
+    "fields": {
+      "material_value": "stone",
+      "material_name": "Stone"
+    }
+  },
+
+  {
+    "model": "accounts.material",
+    "pk": 15,
+    "fields": {
+      "material_value": "stainlesssteel",
+      "material_name": "Stainless Steel"
+    }
+  },
+
+  {
+    "model": "accounts.material",
+    "pk": 16,
+    "fields": {
+      "material_value": "marble",
+      "material_name": "Marble"
+    }
+  },
+
+  {
+    "model": "accounts.material",
+    "pk": 17,
+    "fields": {
+      "material_value": "other",
+      "material_name": "Other"
+    }
+  }
+  
+]

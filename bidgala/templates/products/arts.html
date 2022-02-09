@@ -1,0 +1,380 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+{% block title %} | Arts {% endblock %}
+{% block cssfile %}
+<link rel="stylesheet" href="{% static 'css/arts.css' %}">
+{%endblock%}
+
+
+{% block content %}
+{% csrf_token %}
+
+
+<div id="overlay-arts"></div>
+<section class="products-container mt-3">
+    <div class="products row m-0">
+
+        <div class="w-100 pl-2 pr-2" id="mobile-filter-btn">
+            <button class="btn btn-dark d-lg-none d-block w-100" id="filter" type="button">FILTER</button>
+        </div>
+
+        <!-- sort dropdown -->
+        <div class="sort-dropdown">
+            <button>
+                <div>
+                    <span>sort by</span>
+                    <span class="button-text">Default</span>
+                </div>
+                <i class="right fas fa-caret-down"></i>
+            </button>
+            <div class="sort-dropdown-content">
+                <a href="" id="default-sort" data-value="df"><i class="fas fa-check default-check"></i> Default</a>
+                <a href="" id="lowest-first" data-value="lf"><i class="fas fa-check lowest-check visibility-hidden"></i> Price: Lowest</a>
+                <a href="" id="highest-first" data-value="hf"><i class="fas fa-check highest-check visibility-hidden"></i> Price: Highest</a>
+            </div>
+        </div>
+        <!-- sort dropdown -->
+
+        <div class="mt-3" id="sidebar">
+
+            <button class="btn btn-link text-secondary close d-block d-lg-none mb-4 mr-2" type="button">x</button>
+
+            <div class="product_sidebar" id="filter-sidebar">
+                <div class="single_sedebar mb-1 hide-desktop">
+                    <div class="select_option">
+                        <div class="select_option_list">SORT BY <i class="right fas fa-caret-down"></i> </div>
+                        <div class="open_option_dropdown">
+                            <div class="custom-control form-check custom-radio mb-3">
+
+                                <input type="radio" class="custom-control-input" id="lowest-first-mob" name="sort-by"
+                                    value="lf">
+
+
+                                <label class="custom-control-label" for="lowest-first-mob">Price: Lowest first</label>
+                            </div>
+                            <div class="custom-control form-check custom-radio mb-3">
+
+                                <input type="radio" class="custom-control-input" id="highest-first-mob" value='hf'
+                                    name="sort-by">
+
+                                <label class="custom-control-label" for="highest-first-mob">Price: Highest first</label>
+                            </div>
+
+                            <div class="custom-control form-check custom-radio mb-3">
+
+                                <input type="radio" class="custom-control-input" id="default-sort-mob" value='df'
+                                    name="sort-by" checked>
+
+                                <label class="custom-control-label" for="default-sort-mob">Default</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="single_sedebar mb-1">
+                    <div class="select_option">
+                        <div class="select_option_list">CATEGORY <i class="right fas fa-caret-down"></i> </div>
+                        <div class="select_option_dropdown">
+                            {% for key, value in category.items %}
+                            <div class="custom-control form-check custom-checkbox mb-3">
+                                {% if active_field == 'category' and active_value == key %}
+                                <input type="checkbox" class="custom-control-input" name="category"
+                                    id="{{key}}_category" data-value="{{key}}" checked>
+                                {%else%}
+                                <input type="checkbox" class="custom-control-input" name="category"
+                                    id="{{key}}_category" data-value="{{key}}">
+                                {%endif%}
+                                <label class="custom-control-label" for="{{key}}_category">{{value}}</label>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="single_sedebar mb-1">
+                    <div class="select_option">
+                        <div class="select_option_list">SUBJECT <i class="right fas fa-caret-down"></i> </div>
+                        <div class="select_option_dropdown">
+                            {% for key, value in subcategory.items %}
+
+                            <div class="custom-control form-check custom-checkbox mb-3">
+                                <input type="checkbox" class="custom-control-input" name="subcategory"
+                                    id="{{key}}_subject" data-value="{{key}}">
+                                <label class="custom-control-label" for="{{key}}_subject">{{value}}</label>
+                            </div>
+                            {% endfor %}
+
+
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="single_sedebar mb-1">
+                    <div class="select_option">
+                        <div class="select_option_list">STYLE <i class="right fas fa-caret-down"></i> </div>
+                        <div class="select_option_dropdown">
+
+                            {% for key, value in style.items %}
+                            <div class="custom-control form-check custom-checkbox mb-3">
+                                {% if active_field == 'style' and active_value == key %}
+                                <input type="checkbox" class="custom-control-input" id="{{key}}_style"
+                                    data-value="{{key}}" name="style" checked>
+                                {%else%}
+                                <input type="checkbox" class="custom-control-input" id="{{key}}_style"
+                                    data-value="{{key}}" name="style">
+                                {%endif%}
+                                <label class="custom-control-label" for="{{key}}_style">{{value}}</label>
+                            </div>
+                            {% endfor %}
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="single_sedebar mb-1">
+                    <div class="select_option">
+                        <div class="select_option_list">SIZE <i class="right fas fa-caret-down"></i> </div>
+                        <div class="select_option_dropdown">
+
+                            <div class="form-row mb-3">
+
+
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="measure-unit" id="cm" value="cm">
+                                    <label class="form-check-label" for="cm">cm</label>
+                                </div>
+
+                                <div class="form-check ml-4">
+                                    <input class="form-check-input" type="radio" name="measure-unit" id="m" value="m">
+                                    <label class="form-check-label" for="m">m</label>
+                                </div>
+
+
+                                <div class="form-check ml-4">
+                                    <input class="form-check-input" type="radio" name="measure-unit" id="in" value="i">
+                                    <label class="form-check-label" for="in">inches</label>
+                                </div>
+
+
+                            </div>
+
+                            <label for="width">Width</label>
+                            <div class="form-row mb-2">
+                                <input type="number" class="form-control col mr-1" placeholder="Min" id="min-width"
+                                    class="width">
+                                <input type="number" class="form-control col ml-1" placeholder="Max" id="max-width"
+                                    class="width">
+                            </div>
+                            <label for="height">Height</label>
+                            <div class="form-row mb-2">
+                                <input type="number" class="form-control col mr-1" placeholder="Min" id="min-height"
+                                    class="height">
+                                <input type="number" class="form-control col ml-1" placeholder="Max" id="max-height"
+                                    class="height">
+                            </div>
+                            <label for="depth">Depth</label>
+                            <div class="form-row">
+                                <input type="number" class="form-control col mr-1" placeholder="Min" id="min-depth"
+                                    class="depth">
+                                <input type="number" class="form-control col ml-1" placeholder="Max" id="max-depth"
+                                    class="depth">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="single_sedebar mb-1">
+                    <div class="select_option">
+                        <div class="select_option_list">PRICE <i class="right fas fa-caret-down"></i> </div>
+                        <div class="select_option_dropdown">
+                            <div class="form-row">
+                                <input type="number" class="form-control col mr-1" placeholder="Min $"
+                                    id="min-price-custom" class="price">
+                                <input type="number" class="form-control col ml-1" placeholder="Max $"
+                                    id="max-price-custom" class="price">
+                            </div>
+
+
+                            {% if active_field == 'price' and active_value == 'price_max-100' %}
+                            <input type="radio" class="custom-control-input" id="range2" data-value="100l" name="price"
+                                checked hidden>
+                            {%else%}
+                            <input type="radio" class="custom-control-input" id="range2" data-value="100l" name="price"
+                                hidden>
+                            {%endif%}
+
+
+
+
+                            {% if active_field == 'price' and active_value == 'price_max-500' %}
+                            <input type="radio" class="custom-control-input" id="range3" data-value="500l" name="price"
+                                checked hidden>
+                            {%else%}
+                            <input type="radio" class="custom-control-input" id="range3" data-value="500l" name="price"
+                                hidden>
+                            {%endif%}
+
+
+
+
+                            {% if active_field == 'price' and active_value == 'price_max-1000' %}
+                            <input type="radio" class="custom-control-input" id="range4" data-value="1000l" name="price"
+                                checked hidden>
+                            {%else%}
+                            <input type="radio" class="custom-control-input" id="range4" data-value="1000l" name="price"
+                                hidden>
+                            {%endif%}
+
+
+
+
+                            {% if active_field == 'price' and active_value == 'price_min-1000' %}
+                            <input type="radio" class="custom-control-input" id="range5" data-value="1000g" name="price"
+                                checked hidden>
+                            {%else%}
+                            <input type="radio" class="custom-control-input" id="range5" data-value="1000g" name="price"
+                                hidden>
+                            {%endif%}
+
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="single_sedebar">
+                    <div class="select_option">
+                        <div class="select_option_list">COLOR <i class="right fas fa-caret-down"></i> </div>
+                        <div class="select_option_dropdown">
+                            <!-- Section: Color -->
+                            <!-- <section class="mb-3" filter="color">
+
+                <div class="btn-group btn-group-toggle btn-color-group d-block mt-n2 ml-n2" data-toggle="buttons">
+
+
+                  {% for color_key, val in color.items%}
+                  <label for="{{val.id}}" class="btn rounded-circle border-inset-grey p-2 m-1 gray-border " style="background-color: {{color_key}};height: 30px; width:30px">
+                    <input id="{{val.id}}" class="filter-option" name="filter-option-color" type="checkbox" color="{{color_key}}" />
+                  </label>
+                  {%endfor%}
+
+
+
+
+
+
+
+
+                </div>
+
+
+              </section> -->
+                            <!-- Section: Color -->
+                            <section class="mb-3" filter="color">
+                                <!-- <div class="single_sedebar mb-1">
+                  <div class="select_option">
+                    <div class="select_option_list">COLOR <i class="right fas fa-caret-down"></i> </div>
+                    <div class="select_option_dropdown"> -->
+                                {% for color_key, val in color.items%}
+                                <div class="custom-control form-check custom-checkbox mb-3 color-option">
+                                    <input type="checkbox" class="custom-control-input filter-option"
+                                        name="filter-option-color" id="{{val.id}}" color="{{color_key}}">
+                                    <label class="custom-control-label" for="{{val.id}}">{{val.name}}</label>
+                                    <div class="color-block" style="background-color: {{color_key}};"></div>
+                                </div>
+                                {% endfor %}
+                                <!-- </div>
+                  </div>
+                </div> -->
+                            </section>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        </button>
+
+
+
+
+        <div class="col-12 pt-3 w-100" id="products">
+            <div class="product_list w-100">
+                <div class="filter_product_section w-100">
+                    <div class="grid">
+                        {% if grouped_art %}
+                        <div class="grid-sizer"></div>
+                        {% for group in grouped_art %}
+                        {% for product in group %}
+                        <div class="grid-item">
+                            <a href="{%url 'product_view' id=product.art_obj.id%}" >
+                                <img src="{{BASE_AWS_IMG_URL}}{{product.art_obj.image}}{{img_optimize_param}}" loading="lazy">
+ 
+                                <h6 class="mt-2 mb-1 text-truncate font-weight-bold"> <a
+                                        href="{% url 'public_profile' product.art_obj.owner.user.username %}">{{product.art_obj.owner.user.first_name}}
+                                        {{product.art_obj.owner.user.last_name}}</a></h6>
+
+
+                                <small><i>{{product.art_obj.art_title}}</i></small> <br />
+                                <small class="text-muted">${{product.art_obj.price | intcomma}}</small> <br />
+                                <div class="w-100 d-flex justify-content-between">
+
+
+
+                                    <small class="text-muted">{{product.art_obj.width}}W x </small>
+                                    <small class="text-muted">
+                                        {{product.art_obj.height}}H</small>{%if product.art_obj.depth > 0%}<small
+                                        class="text-muted"> x
+                                        {{product.art_obj.depth}}D</small>{%endif%}<small class="text-muted">
+                                        {{product.art_obj.dim_measure}}</small>
+                                    {%if request.user.is_authenticated%} <a id="fav-{{product.art_obj.id}}"
+                                        class="fav-product">{% if product.liked%}<i class="fas fa-heart"></i> {%else%}<i
+                                            class="far fa-heart"></i>{%endif%}</a> {%else%} <a href="#"
+                                        data-toggle="modal" data-target="#loginModal"><i
+                                            class="far fa-heart"></i></a>{%endif%}
+
+
+                                </div>
+                            </a>
+                        </div>
+                        {% endfor %}
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+
+            {% if not grouped_art %}
+            <div class='alert alert-primary text-center w-100' role='alert'>No match found</div>
+            {% endif %}
+
+        </div>
+
+
+
+
+    </div>
+</section>
+{%endblock%}
+
+
+
+{% block jsfile %}
+<script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+<script src="{% static 'js/arts.js' %}"></script>
+{% endblock %}

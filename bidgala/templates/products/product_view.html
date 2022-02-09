@@ -1,0 +1,1079 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} | {{art_title}} {% endblock %}
+{% block content %}
+{% block more_meta_tags %}
+<meta property="og:title" content="{{product.title}}" />
+<meta property="og:description" content="Check out this listing I found" />
+<meta property="og:image" content="{{BASE_AWS_IMG_URL}}{{product.image}}" />
+{% endblock %}
+{% block cssfile %}
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+<link rel="stylesheet" href="{% static 'css/product-view.css' %}"/>
+<link rel="stylesheet" href="{% static 'css/zoom.css' %}"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
+
+{% endblock %}
+
+{%if product%}
+<!-- Art images -->
+<section class="product-page">
+<input hidden value="{{bidgala_publish_key}}" id="publish-key"/>
+<div class="d-flex flex-column align-items-center">
+<div class="art-details row w-100">
+
+
+{% if additional_img %}
+<div class="art-slider col-12 col-sm-8">
+
+    <!-- <i class="fas fa-chevron-left previous-arrow arrow pointer"></i>
+    <i class="fas fa-chevron-right next-arrow arrow pointer"></i> -->
+
+
+    <div class="slider-for">
+      <div class="item">
+        
+        <img src="{{BASE_AWS_IMG_URL}}{{product.image}}{{img_optimize_param_large}}" alt="image"  draggable="false" class="single-image" width='555' height='320' data-action="zoom"/>
+       
+      </div>
+
+
+
+    </div>
+
+    {% if additional_img %}
+    <div class="slider-nav d-flex">
+      <div class="item more-items">
+        <img data-aload="{{BASE_AWS_IMG_URL}}{{product.image}}{{img_optimize_param_large}}" alt="image"  draggable="false" class="nav-image pointer" loading="lazy"/>
+      </div>
+      {% for sub_img in additional_img %}
+      <div class="item more-items">
+      <img data-aload="{{BASE_AWS_IMG_URL}}{{sub_img}}{{img_optimize_param_large}}" alt="image"  draggable="true" class="nav-image pointer" loading="lazy" />
+      </div>
+      {%endfor%}
+    </div>
+    {% endif %}
+
+  </div>
+  {% else %}
+
+  <div class="col-12 col-sm-8 d-flex justify-content-center align-items-center mb-3">
+   
+    <img data-aload="{{BASE_AWS_IMG_URL}}{{product.image}}{{img_optimize_param_large}}" alt="image"  draggable="false" class="img-fluid" loading="lazy" width='555' height='320' data-action="zoom"/>
+  
+  </div>
+
+  {% endif %}
+
+
+
+  <!-- Art information -->
+  <div class="art-info-section col-12 col-sm-4">
+    <div class="art-info">
+      <!-- If the art is a curator pick then display this -->
+      {% if product.curator_pick%}<div class="curator-pick product-details">Curator Pick</div>{%endif%}
+
+      <div class="d-flex justify-content-between">
+        <h2 style="word-break: break-word;">{{art_title}}</h2>
+        {%if request.user.is_authenticated%}
+        <h2>
+          <div class="fav-wrapper">
+          <a id="fav-{{product.id}}" class="fav-product"> {% if is_fav%}
+            <i class="fas fa-heart fa-xs"> </i> {%else%}
+            <i class="far fa-heart fa-xs"> </i> {%endif%}
+          </a>
+        </div>
+        </h2>
+        {%else%}
+        <h2>
+          <a href="#" data-toggle="modal" data-target="#loginModal">
+            <i class="far fa-heart" style="color:black"></i>
+          </a>
+        </h2>
+        {%endif%}
+      </div>
+
+      <p class="d-inline"><a href="{% url 'public_profile' product_owner_user %}" style="text-decoration: underline;">{{first_name}} {{last_name}}</a></p>
+      {%if product.owner.special_user%}
+      <img class="checkmark d-inline text-nowrap" src="{% static 'img/check.svg' %}" alt="checkmark">
+      {%endif%}
+      <div class="art-type">
+      <h6>Category</h6>
+      <p>{{category_type}}<br>{{subcategory_type}}</p>
+    </div>
+
+      <div class="art-size">
+      <h6>Size</h6>
+      <p>{{product.width}}W X {{product.height}}H {%if product.depth > 0%}X {{product.depth}}D{%endif%} {{product.dim_measure}}</p>
+    </div>
+
+
+
+    {% if product.sold %}
+      <div class="sold-btn">SOLD</div>
+    {% else %}
+      <div class="art-price">
+        {%if not professional_verified%}
+        <p><strong>USD {{product.price}}</strong></p>
+        {%else%}
+        <p><strong><strike>USD {{product.price}}</strike> USD {{professional_discount_price}}</strong></p>
+
+        {%endif%}
+      </div>
+
+
+      <div class="shipping">
+        <p><strong>+ USD <span id="get_shipping_price"></strong></span> Shipping: </p>
+        <select class="custom-select" id="shipping_prices">
+          {% for key, val in show_shipping_prices.items%}
+          <option value="{{val}}">{{key}}</option>
+
+          {% endfor %}
+
+        </select>
+      </div>
+    {%endif%}
+
+
+
+
+
+    </div>
+
+
+    {%if not product.sold %}
+
+
+
+    {% if request.user.is_authenticated %}
+
+    {% if is_product_owner %}
+
+    {% else %}
+
+
+    <div class="btn-group-vertical">
+        <button class ="art-info-button text-center" data-toggle="modal" data-target="#purchase-review-modal" style="color:white;"
+        onmouseover="this.style.color='black'" id="purchase-btn"
+        onmouseout="this.style.color='white'"
+        >PURCHASE</button>
+
+        <a href="{%url 'get_thread' username=user_actual_id%}" class ="art-info-button outlined text-center" style="color:black;"
+        onmouseover="this.style.color='white'" id="purchase-btn"
+        onmouseout="this.style.color='black'"
+        >MESSAGE ARTIST</a>
+    </div>
+    {% endif %}
+    {%else%}
+
+
+    <div class="btn-group-vertical">
+        <button class="art-info-button text-center" data-toggle="modal" data-target="#loginModal" style="color:white;"
+        onmouseover="this.style.color='black'" id="purchase-btn"
+        onmouseout="this.style.color='white'"
+        >PURCHASE</button>
+
+
+        <button data-toggle="modal" data-target="#loginModal" class ="art-info-button outlined text-center" style="color:black;"
+        onmouseover="this.style.color='white'" id="purchase-btn"
+        onmouseout="this.style.color='black'"
+        >MESSAGE ARTIST</button>
+    </div>
+    {% endif %}
+
+
+
+    {%endif%}
+
+
+    <div class="art-description">
+      <h6>Description</h6>
+      <p>{{product.art_desc}}</p>
+    </div>
+
+
+  </div>
+</div>
+
+
+  {% if more_products %}
+  <div class="container-fluid p-0 mt-5 mb-3" id="more-from-artist">
+      <h4 class="mb-2 pl-2 pr-2 p-xl-0">More from {{first_name}} {{last_name}}</h4>
+      <i class="fas fa-chevron-left prev" id="prev-more-from"></i>
+      <i class="fas fa-chevron-right next" id="next-more-from"></i>
+      <div class=" more-from-artist d-flex">
+            {% for product in more_products %}
+          <div class="card art-card ml-1 mr-1">
+              <a href="{%url 'product_view' id=product.id%}">
+                  {%if product.curator_pick %}
+                  <div class="curator-pick">Curator Pick</div>
+                  {%endif%}
+                  <img class="card-img-top product-img" data-aload="{{BASE_AWS_IMG_URL}}{{product.image}}{{img_optimize_param_large}}" alt="Card image cap" loading="lazy">
+                  <div class="card-body">
+                      <p class="card-title mb-1">{{product.art_title}}</p>
+                      <p class="card-text">${{product.price}}</p>
+                  </div>
+              </a>
+          </div>
+          {%endfor%}
+      </div>
+  </div>
+  {% endif %}
+
+
+    
+    <div class="d-flex justify-content-center w-100 mt-5">
+        <div class="mr-3"><i class="fa fa-comment" aria-hidden="true"></i><span class="ml-1" id="get-comment-count">{{product.comment_count}}</span> comments</div>
+
+    </div>
+
+    <div class="container d-flex flex-column align-items-center mt-4 pl-0 pr-0">
+        <h5 class="mb-30">Leave a comment</h5>
+
+        <div id="alert"></div>
+
+
+
+
+        <div class="input-group align-items-center mt-3 mb-4 discussion-form w-100 pl-1 pr-1">
+            <div class="input-group-prepend profile-thumbnail" style="width:2.5em; height:2.5em;">
+                {% if request.session.profile_img %}
+                <img src="{{request.session.profile_img}}" alt="profile-img-thumbnail" style="background-size: cover; position:relative; margin: 0 auto; border-radius: 50%; height: 100%; width: 100%; object-fit:cover;">
+                {% else %}
+                <img src="{% static 'img/profile-icon.png'%}" alt="profile-img-thumbnail" style="background-size: cover; position:relative; margin: 0 auto;height: 100%; width: 100%; border-radius: 50%; object-fit:cover;">
+                {% endif %}
+            </div>
+            <input type="text" id="comment-body" class="form-control w-100 ml-2 mr-2" placeholder="Leave a reply..."/>
+            <div class="input-group-append">
+                {% if request.user.is_authenticated %}
+                <button type="submit" id="post-comment" class="btn btn-dark" data-id={{product.id}}>COMMENT</button>
+                {% else %}
+                <button class="btn btn-dark comment-btn" data-id={{product.id}} disabled>COMMENT</button>
+                {% endif %}
+            </div>
+        </div>
+
+            {% if not request.user.is_authenticated %}
+                <small class="mt-20"><span class="text-muted login-to" data-toggle="modal" data-target="#loginModal">Log in </span>to leave a comment</small>
+            {% endif %}
+    </div>
+
+
+
+
+
+    <div class="container comments mt-3 mb-5" id="comments-container">
+    {% if comments %}
+        {% for comment in comments%}
+        <div class="comment d-flex justify-content-center align-items-start discussion-form w-100 h-100 mb-4">
+            <div class="profile-thumbnail mr-0" style="min-width:2.5em; max-width:2.5em; height:2.5em;">
+                {% if comment.user.profile_img %}
+                <img src="{{BASE_AWS_IMG_URL}}{{comment.user.profile_img}}" alt="" style="position:relative; margin: 0 auto;width:100%; height:100%; border-radius: 50%; object-fit:cover;" loading="lazy">
+                {% else %}
+                <img src="{% static 'img/profile-icon.png'%}" alt="" style="position:relative; margin: 0 auto;width:100%; height:100%; border-radius: 50%; object-fit:cover;" loading="lazy">
+                {% endif %}
+            </div>
+
+
+            <div class="col-11 d-flex flex-column ml-0">
+                <small class="w-100 d-flex justify-content-between"><strong><a href="{% url 'public_profile' comment.user.user %}" class="text-muted">{{comment.user.user}}</a> replied {{comment.created_date | timesince}} ago</strong>{%if comment.user.user == request.user %}<a href="{% url 'delete_comment_product' product_id=comment.product_id.id comment_id=comment.id %}"><i class="fas fa-trash-alt"></i></a>{%endif%}</small>
+                <small id="comment-body-posted">{{comment.body}}</small>
+            </div>
+              </div>
+        {% endfor %}
+
+
+    </div>
+    {% else %}
+    <div class="w-100 d-flex justify-content-center mt-5" id="no-replies-container">
+        <p id="no-replies-txt">No comments yet</p>
+    </div>
+    {% endif %}
+    {% comment %} End of comment section {% endcomment %}
+
+</div>
+
+
+{%else%}
+<div class="alert alert-warning text-center">
+  Something Went wrong. Please try again later.
+</div>
+{%endif%}
+
+</section>
+
+
+
+
+
+  <!-- Modal for offer -->
+  <div class="modal fade product_view" id="purchase-review-modal" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <!-- Modal content-->
+        <div class="modal-content purchase-view">
+          <form id="purchase-request-form">
+          {% csrf_token %}
+          {% comment %} <div class="modal-body d-flex d-sm-flex flex-column-reverse flex-sm-column-reverse flex-md-row"> {% endcomment %}
+          <div class="modal-body pt-0 pb-0 mr-0 ml-0">
+            <div class="modal-split">
+
+    		    </div>
+
+          <div class="row p-0">
+
+
+            <div class="col-12 col-md-8 order-2 order-md-1">
+              {% if customer and customer_payment_methods %}
+              <div class="p-3">
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                  <div class="d-flex align-items-center">
+                    <div class="steps">1</div>
+                    <div class="m-0 text-dark">Payment Method</div>
+                  </div>
+                  <button class="btn btn-dark" id="add-payment-method" type="button"><small><i class="fas fa-plus-circle mr-1"></i>Add New</small></button>
+                </div>
+                <div id="payment-methods" class="d-flex d-md-block">
+                  {% for method in customer_payment_methods %}
+                  <div class="form-check mb-2 mr-5 mr-md-0 d-flex justify-content-between flex-wrap" data-id="{{method.id}}" id="pm-container{{method.id}}">
+                    <div class="mr-2">
+                      <input class="form-check-input" type="radio" name="payment-method" id="{{method.id}}" value="{{method.id}}" />
+                      <label class="form-check-label d-flex flex-column" for="{{method.id}}">
+                        <small class="text-dark m-0">{{method.card.brand.upper}} •••• {{method.card.last4}}</small>
+                        <small class="text-secondary m-0">{{method.billing_details.name}} - Expires {{method.card.exp_month}}/{{method.card.exp_year}}</small>
+                      </label>
+                    </div>
+
+
+                    <div>
+                      <button class="btn btn-dark btn-sm fa fa-trash delete_pm" type="button" id="delete_payment_method{{method.id}}" data-id="{{method.id}}"></button>
+                      {% comment %} <p>Are you sure? If you disconnect this payment method and have incomplete orders with this payment method, your orders will be cancelled.</p> {% endcomment %}
+                      {% comment %} check to see if this user has any orders with this payment method and if so, dont let them delete it - only allow deletion if there are no pending orders {% endcomment %}
+
+                      {% comment %} <button class="btn btn-light btn-sm fa fa-pencil" type="button"></button> {% endcomment %}
+                    </div>
+                  </div>
+                  {% endfor %}
+                </div>
+              </div>
+
+              {% else %}
+
+              <div class="mb-3 p-3">
+                <div class="d-flex align-items-center justify-content-start mb-2 mt-3">
+                  <div class="d-flex align-items-center">
+                    <div class="steps">1</div>
+                    <div class="m-0 text-dark">Payment Method</div>
+                  </div>
+                </div>
+                <div id="payment-methods-msg" class="d-flex d-md-block justify-content-center text-center flex-column">
+                  <small>You have no payment methods</small>
+                  <button class="btn btn-light mb-3 mt-3 w-100" id="add-payment-method" type="button"><small><i class="fas fa-plus-circle mr-1"></i>Add New</small></button>
+                  <small>You will be redirected to Stripe, a secure online payment processor. We do not save any of your payment information.</small>
+                </div>
+              </div>
+              {% endif %}
+
+              <div class="shipping-info pt-0 pr-3 pl-3">
+              <div class="d-flex align-items-center">
+                <p class="steps">2</p>
+                <p class="title-shipping text-dark p-0">Shipping Info</p>
+              </div>
+              <div class="form-row">
+                <div class="form-group col">
+                  <label for="first_name_popup">First Name *</label>
+                  <input required type="firstName"
+                        class="form-control shipping-input"
+                        placeholder="First Name" id="first_name_popup" name="first_name_popup" required>
+                </div>
+                <div class="form-group col">
+                  <label for="last_name_popup">Last Name *</label>
+                  <input required type="lastName"
+                        class="form-control shipping-input"
+                        placeholder="Last Name" id="last_name_popup" name="last_name_popup" required>
+                </div>
+              </div>
+
+
+
+                <div class="form-group">
+                  <label>Street *</label>
+                  <input required type="street"
+                      class="form-control shipping-input"
+                      placeholder="Number and Street Name" id="address_popup" name="address_popup" required>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group col">
+                    <label>Apt, Suite, Bldg.</label>
+                  <input type="text"
+                        class="form-control shipping-input"
+                        placeholder="Optional" id="apt_popup" name="apt_popup">
+                  </div>
+                  <div class="form-group col">
+                    <label>Postal Code *</label>
+                  <input required type="text"
+                        class="form-control shipping-input"
+                        placeholder="Zip" id="postal_popup" name="postal_popup" required>
+                  </div>
+                </div>
+
+              <div class="form-row">
+                <div class="form-group col">
+                  <label>City *</label>
+                  <input required type="city"
+                      class="form-control shipping-input"
+                      placeholder="City" id="city_popup" name="city_popup" required>
+                </div>
+
+                <div class="form-group col">
+                  <label>State *</label>
+                  <input required type="state"
+                      class="form-control shipping-input"
+                      placeholder="State" id="state_popup" name="state_popup" required>
+                </div>
+
+                <div class="form-group col">
+                  <label>Country *</label>
+                  <select  class="form-control shipping-input" id="shipping_prices_popup">
+                    {% for key, vals in stripe_shipping_support.items%}
+
+                    <optgroup label="{{key}}" value="{{key}}">
+                      {%for val in vals.countries%}
+                      <option value="{{vals.price}}">{{val}}</option>
+                     {%endfor%}
+                    </optgroup>
+
+
+                     {% endfor %}
+                  </select>
+                </div>
+              </div>
+
+                <div class="form-group">
+                  <label>Telephone *</label>
+                  <input type="text"
+                        class="form-control shipping-input"
+                        placeholder="Telphone Number" id="phone_popup" name="phone_popup" required>
+                </div>
+
+              </div>
+
+
+            <div id="error-message">
+              <p id="model-error-msg" style="color: red"></p>
+            </div>
+
+            <div class="container d-flex flex-column align-items-center pt-3 pb-4">
+              <div class="form-check form-group mb-2">
+                <input type="checkbox" class="form-check-input" id="purchase_req_agree" name="purchase_req_agree" required>
+                <label class="form-check-label pr-label" for="purchase_req_agree">I acknowledge that this is a binding purchase request *</label>
+              </div>
+              <small class="text-center fine-print">You will not be charged until the artist sends you a tracking number. The artist has maximum 7 days to send you a tracking number. Example: if the artist accepts your order but does not send you a tracking number, you will not be charged. (Your card will never be charged without your permission)</small>
+              {% comment %} add back when we have faq page {% endcomment %}
+              {% comment %} <a href="" class="text-dark" target="blank">Click here to learn more.</a></small> {% endcomment %}
+            </div>
+
+            <div class="modal-footer d-flex flex-column">
+            {% if customer and customer_payment_methods %}
+            <button class="btn btn-dark text-center w-100 m-0" id="checkout-btn" type="button"
+            >Submit Purchase Request</button>
+
+
+
+            {% else %}
+
+            <button type="button" class="btn btn-dark text-center w-100" id="no-payment-method-btn"
+            >Submit Purchase Request</button>
+            {% endif %}
+            </div>
+          </div>
+
+          <div class="col-12 col-md-4 order-summary-sec p-3 order-1 order-md-2">
+            <div class="w-100 flex-start mt-3">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <p class="text-dark pl-3 pr-3">Order Summary</p>
+            <div class="d-flex flex-md-column flex-row">
+              <div class="col-6 col-md-12 w-md-100 mb-3" >
+                <img src="{{BASE_AWS_IMG_URL}}{{product.image}}" id="p-image" alt="image" draggable="false" class="img-fluid">
+              </div>
+              <div class="product-info col-6 col-md-12  d-flex flex-column">
+                <div class="product-name mb-2 pb-2">
+                  <small>{{art_title}} - {{first_name}} {{last_name}}</small>
+                </div>
+                <div class="d-flex justify-content-between">
+                  <small>Listing Price:</small>
+                  <small class="">USD <span id="discount_price"></span><span id="og_price">{%if not professional_verified%} {{product.price}}{%else%}{{professional_discount_price}}{%endif%}</span></small>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <small>Shipping:</small>
+                    <small class="">USD <span id="get_shipping_price_popup"></span></small>
+                </div>
+
+                <div class="d-flex justify-content-between" id="show_if_any_discount">
+                </div>
+
+                <div class="d-flex justify-content-between mt-2 pt-2" id="order-total">
+                  <small id="orderTotal">Order Total:</small>
+                  <small class="total">USD <span id="total_popup"></span></small>
+                </div>
+
+
+                <div class="d-flex flex-column" id="discount_form">
+                  <div class="input-group mt-3 mb-1" id="discount_input">
+                    <input type="text"
+                          class="form-control"
+                          placeholder="Discount Code" id="discount_code" name="discount_code">
+                    <div class="input-group-append">
+                      <button class="btn btn-dark" type="button" id="apply-discount" form="discount_form">Apply</button>
+                    </div>
+                  </div>
+                  <div id="discount_message"></div>
+                </div>
+
+
+
+              </div>
+            </div>
+          </div>
+
+
+
+          </div>
+          </form>
+
+      </div>
+    </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block jsfile %}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous" defer></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous" defer></script>
+
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.min.js" crossorigin="anonymous" defer></script>
+<script src="{% static 'js/slick-carousel.js' %}" defer></script>
+<script src="{% static 'js/product_view.js' %}" defer></script>
+<script src="{% static 'js/zoom.js' %}" defer></script>
+
+<script src="https://js.stripe.com/v3/"></script>
+
+
+
+<!-- <script>
+
+
+  $(".more-from-artist").slick({
+    dots: false,
+    infinite: false,
+    speed: 300,
+    slidesToScroll: 1,
+    variableWidth: true,
+    nextArrow: $("#next-more-from"),
+    prevArrow: $("#prev-more-from"),
+  });
+</script> -->
+
+
+<script type="text/javascript">
+
+var actual_price = {%if not professional_verified%}{{product.price}}{%else%}{{professional_discount_price}}{%endif%}
+$(window).on('load', function() {
+  $('.art-details').css('opacity', 1);
+});
+
+
+$(document).ready(function() {
+    $("#shipping_prices").val($("#shipping_prices option:first").val());
+    $("#get_shipping_price").text($("#shipping_prices").val());
+
+    $("#shipping_prices_popup").val($("#shipping_prices_popup option:first").val());
+    $("#get_shipping_price_popup").text($("#shipping_prices_popup").val());
+
+    $("#total_popup").text(parseFloat(actual_price) + parseFloat($("#shipping_prices_popup").val()));
+
+    $("#productPrice").val(parseFloat(actual_price));
+});
+
+
+
+$("#shipping_prices").on('change', function() {
+    $("#get_shipping_price").text($("#shipping_prices").val());
+    $("#shippingPrice").val($("#shipping_prices").val());
+    $("#total").val(parseFloat(actual_price) + parseFloat($("#shipping_prices_popup").val()));
+});
+
+
+$("#shipping_prices_popup").on('change', function() {
+    $("#get_shipping_price_popup").text($("#shipping_prices_popup").val());
+    $("#total_popup").text(parseFloat(actual_price) + parseFloat($("#shipping_prices_popup").val()));
+
+    $("#shippingPrice").val($("#shipping_prices").val());
+    $("#total").val(parseFloat(actual_price) + parseFloat($("#shippingPrice").val()));
+});
+
+
+
+
+</script>
+
+
+
+
+{% if user.is_authenticated %}
+
+
+<script>
+
+      var DOMAIN = window.location.origin;
+      //var DOMAIN = window.location.href;
+
+      var generated_csrf_token = '{{ csrf_token }}';
+      //var stripe = Stripe(, {stripeAccount: '{{owner_stripe_account_id}}'});
+
+      var stripe_publish_key = $("#publish-key").val()
+      var stripe = Stripe(stripe_publish_key);
+
+      // Handle any errors from Checkout
+      var handleResult = function (result) {
+        if (result.error) {
+          var displayError = document.getElementById("error-message");
+          displayError.textContent = result.error.message;
+        }
+      };
+
+
+    var createCheckoutSession = () => {
+      var data = {
+        product_id: "{{product.id}}",
+      }
+      return $.ajax({
+        method: "POST",
+        url: '{% url 'add_payment_method' %}',
+        headers: {'X-CSRFToken': generated_csrf_token},
+        dataType: "json",
+        data: JSON.stringify(data),
+        success: function(response) {
+          console.log(response)
+          return response
+        },
+        error: function(jqXHR, exception) {
+
+          $("#model-error-msg").text(jqXHR.responseJSON.message)
+          return jqXHR
+        }
+      })
+
+    }
+
+
+    // Setup event handler to create a Checkout Session when button is clicked
+      document.getElementById("add-payment-method")
+        .addEventListener("click", function (evt) {
+          createCheckoutSession().then(function(response) {
+            // Call Stripe.js method to redirect to the new Checkout page
+            $("#preloader-active").css("display", "block");
+            stripe.redirectToCheckout({
+                sessionId: response.sessionId
+            }).then(handleResult);
+          });
+        })
+
+
+</script>
+
+<script>
+
+
+$( document ).ready(function() {
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+
+  const modal = urlParams.get("modal")
+  const status = urlParams.get("status")
+
+  //if product is sold and status is success  dont show modal
+  if (status == "success") {
+    console.log("here for success ")
+
+    $('#purchase-review-modal').modal('show')
+    $('#purchase-summary').prepend("<div class='alert alert-success text-center m-2' role='alert' id='pm-success'>Your payment method was added successfully</div>")
+    $('#pm-success').fadeOut(7000)
+
+  }
+  else if (modal == "open") {
+    console.log("here for modal open")
+    $('#purchase-review-modal').modal('show')
+  }
+});
+
+</script>
+
+<script>
+
+$( document ).ready(function() {
+  $("input:radio[name=payment-method]:first").attr('checked', true)
+});
+
+
+
+</script>
+
+<script>
+
+$( "#no-payment-method-btn" ).click(function() {
+  $('#payment-methods-msg').prepend("<div class='alert alert-danger text-center' role='alert' id='pm-success'>Please add a payment method</div>")
+});
+
+
+
+
+</script>
+
+
+
+<script>
+
+const applyDiscount = () => {
+
+    $("#apply-discount").attr("disabled", true);
+    $("#apply-discount").html("<div class='spinner-border' role='status'><span class='sr-only'>Loading...</span></div>");
+
+     var discount_code = $('#discount_code').val();
+
+    $.ajax({
+        method: "POST",
+        url: '{% url 'apply_discount' %}',
+        dataType: "json",
+        data: JSON.stringify(discount_code),
+        headers: {'X-CSRFToken': generated_csrf_token},
+        success: function(response) {
+          console.log(response)
+          if (response.status === "fail") {
+            $('#discount_code').val("");
+            $("#apply-discount").html("Apply");
+            $("#apply-discount").attr("disabled", false);
+            
+            $("#discount_message").html("<small>"+response.message+"</small>");
+
+            $("#og_price").css("text-decoration", "none");
+
+            $("#discount_price").html("");
+
+            $("#total_popup").html(parseFloat(actual_price) + parseFloat($("#shipping_prices_popup").val()));
+
+            $("#discount_price").css("margin-right", "0px");
+
+          } else if (response.status === "success") {
+
+            $("#apply-discount").html("Apply");
+            $("#apply-discount").attr("disabled", false);
+
+            $("#discount_message").html("<small>"+response.message+"</small>");
+
+            $("#og_price").css("text-decoration", "line-through");
+
+            $("#discount_price").html(((parseFloat(actual_price)) - (response.discount * parseFloat(actual_price))).toFixed(2))
+
+            $("#show_if_any_discount").empty()
+            $("#show_if_any_discount").append("<small>Discount:</small><small><span>"+response.discount*100+"%</span></small>")
+
+            $("#total_popup").html((((parseFloat(actual_price)) - (response.discount * parseFloat(actual_price))) + (parseFloat($("#shipping_prices_popup").val()))).toFixed(2));
+
+            $("#discount_price").css("margin-right", "2px")
+          }
+
+          return response
+        },
+        error: function(jqXHR, exception) {
+          $("#discount_message").html("<small class='text-danger'>"+jqXHR.responseJSON.message+"</small>");
+
+
+          return jqXHR
+        }
+      })
+
+
+
+}
+
+// checks if discount is valid (in backend)
+// if it is valid then return success, check off a BOOLEAN that says discount applied for current order and change price on frontend
+//
+// if fails, return fail message and display on page
+
+$( "#apply-discount" ).click(applyDiscount);
+
+
+</script>
+
+
+
+<script>
+
+const autofillShipping = () => {
+  const firstName = localStorage.getItem('first_name');
+  const lastName = localStorage.getItem('last_name');
+  const street = localStorage.getItem('street');
+  const apt = localStorage.getItem('apt');
+  const city = localStorage.getItem('city');
+  const state = localStorage.getItem('state');
+  const phone = localStorage.getItem('phone');
+  const zip = localStorage.getItem('zip');
+
+  const shippingInfo = [
+    {"value": firstName, "element": '#first_name_popup'},
+    {"value": lastName, "element": '#last_name_popup'},
+    {"value": street, "element": '#address_popup'},
+    {"value": apt, "element": '#apt_popup'},
+    {"value": city, "element": '#city_popup'},
+    {"value": state, "element": '#state_popup'},
+    {"value": phone, "element": '#phone_popup'},
+    {"value": zip, "element": '#postal_popup'},
+  ]
+
+    shippingInfo.forEach((info) => {
+      if (info.value) {
+        $(info.element).val(info.value)
+      }
+  });
+}
+
+$(document).ready(autofillShipping)
+
+
+</script>
+
+<script src="{% static 'js/purchase-validate.js' %}" ></script>
+
+<script>
+
+
+
+
+  const sendPurchaseRequest = () => {
+
+        if($("#purchase-request-form").valid()) {
+
+        // start a loader
+        $("#preloader-active").css("display", "block");
+
+
+
+        var data = {
+              amount:  parseFloat("{%if not professional_verified%}{{product.price}}{%else%}{{professional_discount_price}}{%endif%}") + parseFloat($('#shipping_prices_popup option:selected').val()),
+              product_id: "{{product.id}}",
+              shipping_country: $('#shipping_prices_popup option:selected').text(),
+              shipping_price: $('#shipping_prices_popup option:selected').val(),
+              customer_stripe_id: "{{customer.id}}",
+              payment_method_id: $('input[name="payment-method"]:checked').val(),
+              first_name: $('#first_name_popup').val(),
+              last_name: $('#last_name_popup').val(),
+              phone: $('#phone_popup').val(),
+              address: $('#address_popup').val(),
+              city: $('#city_popup').val(),
+              state: $('#state_popup').val(),
+              apt: $('#apt_popup').val(),
+              zip:$('#postal_popup').val(),
+              region:$('#shipping_prices_popup :selected').parent().attr('label'),
+              region:$('#shipping_prices_popup :selected').parent().attr('label'),
+              discount_code: $('#discount_code').val()
+          }
+
+
+      localStorage.setItem('first_name', data.first_name);
+      localStorage.setItem('last_name', data.last_name);
+      localStorage.setItem('street', data.address);
+      localStorage.setItem('apt', data.apt);
+      localStorage.setItem('city', data.city);
+      localStorage.setItem('state', data.state);
+      localStorage.setItem('phone', data.phone);
+      localStorage.setItem('zip', data.zip);
+
+
+       $.ajax({
+        method: "POST",
+        url: '{% url 'submit_purchase_request' %}',
+        dataType: "json",
+        data: JSON.stringify(data),
+        headers: {'X-CSRFToken': generated_csrf_token},
+        success: function(response) {
+
+          console.log(response)
+
+          $("#preloader-active").css("display", "none");
+
+          $("#success-message").css("display", "block");
+
+
+          //window.location.replace("/messages/"+response.seller_chat);
+          window.location.href = "{%url 'purchase_request_successful'%}?chat=" + response.seller_chat + "&product=" + "{{product.id}}";
+          return response
+        },
+        error: function(jqXHR, exception) {
+          console.log(jqXHR)
+
+
+
+          $("#preloader-active").css("display", "none");
+
+          $(".modal-footer").prepend('<div class="mb-2 mt-0 ml-0 mr-0 alert alert-danger w-100 text-center" id="error-alert" role="alert">' + jqXHR.responseJSON.message + '</div>');
+
+          $("#error-alert").fadeOut(10000).hide(10000);
+
+          return jqXHR
+        }
+      })
+    }
+  }
+
+
+
+  $( "#checkout-btn" ).click(sendPurchaseRequest);
+
+
+
+</script>
+
+<script>
+
+//FIX DELETE PM FUNCTION - NOT WORKING RN - INCLUDE CONFIRMATION AS WELL
+
+    $( ".delete_pm" ).click(function() {
+      var data = {
+        payment_method_id: $(this).data("id"),
+      }
+
+      return $.ajax({
+        method: "POST",
+        url: '{% url 'remove_payment_method' %}',
+        dataType: "json",
+        data: JSON.stringify(data),
+        headers: {'X-CSRFToken': generated_csrf_token},
+        success: function(response) {
+          console.log(response)
+          $("#pm-container"+response.pm_id).remove().fadeOut(2000)
+
+          $('#payment-methods').append("<div class='alert alert-success text-center' role='alert' id='pm-success'>Removed payment method successfully</div>")
+
+        },
+        error: function(jqXHR, exception) {
+          console.log(jqXHR)
+          $('#payment-methods').append("<div class='alert alert-danger text-center' role='alert' id='pm-error'>"+jqXHR.responseJSON.message+"</div>")
+          return jqXHR
+        }
+      })
+  })
+
+</script>
+
+<script>
+
+$(document).ready(function() {
+    $(document).on('click','#post-comment',function(){
+        var comment = $("#comment-body").val();
+        var product_id = $(this).data("id")
+
+
+            $.ajax({
+                url:'{% url 'add_comment_product' %}',
+                type:'POST',
+                data:{
+                    'comment': comment,
+                    'product_id': product_id,
+                    'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val(),
+                },
+                success:function(data){
+                    console.log(data)
+                    var commentEl = $('<div class="comment d-flex justify-content-center align-items-start discussion-form w-100 h-100 mb-4"><div class="profile-thumbnail mr-0" style="max-width: 2.5em; min-width:2.5em; height:2.5em;"><img src=' + data.data[3] + ' style="position:relative; margin: 0 auto;width:100%; height:100%; border-radius: 50%; object-fit:cover;"></div><div class="col-11 d-flex flex-column ml-0"><small class="w-100 d-flex justify-content-between"><strong><a href="/p/' + data.data[1] + '" class="text-muted">' + data.data[1] + '</a> replied now ' + '<a href="/art/delete-comment/'+data.data[5]+'/'+ data.data[4]+'"></strong><strong><i class="fas fa-trash-alt"></i></a>' + '</strong></small><small id="comment-body-posted">' + data.data[0] +'</small></div></div>').fadeIn(500);
+
+
+                    $("#comment-body").val("");
+                    $("#no-replies-container").css("display", "none");
+                    $("#no-replies-txt").css("display", "none");
+
+                    $('#comments-container').prepend(commentEl);
+                    $("#get-comment-count").text(parseInt($("#get-comment-count").text()) + 1)
+                    $( "#alert" ).attr({ class:"alert alert-success fade", role:"alert"});
+                    $("#alert").html("Comment posted successfully");
+                    $("#alert").fadeTo(2000, 500).slideUp(500, function(){
+                        $("#alert").slideUp(500);
+                    });
+
+
+                },
+                error: function(xhr, status, error) {
+                    $( "#alert" ).attr({ class:"alert alert-danger fade", role:"alert"});
+                    $("#alert").html("Something went wrong");
+                    $("#alert").fadeTo(2000, 500).slideUp(500, function(){
+                        $("#alert").slideUp(500);
+                    });
+                    var err = eval("(" + xhr.responseText + ")");
+                    console.log(err.Message);
+                },
+            });
+    });
+});
+
+$(".art-info").on('click', '.fav-product', function() {
+id = this.id.replace('fav-', '');
+current = $(this)
+var token = $("input[name='csrfmiddlewaretoken']").val();
+$.ajax({
+  url: "/art/favourite/",
+  type: "POST",
+  data: {
+    csrfmiddlewaretoken: token,
+    id:id
+  },
+  headers: {
+    "X-CSRF-Token": token,
+  },
+
+  success: function (result) {
+   if (result.status == 'added') {
+    current.empty()
+    current.html('<i class="fas fa-heart fa-xs" style="color:black;"></i>')
+   }
+   else if (result.status == 'removed'){
+    current.empty()
+    current.html('<i class="far fa-heart fa-xs" style="color:black;"></i>')
+   }
+  },
+
+  error: function (XMLHttpRequest, textStatus, errorThrown) {
+
+
+  },
+});
+
+
+});
+</script>
+
+<script>
+
+	$(document).ready(function(){
+		$('#comment-body').on('keydown', function(e) {
+		    if (e.keyCode == 13) {
+			$("#post-comment").click()
+		    }
+	    });
+	});
+
+</script>
+
+{%else%}
+<script type="text/javascript">
+  localStorage.setItem("current_product", window.location.href.trim())
+</script>
+{%endif%}
+{% endblock %}

@@ -1,0 +1,73 @@
+.advisory .banner {
+    height: 50vh;
+}
+
+.advisory .banner img {
+    object-fit: cover;
+    object-position: center -160px;
+    height: 100%;
+    width: 100%;
+    opacity: 0.8;
+}
+
+.advisory .banner-text {
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.advisory .advisory-text img {
+    max-width: 100%;
+    /* height: 100%; */
+}
+
+.advisory .how-it-works {
+    background-color: linen;
+}
+
+.advisory .how-it-works-content div,
+.advisory .reviews div {
+    width: calc(100% / 3);
+}
+
+@media (max-width: 700px) {
+    .advisory .banner img {
+        object-position: center;
+    }
+
+    .advisory .advisory-text img {
+        max-width: 92%;
+        margin-left: 48px;
+    }
+
+    .advisory .advisory-text a {
+        display: block;
+        width: 107.85px;
+        margin: auto;
+    }
+
+    .advisory .how-it-works-content div,
+    .advisory .reviews div {
+        width: 100%;
+    }
+
+    .advisory .reviews-container h3 {
+        padding: 0 50px;
+    }
+    .advisory .reviews div {
+        margin-left: 20px;
+    }
+    .advisory .reviews div:last-child {
+        margin-right: 48px;
+    }
+}
+
+@media (max-width: 600px) {
+    .advisory .banner-text {
+        width: 50%;
+        left: 28%;
+    }
+    .advisory .banner-text p {
+        width: 150%;
+    }
+}

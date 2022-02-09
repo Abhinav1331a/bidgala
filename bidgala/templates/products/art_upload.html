@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} | New Listing {% endblock %} 
+{% block cssfile %}
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous" /> -->
+  <link rel="stylesheet" href="{% static 'css/newlisting.css' %}" />
+{% endblock %}
+{% block content %} 
+
+{%if request.user.is_authenticated%}
+<div id="react_upload_form"></div>
+
+<!-- Load React and libraries. -->
+<script src="https://unpkg.com/react@17/umd/react.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js" crossorigin></script>
+
+
+<script src="https://unpkg.com/react-image-crop/dist/ReactCrop.min.js" crossorigin></script>
+<script src="https://unpkg.com/react-bootstrap@next/dist/react-bootstrap.min.js" crossorigin></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" crossorigin="anonymous"></script>
+
+<!-- Load our React component. -->
+<script src="{% static 'js/art_upload_form_compiled.js' %}"></script> 
+<script>
+  window.addEventListener('load', function() {
+    jQuery('.submit.btn.btn-dark:contains("Post Your Art")').click(function() {
+      gtag('event', 'click', {
+        'event_category': 'button',
+        'event_label': 'Post Your Art'
+      });
+    })
+  })
+
+</script>
+{%else%}
+
+<div class="container">
+  <div class="alert alert-dark text-center mt-sm-4 mt-md-4 mt-lg-4" role="alert">
+    Please <a href="#" data-toggle="modal" data-target="#loginModal"><b>login</b></a> to access this page
+  </div>
+</div>
+
+{%endif%}
+{% endblock %} 

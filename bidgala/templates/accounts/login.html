@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load socialaccount %}
+{% load static %}
+{% block title %} | Login {% endblock %}
+{% block cssfile %}
+<link rel="stylesheet" href="{% static 'css/login-register-form.css' %}">
+{% endblock %}
+{% block content %}
+<main>
+	<div class="container">
+		<div class="row d-flex justify-content-center text-center mt-5">
+			<div class="signup-form">
+				<form action="{% url 'login_user' %}" method="post" name="login-form" id="login-form-page">
+					{%csrf_token%}
+					<h2>Login</h2>
+					<p class="hint-text">Login in with your social media account or email address</p>
+					<div class="register-form">
+						<div class="social-btn d-flex justify-content-center">
+							<a href="{% provider_login_url 'google' method='oauth2' %}" class="btn btn-danger d-flex align-items-center"><i class="fab fa-google m-0 mr-2"></i>Google</a>
+						</div>
+					</div>
+					<div class="or-seperator"><b>or</b></div>
+					{%include 'partials/_alerts.html'%}
+					<div class="register-form">
+						<div class="form-group">
+							<input type="email" class="form-control input-md" name="email" placeholder="Email Address" required="required">
+						</div>
+					</div>
+					<div class="register-form">
+						<div class="form-group">
+							<input type="password" class="form-control input-md" name="password" id="password-pg" placeholder="Password" required="required">
+						</div>
+					</div>
+					<div class="register-form d-flex justify-content-between">
+						<span class="form-group">
+							<input type="checkbox" onclick="showPasswordPage()">&nbsp;Show Password
+						</span>
+						<span><a href="{% url 'forgot'%}" class="text-info">Forgot Password?</a></span>
+					</div>
+					<div class="register-form">
+						<div class="form-group">
+							<button type="submit" class="btn btn-success btn-lg btn-block signup-btn rounded">Sign In</button>
+						</div>
+					</div>
+				</form>
+				<div class="text-center">Need an account? <a href="{% url 'register' %}" class="text-info">Click here to register</a></div>
+			</div>
+		</div>
+	</div>
+</main>
+{% endblock %}
+{% block jsfile %}
+<script src="{% static 'js/login-validate.js' %}"></script>
+<script src="{% static 'js/show-password.js' %}"></script>
+{% endblock %}

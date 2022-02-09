@@ -1,0 +1,140 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} | Discover{% endblock %}
+{% block content %}
+
+
+{% block css %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="{% static 'css/discover-index.css' %}">
+
+{% endblock %}
+
+<div class="arts-container">
+<div class="container-fluid discover-articles mt-md-4">
+
+    <div class="d-flex row mt-4 flex-column align-items-center">
+        {%comment%}
+        <div class="d-none d-sm-block col-sm-3">
+             
+            <div class="d-flex flex-column">
+                <a href="{% url 'discover' %}">ALL</a>
+                {% for category in categories %}
+                <a href="{% url 'category_page' category.name%}" class="pt-4">{{category.name}}</a>
+                {% endfor %}
+            </div>
+            
+            <hr>
+            <div>
+                <p class="mb-3">FOLLOW US</p>
+                <div class="d-flex justify-content-between">
+                    <a href="http://instagram.com/bidgala" target="blank" class="fa fa-instagram"></a>
+                    <a href="https://www.facebook.com/TheBidgala/" class="fa fa-facebook"></a>
+                    <a href="https://twitter.com/bidgala" class="fa fa-twitter"></a>
+                    <a href="https://www.linkedin.com/company/bidgala/" class="fa fa-linkedin"></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="container d-flex justify-content-center w-100 d-sm-none">
+            <div class="dropdown w-100">
+                <button class="btn btn-dark dropdown-toggle w-100" type="button" id="discoverDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    DISCOVER
+                </button>
+       
+                <div class="dropdown-menu w-100" aria-labelledby="discoverDropdown">
+                        <a href="{% url 'discover' %}" class="dropdown-item" >ALL</a>
+                    {% for category in categories %}
+                        <a href="{% url 'category_page' category.name%}" class="dropdown-item" >{{category.name}}</a>
+                    {% endfor %}
+                </div>
+
+        
+                 
+            </div>
+                
+        </div>
+{%endcomment%}
+
+        <div class="col-12 col-md-9 m-0 p-0">
+            <h2 class="text-center d-none d-sm-block mb-4">Discover</h2>
+            {% if not articles %}
+            <div class="alert alert-primary text-center" role="alert">
+                No articles to display
+            </div>
+            {% else %}
+            {% for article in articles %}
+            <a href="{% url 'article_details' article.slug %}" class="article-link">
+                <div class="article d-flex flex-md-row flex-column">
+                    {% if article.img %}
+                    <div class="image-container col-12 col-md-6">
+                        <img src="{{BASE_IMG_URL}}{{article.img}}">
+                    </div>
+                    {% endif %}
+                    {% if article.img %}
+                    <div class="pl-1 col-12 col-md-6 d-flex flex-column justify-content-center ml-0 ml-md-2 mt-3 mt-md-0">
+                    {% else %}
+                    <div class="pl-1 col-12 col-md-6 d-flex flex-column justify-content-center ml-0 ml-md-2 mt-3 mt-md-0">
+                    {% endif %}
+                        {% comment %} <small class="mb-1"><strong>{{article.category.name}}</strong></small> {% endcomment %}
+                        <p class="article-title mb-1">{{article.title}}</p>
+                        {% if article.deck %}
+                        <p class="article-description mb-2">{{article.deck}}</p>
+                        {% endif %}
+                        <div class="d-flex flex-wrap">
+                            <small class="mr-3"><strong>{{article.writer_name}}</strong></small>
+                            <small class="mr-3">{{article.created_date|date:"F d Y"}}</small>
+                            <small class="text-muted">{{article.comment_count}} comments</small>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            {% endfor %}
+
+            <div class="w-100 d-flex justify-content-center mt-50">
+                <ul class="pagination pagination-sm center-block mt-2">
+                {%for i in articles.paginator.page_range%}
+                    {%if articles.number == i%}
+                    <li class="page-item active">
+                        <a href="" class="page-link">{{i}}</a>
+                    </li>
+                    {%else%}
+                    <li class="page-item">
+                        <a href="?page={{i}}" class="page-link">{{i}}</a>
+                    </li>
+                    {%endif%}
+                {%endfor%}
+                </ul>
+            </div>
+
+            {% endif %}
+
+        
+
+        </div>
+
+        
+    </div> 
+
+    {%comment%}
+    <div class="d-flex flex-column align-items-center mt-5">
+        <div><h3>Follow Us</h3></div>
+        <a href="https://instagram.com/bidgala" target="blank">@BIDGALA</a>
+        <div class="d-flex justify-content-center flex-wrap">
+        {% for post in ig_posts %}
+            
+            <a target="blank" href="http://instagram.com/p/{{post.shortcode}}">
+                <img class="ig-post" src="{{post.display_url}}">
+            </a>
+        {% endfor %}
+        </div>
+
+
+    </div>
+
+    {%endcomment%}
+
+</div>
+</div>
+    
+{% endblock %}

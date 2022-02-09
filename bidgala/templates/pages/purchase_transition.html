@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load socialaccount %}
+{% load static %}
+{% block title %} | Register {% endblock %}
+{% block more_meta_tags %}
+
+{% if has_referral %}
+<meta property="og:title" content="{{name}} is inviting you to join Bidgala" /> 
+<meta property="og:description" content="Want to buy & sell art? How about interacting with the world’s fastest growing art community? Use my invite link to join Bidgala and get 50 credits towards charity when you sign up!" />
+<meta property="og:url" content="https://bidgala.com/signup/{{referral_code}}/{%if name%}{{name}} {%endif%}" />
+{% else %}
+<meta property="og:title" content="Sign up to Bidgala" /> 
+<meta property="og:description" content="" />
+<meta property="og:url" content="https://bidgala.com/register" />
+
+{% endif %}
+
+<meta property="og:type" content="website" />
+<meta property="og:image" content="https://bidgala.com/{% static 'img/email/logo_white_bg.png' %}" />
+{% endblock %}
+{% block cssfile %}
+<link rel="stylesheet" href="{% static 'css/login-register-form.css' %}">
+{% endblock %}
+{% block content %}
+<main>
+	<div class="container">
+	<!-- Jumbotron -->
+<div class="p-4 shadow-4 rounded-3" style="background-color: hsl(0, 0%, 94%);">
+  <h2>Thank you for purchasing! </h2>
+  <p>
+   Here’s what you need to know:
+   <ol>
+     <li>The artists will accept or decline your order within 7 days</li>
+     <li>You will not be charged until the artist submits a tracking number. The artist has 7 days to submit the tracking number after they accept your order.</li>
+     <li>You can message the artist with any questions (link on “message the artist”)</li>
+     <li>Contact us for assistance at info@bidgala.com</li>
+     <li>View the details and progress of your order at any time in the orders page or in your chat with the artist</li>
+   </ol>
+  
+
+  </p>
+
+  <hr class="my-4" />
+
+   <p>
+    Your purchase is in support of emerging artists! You will get a confirmation of your order via email.
+  </p>
+  <a type="button" class="btn btn-primary" href="{%url 'get_thread' username=chat%}">
+    Continue to artist chat
+  </a>
+</div>
+
+	</div>
+</main>
+  <script>
+      gtag('event', 'purchase', {
+  "transaction_id": "{{order.id}}",
+  "affiliation": "Bidgala",
+  "value": parseFloat("{{order.amount_total}}"),
+  "currency": "USD",
+  "shipping": parseFloat("{{order.shipping_price}}"),
+  "items": [
+    {
+      "id": "{{order.product.id}}",
+      "name": "{{order.product.art_title}}",
+      "list_name": "Search Results",
+      "category": "{{order.product.category}}",
+      
+     
+      "quantity": 1,
+      "price": '{{order.product.price}}'
+    }
+  ]
+});
+</script>
+
+
+	
+{% endblock %} 

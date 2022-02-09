@@ -1,0 +1,264 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+{% block title %} | Welcome {% endblock %}
+
+{% block more_meta_tags %}
+<meta property="og:title" content="Welcome to Bidgala" />
+<meta property="og:type" content="website" />
+<meta property="og:description" content="" />
+<meta property="og:image" content="https://bidgala.com/{% static 'img/email/logo_white_bg.png' %}" />
+<meta property="og:url" content="https://bidgala.com" />
+{% endblock %}
+{% block cssfile %}
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
+{% endblock %}
+
+{% block content %}
+<main>
+    <!-- Main Carousel -->
+    <div class="carousel-area d-flex align-items-center flex-column-reverse flex-md-row">
+        <div class="col-12 col-md-6 pr-3 pr-md-5  mb-4 mb-md-0">
+            <h1>Explore art from our thriving community of emerging artists</h1>
+            <a href="{%url 'show_search' type_='art' value='all' %}"><button class="shop-btn">EXPLORE ALL ART</button></a>
+        </div>
+        <div class="img-container col-12 col-md-6 mb-3 mb-md-0">
+            <a href="https://bidgala.com/art/product_view/c9196f6a-3a42-463a-880d-3ccc57c5e370/">
+                <img data-aload="{{BASE_IMG_URL}}{{all_art_img}}{{img_optimize_param}}" class="d-block w-100"  alt="">
+            </a>
+        </div>
+    </div>
+
+    <div class="credits justify-content-end d-md-flex d-none">
+        <small class="text-dark">Cotton Candy Sky by Emilie Durocher-Noel</small>
+    </div>
+
+    <div class="d-flex flex-column align-items-center">
+        <div id="index-sections">
+            <!-- Community channels -->
+            <div class="container-fluid p-0">
+                <div class="d-flex">
+                    <div class="d-flex flex-column w-100 position-relative">
+                        <div class="d-flex mb-2 mt-4 pl-2 pr-2 p-xl-0">
+                            <h3>Community</h3>
+                            <i class="fas fa-chevron-left prev d-xl-none d-block  mt-4" id="prev-channels"></i>
+                            <i class="fas fa-chevron-right next d-xl-none d-block  mt-4" id="next-channels"></i>
+                            {% comment %} <div class="help-tip">
+                                <p>Community channels are where you can engage with the art community, ask questions and
+                                    share whatever you'd like!</p>
+                            </div> {% endcomment %}
+                        </div>
+                        <div class="channels d-flex justify-content-between w-100">
+                            <div class="card ml-1 mr-1">
+                                <a href="{% url 'all_post' %}" class="channel">
+                                    <div class="channel-img">
+                                        <img class="card-img-top" data-aload="{% static 'img/all_channels.png' %}"
+                                            alt="Card image cap">
+                                    </div>
+                                    <div class="card-body">
+                                        <p class="card-title text-center">All Channels</p>
+                                    </div>
+                                </a>
+                            </div>
+                            {%for channel in channels%}
+                            <div class="card ml-1 mr-1">
+                                <a href="{% url 'specific' channel.name%}" class="channel">
+                                    <div class="channel-img">
+                                        <img class="card-img-top"
+                                            data-aload="{{BASE_IMG_URL}}{{channel.img}}{{img_optimize_param}}"
+                                            alt="Card image cap">
+                                    </div>
+                                    <div class="card-body">
+                                        <p class="card-title text-center">{{channel.name | title}}</p>
+                                    </div>
+                                </a>
+                            </div>
+                            {%endfor%}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--Featured Artists-->
+            <div class="container-fluid p-0 artists-feature">
+                <h3 class="mb-3 mt-5 pl-2 pr-2 p-xl-0">Featured Artists</h3>
+                <i class="fas fa-chevron-left prev d-block" id="pre-top-art"></i>
+                <i class="fas fa-chevron-right next d-block" id="next-top-art"></i>
+                <div class="featured-artists d-flex flex-wrap">
+                    {%for featured_artist in featured_artists%}
+                    <a href="{% url 'public_profile' featured_artist.owner.user.username %}" class="artist-link">
+                        <div class="artist">
+                            <img data-aload="{{BASE_IMG_URL}}{{featured_artist.image}}{{img_optimize_param}}" />
+                        </div>
+                        <div class="text-center mt-3 mb-3">
+                            <div class="d-inline">{{featured_artist.owner.user.first_name|title}}
+                                {{featured_artist.owner.user.last_name|title}}</div>
+                            {%if featured_artist.owner.special_user%}
+                            <img class="d-inline text-nowrap checkmark" data-aload="{% static 'img/check.svg' %}"
+                                alt="checkmark">
+                            {%endif%}
+                            <small class="text-muted d-block">@{{featured_artist.owner.user.username}}</small>
+                        </div>
+                    </a>
+                    {%endfor%}
+                </div>
+            </div>
+
+            <!-- Curators Picks Carousel - loop through data instead of static data -->
+            <div class="container-fluid art-carousel mt-5 p-0" id="Curator-Picks-slider">
+                <div class="d-flex justify-content-between align-items-center w-100 mb-2 pl-2 pr-2 p-xl-0">
+                    <h3 class="mb-2">Curator Picks</h3>
+                    <a href="{%url 'show_search' type_='curator' value='none' %}">
+                        <p class="view-all mb-2">View All →</p>
+                    </a>
+                </div>
+                <i class="fas fa-chevron-left prev hide" id="pre-curator-pick"></i>
+                <i class="fas fa-chevron-right next hide" id="next-curator-pick"></i>
+                <div class="art-cards curator-picks">
+                    {% for product in products%}
+                    <div class="card ml-1 mr-1">
+                        <a href="{%url 'product_view' id=product.id%}">
+
+                            <img class="card-img-top product-img"
+                                data-aload="{{BASE_IMG_URL}}{{product.image}}{{img_optimize_param}}" alt="Card image cap" >
+                            <div class="card-body">
+
+                                <p class="card-title mb-1">{{product.art_title}}</p>
+                                <p class="card-text mb-1">{{product.owner.user.first_name}}
+                                    {{product.owner.user.last_name}}</p>
+                                <p class="card-text">${{product.price|intcomma}}</p>
+                            </div>
+                        </a>
+                    </div>
+                    {%endfor%}
+                </div>
+            </div>
+
+            <div class="container-fluid d-flex flex-column mt-5 mb-5 pl-2 pr-2 p-xl-0">
+                <div>
+                    <h3 class="mb-3">Shop By Price</h3>
+                </div>
+                <div class="d-flex justify-content-between" id="prices">
+                    <a href="{%url 'show_search' type_='price' value='price_max-100' %}">
+                        <div>
+                            <p class="price">$100 AND UNDER</p>
+                        </div>
+                    </a>
+                    <a href="{%url 'show_search' type_='price' value='price_max-500' %}">
+                        <div>
+                            <p class="price">$500 AND UNDER</p>
+                        </div>
+                    </a>
+                    <a href="{%url 'show_search' type_='price' value='price_max-1000' %}">
+                        <div>
+                            <p class="price">$1000 AND UNDER</p>
+                        </div>
+                    </a>
+                    <a href="{%url 'show_search' type_='price' value='price_min-1000' %}">
+                        <div>
+                            <p class="price">$1000 AND OVER</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="d-flex mt-5 shop-by-price">
+                    <img src="{{BASE_IMG_URL}}{{advisory_img}}{{img_optimize_param}}" alt="">
+                    <div class="d-flex flex-column justify-content-center align-items-center">
+                        <h3>Find Art You Love</h3>
+                        <p class="text-center">"Bidgala’s art advisors help make the experience of shopping for art easy and enjoyable. Whether you’re looking for a specific piece or want to discover some of our emerging artists, we will walk you through the simple process. "</p>
+                        <a href="{% url 'advisory'%}" class="btn btn-outline-dark text-uppercase">work with an art advisor</a>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!-- New Art Carousel -->
+            <div class="container-fluid art-carousel p-0" id="Trending-Art-slider">
+                <h3 class="mb-2 pl-2 pr-2 p-xl-0">New Art</h3>
+                <i class="fas fa-chevron-left prev hide" id="prev-trending"></i>
+                <i class="fas fa-chevron-right next hide" id="next-trending"></i>
+                <div class="art-cards trending-art w-100">
+                    {% for product in new_products%}
+                    <div class="card ml-1 mr-1">
+                        <a href="{%url 'product_view' id=product.id%}">
+                            {%if product.curator_pick %}
+                            <div class="curator-pick">Curator Pick</div>
+                            {%endif%}
+                            <img class="card-img-top product-img"
+                                src="{{BASE_IMG_URL}}{{product.image}}{{img_optimize_param}}" alt="Card image cap" >
+                            <div class="card-body">
+
+                                <p class="card-title mb-1">{{product.art_title}}</p>
+                                <p class="card-text mb-1">{{product.owner.user.first_name}}
+                                    {{product.owner.user.last_name}}</p>
+                                <p class="card-text">${{product.price|intcomma}}</p>
+                            </div>
+                        </a>
+                    </div>
+                    {%endfor%}
+                </div>
+            </div>
+
+            <div class="container-fluid pl-2 pr-2 p-xl-0">
+                <div class="d-flex">
+                    <div class="d-flex flex-column w-100">
+                        <!--Shop by Category-->
+                        <div class="d-flex mb-2 mt-5 ">
+                            <h3>Shop by Category</h3>
+                        </div>
+                        <div class="d-flex flex-wrap justify-content-between">
+                            {% for key, value in category.items %}
+                            {% for cat in category_objs %}
+                            {% if key == cat.category_name %}
+                            <a href="{%url 'show_search' type_='category' value=key %}" class="cat-cont">
+                                <div class="category">
+                                    <img src="{{BASE_IMG_URL}}{{cat.image}}{{img_optimize_param}}" />
+                                </div>
+                                <div class="text-center mt-3 mb-3 cat-title">{{cat.category_val | title}}</div>
+                            </a>
+                            {% endif %}
+                            {%endfor%}
+                            {%endfor%}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            {%comment%}
+            <div class="container-fluid p-0">
+                <div class="d-flex">
+                    <div class="d-flex flex-column w-100 position-relative">
+                        <div class="d-flex mb-2 mt-5 pl-2 pr-2 p-xl-0">
+                            <h3>Discover</h3>
+                        </div>
+                        <i class="fas fa-chevron-left prev mt-5" id="prev-articles"></i>
+                        <i class="fas fa-chevron-right next mt-5" id="next-articles"></i>
+                        <div class="articles d-flex justify-content-between ">
+                            {%for article in discover_articles %}
+                            <div class="card ml-1 mr-1">
+                                <a href="{% url 'article_details' article.slug %}">
+                                    <img class="card-img-top article-img"
+                                        src="{{BASE_IMG_URL}}{{article.img}}{{img_optimize_param}}"
+                                        alt="Card image cap">
+                                    <div class="card-body">
+                                        <p class="card-title mb-1 text-muted">{{article.category | title}}</p>
+                                        <p class="card-title mb-1">{{article.title | title}}</p>
+                                    </div>
+                                </a>
+                            </div>
+                            {%endfor%}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {%endcomment%}
+
+
+        </div>
+    </div>
+
+</main>
+
+{% endblock %}

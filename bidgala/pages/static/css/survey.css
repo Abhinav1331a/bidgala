@@ -1,0 +1,117 @@
+.survey .survey-img {
+    width: 300px;
+    height: 300px;
+}
+
+.survey .opacity {
+    opacity: 0.5;
+}
+
+.survey i {
+    font-size: 3.2rem;
+}
+
+.survey .category-clicked,
+.survey .style-clicked,
+.survey .piece-clicked {
+    top: 35%;
+    right: 40%;
+}
+
+.survey .button-first {
+    width: 60%;
+}
+
+.survey .button-second,
+.survey .button-fourth {
+    width: 90%;
+}
+
+.survey .horizontal {
+    width: 200px;
+    height: 150px;
+    transition: all 0.1s;
+}
+
+.survey .vertical {
+    width: 150px;
+    height: 200px;
+    transition: all 0.1s;
+}
+
+.survey .square {
+    width: 150px;
+    height: 150px;
+    transition: all 0.1s;
+}
+
+.survey .grey {
+    background-color: #80808090;
+}
+
+.survey .light-grey {
+    background-color: #80808030;
+}
+
+.survey #horizontal .horizontal-clicked {
+    top: 40%;
+    right: 35%;
+}
+
+.survey #vertical .vertical-clicked {
+    top: 30%;
+    right: 30%;
+}
+
+.survey #square .square-clicked {
+    top: 40%;
+    right: 30%;
+}
+
+@media (max-width: 767px) {
+    .survey .category-row {
+        width: 100% !important;
+    }
+
+    .survey #horizontal .horizontal-clicked {
+        top: 25%;
+        right: 42%;
+    }
+    .survey #vertical .vertical-clicked {
+        right: 42%;
+    }
+    .survey #square .square-clicked {
+        top: 25%;
+        right: 42%;
+    }
+}
+
+.survey .container-size .sizes-clicked {
+    top: 30%;
+    right: 40%;
+}
+
+.survey input,
+.survey textarea {
+    border: 1px solid;
+}
+
+.survey input:focus,
+.survey textarea:focus {
+    outline: 1px solid black;
+}
+
+.survey #first-name,
+.survey #last-name,
+.survey #email,
+.survey #phone {
+    width: 300px;
+}
+
+.survey .text {
+    font-size: 20px;
+}
+
+.survey input[type="file"] {
+    border: none;
+}

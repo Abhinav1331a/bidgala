@@ -1,0 +1,195 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %} | Orders {% endblock %}
+
+{% block cssfile %}
+<link rel="stylesheet" href="{% static 'css/orders.css' %}">
+{% endblock %}
+
+{% block content %} 
+<div class="container-fluid mt-4">
+    <h2 class="text-center mb-4">Orders</h2>
+    <div class="d-flex flex-column flex-lg-row" style="max-width: 1200px; margin: 0 auto;">
+        <div class="col-12 col-lg-2 d-flex flex-column align-items-start mb-2">
+            <p class="mb-1">History</p>
+            <button type="button" class="btn btn-link sales sidebar text-dark">SALES</button>
+            <button type="button" class="btn btn-link requests_rejected all-purchases sidebar text-dark">PURCHASES</button>
+        </div>
+
+
+
+        <div class="col-12 col-lg-10">
+            <div class="btn-group w-100" role="group" >
+                <button type="button" class="btn btn-light mr-1 selling">SELLING</button>
+                <button type="button" class="btn btn-light mr-1 buying">BUYING</button>
+            </div>
+
+            <div class="container-buying d-none mt-2"> 
+                <div class="row">
+                    {% if purchase_pending%}
+                    {% for item in purchase_pending %}
+                    <div class="col-md-4">
+                        <div class="card">
+                            <a href="{% url 'product_view' item.product.id %}">
+                                <img class="card-img-top" src="{{item.product.image.url}}{{img_optimize_param}}" alt="Card image cap">
+                            </a>
+                            <div class="card-body">
+                                <h4 class="card-title">{{item.product.art_title}}</h4>
+                                <p class="card-text"><b>Price: ${{item.product.price | intcomma}}</b></p>
+                               <p>Status: <span class="badge badge-dark">Artist approval pending</span></p>
+                            </div>
+                        </div>
+                    </div>
+                    {%endfor%}
+
+                    {%else%}
+                    <div class="col-md-12 text-center">
+                        <p class="alert alert-danger">You have not made any purchase requests yet.</p>
+                    </div>
+                    {%endif%}
+                </div>
+
+            </div>
+
+            <div class="container-selling d-none mt-2">
+                <div class="row">
+                {% if not stripe_enabled and pendings %}
+                <div class="alert alert-warning" role="alert">Someone wants to buy your art! You can't accept this order until you set up a way to get paid with Stripe. Visit your settings <a href="{% url 'profile' %}" class="alert-link">here</a> to get started.</div>
+                {% endif %}
+                {% include 'partials/_alerts.html' %}
+                {% if pendings and stripe_enabled%}
+                {% for pending in pendings %}
+                {% for obj in pending %}
+                    <div class="col-md-4">
+                        <div class="card">
+                            <img class="card-img-top" src="{{obj.order_hold.product.image.url}}{{img_optimize_param}}" alt="Card image cap">
+                            <div class="card-body">
+                                <h4 class="card-title mb-1">{{obj.order_hold.product.art_title}}</h4>
+                                <p class="card-text mb-1"><b>${{obj.order_hold.product.price | intcomma}}</b></p>
+                                <p class="card-text mb-1"><i class="fas fa-user mr-1"></i>{{obj.order_hold.buyer.user.first_name}} {{obj.order_hold.buyer.user.last_name}}</p>
+                                
+                                <div>
+                                    <p class="card-text">
+                                        <b>Delivery Address:</b>
+                                        <br/>
+                                        {{obj.order_hold.address}}
+                                        {% comment %} NEED TO ADD THE SECOND LINE OF THE ADDRESS {% endcomment %}
+                                        <br/>
+                                        City: {{obj.order_hold.city}}
+                                        <br/>
+                                        State: {{obj.order_hold.state}}
+                                        <br/> 
+                                        Country: {{obj.order_hold.country}}
+                                        <br/>
+                                        Zip/Postal: {{obj.order_hold.zip}}
+                                        <br/>
+                                    </p>
+                                </div>
+                                <div class="col-xs-12 form-group mt-4">
+                                {%if obj.order_hold.accepted and not obj.order_hold.has_tracking%}
+                                    <form class="w-100" id="{{obj.order_hold.product.id}}" method="POST" action="{% url 'submit_tracking'%}">
+                                    {% csrf_token %}
+                                        <input class="form-control tracking_id text-center mt-2" type="text" placeholder="Tracking Number" name="tracking_id" id="tracking_id_{{obj.order_hold.product.id}}" />
+                                        <input class="form-control" type="hidden" name="product_id" value="{{obj.order_hold.product.id}}" />
+                                        <input class="form-control" type="hidden" name="order_hold" value="{{obj.order_hold.id}}" />
+                                        <input type="submit" class="btn btn-dark w-100 mt-2 init-loader" name="submission" value="SUBMIT"/>
+                                    </form>
+                                {%endif%}
+                                </div>
+                                {% if stripe_enabled %}
+                                {%if not obj.order_hold.accepted%}
+                                <form id="{{obj.order_hold.product.id}}" method="POST" action="{% url 'accept_or_decline_order'%}">
+                                {% csrf_token %}
+                                    <div>
+                                        <div class="mb-2">
+                                            <input class="form-control" type="hidden" name="product_id" value="{{obj.order_hold.product.id}}" />
+                                            <input class="form-control" type="hidden" name="order_hold" value="{{obj.order_hold.id}}" />
+                                            <input type="submit" class="btn btn-dark btn-sm btn-block init-loader" name="submission" value="ACCEPT"/>
+                                        </div>
+                                        <div>
+                                            <input type="submit" class="btn btn-light btn-sm btn-block init-loader" name="submission" value="DECLINE"/>
+                                        </div>
+                                    </div>
+                                {%endif%}
+                                </form>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    {%endfor%}
+                    {%endfor%}
+                    {%endif%}
+                    {%if not pendings and stripe_enabled or  not pendings and not stripe_enabled %}
+                    <div class="col-md-12 text-center">
+                        <p class="alert alert-danger">You have no orders to accept</p>
+                    </div>
+                    {%endif%}
+                </div>
+            </div>
+
+
+            <div class="container-sales d-none mt-2"> 
+                 <div class="row">
+                    {% if seller_order_accepted%}
+                    {% for item in seller_order_accepted %}
+                    <div class="col-md-4">
+                        <div class="card">
+                            <a href="{% url 'product_view' item.product.id %}">
+                                <img class="card-img-top" src="{{item.product.image.url}}{{img_optimize_param}}" alt="Card image cap">
+                            </a>
+                            <div class="card-body">
+                                <h4 class="card-title">{{item.product.art_title}}</h4>
+                                <p class="card-text"><b>Price: ${{item.product.price | intcomma}}</b></p>
+                               
+                               
+                            </div>
+                        </div>
+                    </div>
+                    {%endfor%}
+
+                    {%else%}
+                    <div class="col-md-12 text-center">
+                        <p class="alert alert-danger">You have not made any sales yet.</p>
+                    </div>
+                    {%endif%}
+                </div>
+            </div>
+
+            <div class=" container-all-purchases d-none mt-2"> 
+                <div class="row">
+                    {% if bought%}
+                    {% for item in bought %}
+                    <div class="col-md-4">
+                        <div class="card">
+                            <a href="{% url 'product_view' item.order_hold.product.id %}">
+                                <img class="card-img-top" src="{{item.order_hold.product.image.url}}{{img_optimize_param}}" alt="Card image cap">
+                            </a>
+                            <div class="card-body">
+                                <h4 class="card-title">{{item.order_hold.product.art_title}}</h4>
+                                <p class="card-text"><b>Price: ${{item.order_hold.product.price | intcomma}}</b></p>
+                                
+                                <p>Tracking: {%if item.tracking_number%}<a href="https://bidgala.aftership.com/{{item.tracking_number}}" target="_blank" class="text-dark text-underline">{{item.tracking_number}}</a>{%else%}Pending{%endif%}</p>
+                            </div>
+                        </div>
+                    </div>
+                    {%endfor%}
+
+                    {%else%}
+                    <div class="col-md-12 text-center">
+                        <p class="alert alert-danger">You have not made any purchases yet.</p>
+                    </div>
+                    {%endif%}
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>             
+{% endblock %}
+
+{% block jsfile %} 
+<script src="{% static 'js/purchase_accept.js' %}"></script>
+<script src="{% static 'js/orders-switch-page.js' %}"></script>
+{% endblock %}

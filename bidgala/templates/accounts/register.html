@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% load socialaccount %}
+{% load static %}
+{% block title %} | Register {% endblock %}
+{% block more_meta_tags %}
+
+{% if has_referral %}
+<meta property="og:title" content="{{name}} is inviting you to join Bidgala" />
+<meta property="og:description"
+    content="Want to buy & sell art? How about interacting with the world’s fastest growing art community? Use my invite link to join Bidgala and get 50 credits towards charity when you sign up!" />
+<meta property="og:url" content="https://bidgala.com/signup/{{referral_code}}/{%if name%}{{name}} {%endif%}" />
+{% else %}
+<meta property="og:title" content="Sign up to Bidgala" />
+<meta property="og:description" content="" />
+<meta property="og:url" content="https://bidgala.com/register" />
+
+{% endif %}
+
+<meta property="og:type" content="website" />
+<meta property="og:image" content="https://bidgala.com/{% static 'img/email/logo_white_bg.png' %}" />
+{% endblock %}
+{% block cssfile %}
+<link rel="stylesheet" href="{% static 'css/login-register-form.css' %}">
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+{% endblock %}
+{% block content %}
+<main>
+    <div class="container">
+        <div class="row d-flex justify-content-center text-center mt-5">
+            <div class="signup-form">
+                <form class="px-3" action="{% url 'register_user' %}" method="post" name="register-form"
+                    id="register-form">
+                    {%csrf_token%}
+                    <h2>Create an Account</h2>
+                    <p class="hint-text">Sign up with your social media account or email address</p>
+                    <div class="register-form">
+                        <div class="social-btn d-flex justify-content-center">
+                            <a href="{% provider_login_url 'google' method='oauth2' %}"
+                                class="btn btn-danger d-flex align-items-center"><i class="fab fa-google m-0 mr-2"></i>
+                                Google</a>
+                        </div>
+                    </div>
+                    <div class="or-seperator"><b>or</b></div>
+                    {%include 'partials/_alerts.html'%}
+                    {%if has_referral%}
+                    <div class="alert alert-primary" role="alert">Surprise! Your friend {{name}} would like to give you
+                        50 Bidgala credits.</div>
+                    {%endif%}
+                    <div class="register-form">
+                        <div class="form-group">
+                            <input type="text" class="form-control input-md" name="first_name" placeholder="First Name"
+                                required="required" data-validate="Please enter the first name">
+                        </div>
+                    </div>
+                    <div class="register-form">
+                        <div class="form-group">
+                            <input type="text" class="form-control input-md" name="last_name" placeholder="Last Name">
+                        </div>
+                    </div>
+                    <div class="register-form">
+                        <div class="form-group">
+                            <input type="email" class="form-control input-md" name="email" placeholder="Email Address"
+                                required="required">
+                        </div>
+                    </div>
+                    <div class="register-form">
+                        <div class="form-group">
+                            <input type="password" class="form-control input-md" name="password" placeholder="Password"
+                                required="required">
+                        </div>
+                    </div>
+
+                    <div class="register-form d-flex justify-content-center">
+                        <div class="form-group">
+                            <div class="g-recaptcha" data-sitekey="6LfYGLAdAAAAAB-xpJITT07R0UxoF_895sUyl1dJ"></div>
+                        </div>
+                    </div>
+
+                    <div class="register-form">
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-success btn-lg btn-block signup-btn">Sign Up</button>
+                        </div>
+                    </div>
+
+                    <div class="register-form">
+                        <div class="form-group">
+                            <p>By creating an account, I accept Bidgala's <a
+                                    href="{% url 'terms_and_conditions' %}">Terms of Services</a> and <a
+                                    href="{% url 'privacy' %}">Privacy Policy</a>.</p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}
+{% block jsfile %}
+<script src="{% static 'js/register-validate.js' %}"></script>
+{% endblock %}
