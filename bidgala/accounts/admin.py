@@ -1,7 +1,6 @@
 # Standard library imports
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from django.contrib.auth.models import User
 from django.contrib.admin.views.decorators import staff_member_required
 from django.shortcuts import render
 from django.db import models
@@ -13,10 +12,12 @@ from datetime import datetime, timedelta
 from django.db.models import Sum
 import operator
 from functools import reduce 
+from django.contrib.auth.models import User
 
 # Related third party imports
 
 # Local application/library specific imports
+from accounts.models import UserInfo, User
 from .models import *
 from chat.models import Message
 from community.models import Post
@@ -159,11 +160,6 @@ def stats_custom_view(request):
     message = Message.objects.all()
     post = Post.objects.all()
 
-    message_past_all = message.count()
-    message_past_7 = message.filter(timestamp__gte = current_time-timedelta(days=7)).count()
-    message_past_30 = message.filter(timestamp__gte = current_time-timedelta(days=30)).count()
-    message_past_90 = message.filter(timestamp__gte = current_time-timedelta(days=90)).count()
-
     post_past_all = post.count()
     post_past_7 = post.filter(created_date__gte = current_time-timedelta(days=7)).count()
     post_past_30 = post.filter(created_date__gte = current_time-timedelta(days=30)).count()
@@ -214,8 +210,6 @@ def stats_custom_view(request):
     tracking_provided_past_90 = temp.count()
     tracking_provided_past_90_total = temp.aggregate(Sum('price'))
 
-
-
     users_past_all = users.count()
     users_past_7 = users.filter(date_joined__gte = current_time-timedelta(days=7)).count()
     users_past_30 = users.filter(date_joined__gte = current_time-timedelta(days=30)).count()
@@ -240,6 +234,45 @@ def stats_custom_view(request):
     pro_past_7 = user_info.filter(is_professional=True).filter(user__date_joined__gte = current_time-timedelta(days=7)).count()
     pro_past_30 = user_info.filter(is_professional=True).filter(user__date_joined__gte = current_time-timedelta(days=30)).count()
     pro_past_90 = user_info.filter(is_professional=True).filter(user__date_joined__gte = current_time-timedelta(days=90)).count()
+    
+    message_past_all = message.count()
+    message_past_7 = message.filter(timestamp__gte = current_time-timedelta(days=7)).count()
+    message_past_30 = message.filter(timestamp__gte = current_time-timedelta(days=30)).count()
+    message_past_90 = message.filter(timestamp__gte = current_time-timedelta(days=90)).count()   
+
+    artist_message_all = Message.objects.select_related('origin_user').filter(origin_user__is_seller=True).count()
+    artist_message_7 = Message.objects.select_related('origin_user').filter(origin_user__is_seller=True).filter(timestamp__gte = current_time-timedelta(days=7)).count()
+    artist_message_30 = Message.objects.select_related('origin_user').filter(origin_user__is_seller=True).filter(timestamp__gte = current_time-timedelta(days=30)).count()
+    artist_message_90 = Message.objects.select_related('origin_user').filter(origin_user__is_seller=True).filter(timestamp__gte = current_time-timedelta(days=90)).count()
+
+    buyer_message_all = Message.objects.select_related('origin_user').filter(origin_user__is_buyer=True).count()
+    buyer_message_7 = Message.objects.select_related('origin_user').filter(origin_user__is_buyer=True).filter(timestamp__gte = current_time-timedelta(days=7)).count()
+    buyer_message_30 = Message.objects.select_related('origin_user').filter(origin_user__is_buyer=True).filter(timestamp__gte = current_time-timedelta(days=30)).count()
+    buyer_message_90 = Message.objects.select_related('origin_user').filter(origin_user__is_buyer=True).filter(timestamp__gte = current_time-timedelta(days=90)).count()
+
+    total_visit_7  = user_info.filter(user_id__last_login__gte = current_time-timedelta(days=7)).count()
+    total_visit_30 = user_info.filter(user_id__last_login__gte = current_time-timedelta(days=30)).count()
+    total_visit_90 = user_info.filter(user_id__last_login__gte = current_time-timedelta(days=90)).count()
+
+    artist_visit_7  =  user_info.filter(is_seller=True, is_buyer=False).filter(user_id__last_login__gte = current_time-timedelta(days=7)).count()
+    artist_visit_30 =  user_info.filter(is_seller=True, is_buyer=False).filter(user_id__last_login__gte = current_time-timedelta(days=30)).count()
+    artist_visit_90 =  user_info.filter(is_seller=True, is_buyer=False).filter(user_id__last_login__gte = current_time-timedelta(days=90)).count()
+
+    buyer_visit_7  =  user_info.filter(is_seller=False, is_buyer=True).filter(user_id__last_login__gte = current_time-timedelta(days=7)).count()
+    buyer_visit_30 =  user_info.filter(is_seller=False, is_buyer=True).filter(user_id__last_login__gte = current_time-timedelta(days=30)).count()
+    buyer_visit_90 =  user_info.filter(is_seller=False, is_buyer=True).filter(user_id__last_login__gte = current_time-timedelta(days=90)).count()
+
+    both_visit_7  =  user_info.filter(is_seller=True, is_buyer=True).filter(user_id__last_login__gte = current_time-timedelta(days=7)).count()
+    both_visit_30 =  user_info.filter(is_seller=True, is_buyer=True).filter(user_id__last_login__gte = current_time-timedelta(days=30)).count()
+    both_visit_90 =  user_info.filter(is_seller=True, is_buyer=True).filter(user_id__last_login__gte = current_time-timedelta(days=90)).count()
+
+    pro_visit_7  =  user_info.filter(is_professional=True).filter(user_id__last_login__gte = current_time-timedelta(days=7)).count()
+    pro_visit_30 =  user_info.filter(is_professional=True).filter(user_id__last_login__gte = current_time-timedelta(days=30)).count()
+    pro_visit_90 =  user_info.filter(is_professional=True).filter(user_id__last_login__gte = current_time-timedelta(days=90)).count()
+
+    nonuser_visit_7  =  user_info.filter(is_seller=False, is_buyer=False, is_professional=False).filter(user_id__last_login__gte = current_time-timedelta(days=7)).count()
+    nonuser_visit_30 =  user_info.filter(is_seller=False, is_buyer=False, is_professional=False).filter(user_id__last_login__gte = current_time-timedelta(days=0)).count()
+    nonuser_visit_90 =  user_info.filter(is_seller=False, is_buyer=False, is_professional=False).filter(user_id__last_login__gte = current_time-timedelta(days=90)).count()
 
     context = {
 
@@ -273,6 +306,17 @@ def stats_custom_view(request):
     'new_message_30' : message_past_30,
     'new_message_90' : message_past_90,
 
+    'artist_message_all' : artist_message_all,
+    'artist_message_7'  : artist_message_7,
+    'artist_message_30' : artist_message_30,
+    'artist_message_90' : artist_message_90,
+
+    'buyer_message_all' : buyer_message_all,
+    'buyer_message_7'  : buyer_message_7,
+    'buyer_message_30' : buyer_message_30,
+    'buyer_message_90' : buyer_message_90,
+
+
     'overall_post' : post_past_all,
     'new_post_7' : post_past_7,
     'new_post_30' : post_past_30,
@@ -304,6 +348,31 @@ def stats_custom_view(request):
     'new_tracking_30_total' : tracking_provided_past_30_total['price__sum'],
     'new_tracking_90' : tracking_provided_past_90,
     'new_tracking_90_total' : tracking_provided_past_90_total['price__sum'],
+
+    'total_visit_7':  total_visit_7,
+    'total_visit_30': total_visit_30,
+    'total_visit_90': total_visit_90,
+
+    'artist_visit_7':artist_visit_7,
+    'artist_visit_30':artist_visit_30,
+    'artist_visit_90':artist_visit_90,
+
+    'both_visit_7': both_visit_7,
+    'both_visit_30':both_visit_30,
+    'both_visit_90':both_visit_90,
+
+    'buyer_visit_7':  buyer_visit_7,
+    'buyer_visit_30':buyer_visit_30,
+    'buyer_visit_90':buyer_visit_90,
+
+    'pro_visit_7' :pro_visit_7,
+    'pro_visit_30':pro_visit_30,
+    'pro_visit_90':pro_visit_90,
+
+    'nonuser_visit_7':nonuser_visit_7,
+    'nonuser_visit_30':nonuser_visit_30,
+    'nonuser_visit_90':nonuser_visit_90,
+
 
     }
     return render(request, 'custom_admin/stats.html', context)
