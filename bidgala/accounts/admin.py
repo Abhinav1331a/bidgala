@@ -240,15 +240,15 @@ def stats_custom_view(request):
     message_past_30 = message.filter(timestamp__gte = current_time-timedelta(days=30)).count()
     message_past_90 = message.filter(timestamp__gte = current_time-timedelta(days=90)).count()   
 
-    artist_message_all = Message.objects.select_related('origin_user').filter(origin_user__is_seller=True).count()
-    artist_message_7 = Message.objects.select_related('origin_user').filter(origin_user__is_seller=True).filter(timestamp__gte = current_time-timedelta(days=7)).count()
-    artist_message_30 = Message.objects.select_related('origin_user').filter(origin_user__is_seller=True).filter(timestamp__gte = current_time-timedelta(days=30)).count()
-    artist_message_90 = Message.objects.select_related('origin_user').filter(origin_user__is_seller=True).filter(timestamp__gte = current_time-timedelta(days=90)).count()
+    artist_message_all = message.filter(origin_user__is_seller=True).count()
+    artist_message_7 = message.filter(origin_user__is_seller=True).filter(timestamp__gte = current_time-timedelta(days=7)).count()
+    artist_message_30 = message.filter(origin_user__is_seller=True).filter(timestamp__gte = current_time-timedelta(days=30)).count()
+    artist_message_90 = message.filter(origin_user__is_seller=True).filter(timestamp__gte = current_time-timedelta(days=90)).count()
 
-    buyer_message_all = Message.objects.select_related('origin_user').filter(origin_user__is_buyer=True).count()
-    buyer_message_7 = Message.objects.select_related('origin_user').filter(origin_user__is_buyer=True).filter(timestamp__gte = current_time-timedelta(days=7)).count()
-    buyer_message_30 = Message.objects.select_related('origin_user').filter(origin_user__is_buyer=True).filter(timestamp__gte = current_time-timedelta(days=30)).count()
-    buyer_message_90 = Message.objects.select_related('origin_user').filter(origin_user__is_buyer=True).filter(timestamp__gte = current_time-timedelta(days=90)).count()
+    buyer_message_all = message.filter(origin_user__is_buyer=True).count()
+    buyer_message_7 = message.filter(origin_user__is_buyer=True).filter(timestamp__gte = current_time-timedelta(days=7)).count()
+    buyer_message_30 = message.filter(origin_user__is_buyer=True).filter(timestamp__gte = current_time-timedelta(days=30)).count()
+    buyer_message_90 = message.filter(origin_user__is_buyer=True).filter(timestamp__gte = current_time-timedelta(days=90)).count()
 
     total_visit_7  = user_info.filter(user_id__last_login__gte = current_time-timedelta(days=7)).count()
     total_visit_30 = user_info.filter(user_id__last_login__gte = current_time-timedelta(days=30)).count()
@@ -273,6 +273,7 @@ def stats_custom_view(request):
     nonuser_visit_7  =  user_info.filter(is_seller=False, is_buyer=False, is_professional=False).filter(user_id__last_login__gte = current_time-timedelta(days=7)).count()
     nonuser_visit_30 =  user_info.filter(is_seller=False, is_buyer=False, is_professional=False).filter(user_id__last_login__gte = current_time-timedelta(days=0)).count()
     nonuser_visit_90 =  user_info.filter(is_seller=False, is_buyer=False, is_professional=False).filter(user_id__last_login__gte = current_time-timedelta(days=90)).count()
+
 
     context = {
 
