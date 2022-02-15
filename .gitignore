@@ -133,7 +133,7 @@ venv/
 
 # Hide local settings
 bidgala/local_settings.py
-bidgala/bidgala/bidgala/settings.py
+bidgala/bidgala/settings.py
 error.log
 migrations/
 media/
