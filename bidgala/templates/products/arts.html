@@ -350,39 +350,35 @@
                                         {{product.art_obj.height}}H</small>{%if product.art_obj.depth > 0%}<small
                                         class="text-muted"> x
                                         {{product.art_obj.depth}}D</small>{%endif%}<small class="text-muted">
-                                        {{product.art_obj.dim_measure}}</small><br/>
+                                        {{product.art_obj.dim_measure}}</small><br />
+                                    {%if request.user.is_authenticated%}
 
-                                        <!-- <small class="text-muted">Featured Artist</small> -->
+                                    <a id="fav-{{product.art_obj.id}}" class="fav-product">{% if product.liked%}<i
+                                            class="fas fa-heart"></i> {%else%}<i class="far fa-heart"></i>{%endif%}
+                                    </a> {%else%} <a href="#" data-toggle="modal" data-target="#loginModal"><i
+                                            class="far fa-heart"></i></a>{%endif%}
 
-                                    {%if request.user.is_authenticated%} 
-                                    
-                                    <a id="fav-{{product.art_obj.id}}" 
-                                class="fav-product">{% if product.liked%}<i class="fas fa-heart"></i> {%else%}<i
-                                    class="far fa-heart"></i>{%endif%}
-                            </a> {%else%} <a href="#" data-toggle="modal" data-target="#loginModal"><i
-                                    class="far fa-heart"></i></a>{%endif%}
+
+                                </div>
+                            </a>
+
+                            <div class="sold-tag">SOLD</div>
 
 
                         </div>
-                        </a>
-
-                        <div class="sold-tag">SOLD</div>
-
-
+                        {% endfor %}
+                        {% endfor %}
+                        {% endif %}
                     </div>
-                    {% endfor %}
-                    {% endfor %}
-                    {% endif %}
                 </div>
             </div>
+
+
+            {% if not grouped_art %}
+            <div class='alert alert-primary text-center w-100' role='alert'>No match found</div>
+            {% endif %}
+
         </div>
-
-
-        {% if not grouped_art %}
-        <div class='alert alert-primary text-center w-100' role='alert'>No match found</div>
-        {% endif %}
-
-    </div>
 
 
 
