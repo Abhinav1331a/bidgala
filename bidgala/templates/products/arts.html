@@ -322,12 +322,13 @@
                         {% for product in group %}
                         <div class="grid-item">
 
-                            <!-- {% if product.curator_pick%} -->
+                            {% if product.art_obj.curator_pick%} 
+                            <div class="label-tag">Curator Pick</div>
+                            {% elif product.art_obj.owner.featured_artist%} 
+                            <div class="label-tag">Featured Artist</div>
+                            {%endif%}
 
-                            <!-- {%endif%} -->
-
-                            <div class="featured-tag">Featured Artist</div>
-                            <div class="curator-tag">Curator Pick</div>
+                            
 
 
                             <a href="{%url 'product_view' id=product.art_obj.id%}">
@@ -361,9 +362,6 @@
 
                                 </div>
                             </a>
-
-                            <div class="sold-tag">SOLD</div>
-
 
                         </div>
                         {% endfor %}

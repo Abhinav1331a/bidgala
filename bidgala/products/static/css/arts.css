@@ -370,7 +370,7 @@
 
 /* Curator New Tag */
 
-.curator-tag{
+.label-tag{
 	position: relative;
 	float: right;
     font-size: 10px;
@@ -381,35 +381,5 @@
     color: white;
     padding: 8px;
     /* border-radius: 20px; */
-    z-index:1;
-}
-
-/* Sold Tag */
-
-.sold-tag{
-	position: relative;
-	float: right;
-    font-size: 10px;
-    /* top: 31px; */
-    /* left: 12px; */
-	bottom: 73px;
-    background-color: red;
-    color: white;
-    padding: 8px;
-    /* border-radius: 20px; */
-    z-index:1;
-}
-
-.featured-tag{
-	position: relative;
-	float: left;
-    font-size: 10px;
-    /* top: 31px; */
-    /* left: 12px; */
-	/* bottom: 6px; */
-    background-color: black;
-    color: white;
-    padding: 8px;
-    border-radius: 20px 20px 0px 0px;
     z-index:1;
 }
