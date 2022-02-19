@@ -211,7 +211,7 @@ def accept_or_decline_order(request):
                                 msg_obj.has_input = False
                                 msg_obj.save()
 
-                                msg_text_decline = get_decline_message(order_hold_obj.product.art_title, order_hold_obj.product.id)
+                                msg_text_decline = get_decline_message(order_hold_obj.buyer, order_hold_obj.product)
                                 decline_message = Message(message_text=msg_text_decline, conversation_id=msg_obj.conversation_id, origin_user=order_hold_obj.seller)
                                 decline_message.save()
                                 messages.success(request, 'Rejected buyer request')

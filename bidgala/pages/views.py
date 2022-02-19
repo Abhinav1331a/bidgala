@@ -113,7 +113,7 @@ def index(request):
 
 
 	products = Product.objects.filter(curator_pick=True, sold=False, available=True).order_by('-date')[0:10]
-	new_products = Product.objects.filter(sold=False, available=True).order_by('-date').distinct('owner__id').order_by('owner__id')[0:10]
+	new_products = Product.objects.filter(sold=False, available=True).order_by('-date').order_by('owner__id')[0:10]  #.distinct('Owner__id) causing items to shrink. So removed it.
 	discover_articles = Article.objects.filter(show=True).order_by('-created_date')[0:10]
 
 	all_art_img  = HomePage.objects.filter(value='shop_all_art')[0]
