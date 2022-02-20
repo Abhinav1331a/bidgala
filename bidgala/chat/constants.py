@@ -18,5 +18,5 @@ def get_decline_message(user_info, product_info):
 def get_accept_message(user_info, product_info):
 	name = user_info.user.first_name if user_info.user.first_name else ''
 	artist_name = product_info.owner.user.first_name if product_info.owner.user.first_name else 'The artist'
-	return 'Congratulations! Your request to purchase ' + product_info.art_title + ' has been accepted. ' + artist_name + ' should provide you with a tracking number within 7 days. Your card will not be charged until your order is shipped. Feel free to send ' + artist_name.lower() + ' any questions in this chat.'
+	return 'Congratulations' + name + '! Your request to purchase ' + product_info.art_title + ' has been accepted. ' + artist_name + ' should provide you with a tracking number within 7 days. Your card will not be charged until your order is shipped. Feel free to send ' + artist_name.lower() + ' any questions in this chat.'
 	
