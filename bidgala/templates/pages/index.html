@@ -20,11 +20,12 @@
     <div class="carousel-area d-flex align-items-center flex-column-reverse flex-md-row">
         <div class="col-12 col-md-6 pr-3 pr-md-5  mb-4 mb-md-0">
             <h1>Explore art from our thriving community of emerging artists</h1>
-            <a href="{%url 'show_search' type_='art' value='all' %}"><button class="shop-btn">EXPLORE ALL ART</button></a>
+            <a href="{%url 'show_search' type_='art' value='all' %}"><button class="shop-btn">EXPLORE ALL
+                    ART</button></a>
         </div>
         <div class="img-container col-12 col-md-6 mb-3 mb-md-0">
             <a href="https://bidgala.com/art/product_view/c9196f6a-3a42-463a-880d-3ccc57c5e370/">
-                <img data-aload="{{BASE_IMG_URL}}{{all_art_img}}{{img_optimize_param}}" class="d-block w-100"  alt="">
+                <img data-aload="{{BASE_IMG_URL}}{{all_art_img}}{{img_optimize_param}}" class="d-block w-100" alt="">
             </a>
         </div>
     </div>
@@ -120,7 +121,8 @@
                         <a href="{%url 'product_view' id=product.id%}">
 
                             <img class="card-img-top product-img"
-                                data-aload="{{BASE_IMG_URL}}{{product.image}}{{img_optimize_param}}" alt="Card image cap" >
+                                data-aload="{{BASE_IMG_URL}}{{product.image}}{{img_optimize_param}}"
+                                alt="Card image cap">
                             <div class="card-body">
 
                                 <p class="card-title mb-1">{{product.art_title}}</p>
@@ -164,8 +166,11 @@
                     <img src="{{BASE_IMG_URL}}{{advisory_img}}{{img_optimize_param}}" alt="">
                     <div class="d-flex flex-column justify-content-center align-items-center">
                         <h3>Find Art You Love</h3>
-                        <p class="text-center">"Bidgala’s art advisors help make the experience of shopping for art easy and enjoyable. Whether you’re looking for a specific piece or want to discover some of our emerging artists, we will walk you through the simple process. "</p>
-                        <a href="{% url 'advisory'%}" class="btn btn-outline-dark text-uppercase">work with an art advisor</a>
+                        <p class="text-center">"Bidgala’s art advisors help make the experience of shopping for art easy
+                            and enjoyable. Whether you’re looking for a specific piece or want to discover some of our
+                            emerging artists, we will walk you through the simple process. "</p>
+                        <a href="{% url 'advisory'%}" class="btn btn-outline-dark text-uppercase">work with an art
+                            advisor</a>
                     </div>
                 </div>
             </div>
@@ -177,6 +182,7 @@
                 <h3 class="mb-2 pl-2 pr-2 p-xl-0">New Art</h3>
                 <i class="fas fa-chevron-left prev hide" id="prev-trending"></i>
                 <i class="fas fa-chevron-right next hide" id="next-trending"></i>
+
                 <div class="art-cards trending-art w-100">
                     {% for product in new_products%}
                     <div class="card ml-1 mr-1">
@@ -185,7 +191,7 @@
                             <div class="curator-pick">Curator Pick</div>
                             {%endif%}
                             <img class="card-img-top product-img"
-                                src="{{BASE_IMG_URL}}{{product.image}}{{img_optimize_param}}" alt="Card image cap" >
+                                src="{{BASE_IMG_URL}}{{product.image}}{{img_optimize_param}}" alt="Card image cap">
                             <div class="card-body">
 
                                 <p class="card-title mb-1">{{product.art_title}}</p>
