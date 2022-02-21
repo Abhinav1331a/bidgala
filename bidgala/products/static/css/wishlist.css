@@ -1,0 +1,104 @@
+.grid {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.grid-sizer {
+	width: 24%;
+}
+
+.grid-item img {
+	width: 100%;
+}
+.grid-item {
+	width: 24%;
+	margin-bottom: 15px;
+}
+
+
+.page-link {
+    color: black;
+}
+
+.page-link:hover {
+    color: grey;
+}
+
+.page-item.active .page-link {
+    color: white;
+    background-color: black;
+    border-color: black;
+}
+
+
+@media(max-width: 1130px) {
+	.grid-sizer {
+		width: 23.8%;
+	}
+	.grid-item {
+		width: 23.8%;
+	}
+}
+
+@media(max-width: 946px) {
+	.grid-sizer {
+		width: 23.6%;
+	}
+	.grid-item {
+		width: 23.6%;
+	}
+}
+
+@media(max-width: 830px) {
+	.grid-sizer {
+		width: 23.3%;
+	}
+	.grid-item {
+		width: 23.3%;
+	}
+}
+
+@media(max-width: 815px) {
+	.grid-sizer {
+		width: 23.3%;
+	}
+	.grid-item {
+		width: 23.3%;
+	}
+}
+
+@media(max-width: 780px) {
+	.grid-sizer {
+		width: 32%;
+	}
+	.grid-item {
+		width: 32%;
+	}
+}
+
+@media(max-width: 755px) {
+	.grid-sizer {
+		width: 31.5%;
+	}
+	.grid-item {
+		width: 31.5%;
+	}
+}
+
+@media(max-width: 572px) {
+	.grid-sizer {
+		width: 48%;
+	}
+	.grid-item {
+		width: 48%;
+	}
+}
+
+@media(max-width: 380px) {
+	.grid-sizer {
+		width: 47%;
+	}
+	.grid-item {
+		width: 47%;
+	}
+}

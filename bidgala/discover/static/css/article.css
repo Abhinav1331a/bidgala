@@ -1,0 +1,32 @@
+.profile-thumbnail {
+    height: 2.5em;
+    min-width: 2.5em;
+    max-width: 2.5em;
+}
+
+.profile-thumbnail img {
+    position: relative;
+    margin: 0 auto;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+
+
+
+#article-img {
+    width: 100%;
+    height: auto;
+}
+
+
+.article-note {
+    position: absolute;
+    padding: 0 5px;
+    bottom: 8px;
+    right: 16px;
+    color: black;
+    background-color: #eee;
+}

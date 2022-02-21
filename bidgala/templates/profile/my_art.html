@@ -1,0 +1,423 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+{% load custom_filter %}
+{% block more_meta_tags %} {% endblock %}
+{% block title %} | My Art {% endblock %}
+{% block cssfile %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tagify/3.22.1/tagify.min.css" integrity="sha512-91wa7heHLbuVdMrSXbWceVZva6iWDFlkFHnM+9Sc+oXFpTgw1FCqdnuaGBJfDVuNSNl0DwDmeGeJSORB0HyLZQ==" crossorigin="anonymous" />
+<link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
+<link href="{% static 'css/my-art.css' %}" rel="stylesheet">
+	
+{% endblock %}
+{% block content %}
+	<main class="mt-3"> 
+		<h2 class="text-center mb-4">My Art</h2>
+		<section class="d-flex justify-content-center">
+			<div class="my-art-container">
+						<div class="row m-0 d-flex justify-content-center art-container">
+							{% if arts %}
+								{% for art in arts %}
+								<div class="card art-card m-2" id="{{art.id}}_div">
+									<a href="{% url 'product_view' art.id %}">
+										<img class="card-img-top" src="{{art.image.url}}" alt="Card image cap">
+										<div class="card-img-overlay">
+											<p>{%if art.sold%} <span class="badge badge-dark p-2">Sold</span>{%endif%}</p>
+										</div>
+									</a>
+									<div class="card-body">
+										<h4>{{art.art_title}}</h4>
+										<p class="card-text text-muted">${{art.price | intcomma}}</p>
+										<p class="card-text text-muted"><i class="fas fa-clock"></i> {{art.date | timesince}}  ago</p>
+										{% if art.available and not art.sold %}
+										<div>
+											<span class="col-12 p-0">
+												<div class="d-flex mb-2">
+													<button name="{{art.id}}" class="btn btn-light onedit btn-sm w-100 mr-1"><i class="far fa-edit"></i></button>
+													<button id="{{art.id}}"  class="btn btn-light btn-sm w-100 ml-1 art-delete"><i class="fas fa-trash-alt"></i></button>
+												</div>
+											</span>	
+											<span class="col-12 p-0">
+												<form name="artsold" class="artsold" method="POST" action="/art/art-sold">
+													{% csrf_token %}
+													<input type="text" name="art_id_sold" value="{{art.id}}" hidden="true"/>
+													<input  class="btn btn-dark btn-block btn-sm" type="submit" value="Mark as sold"/>
+												</form>
+											</span>
+										</div>
+										{%else%}
+										<div>
+											<span class="col-12 p-0">
+												<form name="artsold" class="artunsold" method="POST" action="/art/art-unsold">
+													{% csrf_token %}
+													<input type="text" name="art_id_unsold" value="{{art.id}}" hidden="true"/>
+													<input  class="btn btn-dark btn-block btn-sm" type="submit" value="Mark as unsold"/>
+												</form>
+											</span>
+										</div>
+										{%endif%}									
+										<span>
+											<input type='text' value="{{art.color}}" id="{{art.id}}_color" hidden/>
+											<input type='text' value="{{art.art_title}}" id="{{art.id}}_title" hidden/>
+											<input type='text' id="{{art.id}}_artdescription" value="{{art.art_desc}}" hidden/>
+											<input  id="{{art.id}}_height" value="{{art.height}}" hidden/>
+											<input 	id="{{art.id}}_width" value="{{art.width}}" hidden/>
+											<input  id="{{art.id}}_depth" value="{{art.depth}}" hidden/>
+											<input  id="{{art.id}}_units" value="{{art.dim_measure}}" hidden/>
+											<input  id="{{art.id}}_price" value="{{art.price}}" hidden/>
+											<input  id="{{art.id}}_shipping_can" value="{{art.shipping_price_can}}" hidden/>
+											<input  id="{{art.id}}_shipping_us" value={{art.shipping_price_us}} hidden/>
+											<input  id="{{art.id}}_shipping_uk" value={{art.shipping_price_uk}} hidden/>
+											<input  id="{{art.id}}_shipping_aunz" value={{art.shipping_price_aunz}} hidden/>
+											<input  id="{{art.id}}_shipping_asia" value={{art.shipping_price_asia}} hidden/>
+											<input  id="{{art.id}}_shipping_europe" value={{art.shipping_price_europe}} hidden/>
+											<input  id="{{art.id}}_shipping_other" value={{art.shipping_price_other}} hidden/>
+											<input  id="{{art.id}}_show_shipping_price_can" value={{art.show_shipping_price_can}} hidden/>
+											<input  id="{{art.id}}_show_shipping_price_us" value="{{art.show_shipping_price_us}}" hidden/>
+											<input  id="{{art.id}}_show_shipping_price_uk" value="{{art.show_shipping_price_uk}}" hidden/>
+											<input  id="{{art.id}}_show_shipping_price_aunz" value="{{art.show_shipping_price_aunz}}" hidden/>
+											<input  id="{{art.id}}_show_shipping_price_asia" value="{{art.show_shipping_price_asia}}" hidden/>
+											<input  id="{{art.id}}_show_shipping_price_europe" value="{{art.show_shipping_price_europe}}" hidden/>
+											<input  id="{{art.id}}_show_shipping_price_other" value="{{art.show_shipping_price_other}}" hidden/>
+											<input id="{{art.id}}_metrics" value="{{art.dim_measure}}" hidden/>
+											<input id="{{art.id}}_tags" value="{{art.tags}}" hidden/>
+											
+
+											{% for style_data in art.styles|get_style_details:","%}
+												<input id="{{art.id}}_style_{{style_data.id}}" class="{{art.id}}_style_common" value="{{style_data.style_value}} "hidden/> 
+											{%endfor%}
+
+										</span>
+
+										
+									</div>
+								</div>
+
+
+												
+							
+
+
+								{% endfor %}
+							{% else %}
+								<div class="col-md-12 text-center">
+									<p class="alert alert-danger">No art available to display</p>
+								</div>
+								{%endif%}
+								</div>
+								
+
+
+
+							
+							<div class="row">
+								<div class="col-md-12">
+									{% if arts.has_other_pages %}
+										<ul class="pagination">
+											{% if arts.has_previous%}
+												<li class="page-item">
+													<a href="?page={{arts.previous_page_number}}" class="page-link">&laquo;</a>
+												</li>
+												{%else%}
+												<li class="page-item disabled">
+													<a class="page-link">&laquo;</a>
+												</li>
+												{%endif%}
+												{% for i in arts.paginator.page_range %}
+													{% if arts.number == i %}
+														<li class="page-item active">
+															<a class="page-link">{{i}}</a>
+														</li>
+														{%else%}
+														<li class="page-item">
+															<a href="?page={{i}}" class="page-link">{{i}}</a>
+														</li>
+														{%endif%}
+														{%endfor%}
+														{% if arts.has_next%}
+															<li class="page-item">
+																<a href="?page={{arts.next_page_number}}" class="page-link">&raquo;</a>
+															</li>
+															{%else%}
+															<li class="page-item disabled">
+																<a class="page-link">&raquo;</a>
+															</li>
+															{%endif%}
+														</ul>
+														{%endif%}
+													</div>
+												</div>
+												
+											
+											
+										</div>
+								</section>
+								
+								<div class="modal fade" id="changedata" role="dialog" data-keyboard="false" data-backdrop="static">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<!-- Modal Header -->
+											<div class="modal-header">
+												<h4 class="modal-title">Edit Posting</h4>
+												
+											</div>
+											<div class="modal-body">
+												
+													<form name="artedit" id="artedit" method="POST" action="/art/edit-art">
+
+														{% csrf_token %}
+														
+														<input type="text" name="id" id="id" hidden="hidden">
+														<input  type="text"  id="style_art_post_data_hidden" name="style_art_post_data_hidden" hidden="hidden">
+														<div class="form-group">
+															<label for="artname" class="col-form-label">Art Title</label>
+															<div></div>
+															<input type='text' id="artname" name="artname" form="artedit" class="form-control input-md"/>
+															
+														</div>
+														<div class="form-group">
+															<label for="artdescription">Art Description</label>
+															<textarea class="form-control" id="artdescription" name="artdescription"  rows="5" placeholder='(highly recommended) Buyers tend to appreciate art more if they know the "strory" behind it. Describe the piece as if you were describing it to someone who could not see it. The best descriptions provide vivid information about the piece (texture, quality of material, etc) and answer questions regarding your inspirations for the work, what you hope the viewers will think/feel, and why this medium or style was chosen. Do not mention price, payment options or shopping, as those are provided later on.' form="artedit"></textarea>
+														</div>
+														 <div class="form-group">
+															
+															<label for="tags2" class="col-form-label">Tags</label>
+															<input name='tags2'  id="tags2" form="artedit"/>
+															
+														</div> 
+														
+														<div class="form-group" >
+														          <label class="col-form-label">Style</label> 
+														          <br/>
+														          {%for key, val in style.items%}
+														            <div class="form-check form-check-inline">
+														              <input class="form-check-input style_art_actual_submit" type="checkbox" id="style_{{key}}" value="{{key}}" name="style_input">
+														              <label class="form-check-label" for="{{key}}">{{val}}</label>
+														            </div>
+														          {%endfor%}
+														        </div>
+
+														
+														<div class="form-group">
+															<label  class="col-form-label">Dimensions</label>
+															
+															<div class="form-row">
+																<input type='number' id="height" name="height" form="artedit" class="form-control col mr-1"  placeholder="Height" />
+																<input type='number' id="width" name="width" form="artedit" class="form-control col mr-1" placeholder="Width" />
+																<input type='number' id="depth" name="depth" form="artedit" class="form-control col" placeholder="Depth" />
+															</div>
+														</div>
+														<div>
+															<label  class="col-form-label">Unit of Measurement</label>
+															
+															<div class="form-group">
+																
+																<select class="form-control" id="measure" name="measure" form="artedit">
+																	<option value="" selected disabled hidden>Choose here</option>
+																	{% for key, value in dim_measurement.items %}
+																		<option value="{{value}}">{{key}}</option>
+																	{% endfor %}
+																</select>
+															</div>
+															
+														</div>
+														
+														
+														<div class="form-group" >
+															
+															<label class="col-form-label">Price (USD)</label>
+															<div ></div>
+															
+															<div class="input-group mb-3">
+																<input type="text" class="form-control"   aria-describedby="basic-addon2" id="price" name="price" form="artedit">
+																<div class="input-group-append">
+																	<span class="input-group-text">USD</span>
+																</div>
+															</div>
+															
+														</div>
+														<div class="form-group">
+															
+															<label  class="col-form-label">Shipping Price (USD)</label>
+															<div ></div>
+															
+															<div class="input-group mb-3">
+																<input type="text" class="form-control" placeholder="For Canada" aria-label="For Canada" aria-describedby="basic-addon2" id="shipcanada" name="shipcanada" form="artedit">
+																<div class="input-group-append">
+																	<span class="input-group-text">CAN</span>
+																</div>
+															</div>
+															
+															
+															<div class="input-group mb-3" >
+																<input type="text" class="form-control" placeholder="For US" aria-label="For US" aria-describedby="basic-addon2" id="shipus" name="shipus" form="artedit">
+																<div class="input-group-append">
+																	<span class="input-group-text">US</span>
+																</div>
+															</div>
+															
+															<div class="input-group mb-3" >
+																<input type="text" class="form-control" placeholder="For United Kingdom" aria-label="For UK" aria-describedby="basic-addon2" id="shipuk" name="shipuk" form="artedit">
+																<div class="input-group-append">
+																	<span class="input-group-text">UK</span>
+																</div>
+															</div>
+														
+															
+															<div class="input-group mb-3 mt-3">
+																<input type="text" class="form-control" placeholder="For Australia or New Zealand" aria-label="For Australia or New Zealand" aria-describedby="basic-addon2" id="shipaunz" name="shipaunz" form="artedit">
+																<div class="input-group-append">
+																	<span class="input-group-text">AU / NZ</span>
+																</div>
+															</div>
+															
+															<div class="input-group mb-3 mt-3">
+																<input type="text" class="form-control" placeholder="For Asia" aria-label="For ASIA" aria-describedby="basic-addon2" id="shipasia" name="shipasia" form="artedit">
+																<div class="input-group-append">
+																	<span class="input-group-text">ASIA</span>
+																</div>
+															</div>
+														
+															<div class="input-group mb-3 mt-3">
+																<input type="text" class="form-control" placeholder="For Europe" aria-label="For Europe" aria-describedby="basic-addon2" id="shipeurope" name="shipeurope" form="artedit">
+																<div class="input-group-append">
+																	<span class="input-group-text">Europe</span>
+																</div>
+															</div>
+															
+															<div class="input-group mb-3 mt-3">
+																<input type="text" class="form-control" placeholder="For Other" aria-label="For Other" aria-describedby="basic-addon2" id="shipother" name="shipother" form="artedit">
+																<div class="input-group-append">
+																	<span class="input-group-text">Other</span>
+																</div>
+															</div>
+															
+															
+															
+															
+														</div>
+													</form>
+																									
+											</div>
+											
+											
+											<!-- Modal footer -->
+											<div class="modal-footer">
+												<span id="forerrormessage">
+												</span>
+												<div class="d-flex w-100">
+													<button type="button" class="btn btn-light btn-block mr-2" data-dismiss="modal" id="onClose">Cancel</button>
+													<button type="button" class="btn btn-dark crop_image center-block btn-block m-0" id="editdata_confirm">Save</button>
+													<input type="submit" name="submit" hidden>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+
+
+
+								<div class="modal fade modal-msg" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="mi-modal">
+									<div class="modal-dialog modal-dialog-centered modal-sm">
+										<div class="modal-content">
+											<div class="modal-header">
+												<h4 class="modal-title" id="myModalLabel">Delete this listing&#63;</h4>
+											</div>
+											<div class="modal-footer">
+												<div class="d-flex w-100">
+													<button type="button" class="btn btn-danger btn-block mr-1" id="modal-btn-si">Yes</button>
+													<button type="button" class="btn btn-light btn-block m-0" id="modal-btn-no">No</button>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								
+								<div class="modal fade modal-msg" role="dialog"  aria-hidden="true" id="mi-success-message">
+									<div class="modal-dialog  modal-dialog-centered modal-sm">
+										<div class="modal-content">
+											<div class="modal-header">
+												
+												<h4 class="modal-title" id="myModalLabel">Removed successfully</h4>
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-light btn-block" id="modal-btn-success-close">Ok</button>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="modal fade modal-msg" role="dialog"  aria-hidden="true" id="mi-error-message">
+									<div class="modal-dialog  modal-dialog-centered modal-sm">
+										<div class="modal-content">
+											<div class="modal-header">
+												
+												<h4 class="modal-title" id="myModalLabel">Something went wrong</h4>
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-primary" id="modal-btn-error-close">Close</button>
+												
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="modal fade in" role="dialog"  ria-hidden="true" id="edit-success-message">
+									<div class="modal-dialog  modal-dialog-centered modal-sm">
+										<div class="modal-content">
+											<div class="modal-header">
+												
+												<h4 class="modal-title" id="myModalLabel">{{message}}</h4>
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-primary" id="modal-edit-btn-success-close" data-dismiss="modal">Close</button>
+												
+											</div>
+										</div>
+									</div>
+								</div>
+								
+							</main>
+
+							<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+
+
+							{%if success and message%}
+							<script type="text/javascript">
+								$(document).ready(function(){
+								        $("#edit-success-message").modal('show');
+									});
+							</script>
+							{%endif%}
+
+							<script>
+								const singleArtCard = () => {
+									const artContainer = document.querySelector('.art-container');
+									if (artContainer.childElementCount === 1) {
+										const artCard = artContainer.querySelector('.art-card');
+										artCard.style.width = '40%';
+									}
+								}
+								singleArtCard();
+							</script>
+
+							<!-- {%if not success%}
+							<script type="text/javascript">
+								$(document).ready(function(){
+								        $("#edit-success-message").modal('show');
+								    });
+							</script>
+							{%endif%} -->
+
+				
+							<script src="https://cdnjs.cloudflare.com/ajax/libs/tagify/3.22.1/tagify.min.js" integrity="sha512-ovIhg1HxYIQQmQ0HWPxfnLruNxkztSlVc1K8PEYT+vkTmbSViIcxU7Y9cleFQMJ2UuB/FyKG9TD0lOTIfGsgnA==" crossorigin="anonymous"></script>
+							<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+							<script src="{% static 'js/tagify.js' %}"></script>
+							<script src="{% static 'js/art-delete.js' %}"></script>
+							<script src="{% static 'js/art_upload_edit.js' %}"></script>
+							<script src="{% static 'js/subcategories.js' %}"></script>
+							<script src="{% static 'js/artedit_validate.js' %}"></script>
+							
+							
+						{% endblock %}

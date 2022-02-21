@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} | {{article.title}}{% endblock %}
+
+
+{% block more_meta_tags %}
+<meta property="og:title" content="{{article.title}}" />
+<meta property="og:type" content="website" />
+<meta property="og:description" content="{{article.social_media}}" />
+<meta property="og:image" content="{{BASE_IMG_URL}}{{article.img}}" />
+<meta property="og:url" content="https://bidgala.com/discover/{{article.slug}}" />
+
+
+<meta name="description" content="{{article.social_media}}">
+<meta name="keywords" content="{{article.keywords}}">
+<meta name="author" content="{{article.writer_name}}">
+{% endblock %}
+
+
+{% block content %}
+
+{% block css %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="{% static 'css/article.css' %}">
+
+{%if article.css%}
+<style type="text/css">
+{{article.css}}
+</style>
+{%endif%}
+
+{% endblock %}
+
+{% if article %}
+<div class="container d-flex flex-column align-items-center">
+    {% if article.img %}
+    {% comment %} <div class="mt-3 d-flex justify-content-center position-relative"> {% endcomment %}
+        <div class="position-relative">
+            <img src="{{BASE_IMG_URL}}{{article.img}}" class="img-fluid mt-3">
+            {% if article.main_img_source%}
+                <div class="article-note">{{article.main_img_source}}</div>
+            {%endif%}
+        </div>
+    {% comment %} </div> {% endcomment %}
+    {% endif %}
+    <div class="mb-20">
+        <div class="d-flex flex-column align-items-center mb-5">
+            <h1 class="mt-4 mb-4 text-center">{{article.title}}</h1>
+            <div class="d-flex flex-sm-row flex-column justify-content-center align-items-center mb-4">
+                <small class="mr-sm-3 mr-0">{{article.writer_name}}</small>
+                <small class="mr-sm-3 mr-0">{{article.created_date|date:"F d Y"}}</small>
+                <small class="d-flex align-items-center">
+                    <p class="mr-1 mb-0">Share</p>  
+                    <a href="#" data-url="https://{{request.get_host}}/discover/{{article.slug}}" class="d-flex align-items-center justify-content-between" data-social="facebook">
+                        <i class="fa fa-facebook mr-1"></i>
+                    </a>
+                    <a href="#" data-social="twitter" data-title="{{article.social_media}}" data-url="https://{{request.get_host}}/discover/{{article.slug}}">
+                        <i class="fa fa-twitter mr-1 ml-1"></i>
+                    </a>
+                    <a href="#" data-to="" data-sharer="email" data-title="{{article.title}} | {{article.social_media}}" data-url="https://{{request.get_host}}/discover/{{article.slug}}" data-subject="{{request.user.first_name}} is sharing an article from Bidgala with you! | {{article.title}}">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </small>
+            </div>
+            <div class="ml-5 mr-5 mt-3 mb-5 text-center">
+                {% if article.deck %}
+                    <h4>{{article.deck}}</h4>
+                {% endif %}
+            </div>
+            <div>
+                {{article.body|safe}}
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="d-flex justify-content-center w-100">
+        <div class="mr-3"><i class="fa fa-comment" aria-hidden="true"></i><span class="ml-1" id="get-comment-count">{{article.comment_count}}</span> comments</div>
+    </div>
+
+    <div class="container d-flex flex-column align-items-center mt-4 pl-0 pr-0">
+        <h5 class="mb-30">Leave a reply</h5>
+        <div id="alert"></div>
+
+        <div class="input-group align-items-center mt-3 mb-4">
+            <div class="input-group-prepend profile-thumbnail">
+                {% if request.session.profile_img %}
+                <img src="{{request.session.profile_img}}" alt="profile-img-thumbnail">
+                {% else %}
+                <img src="{% static 'img/profile-icon.png'%}" alt="profile-img-thumbnail">
+                {% endif %}
+            </div>
+            <input type="text" id="comment-body" class="form-control w-100 ml-2 mr-2" placeholder="Leave a reply..."/>
+            <div class="input-group-append">
+                {% if request.user.is_authenticated %}
+                <button type="submit" id="post-comment" class="btn btn-dark" data-id={{article.id}}>COMMENT</button>
+                {% else %}
+                <button class="btn btn-dark comment-btn" data-id={{article.id}} disabled>COMMENT</button>
+                {% endif %}
+            </div>
+        </div>
+
+        {% if not request.user.is_authenticated %}
+            <small class="mb-4"><span class="text-muted login-to" data-toggle="modal" data-target="#loginModal">Log in </span>to leave a reply</small>
+        {% endif %}   
+    </div>
+
+    <div class="container comments" id="comments-container">
+    {% if comments %}
+        {% for comment in comments%}
+        <div class="comment d-flex justify-content-center align-items-start discussion-form w-100 h-100 mb-4">
+            <div class="profile-thumbnail mr-0">
+                {% if comment.user.profile_img %}
+                <img src="{{BASE_IMG_URL}}{{comment.user.profile_img}}" alt="">
+                {% else %}
+                <img src="{% static 'img/profile-icon.png'%}" alt="">
+                {% endif %}
+            </div>
+
+            <div class="col-11 d-flex flex-column ml-0">
+                <small class="w-100 d-flex justify-content-between"><strong><a href="/p/{{comment.user.user}}" class="text-muted">{{comment.user.user}}</a> replied {{comment.created_date | timesince}} ago</strong>{%if comment.user.user == request.user %}<a href="{% url 'delete_comment' article_slug=comment.article_id.slug comment_id=comment.id %}"><i class="fas fa-trash-alt"></i></a>{%endif%}</small>
+                <small id="comment-body-posted">{{comment.body}}</small>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="w-100 d-flex justify-content-center mt-5" id="no-replies-container">
+        <p id="no-replies-txt">No replies yet</p>
+    </div>
+    {% endif %}
+
+</div>
+{% endif %}
+{% endblock %}
+
+{% block jsfile %}
+<script src="https://cdn.jsdelivr.net/npm/sharer.js@latest/sharer.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/goodshare.js@6/goodshare.min.js"></script>
+<script src="{% static 'js/discover-comments.js' %}"></script>
+<script src="https://cdn.jsdelivr.net/npm/sharer.js@latest/sharer.min.js"></script>
+
+{% endblock %}

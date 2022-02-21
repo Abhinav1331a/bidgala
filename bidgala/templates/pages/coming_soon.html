@@ -1,0 +1,828 @@
+{% load static %}
+{% load socialaccount %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Bidgala | Coming Soon</title>
+		<!-- 
+		<meta property="og:image"           content="https://thebidgala.com{% static 'img/logo/facebook_share.png'%}"/>
+		<meta property="og:title"         content="The Online Art Community & Marketplace For Emerging Artists" />
+		<meta property="og:description"   content="Use this referral to get up to $100" /> -->
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!--===============================================================================================-->
+		<link rel="icon" type="image/png" href="{% static 'images/icons/favicon.ico' %}"/>
+		<!--===============================================================================================-->
+		<link rel="stylesheet" type="text/css" href="{% static 'coming_soon_style/css/bootstrap.min.css' %}">
+		<!--===============================================================================================-->
+		<link rel="stylesheet" type="text/css" href="{% static 'coming_soon_style/css/font-awesome.min.css' %}">
+		<!--===============================================================================================-->
+		<link rel="stylesheet" type="text/css" href="{% static 'coming_soon_style/css/material-design-iconic-font.min.css' %}">
+		<!--===============================================================================================-->
+		<link rel="stylesheet" type="text/css" href="{% static 'coming_soon_style/vendor/animate/animate.css' %}">
+		<!--===============================================================================================-->
+		<link rel="stylesheet" type="text/css" href="{% static 'coming_soon_style/vendor/select2/select2.min.css' %}">
+		<!--===============================================================================================-->
+		<link rel="stylesheet" type="text/css" href="{% static 'coming_soon_style/css/util.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'coming_soon_style/css/main.css' %}">
+		<!--===============================================================================================-->
+		<style type="text/css">
+		iframe#twitter-widget-0 {
+		vertical-align : bottom;
+		margin-left: 4px;
+		}
+		
+		.container {
+		margin-top: 180px !important
+		}
+		small {
+		font-size: 15px !important;
+		display: flex;
+		justify-content: center !important
+		}
+		button:focus {
+		-moz-box-shadow: none !important;
+		-webkit-box-shadow: none !important;
+		box-shadow: none !important;
+		outline-width: 0
+		}
+		.btn-icon {
+		border: 1px solid #ccc;
+		background-color: transparent;
+		border-radius: 0;
+		letter-spacing: 1px
+		}
+		.btn-icon:hover {
+		background-color: #52B4DB;
+		color: #fff !important;
+		border: 1px solid #ccc
+		}
+		label {
+		font-size: 11px !important;
+		vertical-align: middle !important
+		}
+		#my-input {
+		vertical-align: middle !important
+		}
+		.custom-control {
+		padding: auto !important
+		}
+		.signin {
+		color: #52B4DB;
+		cursor: pointer
+		}
+		.custom-control-label span {
+		position: relative;
+		top: 4px
+		}
+		.cross {
+		cursor: pointer
+		}
+		.modal {
+		/*background-image: radial-gradient(circle 919px at 1.7% 6.1%, rgb(111, 151, 194) 0%, rgba(40, 171, 226, 1) 100.2%)*/
+		background: rgba(0,0,255,0.70);
+		}
+		.modal-content {
+		background: transparent !important
+		}
+		li {
+		font-size: 14px;
+		margin-left: 10px;
+		list-style-type: circle;
+		}
+		</style>
+	</head>
+	<body>
+		<!-- <script>
+		window.fbAsyncInit = function() {
+		FB.init({
+		appId      : '355112115458444',
+		cookie     : true,
+		xfbml      : true,
+		version    : 'v7.0'
+		});
+		
+		FB.AppEvents.logPageView();
+		
+		};
+		(function(d, s, id){
+		var js, fjs = d.getElementsByTagName(s)[0];
+		if (d.getElementById(id)) {return;}
+		js = d.createElement(s); js.id = id;
+		js.src = "https://connect.facebook.net/en_US/sdk.js";
+		fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
+		</script> -->
+		<!-- <div id="fb-root"></div>
+		<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v7.0" nonce="jJnyZlRN"></script> -->
+		
+		<div class="bg-g1 size1 flex-w flex-col-c-sb p-l-15 p-r-15 p-t-55 p-b-35 respon1">
+			<span></span>
+			<div class="flex-col-c p-t-50 p-b-50">
+				<h3 class="l1-txt1 txt-center p-b-10">
+				
+				<img src="{% static 'img/logo/bidgala_white.png'%}" style="width:40%">
+				</h3>
+				<br>
+				<p class="l1-txt2 txt-center p-b-20">
+					We are launching soon.
+				</p>
+				<p class="txt-center l1-txt2 p-b-60">
+					Bidgala is the online visual arts community marketplace where up-and-coming artists can sell art online directly to art buyers. Buy and sell original art within seconds.
+				</p>
+				<p class="txt-center l1-txt2 p-b-60">Anyone can join Bidgala for free!</p>
+
+				<p class="txt-center l1-txt2 p-b-60"><a data-toggle="modal" data-target="#aboutus" href="#" style="color: #ffff">Bidgala Visual Arts Community - <u><em>About us. </em></u></a></p>
+				{% if not user.is_authenticated%}
+					<span>
+						{% include 'partials/_alerts.html' %}
+					</span>
+				{% endif %}
+				
+				{% if not user.is_authenticated %}
+					
+					<button class="flex-c-m s1-txt2 size3 how-btn"  data-toggle="modal" data-target="#modal-signup">SIGN UP
+					</button>
+					<button class="flex-c-m s1-txt2 size3 how-btn"  data-toggle="modal" data-target="#modal-signin">LOGIN
+					</button>
+					
+					<br>
+					
+					<p style="color: #ffffff">By creating an account, I accept Bidgala's <u><a  href="{% url 'privacy' %}" style="color:#ebebeb">Privacy Policy</a></u></p>
+					<!-- <div class="container d-flex justify-content-center"> <button class="btn btn-icon bg-info text-light" data-toggle="modal" data-target="#my-modal">Sign Up</button> -->
+					<div class="modal fade" id="subscribe" tabindex="-1" role="dialog" aria-hidden="true">
+						<div class="modal-dialog" role="document" data-dismiss="modal">
+							<div class="modal-subscribe where1-parent bg0 bor2 size4 p-t-54 p-b-100 p-l-15 p-r-15">
+								<button class="btn-close-modal how-btn2 fs-26 where1 trans-04">
+								<i class="zmdi zmdi-close"></i>
+								</button>
+								<div class="wsize1 m-lr-auto">
+									<h3 class="m1-txt1 txt-center p-b-36">
+									<span class="bor1 p-b-6">SignUp</span>
+									</h3>
+									{%if has_referral%}
+									
+									<div class="alert alert-primary" role="alert">Surprise! Your friend {{name}} would like to give you 50 Bidgala credits.
+									</div>
+									{%endif%}
+									
+									<form class="contact100-form validate-form" action="{% url 'registerusercomingsoon' %}" method="post" name="register-form" id="register-form">
+										{% csrf_token %}
+										<div class="wrap-input100 m-b-10 " >
+											<input class="s1-txt4 placeholder0 input100" type="text" name="first_name" placeholder="First Name" required="required" data-validate="Please enter the first name">
+											<span class="focus-input100"></span>
+										</div>
+										<div class="wrap-input100 m-b-10 " >
+											<input class="s1-txt4 placeholder0 input100" type="text" name="last_name" placeholder="Last Name">
+											<span class="focus-input100"></span>
+										</div>
+										<div class="wrap-input100 m-b-10 " >
+											<input class="s1-txt4 placeholder0 input100" type="email"name="email" placeholder="Email Address" required="required" data-validate="Please enter a valid email">
+											<span class="focus-input100"></span>
+										</div>
+										<div class="wrap-input100 m-b-20 " >
+											<input class="s1-txt4 placeholder0 input100" type="password" name="password" placeholder="Password with minimum 8 characters" required="required" pattern=".{8,}" data-validate="Minimum 8 characters">
+											<span class="focus-input100"></span>
+										</div>
+										<div class="w-full">
+											<button class="flex-c-m s1-txt2 size5 how-btn1 trans-04" type="submit">
+											Done
+											</button>
+										</div>
+									</form>
+									
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-hidden="true">
+						<div class="modal-dialog" role="document" data-dismiss="modal">
+							<div class="modal-subscribe where1-parent bg0 bor2 size4 p-t-54 p-b-100 p-l-15 p-r-15">
+								<button class="btn-close-modal how-btn2 fs-26 where1 trans-04" id="loginx">
+								<i class="zmdi zmdi-close"></i>
+								</button>
+								<div class="wsize1 m-lr-auto">
+									<h3 class="m1-txt1 txt-center p-b-36">
+									<span class="bor1 p-b-6">Login</span>
+									</h3>
+									
+									
+									<form class="contact100-form validate-form" action="{% url 'login_user' %}" method="post" name="login-form" id="login-form">
+										{% csrf_token %}
+										<div class="wrap-input100 m-b-10 " >
+											<input class="s1-txt4 placeholder0 input100" type="email" name="email" placeholder="Email Address" required="required" data-validate="Please enter a valid email">
+											<span class="focus-input100"></span>
+										</div>
+										<div class="wrap-input100 m-b-20 " >
+											<input class="s1-txt4 placeholder0 input100" type="password" name="password" placeholder="Password with minimum 8 characters" required="required" pattern=".{8,}" data-validate="Minimum 8 characters">
+											<span class="focus-input100"></span>
+										</div>
+										<div class="w-full">
+											<button class="flex-c-m s1-txt2 size5 how-btn1 trans-04" type="submit">
+											Done
+											</button>
+										</div>
+									</form>
+									
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="modal fade" id="modal-signup" tabindex="-1" role="dialog" aria-hidden="true">
+						<div class="modal-dialog" role="document" data-dismiss="modal">
+							<div class="modal-subscribe where1-parent bg0 bor2 size4 p-t-54 p-b-100 p-l-15 p-r-15">
+								<button class="btn-close-modal how-btn2 fs-26 where1 trans-04" id="modal-signupx">
+								<i class="zmdi zmdi-close"></i>
+								</button>
+								<div class="wsize1 m-lr-auto">
+									<h3 class="m1-txt1 txt-center p-b-36">
+									<span class="bor1 p-b-6">Create an account</span>
+									</h3>
+									
+									
+									<div class="m-b-10 " >
+										<a class="btn btn-icon btn-block text-left" href="{% provider_login_url 'google' method='oauth2' %}" style="color:#000">
+											<span><img src="https://img.icons8.com/color/48/000000/google-logo.png" class="img-fluid mr-1" width="25"></span> Sign up with Google</a></div>
+											
+											<!-- <div class="m-b-10 " ><a class="btn btn-icon btn-block text-left" style="color:#000" href="{% provider_login_url 'facebook' method='oauth2' %}"><span><img src="https://i.imgur.com/URmkevm.png" class="img-fluid mr-1" width="25"></span> Sign up with Facebook</a> </div>
+											<br> -->
+											
+											<div class=" m-b-10 " ><button id="open_email_signup" type="button" class="btn btn-icon btn-block text-left" data-dismiss="modal" data-toggle="modal" data-target="#subscribe">Sign up with email</button>
+												<br>
+												<p>Already have an account? <u><a data-toggle="modal" data-target="#login" id="open_login" href="#">Log in</a></u> using email</p>
+
+
+											</div>
+											
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="modal fade" id="modal-signin" tabindex="-1" role="dialog" aria-hidden="true">
+								<div class="modal-dialog" role="document" data-dismiss="modal">
+									<div class="modal-subscribe where1-parent bg0 bor2 size4 p-t-54 p-b-100 p-l-15 p-r-15">
+										<button class="btn-close-modal how-btn2 fs-26 where1 trans-04" id="modal-signinx">
+										<i class="zmdi zmdi-close"></i>
+										</button>
+										<div class="wsize1 m-lr-auto">
+											<h3 class="m1-txt1 txt-center p-b-36">
+											<span class="bor1 p-b-6">Log in</span>
+											</h3>
+											
+											<div class="m-b-10 " >
+												<a class="btn btn-icon btn-block text-left" href="{% provider_login_url 'google' method='oauth2' %}" style="color:#000">
+													<span><img src="https://img.icons8.com/color/48/000000/google-logo.png" class="img-fluid mr-1" width="25"></span> Continue with Google</a></div>
+													
+													<!-- <div class="m-b-10 " ><a class="btn btn-icon btn-block text-left" style="color:#000" href="{% provider_login_url 'facebook' method='oauth2' %}"><span><img src="https://i.imgur.com/URmkevm.png" class="img-fluid mr-1" width="25"></span> Continue with Facebook</a> </div>
+													<br> -->
+													
+													<div class="m-b-10 " ><button type="button" class="btn btn-icon btn-block text-left" data-dismiss="modal" id="open_login_page" data-toggle="modal" data-target="#subscribe">Continue with email</button>
+														<br>
+														<p>Don't have an account? <u><a id="open_signup_page" data-toggle="modal" href="#">Sign Up</a></u></p>
+
+														<br/>
+														<p style="color:#721c24"><b>Important: </b>Facebook is having technical issues. If you signed up through Facebook, your login will be working by August 7th. We apologise for the inconvenience.</p>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									
+								{% else %}
+									
+									<button class="flex-c-m s1-txt2 size3 how-btn" data-toggle="modal"  data-target="#referral" style=" border: 3px solid #fff; background-color: #0a5dff">Earn Cash</button>
+									<div class="modal fade" id="referral" tabindex="-1" role="dialog" aria-hidden="true">
+										<div class="modal-dialog" role="document" data-dismiss="modal" >
+											<div class="modal-subscribe where1-parent  bor2 size4  p-b-100 p-l-15 p-r-15">
+												<button class="btn-close-modal how-btn2 fs-26 where1 trans-04" id="referralx">
+												<i class="zmdi zmdi-close"></i>
+												</button>
+												<div>
+													
+													<div id="showMessage">
+														
+														<div class="jumbotron" style="background-color:#ffffff !important; text-align: center;">
+															<h3  style="color:#343a40">Share with friends, earn cash, give them 15% off, expand the art loving community</h3>
+															<!-- <p class="lead">Share your unique code with up to 5 friends. Each friend will get 15% off their first purchase when they use it at checkout. When they happily receive their artwork, we’ll give you a $20 credit.</p> -->
+															<hr class="my-4">
+															
+															<!-- <div class="d-flex justify-content-center">
+																				<input readonly type="text" value="{{request.session.referral_code}}" class="allowCopy noselect" style="width:105px; height: 50px; text-align: center;"/>
+																				<br>
+																				
+															</div> -->
+															<!-- <p>Click on the code to copy</p> -->
+															<div style=" text-align: left !important">
+																<p class="lead">
+																	How it works?
+																</p>
+																<ul style="display:inline;">
+																	<li>Share your unique link with friends</li>
+																	<li>Each friend will get 15% off their first purchase when they sign up through your unique link</li>
+																	<li>You will earn 5% cash on whatever they buy & sell for ENTIRE YEAR</li>
+																	
+																</ul>
+															</div>
+															</br>
+															</br>
+															<div class="col-xs-6">
+																<h4>Share your unique link</h4>
+																<input readonly type="text" value="https://{{request.get_host}}/csignup/{{request.session.referral_code}}/{{user.first_name}}" class="allowCopy noselect" style=" height: 50px; background-color: #f8f9fa;text-align: center; margin-top: 25px; width: 100%"/>
+																
+																</br>
+																<div style="margin-top: 4px ">
+																	<div class="justify-content-center" >
+																		
+																	<!-- 	<div class="fb-share-button" data-href="https://thebidgala.com/csignup/{{request.session.referral_code}}/{{user.first_name}}" data-layout="button" data-size="large"><a  target="_blank" href="http://www.facebook.com/sharer.php?appId=355112115458444&title=Invite+Friends&link=https://thebidgala.com/csignup/{{request.session.referral_code}}/{{user.first_name}}" class="fb-xfbml-parse-ignore">Share</a></div> -->
+																		<!-- <div class="fb-share-button" data-href="161.35.136.166" data-layout="button" data-size="large"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div> -->
+																		
+																		
+																		<span >
+																			<a href="https://twitter.com/share?ref_src=twsrc%5Etfw" data-size="large" class="twitter-share-button" data-text="Surprise! Get 50 Bidgala credits. Sign up using my referral code." data-url="https://{{request.get_host}}/csignup/{{request.session.referral_code}}/{{user.first_name}}"  data-lang="en" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8" ></script>
+																		</span>
+																		
+																		
+																	</div>
+																	
+																</div>
+															</div>
+															
+														</div>
+													</div>
+													
+													
+													
+													
+													
+													
+												</div>
+											</div>
+										</div>
+									</div>
+									{% if request.session.show_survey %}
+										
+										<div class="modal fade" id="info" tabindex="-1" role="dialog" aria-hidden="true">
+											<div class="modal-dialog" role="document" data-backdrop="static" data-keyboard="false">
+												<div class="modal-subscribe where1-parent bg0 bor2 size4 p-t-54 p-b-100 p-l-15 p-r-15">
+													
+													<div class="wsize1 m-lr-auto">
+														<h3 class="m1-txt1 txt-center p-b-36">
+														<span class="p-b-6">Thank you for signing up on Bidgala</span>
+														</h3>
+														<div id="showMessage"></div>
+														
+														{% csrf_token %}
+														<div class="form-group">
+															<label for="account_type">Please select the account type:</label>
+															<select class="form-control" id="account_type" required>
+																<option value="" selected disabled hidden>Choose here</option>
+																<option value="b">Buyer</option>
+																<option value="s">Seller</option>
+																<option value="both">Buyer & Seller</option>
+																<option value="pro">Buying for a client</option>
+																
+															</select>
+														</div>
+														<div class="form-group">
+															<label for="account_type">Please select the Region:</label>
+															
+															<select class="form-control" id="region" required>
+																<optgroup value="CA" label="Canada">
+																	<option value="AB">Alberta</option>
+																	<option value="BC">British Columbia</option>
+																	<option value="MB">Manitoba</option>
+																	<option valeu="NB">New Brunswick</option>
+																	<option valeu="NL">Newfoundland and Labrador</option>
+																	<option valeu="NS">Nova Scotia</option>
+																	<option valeu="ON">Ontario</option>
+																	<option valeu="PE">Prince Edward Island</option>
+																	<option valeu="ON">Ontario</option>
+																	<option valeu="QC">Quebec</option>
+																	<option valeu="SK">Saskatchewan</option>
+																	<option valeu="YT">Yukon</option>
+																	<option valeu="NU">Nunavut</option>
+																	<option valeu="NT">Northwest Territories</option>
+																</optgroup>
+																<optgroup value="US" label="US">
+																	<option value="AL">Alabama</option>
+																	<option value="AK">Alaska</option>
+																	<option value="AZ">Arizona</option>
+																	<option value="AR">Arkansas</option>
+																	<option value="CA">California</option>
+																	<option value="CO">Colorado</option>
+																	<option value="CT">Connecticut</option>
+																	<option value="DE">Delaware</option>
+																	<option value="DC">District Of Columbia</option>
+																	<option value="FL">Florida</option>
+																	<option value="GA">Georgia</option>
+																	<option value="HI">Hawaii</option>
+																	<option value="ID">Idaho</option>
+																	<option value="IL">Illinois</option>
+																	<option value="IN">Indiana</option>
+																	<option value="IA">Iowa</option>
+																	<option value="KS">Kansas</option>
+																	<option value="KY">Kentucky</option>
+																	<option value="LA">Louisiana</option>
+																	<option value="ME">Maine</option>
+																	<option value="MD">Maryland</option>
+																	<option value="MA">Massachusetts</option>
+																	<option value="MI">Michigan</option>
+																	<option value="MN">Minnesota</option>
+																	<option value="MS">Mississippi</option>
+																	<option value="MO">Missouri</option>
+																	<option value="MT">Montana</option>
+																	<option value="NE">Nebraska</option>
+																	<option value="NV">Nevada</option>
+																	<option value="NH">New Hampshire</option>
+																	<option value="NJ">New Jersey</option>
+																	<option value="NM">New Mexico</option>
+																	<option value="NY">New York</option>
+																	<option value="NC">North Carolina</option>
+																	<option value="ND">North Dakota</option>
+																	<option value="OH">Ohio</option>
+																	<option value="OK">Oklahoma</option>
+																	<option value="OR">Oregon</option>
+																	<option value="PA">Pennsylvania</option>
+																	<option value="RI">Rhode Island</option>
+																	<option value="SC">South Carolina</option>
+																	<option value="SD">South Dakota</option>
+																	<option value="TN">Tennessee</option>
+																	<option value="TX">Texas</option>
+																	<option value="UT">Utah</option>
+																	<option value="VT">Vermont</option>
+																	<option value="VA">Virginia</option>
+																	<option value="WA">Washington</option>
+																	<option value="WV">West Virginia</option>
+																	<option value="WI">Wisconsin</option>
+																	<option value="WY">Wyoming</option>
+																</optgroup>
+																<optgroup value="IND" label="India">
+																	<option value="AN">Andaman and Nicobar Islands</option>
+																	<option value="AP">Andhra Pradesh</option>
+																	<option value="AR">Arunachal Pradesh</option>
+																	<option value="AS">Assam</option>
+																	<option value="BR">Bihar</option>
+																	<option value="CG">Chandigarh</option>
+																	<option value="CH">Chhattisgarh</option>
+																	<option value="DN">Dadra and Nagar Haveli</option>
+																	<option value="DD">Daman and Diu</option>
+																	<option value="DL">Delhi</option>
+																	<option value="GA">Goa</option>
+																	<option value="GJ">Gujarat</option>
+																	<option value="HR">Haryana</option>
+																	<option value="HP">Himachal Pradesh</option>
+																	<option value="JK">Jammu and Kashmir</option>
+																	<option value="JH">Jharkhand</option>
+																	<option value="KA">Karnataka</option>
+																	<option value="KL">Kerala</option>
+																	<option value="LA">Ladakh</option>
+																	<option value="LD">Lakshadweep</option>
+																	<option value="MP">Madhya Pradesh</option>
+																	<option value="MH">Maharashtra</option>
+																	<option value="MN">Manipur</option>
+																	<option value="ML">Meghalaya</option>
+																	<option value="MZ">Mizoram</option>
+																	<option value="NL">Nagaland</option>
+																	<option value="OR">Odisha</option>
+																	<option value="PY">Puducherry</option>
+																	<option value="PB">Punjab</option>
+																	<option value="RJ">Rajasthan</option>
+																	<option value="SK">Sikkim</option>
+																	<option value="TN">Tamil Nadu</option>
+																	<option value="TS">Telangana</option>
+																	<option value="TR">Tripura</option>
+																	<option value="UP">Uttar Pradesh</option>
+																	<option value="UK">Uttarakhand</option>
+																	<option value="WB">West Bengal</option>
+																</optgroup>
+																<optgroup value="AU" label="Australia">
+																	<option value="NSW">New South Wales</option>
+																	<option value="VIC">Victoria</option>
+																	<option value="QLD">Queensland</option>
+																	<option value="TAS">Tasmania</option>
+																	<option value="SA">South Australia</option>
+																	<option value="WA">Western Australia</option>
+																	<option value="NT">Northern Territory</option>
+																	<option value="ACT">Australian Capital Territory</option>
+																</optgroup>
+																<optgroup value="I" label="Italy">
+																	<option value="AG">Agrigento</option>
+																	<option value="AL">Alessandria</option>
+																	<option value="AN">Ancona</option>
+																	<option value="AO">Aosta</option>
+																	<option value="AR">Arezzo</option>
+																	<option value="AP">Ascoli Piceno</option>
+																	<option value="AT">Asti</option>
+																	<option value="AV">Avellino</option>
+																	<option value="BA">Bari</option>
+																	<option value="BT">Barletta-Andria-Trani</option>
+																	<option value="BL">Belluno</option>
+																	<option value="BN">Benevento</option>
+																	<option value="BG">Bergamo</option>
+																	<option value="BI">Biella</option>
+																	<option value="BO">Bologna</option>
+																	<option value="BS">Brescia</option>
+																	<option value="BR">Brindisi</option>
+																	<option value="CA">Cagliari</option>
+																	<option value="CL">Caltanissetta</option>
+																	<option value="CB">Campobasso</option>
+																	<option value="CE">Caserta</option>
+																	<option value="CT">Catania</option>
+																	<option value="CZ">Catanzaro</option>
+																	<option value="CH">Chieti</option>
+																	<option value="CO">Como</option>
+																	<option value="CS">Cosenza</option>
+																	<option value="CR">Cremona</option>
+																	<option value="KR">Crotone</option>
+																	<option value="CN">Cuneo</option>
+																	<option value="EN">Enna</option>
+																	<option value="FM">Fermo</option>
+																	<option value="FE">Ferrara</option>
+																	<option value="FI">Florence</option>
+																	<option value="FG">Foggia</option>
+																	<option value="FC">Forlì-Cesena</option>
+																	<option value="FR">Frosinone</option>
+																	<option value="GE">Genoa</option>
+																	<option value="GO">Gorizia</option>
+																	<option value="GR">Grosseto</option>
+																	<option value="IM">Imperia</option>
+																	<option value="IS">Isernia</option>
+																	<option value="SP">La Spezia</option>
+																	<option value="AQ">L Aquila</option>
+																	<option value="LT">Latina</option>
+																	<option value="LE">Lecce</option>
+																	<option value="LC">Lecco</option>
+																	<option value="LI">Livorno</option>
+																	<option value="LO">Lodi</option>
+																	<option value="LU">Lucca</option>
+																	<option value="MC">Macerata</option>
+																	<option value="MN">Mantua</option>
+																	<option value="MS">Massa and Carrara</option>
+																	<option value="MT">Matera</option>
+																	<option value="ME">Messina</option>
+																	<option value="MI">Milan</option>
+																	<option value="MO">Modena</option>
+																	<option value="MB">Monza and Brianza</option>
+																	<option value="NA">Naples</option>
+																	<option value="NO">Novara</option>
+																	<option value="NU">Nuoro</option>
+																	<option value="OR">Oristano</option>
+																	<option value="PD">Padua</option>
+																	<option value="PA">Palermo</option>
+																	<option value="PR">Parma</option>
+																	<option value="PV">Pavia</option>
+																	<option value="PG">Perugia</option>
+																	<option value="PU">Pesaro and Urbino</option>
+																	<option value="PE">Pescara</option>
+																	<option value="PC">Piacenza</option>
+																	<option value="PI">Pisa</option>
+																	<option value="PT">Pistoia</option>
+																	<option value="PN">Pordenone</option>
+																	<option value="PZ">Potenza</option>
+																	<option value="PO">Prato</option>
+																	<option value="RG">Ragusa</option>
+																	<option value="RA">Ravenna</option>
+																	<option value="RC">Reggio Calabria</option>
+																	<option value="RE">Reggio Emilia</option>
+																	<option value="RI">Rieti</option>
+																	<option value="RN">Rimini</option>
+																	<option value="RM">Rome</option>
+																	<option value="RO">Rovigo</option>
+																	<option value="SA">Salerno</option>
+																	<option value="SS">Sassari</option>
+																	<option value="SV">Savona</option>
+																	<option value="SI">Siena</option>
+																	<option value="SO">Sondrio</option>
+																	<option value="SU">South Sardinia</option>
+																	<option value="BZ">South Tyrol</option>
+																	<option value="SR">Syracuse</option>
+																	<option value="TA">Taranto</option>
+																	<option value="TE">Teramo</option>
+																	<option value="TR">Terni</option>
+																	<option value="TP">Trapani</option>
+																	<option value="TN">Trento</option>
+																	<option value="TV">Treviso</option>
+																	<option value="TS">Trieste</option>
+																	<option value="TO">Turin</option>
+																	<option value="UD">Udine</option>
+																	<option value="VA">Varese</option>
+																	<option value="VE">Venice</option>
+																	<option value="VB">Verbano-Cusio-Ossola</option>
+																	<option value="VC">Vercelli</option>
+																	<option value="VR">Verona</option>
+																	<option value="VV">Vibo Valentia</option>
+																	<option value="VI">Vicenza</option>
+																	<option value="VT">Viterbo</option>
+																</optgroup>
+																<optgroup value='FR' label="France">
+																	<option value="ARA">Auvergne-Rhône-Alpes</option>
+																	<option value="BFC">Bourgogne-Franche-Comté</option>
+																	<option value="BRE">Brittany</option>
+																	<option value="CVL">Centre</option>
+																	<option value="COR">Corsica</option>
+																	<option value="GES">Grand Est</option>
+																	<option value="HDF">Hauts-de-France</option>
+																	<option value="IDF">Île-de-France</option>
+																	<option value="NOR">Normandy</option>
+																	<option value="NAQ">Nouvelle-Aquitaine</option>
+																	<option value="OCC">Occitanie</option>
+																	<option value="PDL">Pays de la Loire</option>
+																	<option value="PAC">Provence-Alpes-Côte dAzur</option>
+																</optgroup>
+																<optgroup value="Others" label="Others">
+																	<option value="Others">Others</option>
+																</optgroup>
+															</select>
+														</div>
+														<div class="form-group">
+															<label for="account_type">How did you hear about us:</label>
+															<select class="form-control" id="connect">
+																<option value="" selected disabled hidden>Choose here</option>
+																<option value="fb">Facebook</option>
+																<option value="tw">Twitter</option>
+																<option value="ig">Instagram</option>
+																<option valeu="fr">Friend</option>
+															</select>
+														</div>
+														
+														<div class="w-full">
+															<button class="flex-c-m s1-txt2 size5 how-btn1 trans-04"  id="submit_info">
+															Submit
+															</button>
+														</div>
+														
+														
+													</div>
+												</div>
+											</div>
+										</div>
+									{% endif %}
+									{%endif%}
+									
+									<div class="modal fade" id="aboutus" tabindex="-1" role="dialog" aria-hidden="true">
+										<div class="modal-dialog" role="document" data-dismiss="modal">
+											<div class="modal-subscribe where1-parent bg0 bor2 size4 p-t-54 p-b-100 p-l-15 p-r-15">
+												<button class="btn-close-modal how-btn2 fs-26 where1 trans-04" id="aboutx">
+												<i class="zmdi zmdi-close"></i>
+												</button>
+												<div class="wsize1 m-lr-auto">
+													<h3 class="m1-txt1 txt-center p-b-36">
+													<span class="bor1 p-b-6">About Us</span>
+													</h3>
+													
+													<p>
+														<u>Bidgala is an online art marketplace:</u>
+														</br>
+														Bidgala is an online art platform where art buyers can purchase art directly from artists without paying gallery prices. Bidgala’s simple web navigation helps users buy & sell within minutes.
+														</br>
+														</br>
+														<u>Bidgala is a powerful art Community:</u>
+														</br>
+														Network with artists, art buyers and professionals by using Bidgala’s chat, follow, like, and comment features.
+														</br>
+														</br>
+														<u>Bidgala Supports Artists- low commission, artist exposure, and art education:</u>
+														</br>
+														Bidgala is artist friendly and has low commissions of 30% which are used to promote your art. Also take advantage of Bidgala’s artist support services which offer artists exposure and expertly produced art education content.
+														</br></br>
+														<u>Bidgala supports art buyers:</u>
+														</br>
+														Bidgala’s low art prices, variety of art, and simple web navigation help to make designing your home affordable, personalized, simple, and easy. Buy sculptures, buy photographs, buy paintings and more on Bidgala. Our live chats and expert curators are also there to help you make your home design easier.
+														</br></br>
+														<u>Bidgala supports Professionals:</u>
+														</br>
+														Are you someone who buys art for clients? Benefit from the Bidgala partners program and get 10% commission on every piece you buy. Also take advantage of our private page for interior designers and home stagers where we’ll list your business information for all our users to see.
+														</br></br>
+														<u>Want to find local artists?</u>
+														</br>
+														Use Bidgala’s “Art Stores Near Me” feature to find local artists and discover art you’ll love! Find Canadian Artists, American Artists, UK artists, and more. Better yet, refine your search by province or state! Also check out Bidgala’s sections for Student art,  African American art, Queer art and Womens art.
+														</br></br>
+														<u>Bidgala Referral Program:</u>
+														</br>
+														Signup, refer your friends and get 5% cash on everything they buy and sell for an entire year!
+														</br></br>
+														
+													</p>
+													
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<span class="s1-txt3 txt-center">
+									@ <script>document.write(new Date().getFullYear());</script> Designed by Colorlib
+								</span>
+							</div>
+							<!-- Modal Login -->
+							<!--===============================================================================================-->
+							<script src="{% static 'js/vendor/jquery-1.12.4.min.js' %}"></script>
+							<!--===============================================================================================-->
+							<script src="{% static 'coming_soon_style/vendor/bootstrap/js/popper.js' %}"></script>
+							<script src="{% static 'coming_soon_style/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+							<!--===============================================================================================-->
+							<script src="{% static 'coming_soon_style/vendor/select2/select2.min.js' %}"></script>
+							<!--===============================================================================================-->
+							<script src="{% static 'coming_soon_style/js/main.js' %}"></script>
+							<script type="text/javascript">
+								$("#aboutx").click(function() {
+									$('#aboutus').modal('toggle')
+								})
+								$("#referralx").click(function() {
+									$('#referral').modal('toggle')
+								})
+							</script>
+							{% if show_error_message %}
+								<script type="text/javascript">
+									
+										$(window).load(function() {
+										$('#subscribe').modal('show');
+									});
+									
+								</script>
+							{% endif %}
+							{% if user.is_authenticated %}
+								<script type="text/javascript">
+								$(function() {
+								$('.allowCopy').click(function() {
+								$(this).focus();
+								$(this).select();
+								document.execCommand('copy');
+								});
+								});
+								</script>
+							{% else %}
+								<script type="text/javascript">
+									
+									$("#loginx").click(function() {
+									$('#login').modal('toggle');
+								});
+									$("#modal-signupx").click(function() {
+									$('#modal-signup').modal('toggle');
+								});
+									$("#open_email_signup").click(function() {
+										$('#modal-signup').modal('toggle');
+										$('#subscribe').modal('toggle');
+									});
+									$("#open_login").click(function() {
+										$('#modal-signup').modal('toggle');
+										$('#modal-signin').modal('toggle');
+									});
+									$("#modal-signinx").click(function() {
+									$('#modal-signin').modal('toggle');
+								});
+									
+									$("#open_login_page").click(function() {
+										$('#modal-signin').modal('toggle');
+										$('#login').modal('toggle');
+									});
+									$("#open_signup_page").click(function() {
+										$('#modal-signin').modal('toggle');
+										$('#modal-signup').modal('toggle');
+									})
+								</script>
+							{% endif %}
+							{% if request.session.show_survey %}
+								<script type="text/javascript">
+									
+										$(window).load(function() {
+										
+										$("#info").modal("show", {backdrop: "static", keyboard: false});
+										
+										$("#info").on("hide.bs.modal", function (e) {
+											e.preventDefault();
+											e.stopPropagation();
+											return false;
+											});
+										$("#submit_info").click(function() {
+											$.ajax({
+									url: "/set-account-type",
+									type: "POST",
+									data : {
+										csrfmiddlewaretoken: $("input[name='csrfmiddlewaretoken']").val(),
+										'type' : $("#account_type").val(),
+										'region' : $("#region").val(),
+										'connect' : $("#connect").val(),
+										'country' : $('#region :selected').parent().attr('value'),
+									},
+									headers: {
+								'X-CSRF-Token': $("input[name='csrfmiddlewaretoken']").val()
+								},
+								success : function(result) {
+								$('#info').modal().hide();
+								location.reload(true);
+								},
+								error : function(XMLHttpRequest, textStatus, errorThrown) {
+											$("#showMessage").append("<div class='alert alert-danger'>Something went wrong :-(</div>").delay(4000).fadeOut(function() {
+											$(this).empty();
+											$(this).removeAttr('style');
+											});
+										}
+								})
+										})
+									});
+									
+								</script>
+							{% endif %}
+						</body>
+					</html>

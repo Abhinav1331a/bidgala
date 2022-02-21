@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %} |  New Post{% endblock %}  
+{% block cssfile %}
+<link rel="stylesheet" href="{% static 'css/new-post-form.css' %}"/>
+<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+<link href="https://cdn.quilljs.com/1.3.6/quill.bubble.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<main id="create-post-container">
+    <div id="create-post">
+        <a href="{% url 'all_post' %}" class="mb-3 btn btn-dark btn-sm">⬅ All Posts</a>
+        <div class="post-header">
+            <div class="post-title">Create Post</div>
+            <div>
+                <a class="btn-dark btn dropdown-toggle dropdown-channel" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select Channel</a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="channel-dropdown">
+                    {% for obj in channel%}
+                    <a class="dropdown-item" href="#" id="{{obj.id}}"><span>{{obj.name}}</span></a>
+                    {%endfor%}
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="alert alert-danger collapse text-center" id="choose-channel-alert" role="alert">Please choose a channel</div>
+        </div>
+        <form method="post" action="{% url 'create_post'%}" id="post-form">
+            <input type="text" name="content-title" class="form-control mb-2" id="content-title" placeholder="Title" required>
+            <div id="editor">
+            </div>
+            <div class="bottom d-flex">
+                <div class="notification">
+                    {%csrf_token%}
+                    <input type="text" name="content-data" class="d-none" id="content-data">
+                    <input type="text" name="channel-name" class="d-none" id="channel-name">
+                   
+                </div>
+                <div class="post-button w-100">
+                    <input type="submit"  class="btn btn-dark w-100" id="post-submit" value="POST"/>
+                </div>
+            </div>
+        </form>
+    </div>
+</main>
+
+
+{% endblock %}
+
+{% block jsfile %}
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+<script src="https://kit.fontawesome.com/d9d86e4af4.js" crossorigin="anonymous"></script>
+<script src="{% static 'js/post-form.js' %}"></script>
+{% if request.user.is_authenticated %}
+<script type="text/javascript" src="{% static 'js/community-like.js' %}"></script>
+{% endif %}
+{% endblock %}

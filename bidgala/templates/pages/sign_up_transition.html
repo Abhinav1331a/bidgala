@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load socialaccount %}
+{% load static %}
+{% block title %} | Register {% endblock %}
+{% block more_meta_tags %}
+
+{% if has_referral %}
+<meta property="og:title" content="{{name}} is inviting you to join Bidgala" /> 
+<meta property="og:description" content="Want to buy & sell art? How about interacting with the world’s fastest growing art community? Use my invite link to join Bidgala and get 50 credits towards charity when you sign up!" />
+<meta property="og:url" content="https://bidgala.com/signup/{{referral_code}}/{%if name%}{{name}} {%endif%}" />
+{% else %}
+<meta property="og:title" content="Sign up to Bidgala" /> 
+<meta property="og:description" content="" />
+<meta property="og:url" content="https://bidgala.com/register" />
+
+{% endif %}
+
+<meta property="og:type" content="website" />
+<meta property="og:image" content="https://bidgala.com/{% static 'img/email/logo_white_bg.png' %}" />
+{% endblock %}
+{% block cssfile %}
+<link rel="stylesheet" href="{% static 'css/login-register-form.css' %}">
+{% endblock %}
+{% block content %}
+<main>
+	<div class="container">
+	<!-- Jumbotron -->
+<div class="p-4 shadow-4 rounded-3" style="background-color: hsl(0, 0%, 94%);">
+  <h2>You’re in!</h2>
+  <p>
+   Thank you for joining Bidgala’s online marketplace and community. Please wait while we redirect you to our home page.
+   <span class="spinner-border" role="status">
+  <span class="sr-only">Loading...</span>
+</span>
+  </p>
+
+</div>
+
+	</div>
+</main>
+  <script>
+      gtag('event', 'click', {
+        'event_category': 'button',
+        'event_label': 'sign up'
+      });
+</script>
+
+<script type="text/javascript">
+	setTimeout(function(){
+            window.location.href = "{% url 'index_demo'%}";
+         }, 3000);
+</script>
+	
+{% endblock %}

@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} | Bidgala 101{% endblock %}
+{% block content %}
+{% block cssfile %}
+{%endblock%}
+
+<div class="container mt-4">
+	<div class="row pb-4 pb-lg-0 fist-intro">
+		<section class="text-center px-lg-5 mx-auto">
+			<h1>Bidgala 101</h1>
+			<h5 class="text-center intro"><b>Bidgala</b> is a global dynamic marketplace and visual arts community putting artists and their stories at the forefront. Our goal is to become the go-to platform for individuals looking to connect with the art-world.</h5>
+		</section>
+	</div>
+	<hr/>
+	<div class="row section-about mt-4 mt-lg-0">
+		<div class="col-lg-6">
+			<div class="row align-items-center h-100">
+				<div class="col">
+				<h2 class="display-5 text-left">Our Marketplace</h2>
+				<div class="text-left">
+					<h4 class="display-5">Buying Art</h4>
+					<p class="text-justify content">Buy original art with ease through personalized searches. Connect with emerging and established artists via our chatting service and community forum. Save your favorite art pieces to your wishlist.
+					<br />
+					</p>
+					<h4>Selling Art</h4>
+					<p class="text-justify content">Benefit from our low 30% transaction fee for sellers. Get instant notifications when your art is sold. Learn how to ship orders with our quick shipping and packing guide.
+					<br/>
+					</p>
+					<h4>Buyer/Seller Protection</h4>
+					<p class="text-justify content">Prevent buyer/seller fraud through our payment processor, Stripe. Buyer’s credit card only gets charged once a valid tracking number has been provided. Bidgala protection ensures safety, credibility and optimal sales for both parties.</p>
+					<h4>Buying Art for Clients</h4>
+					<p class="text-justify content">Sign up for Bidgala’s “Buying Art for Clients” account and earn 10% discount on all purchases. Submit your business information and we'll review your account within 7 business days. Professionals include interior designers, home stagers, real estate professionals, and more.</p>
+				</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-6">
+			<div>
+				<img src="{% static 'img/about/5.jpg'%}" alt="" class="w-100" />
+			</div>
+		</div>
+	</div>
+</div>
+	<div class="quote text-center">
+		<p>"Art enables us to find ourselves and lose ourselves at the same time"</p>
+		<p class="text-right">- Thomas Merton</p>
+	</div>
+
+<div class="container mt-4">
+
+	<div class="row section-about">
+		<div class="col-lg-6 second">
+			<div>
+				<img src="{% static 'img/about/6.png'%}" alt="" class="w-100" />
+			</div>
+		</div>
+		<div class="col-lg-6">
+			<div class="row align-items-center h-100">
+				<div class="col">
+				<h2 class="display-5 text-left">Our Community</h2>
+				<div class="text-left">
+					<h4>For Art Lovers, By Art Lovers</h4>
+					<p class="text-justify content">Unified by a passion for art, we each have a story worth telling. Our thriving art community is built around storytelling, diversity, and opportunity. We currently support Canadian artists, US artists, UK artists, and more! To be featured in our newsletter, send us your story via email.
+					<br />
+					</p>
+					<h4>Referral Program</h4>
+					<p class="text-justify content">Invite friends and family to Bidgala by gifting them 15% off their first purchase and earn 50 Bidgala credits. Donate your Bidgala credits to our charity partners and support important causes!
+					<br />
+					</p>
+				</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<div class="row section-about pt-lg-0 mt-4 mt-lg-0">
+
+		<div class="col-lg-6">
+			<div class="row align-items-center h-100">
+				<div class="col">
+				<h2 class="display-5 text-left">Build Your Platform</h2>
+				<div class="text-left">
+					<h4>Create Your Portfolio</h4>
+					<p class="text-justify content">Turn your profile into a stunning portfolio by uploading regularly and telling your story. Share your profile across multiple platforms for maximum exposure. Connect with art lovers to build your own community.
+					<br />
+					</p>
+					<h4>Our Launch</h4>
+					<p class="text-justify content">We are launching the full Bidgala website in March of 2021. Before our launch:
+					<br />
+					<ol>
+						<li><p class="text-justify content">Post all of your art using the Sell button and get your virtual gallery ready before the launch!</p></li>
+						<li><p class="text-justify content">Invite your friends and earn credits that you can donate to charity using the Referral page.</p></li>
+					</ol>
+					<p class="text-justify content">Once we launch, you will have access to other users, their artworks, your profile page, our community channels, buying/selling, and more.</p>
+					</p>
+				</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-6">
+			<div>
+				<img src="{% static 'img/about/7.jpg'%}" alt="" class="w-100" />
+			</div>
+		</div>
+	</div>
+
+
+	<div class="row jumbotron section-bottom mt-4 mt-lg-0">
+		<div class="col-lg-6">
+			<div class="row align-items-center h-100">
+				<div class="col">
+					<h4 class="display-5 text-center">We’ve Got You Covered!</h4>
+					<div class="text-center">
+						<p class="text-justify content">At Bidgala, all purchases are made through & covered by Stripe. If you’re selling your art, we’ll prompt you to create a stripe account when necessary.
+						<br />
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-6 text-center">
+			<img src="{% static 'img/bidgala101/stripe.png'%}" alt="stripe-logo" class="w-lg-100"/>
+		</div>
+	</div>
+</div>
+
+{%endblock%}

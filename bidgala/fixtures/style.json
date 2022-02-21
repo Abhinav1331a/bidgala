@@ -1,0 +1,93 @@
+[
+  {
+    "model": "accounts.style",
+    "pk": 1,
+    "fields": {
+      "style_name": "Abstract",
+      "style_value": "abstract"
+      }
+  },
+
+  {
+    "model": "accounts.style",
+    "pk": 2,
+    "fields": {
+      "style_name": "Contemporary",
+      "style_value": "contemporary"
+      }
+  },
+
+  {
+    "model": "accounts.style",
+    "pk": 3,
+    "fields": {
+      "style_name": "Figurative",
+      "style_value": "figurative"
+     }
+  },
+
+  {
+    "model": "accounts.style",
+    "pk": 4,
+    "fields": {
+      "style_name": "Minimalist",
+      "style_value": "minimalist"
+    }
+  },
+
+  {
+    "model": "accounts.style",
+    "pk": 5,
+    "fields": {
+      "style_name": "Portraiture",
+      "style_value": "portraiture"
+    }
+  },
+
+  {
+    "model": "accounts.style",
+    "pk": 6,
+    "fields": {
+      "style_name": "Landscape",
+      "style_value": "landscape"
+    }
+  },
+
+
+  {
+    "model": "accounts.style",
+    "pk": 7,
+    "fields": {
+      "style_name": "Fashion",
+      "style_value": "fashion"
+    }
+  },
+
+  {
+    "model": "accounts.style",
+    "pk": 8,
+    "fields": {
+      "style_name": "Pop Art",
+      "style_value": "popart"
+    }
+  },
+
+  {
+    "model": "accounts.style",
+    "pk": 9,
+    "fields": {
+      "style_name": "Other",
+      "style_value": "other"
+    }
+  },
+
+  {
+    "model": "accounts.style",
+    "pk": 0,
+    "fields": {
+      "style_name": "Realism",
+      "style_value": "realism"
+    }
+  }
+
+]

@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} | Survey {% endblock %}
+
+{% block cssfile %}
+<link rel="stylesheet" href="{% static 'css/survey.css' %}">
+{% endblock %}
+
+{% block content %}
+<!-- React component inside this div -->
+<div id="survey-root"></div>
+
+<!-- Load React -->
+<!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+<!-- <script src="https://unpkg.com/react@^17/umd/react.development.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@^17/umd/react-dom.development.js" crossorigin></script> -->
+<script src="https://unpkg.com/react@^17/umd/react.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@^17/umd/react-dom.production.min.js" crossorigin></script>
+
+<!-- Load Babel -->
+<script src="https://unpkg.com/babel-standalone@^6/babel.min.js"></script>
+
+<!-- Run JSX Preprocessor -->
+<!-- npm install babel-cli@6 babel-preset-react-app@3 -->
+<!-- npx babel --watch products/static/js/survey/src --out-dir products/static/js/survey --presets react-app/prod -->
+
+<!-- Load React components -->
+<script type="text/babel" src="{% static 'js/survey/survey.js' %}"></script>
+
+<!-- Render React component -->
+<script type="text/babel">
+    ReactDOM.render(<Survey />, document.querySelector("#survey-root"));
+</script>
+{% endblock %}

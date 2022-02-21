@@ -1,0 +1,179 @@
+{% load static %}
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Article tool</title>
+
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script> 
+    </head>
+    <body>
+    <div class="container">
+    
+    	 <button id="add-para" class="btn btn-primary add-more button-yellow uppercase mt-3" type="button">+ Add Paragraph</button>
+
+    	 <button id="add-img" class="btn btn-info mt-3" type="button">+ Add Image</button>
+
+
+    	 <button id="generate" class="btn btn-success mt-3" type="button">Generate code</button>
+
+
+   
+    	<div class="bg-light p-5 rounded-lg m-3 bg-dark text-white">
+    	<h4 class="display-6">Extra Features</h4>
+    	<ul>
+		    <li>To make text bold, put it inside 'b' tag. Example &lt;b&gt;Some text&lt;/b&gt;</li>
+		    <li>To make text italic, put it inside 'i' tag. Example &lt;i&gt;Some text&lt;/i&gt;</li></li>
+		   
+		  </ul>
+    	</div>
+
+    
+ 	 
+    <div>
+    	<form class="form-horizontal">
+					<fieldset>
+
+					<!-- Form Name -->
+					<legend class="mt-3">Article form | Add below:</legend>
+
+					<!-- Text input-->
+					<div id="items" class="form-group">
+					  
+					<div class="col-12 margin-bottom form-group">
+
+					  <textarea id="data_input_0" class="form-control dynamic-text" data-dtype="para" rows="6" placeholder="Enter paragraph here...."></textarea>
+
+					  <button type="button" class="mt-1 ml-1 btn btn-secondary btn-sm wrap-link">Wrap link tag</button>
+					  <button style="margin-left:1%" type="button" class="mt-1 btn btn-secondary btn-sm wrap-bold">Wrap bold tag</button>
+					  <button style="margin-left:1%" type="button" class="mt-1 btn btn-secondary btn-sm wrap-italic">Wrap italic tag</button>
+					  <button style="margin-left:1%" type="button" class="mt-1 btn btn-secondary btn-sm wrap-under">Wrap underline tag</button>
+					</div>
+					</div>
+
+					</fieldset>
+			</form>
+    </div>
+
+    <div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        
+        <h4 class="modal-title">Source code</h4>
+      </div>
+      <div class="modal-body">
+        <p id="source_code"></p>
+      </div>
+      <div class="modal-footer">
+        
+      </div>
+    </div>
+
+  </div>
+</div>
+   
+
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+    	var curr_text_area = null;
+    	$(document).ready(function() {
+    		var curr = 1
+			  $(".delete").hide();
+			  //when the Add Field button is clicked
+			  $("#add-img").click(function(e) {
+			 
+			    //Append a new row of code to the "#items" div
+			    $("#items").append(
+			      '<div class="next-referral col-4 mt-2"><input id="data_input_'+ curr.toString()+'" name="textinput" type="text" data-dtype="image" placeholder="Image credits, image url" class="form-control input-md col-12"></div>'
+			    );
+			    curr = curr + 1;
+			  });
+
+			  $("#add-para").click(function(e) {
+			 
+			    //Append a new row of code to the "#items" div
+			    $("#items").append(
+			      '<textarea id="data_input_'+curr.toString()+'" class="form-control mt-2 dynamic-text" rows="6" placeholder="Enter paragraph here...." data-dtype="para"></textarea><button type="button" class="mt-1 btn btn-secondary btn-sm wrap-link">Wrap link tag</button><button type="button" style="margin-left:1%" class="mt-1 ml-2 btn btn-secondary btn-sm wrap-bold">Wrap bold tag</button><button style="margin-left:1%" type="button" class="mt-1 ml-2 btn btn-secondary btn-sm wrap-italic">Wrap italic tag</button><button style="margin-left:1%" type="button" class="mt-1 ml-2 btn btn-secondary btn-sm wrap-under">Wrap underline tag</button>'
+			    );
+			    curr = curr + 1;
+			  });
+
+
+			  $("#generate").click(function(e) {
+			  		temp = '<div style="text-align: justify; width:100%;">';
+			  		for(i=0; i <curr; i++){
+			  			var dtype = $("#data_input_" + i.toString()).data('dtype');
+
+			  			if(dtype == 'image') {
+			  				img_data = $("#data_input_" + i.toString()).val().split(',');
+			  				temp = temp + '<div class="text-center"><figure class="figure"><img src="'+img_data[1]+'" class="figure-img img-fluid img-responsive z-depth-1" alt="..." style="width: 50%;height:50%"><figcaption class="figure-caption">'+img_data[0]+'</figcaption></figure></div>';
+
+			  				
+			  			}
+
+			  			else if(dtype == 'para') {
+			  				temp = temp + '<p>' + $("#data_input_" + i.toString()).val() + '</p>';
+			  				
+			  			}
+			  		}
+
+			  		temp = temp + '</div>'
+			  		$('#source_code').text(temp)
+			  		$('#myModal').modal('show'); 
+			  	});
+
+			  $("body").on("click", ".delete", function(e) {
+			    $(".next-referral").last().remove();
+			  });
+			});
+
+    	$(document).on('click', 'textarea.dynamic-text' ,function(){
+    		curr_text_area = $(this)
+			 })
+
+    	 $(document).on('click', 'button.wrap-link' ,function() {
+			  	var selText = curr_text_area.selection();
+			  	 curr_text_area
+			  	 .selection('insert', {text: '<a href="', mode: 'before'})
+			  	 .selection('replace', {text: 'http://'})
+			  	 .selection('insert', {text: '">'+ selText + '</a>', mode: 'after'});
+
+			  })
+
+    	  $(document).on('click', 'button.wrap-bold' ,function() {
+			  	var selText = curr_text_area.selection();
+			  	 curr_text_area
+			  	 .selection('insert', {text: '<b>', mode: 'before'})
+			  	 .selection('insert', {text: '</b>', mode: 'after'});
+			  })
+
+
+    	  $(document).on('click', 'button.wrap-italic' ,function() {
+			  	var selText = curr_text_area.selection();
+			  	 curr_text_area
+			  	 .selection('insert', {text: '<i>', mode: 'before'})
+			  	 .selection('insert', {text: '</i>', mode: 'after'});
+			  })
+
+			  $(document).on('click', 'button.wrap-under' ,function() {
+			  	var selText = curr_text_area.selection();
+			  	 curr_text_area
+			  	 .selection('insert', {text: '<u>', mode: 'before'})
+			  	 .selection('insert', {text: '</u>', mode: 'after'});
+			  })
+
+    </script>
+     <script src="{% static 'js/jquery.selection.js' %}"></script>
+    </body>
+</html>

@@ -1,0 +1,40 @@
+#pic{
+	display: none;
+	}
+	
+.newbtn{
+cursor: pointer;
+}
+#img_display_1, #img_display_2, #img_display_3, #img_display_4{
+max-width:100px;
+height:100px;
+margin-top:20px;
+}
+
+.my-art-container {
+    max-width: 1200px;
+}
+
+.art-card {
+    width: 22%;
+}
+
+@media only screen and (max-width: 992px) {
+    .art-card {
+        width: 30%;
+    }
+  }
+
+  @media only screen and (max-width: 633px) {
+    .art-card {
+        width: 45%;
+    }
+  }
+
+  @media only screen and (max-width: 399px) {
+    .art-card {
+        width: 43%;
+    }
+  }
+
+

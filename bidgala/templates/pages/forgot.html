@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} | Forgot your Password?{% endblock %}
+{% block content %}
+
+<div class="container mt-5">
+  <div class="jumbotron">
+    {% if show is False %}
+    <h4>Forgotten Your Password?</h4>
+    <p>Please enter your email address below. We'll send you a link so that you can create a new password.</p>
+    <form method="post" action="/submit-email">
+      {%csrf_token%}
+      <div class="input-group">
+        <input type="email" name="email" class="form-control" placeholder="Email address" required="required">
+        <input type="submit" class="btn btn-dark ml-2" name="submit">
+      </div>
+    </form>
+    {%else%}
+      <div class="text-center">
+        <h4>Thank you!</h4>
+        <p>We've sent you an email with instructions for resetting your password. You should be receiving it shortly!</p>
+        <p>If the email does not arrive soon, please check your spam folder. The sender should be info@bidgala.com</p>
+      </div>
+    {%endif%}
+  </div>
+</div>
+
+    
+{% endblock %}

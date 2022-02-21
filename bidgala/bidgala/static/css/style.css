@@ -1,0 +1,305 @@
+/* Set global styles here - theme colors, fonts etc. */
+body {
+  font-family: "Hel", sans-serif;
+  font-weight: normal;
+  font-style: normal;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+}
+
+
+.body-content {
+  flex: 1;
+  margin-top: 81px;
+  top: 0;
+}
+
+
+
+@media(max-width: 991px) {
+	.body-content {
+    margin-top: 60px;
+  }
+}
+
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Helvetica", sans-serif;
+  color: #0b1c39;
+  margin-top: 0px;
+  font-style: normal;
+  font-weight: 500;
+  text-transform: normal;
+}
+
+
+p {
+  font-family: "Helvetica", sans-serif;
+  color: #000000;
+}
+
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: black;
+}
+
+a:hover {
+  color: rgb(71, 71, 71);
+  text-decoration: none;
+}
+
+
+.cookiealert.show {
+  background: black;
+}
+
+.cookiealert.show div {
+  max-width: 1500px;
+  margin: 0 auto;
+}
+
+
+
+#scrollUp {
+  background: #000000;
+  height: 50px;
+  width: 50px;
+  right: 31px;
+  bottom: 18px;
+  color: #fff;
+  font-size: 20px;
+  text-align: center;
+  border-radius: 50%;
+  line-height: 48px;
+  border: 2px solid transparent;
+}
+
+@media (max-width: 767px) {
+  #scrollUp {
+    right: 16px;
+  }
+}
+
+#scrollUp:hover {
+  color: #fff;
+}
+
+.notif-account {
+  position: absolute;
+  right: 135px;
+  top: 23px;
+}
+
+.notif-badge-account {
+  background-color: rgb(218, 1, 1);
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+}
+
+.notification-badge {
+  background-color: rgb(218, 1, 1);
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  position: absolute;
+  left: 17px;
+}
+
+.notification-badge-mobile {
+  background-color: rgb(218, 1, 1);
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  position: absolute;
+  right: 0;
+}
+
+.notif-badge-messages-link {
+  background-color: rgb(218, 1, 1);
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+}
+
+.sticky-bar {
+  left: 0;
+  margin: auto;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  -webkit-box-shadow: 0 10px 15px rgba(25, 25, 25, 0.1);
+  box-shadow: 0 10px 15px rgba(25, 25, 25, 0.1);
+  z-index: 9999;
+  -webkit-animation: 300ms ease-in-out 0s normal none 1 running fadeInDown;
+  animation: 300ms ease-in-out 0s normal none 1 running fadeInDown;
+  -webkit-box-shadow: 0 10px 15px rgba(25, 25, 25, 0.1);
+  background: #fff;
+}
+
+.preloader {
+  background-color: #f7f7f7;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999999;
+  -webkit-transition: .6s;
+  -o-transition: .6s;
+  transition: .6s;
+  margin: 0 auto;
+
+}
+
+
+.preloader .preloader-circle {
+  width: 100px;
+  height: 100px;
+  position: relative;
+  border-style: solid;
+  border-width: 3px;
+  border-top-color: #000000;
+  border-bottom-color: transparent;
+  border-left-color: transparent;
+  border-right-color: transparent;
+  z-index: 10;
+  border-radius: 50%;
+  -webkit-box-shadow: 0 1px 5px 0 rgba(35, 181, 185, 0.15);
+  box-shadow: 0 1px 5px 0 rgba(35, 181, 185, 0.15);
+  background-color: #ffffff;
+  -webkit-animation: zoom 2000ms infinite ease;
+  animation: zoom 2000ms infinite ease;
+  -webkit-transition: .6s;
+  -o-transition: .6s;
+  transition: .6s;
+  
+}
+
+
+.preloader .preloader-img {
+  position: absolute;
+  top: 50%;
+  z-index: 200;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  text-align: center;
+  display: inline-block;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  padding-top: 6px;
+  -webkit-transition: .6s;
+  -o-transition: .6s;
+  transition: .6s;
+}
+
+
+.preloader .preloader-img img {
+  max-width: 55px;
+}
+
+
+@-webkit-keyframes zoom {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+    -webkit-transition: .6s;
+    -o-transition: .6s;
+    transition: .6s;
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+    -webkit-transition: .6s;
+    -o-transition: .6s;
+    transition: .6s;
+  }
+}
+
+@keyframes zoom {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+    -webkit-transition: .6s;
+    -o-transition: .6s;
+    transition: .6s;
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+    -webkit-transition: .6s;
+    -o-transition: .6s;
+    transition: .6s;
+  }
+}
+
+.footer-area {
+  padding: 130px 0 100px 0;
+  margin-top: 150px;
+}
+
+.footer-area .footer-logo {
+  margin-bottom: 40px;
+}
+
+.footer-area .footer-pera p {
+  color: #868c98;
+  font-size: 16px;
+  margin-bottom: 50px;
+  line-height: 1.8;
+}
+
+.footer-area .footer-tittle h4 {
+  color: #000;
+  font-size: 20px;
+  margin-bottom: 29px;
+  font-weight: 500;
+  text-transform: capitalize;
+  font-family: "Poppins", sans-serif;
+}
+
+.footer-area .footer-tittle ul li {
+  color: #012f5f;
+  margin-bottom: 15px;
+}
+
+
+.footer-area .footer-tittle ul li a {
+  color: #868c98;
+  font-weight: 300;
+}
+
+
+.footer-social a i {
+  color: #222222;
+  margin-right: 12px;
+  font-size: 20px;
+  -webkit-transition: all 0.4s ease-out 0s;
+  -moz-transition: all 0.4s ease-out 0s;
+  -ms-transition: all 0.4s ease-out 0s;
+  -o-transition: all 0.4s ease-out 0s;
+  transition: all 0.4s ease-out 0s;
+}
+
+
+.footer-social a i:hover {
+  color: rgb(71, 71, 71);
+}
+

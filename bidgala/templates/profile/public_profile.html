@@ -1,0 +1,1792 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %} | {{user_.first_name}}&nbsp{{user_.last_name}} {% endblock %}
+{% block more_meta_tags %}
+<meta property="og:title" content="{{user_.first_name}} {{user_.last_name}} on Bidgala" />
+<meta property="og:url" content="https://bidgala.com/p/{{user_.username}}" />
+<meta property="og:type" content="website" />
+<meta property="og:description" content="{{user_.first_name}} {{user_.last_name}} on Bidgala" />
+{% if userInfo.profile_img %}
+<meta property="og:image" content="{{BASE_S3_URL}}{{userInfo.profile_img}}" />
+{% else %}
+<meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png" />
+{% endif %}
+{% endblock %}
+{% block cssfile %}
+<link rel="stylesheet" href="{% static 'css/public-profile.css' %}">
+<link rel="stylesheet" href="{% static 'css/tagify.css' %}" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<style>
+
+.grid-sizer-two {
+	width: 32.4%;
+}
+
+.grid-item-two img {
+	width: 100%;
+}
+.grid-item-two {
+	width: 32.4%;
+	margin-bottom: 15px;
+}
+
+.grid-sizer {
+	width: 24%;
+}
+
+.grid-item img {
+	width: 100%;
+}
+.grid-item {
+	width: 24%;
+	margin-bottom: 15px;
+}
+
+@media(max-width: 1989px) {
+	.grid-sizer {
+		width: 23.7%;
+	}
+	.grid-item {
+		width: 23.7%;
+	}
+}
+
+
+@media(max-width: 1422px) {
+	.grid-sizer {
+		width: 23.5%;
+	}
+	.grid-item {
+		width: 23.5%;
+	}
+}
+
+@media(max-width: 1255px) {
+	.grid-sizer {
+		width: 23.4%;
+	}
+	.grid-item {
+		width: 23.4%;
+	}
+}
+
+@media(max-width: 1199px) {
+	.grid-sizer {
+		width: 23.7%;
+	}
+	.grid-item {
+		width: 23.7%;
+	}
+}
+@media(max-width: 922px) {
+	.grid-sizer {
+		width: 23.4%;
+	}
+	.grid-item {
+		width: 23.4%;
+	}
+}
+
+
+@media(max-width: 793px) {
+	.grid-sizer {
+		width: 31%;
+	}
+	.grid-item {
+		width: 31%;
+	}
+}
+
+@media(max-width: 588px) {
+	.grid-sizer {
+		width: 48%;
+	}
+	.grid-item {
+		width: 48%;
+	}
+}
+
+
+
+
+
+
+
+
+@media(max-width: 1880px) {
+	.grid-sizer-two {
+		width: 32.3%;
+	}
+	.grid-item-two {
+		width: 32.3%;
+	}
+}
+
+
+@media(max-width: 1600px) {
+	.grid-sizer-two {
+		width: 32%;
+	}
+	.grid-item-two {
+		width: 32%;
+	}
+}
+
+@media(max-width: 1243px) {
+	.grid-sizer-two {
+		width: 31.9%;
+	}
+	.grid-item-two {
+		width: 31.9%;
+	}
+}
+
+@media(max-width: 1199px) {
+	.grid-sizer-two {
+		width: 32%;
+	}
+	.grid-item-two {
+		width: 32%;
+	}
+}
+
+@media(max-width: 785px) {
+	.grid-sizer-two {
+		width: 31%;
+	}
+	.grid-item-two {
+		width: 31%;
+	}
+}
+
+@media(max-width: 689px) {
+	.grid-sizer-two {
+		width: 48%;
+	}
+	.grid-item-two {
+		width: 48%;
+	}
+}
+
+@media(max-width: 410px) {
+	.grid-sizer, .grid-sizer-two {
+		width: 47%;
+	}
+	.grid-item, .grid-item-two {
+		width: 47%;
+	}
+}
+
+
+.skill-interest-block {
+    border-radius: 2px;
+    padding: 4px 7px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px 5px 0px 0px;
+    background-color: #f7f7f7;
+}
+
+.skill-interest-block p {
+    font-size: 14px;
+}
+
+
+#delete-featured-work {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 15px;
+}
+
+#featured-work-image-area {
+    position: relative;
+}
+
+#editEducation div, #editAccomplishment div, #editExhibition div {
+    width: 100%;
+}
+
+.socials:hover {
+    opacity: 0.7;
+}
+
+</style>
+
+
+
+
+
+
+{% endblock %}
+
+{% block content %}
+    <main id="profile-area">
+        <div id="profile-header">
+            {% if headerImage %}
+            <img src="{{BASE_S3_URL}}{{headerImage.header_image}}{{img_optimize_param_large}}">
+            {% else %}
+
+            {% endif %}
+        </div>
+        <div class="container main-container d-flex align-items-center justify-content-center">
+            {% if request.user == user_ %}
+            <button class="btn btn-light" id="edit-header-btn" type="button" data-toggle="modal" data-target="#editHeaderImage"><i class="fas fa-camera">
+            </i></button>
+            {% endif %}
+            <button class="btn btn-light" id="share-profile-btn" data-toggle="modal" data-target="#shareProfile"><i class="fas fa-share"></i> Share</button>
+        </div>
+
+        <div class="container-fluid d-flex flex-column flex-xl-row justify-content-center w-100 pr-xl-5 pl-xl-5" id="main">
+            <section class="text-center main-info mb-xl-5 mb-0 w-100 col-12 col-xxl-3 col-xl-4 mr-3 pl-3 pr-3 pt-3 p-xl-4">
+                <div class="d-flex justify-content-center mb-3">
+                    <div id="profile-pic">
+                        {% if userInfo.profile_img %}
+                        <img src="{{BASE_S3_URL}}{{userInfo.profile_img}}{{img_optimize_param}}" class="pl-0">
+                        {% else %}
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png" class="pl-0">
+                        {% endif %}
+                    </div>
+                </div>
+                <h3 class="mb-1 text-center d-inline">{{user_.first_name}}&nbsp{{user_.last_name}}</h3>
+								 {% if userInfo.special_user %}
+                                <img class="checkmark d-inline text-nowrap mb-2" src="{% static 'img/check.svg' %}" alt="checkmark">
+                                 {% endif %}
+                {% if userInfo.headline %}
+                <p class="mb-1 text-center text-muted">{{userInfo.headline}}</p>
+                {% endif %}
+
+                {% if userInfo.state and userInfo.country %}
+                {% for key, value in country.items %}
+                {% if key == userInfo.country %}
+                <p class="mb-1 text-center text-muted"><i class="fa fa-map-marker mr-1"></i>{{value.name}}</p>
+                {% endif %}
+                {% endfor %}
+                {% endif %}
+
+                {% if userInfo.bio %}
+                <p class="text-center text-dark">{{userInfo.bio}}</p>
+                {% endif %}
+                <div class="d-flex justify-content-center">
+                    {% if userInfo.instagram_username %}
+                    <a target="blank" href="https://instagram.com/{{userInfo.instagram_username}}" class="fa fa-instagram text-dark socials"></a>
+                    {% endif %}
+                    {% if userInfo.facebook_link %}
+                    <a target="blank" href="https://facebook.com/{{userInfo.facebook_link}}" class="fa fa-facebook text-dark socials"></a>
+                    {% endif %}
+                    {% if userInfo.twitter_username %}
+                    <a target="blank" href="https://twitter.com/{{userInfo.twitter_username}}" class="fa fa-twitter text-dark socials"></a>
+                    {% endif %}
+                    {% if userInfo.linkedin_link %}
+                    <a target="blank" href="https://linkedin.com/in/{{userInfo.linkedin_link}}" class="fa fa-linkedin text-dark socials"></a>
+                    {% endif %}
+                </div>
+                <div class="d-flex flex-column justify-content-center mt-3">
+
+                    {% if request.user == user_ %}
+                    <div class="d-flex mb-2">
+                        <button class="btn btn-light flex-grow-1 mr-1 follow"><span id="followers">{{user_followers}}</span>&nbspfollowers</button>
+                        <button class="btn btn-light flex-grow-1 follow" id="following"><span id="followers">{{user_followings}}</span>&nbspfollowing</button>
+                    </div>
+                    {% endif %}
+
+
+                    <div class="d-flex flex-column mb-3">
+                        {% if request.user == user_ %}
+                        <a href="/settings" class="btn btn-dark flex-grow-1" role="button">Edit Profile</a>
+                        <button class="btn btn-dark dropdown-toggle flex-grow-1 mt-1" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Add Section</button>
+                        <div class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton">
+                            {% if artistStatement %}
+                            <button class="dropdown-item" disabled>Artist Statement ✓</button>
+                            {% else %}
+                            <button class="dropdown-item" data-toggle="modal" data-target="#artistStatementModal">Artist Statement</button>
+                            {% endif %}
+
+                            {% if featuredWorksCount == 6 %}
+                            <button class="dropdown-item" disabled>Featured Work ✓</button>
+                            {% else %}
+                            <button class="dropdown-item" data-toggle="modal" data-target="#featuredWorkModal">Featured Work</button>
+                            {% endif %}
+
+                            <button class="dropdown-item" data-toggle="modal" data-target="#educationModal">Education</button>
+
+                            {% if skills %}
+                            <button class="dropdown-item" disabled>Skills ✓</button>
+                            {% else %}
+                            <button class="dropdown-item" data-toggle="modal" data-target="#skillsModal">Skills</button>
+                            {% endif %}
+
+                            {% if interests %}
+                            <button class="dropdown-item" disabled>Interests ✓</button>
+                            {% else %}
+                            <button class="dropdown-item" data-toggle="modal" data-target="#interestsModal">Interests</button>
+                            {% endif %}
+
+
+                            <a class="dropdown-item" data-toggle="modal" data-target="#accomplishmentsModal">Accomplishments</a>
+
+                            <a class="dropdown-item" data-toggle="modal" data-target="#exhibitionsModal">Exhibitions</a>
+
+                        </div>
+                        {% else %}
+
+
+                        {% if request_user_follows == True %}
+                        <div class="d-flex flex-row flex-xl-column">
+                        <button class="btn btn-light flex-grow-1 mb-xl-1 mr-xl-0 mr-2  follow-user_" data-id="{{user_.id}}" id="unfollow-button">Unfollow</button>
+                        <a class="btn btn-dark flex-grow-1" style="color:white" href="{%url 'get_thread' username=userInfo.id%}">Message</a>
+                        </div>
+                        {% else %}
+                        {% if request.user.is_authenticated %}
+                        <div  class="d-flex  flex-row flex-xl-column">
+                        <button class="btn btn-light flex-grow-1 mb-xl-1 mr-xl-0 mr-2 follow-user_" data-id="{{user_.id}}" id="follow-button">Follow</button>
+                        <a class="btn btn-dark flex-grow-1" style="color:white" href="{%url 'get_thread' username=userInfo.id%}">Message</a>
+                        </div>
+                        {% else %}
+                        <div  class="d-flex  flex-row flex-xl-column">
+                        <button class="btn btn-light flex-grow-1 mb-xl-1 mr-xl-0 mr-2 " data-target="#loginModal" data-toggle="modal">Follow</button>
+                        <button class="btn btn-dark flex-grow-1" data-target="#loginModal" data-toggle="modal">Message</button>
+                        </div>
+                        {% endif %}
+                        {% endif %}
+
+
+                        {% endif %}
+                    </div>
+
+                </div>
+
+            {% if artistStatement or interests or skills or awards or educations or press or projects or exhibitions %}
+            <button class="btn btn-light w-100 d-xl-none d-block mb-2" type="button" data-toggle="collapse" data-target="#sections" aria-expanded="false" aria-controls="collapseExample">More about @{{user_.username}}</button>
+
+            <div id="sections">
+            {% comment %} profile sidebar {% endcomment %}
+            {% if artistStatement %}
+            <section>
+                <div class="d-flex justify-content-between mt-2 mb-2">
+                    <h5>Artist Statement</h5>
+                    {% if request.user == user_ %}
+                    <div>
+                        <button data-toggle="modal" data-target="#artistStatementModal" class="fa fa-pencil btn btn-light mr-2"></button>
+                        <button class="fa fa-trash text-dark btn btn-light" data-toggle="modal" data-target="#deleteArtistStatement"></button>
+                    </div>
+                    {% endif %}
+                </div>
+                <p class="text-dark">{{artistStatement.statement}}</p>
+            </section>
+            <hr>
+            {% endif %}
+
+            {% if educations %}
+            <section>
+                <div class="d-flex justify-content-between mb-2">
+                    <h5>Education</h5>
+                    {% if request.user == user_ %}
+                    <div>
+                        <button data-toggle="modal" data-target="#educationModal" class="fa fa-plus btn btn-light"></button>
+                    </div>
+                    {% endif %}
+                </div>
+            {% for education in educations %}
+                <div class="d-flex justify-content-between mb-3">
+                    <div>
+                        <p class="text-dark mb-0">{{education.school}}</p>
+                        <small>{{education.degree}}</small>
+                        <small>- {{education.field_of_study}}</small>
+                        <br>
+                        <small class="text-muted">{{education.start_year}}</small>
+                        <small class="text-muted">- {{education.end_year}}</small>
+                        <br>
+                        <small class="text-dark">{{education.description}}</small>
+                    </div>
+                    {% if request.user == user_ %}
+                    <div>
+                        <button class="fa fa-pencil mr-2 btn btn-light edit-education" data-id="{{education.id}}"></button>
+                        <button class="fa fa-trash btn btn-light delete-education" data-id="{{education.id}}"></button>
+                    </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+            {% csrf_token %}
+            </section>
+            <hr>
+            {% endif %}
+
+
+            {% if skills %}
+            <section>
+                <div class="d-flex justify-content-between mb-2">
+                    <h5>Skills</h5>
+                    {% if request.user == user_ %}
+                    <div>
+                        <button class="fa fa-pencil btn btn-light" data-toggle="modal" data-target="#skillsModal"></button>
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="d-flex flex-wrap mb-3">
+                {% for skill in skills %}
+                    <div class="skill-interest-block">
+                        <p class="m-0 text-dark">{{skill}}</p>
+                    </div>
+                {% endfor %}
+                </div>
+            </section>
+            <hr>
+            {% endif %}
+
+
+
+
+            {% if interests %}
+            <section>
+                <div class="d-flex justify-content-between mb-2">
+                    <h5>Interests</h5>
+                    {% if request.user == user_ %}
+                    <div>
+                        <button class="fa fa-pencil btn btn-light" data-toggle="modal" data-target="#interestsModal"></button>
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="d-flex flex-wrap mb-3">
+                {% for interest in interests %}
+                    <div class="skill-interest-block">
+                        <p class="m-0 text-dark">{{interest}}</p>
+                    </div>
+                {% endfor %}
+                </div>
+            </section>
+            <hr>
+            {% endif %}
+
+
+
+
+
+            {% if awards %}
+            <section>
+                <div class="d-flex justify-content-between mb-2">
+                    <h5>Awards</h5>
+                    {% if request.user == user_ %}
+                    <div>
+                        <button data-toggle="modal" data-target="#accomplishmentsModal" class="fa fa-plus btn btn-light"></button>
+                    </div>
+                    {% endif %}
+                </div>
+                {% for award in awards %}
+                <div class="d-flex justify-content-between mb-3">
+                    <div>
+                        <p class="text-dark mb-0">{{award.title}}</p>
+                        {% for key, value in months.items %}
+                        {% if key == award.month %}
+                        <small class="text-muted">{{value}}</small>
+                        {% endif %}
+                        {% endfor %}
+                        <small class="text-muted">{{award.year}}</small>
+                        <br>
+                        {% if award.link %}
+                        <a target="blank" href="{{award.link}}" class="fa fa-link text-dark socials"></a>
+                        {% endif %}
+                        <small class="text-dark">{{award.description}}</small>
+                    </div>
+                    {% if request.user == user_ %}
+                    <div>
+                        <button class="fa fa-pencil mr-2 btn btn-light edit-accomplishment" data-id="{{award.id}}"></button>
+                        <button class="fa fa-trash btn btn-light delete-accomplishment" data-id="{{award.id}}"></button>
+                    </div>
+                    {% endif %}
+                </div>
+                {% endfor %}
+                {% csrf_token %}
+            </section>
+            <hr>
+            {% endif %}
+
+
+            {% if press %}
+            <section>
+                <div class="d-flex justify-content-between mb-2">
+                    <h5>Press</h5>
+                    {% if request.user == user_ %}
+                    <div>
+                        <button data-toggle="modal" data-target="#accomplishmentsModal" class="fa fa-plus btn btn-light"></button>
+                    </div>
+                    {% endif %}
+                </div>
+                {% for p in press %}
+                <div class="d-flex justify-content-between mb-3">
+                    <div>
+                        <p class="text-dark mb-0">{{p.title}}</p>
+                        {% for key, value in months.items %}
+                        {% if key == p.month %}
+                        <small class="text-muted">{{value}}</small>
+                        {% endif %}
+                        {% endfor %}
+                        <small class="text-muted">{{p.year}}</small>
+                        <br>
+                        {% if p.link %}
+                        <a target="blank" href="{{p.link}}" class="fa fa-link text-dark socials"></a>
+                        {% endif %}
+                        <small class="text-dark">{{p.description}}</small>
+                    </div>
+                    {% if request.user == user_ %}
+                    <div>
+                        <button class="fa fa-pencil mr-2 btn btn-light edit-accomplishment" data-id="{{p.id}}"></button>
+                        <button class="fa fa-trash btn btn-light delete-accomplishment" data-id="{{p.id}}"></button>
+                    </div>
+                    {% endif %}
+                </div>
+                {% endfor %}
+                {% csrf_token %}
+            </section>
+            <hr>
+            {% endif %}
+
+
+            {% if projects %}
+            <section>
+                <div class="d-flex justify-content-between mb-2">
+                    <h5>Projects</h5>
+                    {% if request.user == user_ %}
+                    <div>
+                        <button data-toggle="modal" data-target="#accomplishmentsModal" class="fa fa-plus btn btn-light"></button>
+                    </div>
+                    {% endif %}
+                </div>
+                {% for project in projects %}
+                <div class="d-flex justify-content-between mb-3">
+                    <div>
+                        <p class="text-dark mb-0">{{project.title}}</p>
+                        {% for key, value in months.items %}
+                        {% if key == project.month %}
+                        <small class="text-muted">{{value}}</small>
+                        {% endif %}
+                        {% endfor %}
+                        <small class="text-muted">{{project.year}}</small>
+                        <br>
+                        {% if project.link %}
+                        <a target="blank" href="{{project.link}}" class="fa fa-link text-dark socials"></a>
+                        {% endif %}
+                        <small class="text-dark">{{project.description}}</small>
+                    </div>
+                    {% if request.user == user_ %}
+                    <div>
+                        <button class="fa fa-pencil mr-2 btn btn-light edit-accomplishment" data-id="{{project.id}}"></button>
+                        <button class="fa fa-trash btn btn-light delete-accomplishment" data-id="{{project.id}}"></button>
+                    </div>
+                    {% endif %}
+                </div>
+                {% endfor %}
+                {% csrf_token %}
+            </section>
+            <hr>
+            {% endif %}
+
+            {% if exhibitions %}
+            <section>
+                <div class="d-flex justify-content-between mb-2">
+                    <h5>Exhibitions</h5>
+                    {% if request.user == user_ %}
+                    <div>
+                        <button data-toggle="modal" data-target="#exhibitionsModal" class="fa fa-plus btn btn-light" ></button>
+                    </div>
+                    {% endif %}
+                </div>
+                {% for exhibition in exhibitions %}
+                <div class="d-flex justify-content-between mb-3">
+                    <div>
+                        <p class="text-dark mb-0">{{exhibition.title}}</p>
+                        {% for key, value in months.items %}
+                        {% if key == exhibition.month %}
+                        <small class="text-muted">{{value}}</small>
+                        {% endif %}
+                        {% endfor %}
+                        <small class="text-muted">{{exhibition.year}}</small>
+                        <br>
+                        <small class="text-muted">{{exhibition.location}}</small>
+                        <br>
+                        {% if exhibition.link %}
+                        <a target="blank" href="{{exhibition.link}}" class="fa fa-link text-dark socials"></a>
+                        {% endif %}
+                        <small class="text-dark">{{exhibition.description}}</small>
+                    </div>
+                    {% if request.user == user_ %}
+                    <div>
+                        <button class="fa fa-pencil mr-2 btn btn-light edit-exhibition" data-id="{{exhibition.id}}"></button>
+                        <button class="fa fa-trash btn btn-light delete-exhibition" data-id="{{exhibition.id}}"></button>
+                    </div>
+                    {% endif %}
+                </div>
+                {% endfor %}
+                {% csrf_token %}
+            </section>
+            <hr>
+            {% endif %}
+            </div>
+            {% endif %}
+
+
+            </section>
+
+
+
+
+            <!-- Modals for adding/editing sections -->
+            <div class="modal fade" id="artistStatementModal" tabindex="-1" role="dialog" aria-labelledby="artistStatementModal" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="artistStatementModalLabel">{% if artistStatement %}Edit Artist Statement{% else %}Add Artist Statement{% endif %}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                         <form novalidate class="needs-validation"  id="artist-statement-form" method="post" {% if artistStatement %} action="{% url 'edit_artist_statement'%}" {% else %} action="{% url 'add_artist_statement'%}" {% endif %}>
+                            {% csrf_token %}
+                            <div class="form-group form-txt-input">
+                                <label for="artist-statement">Artist Statement</label>
+                                <textarea maxlength="1500" required rows="5" type="text" class="form-control" id="artist-statement" name="artist-statement" aria-describedby="artistStatement">{% if artistStatement %}{{artistStatement.statement}}{% else %}{% endif %}</textarea>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" id="submit-statement" form="artist-statement-form" class="btn btn-primary submit-btn">Save</button>
+                    </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="modal fade" id="featuredWorkModal" tabindex="-1" role="dialog" aria-labelledby="featuredWorkModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Add Featured Work ({{featuredWorksCount}}/6)</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                       <form novalidate class="needs-validation" id="featured-work-form" enctype="multipart/form-data" method="post" action="{% url 'add_featured_work'%}">
+                       	    {% csrf_token %}
+                            <div class="form-group form-txt-input">
+                                <label for="art-title">Title</label>
+                                <input maxlength="150" type="text" class="form-control" id="art-title" aria-describedby="artTitle" name="featured_work_title">
+                            </div>
+                            <div class="form-group form-txt-input">
+                                <label for="art-des">Description</label>
+                                <textarea maxlength="1500" rows="4" type="text" class="form-control" id="art-des" aria-describedby="artDes" name="featured_work_description"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="upload-art-image">Select Image</label>
+                                <div class="custom-file">
+                                    <input required name="featured_work_image" type="file" class="file-upload custom-file-input" id="upload-featured-work-image" accept="image/*"/ >
+                                    <label class="custom-file-label" for="customFile">Choose image</label>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" form="featured-work-form" class="btn btn-primary submit-btn">Save</button>
+                    </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="maxFeaturedWorkAlert" tabindex="-1" role="document" aria-labelledby="maxFeaturedWorkAlert" aria-hidden="true">
+                <div class="modal-dialog modal-sm modal-dialog-centered">
+                    <div class="modal-content">
+                    <div class="modal-body text-center">
+                        You already have 6 featured works. Delete some if you'd like to add something different!
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary w-100" data-dismiss="modal">Ok</button>
+                    </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="modal fade" id="educationModal" tabindex="-1" role="dialog" aria-labelledby="educationModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="educationModalLabel">Add Education</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form novalidate class="needs-validation"  id="education-form" method="post" action="{% url 'add_education'%}">
+                            {% csrf_token %}
+                            <div class="form-group form-txt-input">
+                                <label for="school">School</label>
+                                <input maxlength="150" required type="text" class="form-control" id="school" name="school" aria-describedby="school">
+                            </div>
+                            <div class="form-group form-txt-input">
+                                <label for="degree">Degree</label>
+                                <input maxlength="150" required type="text" class="form-control" id="degree" name="degree" aria-describedby="degree">
+
+                            </div>
+                            <div class="form-group form-txt-input">
+                                <label for="field-of-study">Field of Study</label>
+                                <input maxlength="150" required type="text" class="form-control" id="field-of-study" name="field-of-study" aria-describedby="field-of-study">
+                            </div>
+                            <div class="form-group">
+                                <div class="form-row">
+                                    <div class="col">
+                                        <label for="start-year">Start Year</label>
+                                        <select required type="text" class="form-control" id="start-year" name="start-year" aria-describedby="start-year" required>
+                                            <option disabled selected></option>
+                                            {% for year in years %}
+                                            <option key="{{year}}">{{year}}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    <div class="col">
+                                        <label for="end-year">End Year (or expected)</label>
+                                        <select rows="4" type="text" class="form-control" id="end-year" name="end-year" aria-describedby="end-year" required>
+                                            <option disabled selected></option>
+                                            {% for year in years %}
+                                            <option key="{{year}}">{{year}}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group form-txt-input">
+                                <label for="des">Description</label>
+                                <textarea maxlength="1500" rows="4" type="text" class="form-control" id="des" name="des" aria-describedby="des"></textarea>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" form="education-form" class="btn btn-primary submit-btn">Save</button>
+                    </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="skillsModal" tabindex="-1" role="dialog" aria-labelledby="skillsModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="skillsModalLabel">Add Skills</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form  id="skills-form" method="post" {% if skills %}action="{% url 'edit_skills'%}"{% else %}action="{% url 'add_skills'%}"{% endif %}>
+                            {% csrf_token %}
+                            <div class="form-group form-txt-input">
+                                <label for="skills-data">Skills</label>
+                                <textarea maxlength="1500" required name='skills' id="skills-data">{% if skills %}{{skills_string}}{% endif %}</textarea>
+                            </div>
+                        </form>
+                    </div>
+                    <div {% if skills %}class="modal-footer d-flex justify-content-between"{% else %}class="modal-footer"{% endif %}>
+                        {% if skills %}
+                        <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#deleteSkillsSection">Delete Section</button>
+                        {% endif %}
+                        <button type="submit" form="skills-form" class="btn btn-primary submit-btn">Save</button>
+                    </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="deleteSkillsSection" tabindex="-1" role="document" aria-labelledby="deleteSkillsSection" aria-hidden="true">
+                <div class="modal-dialog modal-sm modal-dialog-centered">
+                    <div class="modal-content">
+                    <div class="modal-body">
+                        Are you sure you want to delete your <strong>Skills</strong> section?
+                    </div>
+                    <div class="modal-footer d-flex justify-content-between">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <form method="post" action="{% url 'delete_skills'%}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="modal fade" id="interestsModal" tabindex="-1" role="dialog" aria-labelledby="interestsModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="interestsModalLabel">Add Interests</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="interests-form" method="post" {% if interests %}action="{% url 'edit_interests'%}"{% else %}action="{% url 'add_interests'%}"{% endif %}>
+                            {% csrf_token %}
+                            <div class="form-group form-txt-input">
+                                <label for="interests-data">Interests</label>
+                                <textarea maxlength="1500" required name='interests' id="interests-data">{% if interests %}{{interests_string}}{% endif %}</textarea>
+                            </div>
+                        </form>
+                    </div>
+                    <div  {% if interests %}class="modal-footer d-flex justify-content-between"{% else %}class="modal-footer"{% endif %}>
+                        {% if interests %}
+                        <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#deleteInterestsSection">Delete Section</button>
+                        {% endif %}
+                        <button type="submit" form="interests-form" class="btn btn-primary submit-btn">Save</button>
+                    </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="deleteInterestsSection" tabindex="-1" role="document" aria-labelledby="deleteInterestsSection" aria-hidden="true">
+                <div class="modal-dialog modal-sm modal-dialog-centered">
+                    <div class="modal-content">
+                    <div class="modal-body">
+                        Are you sure you want to delete your <strong>Interests</strong> section?
+                    </div>
+                    <div class="modal-footer d-flex justify-content-between">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <form method="post" action="{% url 'delete_interests'%}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="modal fade" id="accomplishmentsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Add Accomplishment</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form novalidate class="needs-validation"  id="accomplishments-form" method="post" action="{% url 'add_accomplishment'%}">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="type">Type</label>
+                                <select required class="form-control" name='type'>
+                                    <option disabled selected></option>
+                                    <option>Press</option>
+                                    <option>Award</option>
+                                    <option>Project</option>
+                                </select>
+                            </div>
+                            <div class="form-group form-txt-input">
+                                <label for="title">Name of Accomplishment</label>
+                                <input maxlength="150" id="acc-title" required type="text" class="form-control" name="title">
+                            </div>
+                            <div class="form-group">
+                                <div class="form-row">
+                                    <div class="col">
+                                        <label for="month">Month</label>
+                                        <select required type="text" class="form-control"  name="month" aria-describedby="month">
+                                            <option disabled selected></option>
+                                            {% for key, value in months.items %}
+                                            <option key="{{key}}" value="{{key}}">{{value}}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    <div class="col">
+                                        <label for="year">Year</label>
+                                        <select required rows="4" type="text" class="form-control" name="year" aria-describedby="year">
+                                            <option disabled selected></option>
+                                            {% for year in years %}
+                                            <option key="{{year}}">{{year}}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group form-txt-input">
+                                <label for="description">Description</label>
+                                <textarea maxlength="1500" id="acc-des" type="text" class="form-control" name="description"></textarea>
+                            </div>
+                            <div class="form-group form-txt-input">
+                                <label for="link">Link</label>
+                                <input maxlength="500" id="acc-link" type="url" class="form-control link" name="link" placeholder="https://www.example.com">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary submit-btn" form="accomplishments-form">Save</button>
+                    </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="modal fade" id="exhibitionsModal" tabindex="-1" role="dialog" aria-labelledby="exhibitionModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exhibitionModalLabel">Add Exhibition</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form novalidate class="needs-validation"  id="exhibition-form" method="post" action="{% url 'add_exhibition'%}">
+                            {% csrf_token %}
+                            <div class="form-group form-txt-input">
+                                <label for="title">Title/Name</label>
+                                <input maxlength="150" id="ex-title" required class="form-control" type="text" name='title'>
+                            </div>
+                             <div class="form-group form-txt-input">
+                                <label for="location">Location</label>
+                                <input maxlength="150" id="ex-location" class="form-control" type="text" name='location' placeholder="ex. Toronto, Ontario">
+                            </div>
+                            <div class="form-group">
+                                <div class="form-row">
+                                    <div class="col">
+                                        <label for="month">Month</label>
+                                        <select type="text" required class="form-control" name="month" aria-describedby="month">
+                                            <option disabled selected></option>
+                                            {% for key, value in months.items %}
+                                            <option key="{{key}}" value="{{key}}">{{value}}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    <div class="col">
+                                        <label for="year">Year</label>
+                                        <select required rows="4" type="text" class="form-control"  name="year" aria-describedby="year">
+                                            <option disabled selected></option>
+                                            {% for year in years %}
+                                            <option key="{{year}}">{{year}}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group form-txt-input">
+                                <label for="description">Description</label>
+                                <textarea maxlength="1500" id="ex-des" type="text" class="form-control" name="description"></textarea>
+                            </div>
+                            <div class="form-group form-txt-input">
+                                <label for="link">Link</label>
+                                <input maxlength="500" id="ex-link" type="url" class="form-control link" name="link" placeholder="https://example.com">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" form="exhibition-form" class="btn btn-primary submit-btn">Save</button>
+                    </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="modal fade" id="shareProfile" tabindex="-1" role="dialog" aria-labelledby="shareModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="shareModalLabel">Share {{user_.first_name}}'s Profile</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="d-flex">
+                            <input type="text" class="form-control" value="https://bidgala.com/p/{{user_.username}}" id="copy-input" readonly>
+                            <button class="btn btn-dark share-profile-btn" data-clipboard-target="#copy-input">Copy</button>
+                        </div>
+                        <div class="d-flex justify-content-between mt-3">
+                            <button class="btn btn-dark flex-grow-1 mr-1" data-social="twitter" data-title="Check out {{user_.first_name}} {{user_.last_name}} on Bidgala" data-description="Check out {{user_.first_name}} {{user_.last_name}} on Bidgala" ><i class="fa fa-twitter mr-1"></i>Tweet</button>
+                            <button class="btn btn-dark flex-grow-1 mr-1" id="facebook-share" data-title="Check out {{user_.first_name}} {{user_.last_name}} on Bidgala" data-description="Check out {{user_.first_name}} {{user_.last_name}} on Bidgala" data-url="https://bidgala.com/p/{{user_.username}}" data-social="facebook"><i class="fa fa-facebook mr-1"></i>Share</button>
+                            <a href="mailto:?subject=Check%20out%20{{user_.first_name}}%20{{user_.last_name}}%20on%20Bidgala&body=http://bidgala.com/p/{{user_.username}}" class="btn btn-dark flex-grow-1"><i class="fa fa-envelope mr-1"></i>Mail</a>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="editHeaderImage" tabindex="-1" role="dialog" aria-labelledby="headerModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="headerModalLabel">Edit Header</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body text-center">
+                        <p>Upload your favourite piece of art, your best work or something that represents you.</p>
+                        <form novalidate class="needs-validation"  id="header-img-form" enctype="multipart/form-data" method="post" action="{% url 'edit_header_image'%}">
+                        	{% csrf_token %}
+                            <div class="custom-file">
+                                <input required name="user_header_img" type="file" class="file-upload custom-file-input" id="customFile" accept="image/*"/ form="header-img-form">
+                                <label class="custom-file-label" for="customFile">Choose header image</label>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" form="header-img-form">Save</button>
+                    </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+            <div class="modal fade" id="deleteArtistStatement" tabindex="-1" role="document" aria-labelledby="deleteArtistStatement" aria-hidden="true">
+                <div class="modal-dialog modal-sm modal-dialog-centered">
+                    <div class="modal-content">
+                    <div class="modal-body">
+                        Are you sure you want to delete your <strong>Artist Statement</strong>?
+                    </div>
+                    <div class="modal-footer d-flex justify-content-between">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <form method="post" action="{% url 'delete_artist_statement'%}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            {% if featuredWorks %}
+            {% for featuredWork in featuredWorks %}
+            <!-- Modal for deleting featured work -->
+            <div class="modal fade" id="deleteFeaturedWork{{featuredWork.id}}" tabindex="-1" role="document" aria-labelledby="deleteFeaturedWork{{featuredWork.id}}" aria-hidden="true">
+                <div class="modal-dialog modal-sm modal-dialog-centered">
+                    <div class="modal-content">
+                    <div class="modal-body">
+                        Are you sure you want to delete <strong>{{featuredWork.title}}</strong>?
+                    </div>
+                    <div class="modal-footer d-flex justify-content-between">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <form method="post" action="{% url 'delete_featured_work' featuredWork.id%}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Modal for viewing individual featured work -->
+            <div class="modal fade" id="featuredwork{{featuredWork.id}}" tabindex="-1" role="dialog" aria-labelledby="artDetail" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="artDetailTitle">{{featuredWork.title}}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div>
+                            <img src="{{BASE_S3_URL}}{{featuredWork.art_image}}{{img_optimize_param_large}}" class="modal-art-image">
+                        </div>
+                        <div class="mt-20">
+                            <p>{{featuredWork.description}}</p>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            {% endif %}
+
+
+
+
+
+            <div class="modal fade" id="deleteEducation" tabindex="-1" role="document" aria-labelledby="deleteEducation" aria-hidden="true">
+                <div class="modal-dialog modal-sm modal-dialog-centered">
+                    {% if education %}
+                    <div class="modal-content">
+                    <div class="modal-body">
+                        Are you sure you want to delete your Education at <strong>{{education.school}}</strong>?
+                    </div>
+                    <div class="modal-footer d-flex justify-content-between">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <form method="post" action="{% url 'delete_education' education.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+
+
+            <div class="modal fade" id="editEducation" tabindex="-1" role="dialog" aria-labelledby="editEducationModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    {% if education %}
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editEducationModalLabel">Edit Education</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form novalidate class="needs-validation"  id="edit-education-form" method="post" action="{% url 'edit_education' education.id %}">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="school">School</label>
+                                <input maxlength="150" required type="text" class="form-control" id="school" name="school" aria-describedby="school" value="{{education.school}}">
+                            </div>
+                            <div class="form-group">
+                                <label for="degree">Degree</label>
+                                <input maxlength="150" required type="text" class="form-control" id="degree" name="degree" aria-describedby="degree" value="{{education.degree}}" placeholder="ex. BA, Certificate, Diploma">
+                            </div>
+                            <div class="form-group">
+                                <label for="field-of-study">Field of Study</label>
+                                <input maxlength="150" required type="text" class="form-control" id="field-of-study" name="field-of-study" aria-describedby="field-of-study" value="{{education.field_of_study}}">
+                            </div>
+                            <div class="form-group">
+                                <div class="form-row">
+                                    <div class="col">
+                                        <label for="start-year">Start Year</label>
+                                        <select type="text" class="form-control" id="start-year" name="start-year" aria-describedby="start-year">
+                                            {% for year in years %}
+                                            {% if year == education.start_year %}
+                                            <option key="{{year}}" selected>{{year}}</option>
+                                            {% else %}
+                                            <option key="{{year}}">{{year}}</option>
+                                            {% endif %}
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    <div class="col">
+                                        <label for="end-year">End Year (or expected)</label>
+                                        <select rows="4" type="text" class="form-control" id="end-year" name="end-year" aria-describedby="end-year">
+                                            {% for year in years %}
+                                            {% if year == education.end_year %}
+                                            <option key="{{year}}" selected>{{year}}</option>
+                                            {% else %}
+                                            <option key="{{year}}">{{year}}</option>
+                                            {% endif %}
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="des">Description</label>
+                                <textarea maxlength="1500" rows="4" type="text" class="form-control" id="edit-des" name="des" aria-describedby="des">{{education.description}}</textarea>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" form="edit-education-form" class="btn btn-primary submit-btn">Save</button>
+                    </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+
+
+
+
+
+            <div class="modal fade" id="deleteAccomplishment" tabindex="-1" role="document" aria-labelledby="deleteAccomplishment" aria-hidden="true">
+                <div class="modal-dialog modal-sm modal-dialog-centered">
+                    {% if accomplishment %}
+                    <div class="modal-content">
+                    <div class="modal-body">
+                        Are you sure you want to delete <strong>{{accomplishment.title}}</strong>?
+                    </div>
+                    <div class="modal-footer d-flex justify-content-between">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+
+                        <form method="post" action="{% url 'delete_accomplishment' accomplishment.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+
+
+            <div class="modal fade" id="editAccomplishment" tabindex="-1" role="dialog" aria-labelledby="editAccomplishmentModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    {% if accomplishment %}
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="ediAccomplishmentModalLabel">Edit {{accomplishment.accomplishment_type}}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form novalidate class="needs-validation"  id="edit-accomplishments-form" method="post" action="{% url 'edit_accomplishment' accomplishment.id %}">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="type">Type</label>
+                                <select required class="form-control" name='type'>
+                                    <option key="{{year}}" selected>{{accomplishment.accomplishment_type}}</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="title">Name/Title</label>
+                                <input maxlength="150" id="acc-title-edit" required type="text" class="form-control" name="title" value="{{accomplishment.title}}">
+                            </div>
+                            <div class="form-group">
+                                <div class="form-row">
+                                    <div class="col">
+                                        <label for="month">Month</label>
+                                        <select required type="text" class="form-control" name="month" aria-describedby="month">
+                                            {% for key, value in months.items %}
+                                            {% if key == accomplishment.month %}
+                                            <option key="{{key}}"  value="{{key}}" selected>{{value}}</option>
+                                            {% else %}
+                                            <option key="{{key}}"  value="{{key}}">{{value}}</option>
+                                            {% endif %}
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    <div class="col">
+                                        <label for="year">Year</label>
+                                        <select required rows="4" type="text" class="form-control" name="year" aria-describedby="year">
+                                            {% for year in years %}
+                                            {% if year == accomplishment.year %}
+                                            <option key="{{year}}" selected>{{year}}</option>
+                                            {% else %}
+                                            <option key="{{year}}">{{year}}</option>
+                                            {% endif %}
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="description">Description</label>
+                                <textarea maxlength="1500" id="acc-des-edit" type="text" class="form-control" name="description">{{accomplishment.description}}</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="link">Link</label>
+                                <input maxlength="500" id="acc-link-edit" type="url" class="form-control link" name="link" placeholder="https://example.com" value="{{accomplishment.link}}">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary submit-btn" form="edit-accomplishments-form">Save</button>
+                    </div>
+                    </div>
+                {% endif %}
+                </div>
+        </div>
+
+
+
+
+
+
+
+            <div class="modal fade" id="deleteExhibition" tabindex="-1" role="document" aria-labelledby="deleteExhibition" aria-hidden="true">
+                <div class="modal-dialog modal-sm modal-dialog-centered">
+                    <div class="modal-content">
+                    <div class="modal-body">
+                        Are you sure you want to delete <strong>{{exhibition.title}}</strong>?
+                    </div>
+                    <div class="modal-footer d-flex justify-content-between">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        {% if exhibition %}
+                        <form method="post" action="{% url 'delete_exhibition' exhibition.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                        {% endif %}
+                    </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="modal fade" id="editExhibition" tabindex="-1" role="dialog" aria-labelledby="editExhibitionModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editExhibitionModalLabel">Edit Exhibition</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        {% if exhibition %}
+                        <form novalidate class="needs-validation"  id="edit-exhibition-form" method="post" action="{% url 'edit_exhibition' exhibition.id %}">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="title">Title/Name</label>
+                                <input maxlength="150" id="ex-title-edit" required class="form-control" type="text" name='title' value="{{exhibition.title}}">
+                            </div>
+                            <div class="form-group">
+                                <label for="location">Location</label>
+                                <input id="ex-location-edit" maxlength="150" class="form-control" type="text" name='location' placeholder="ex. Toronto, Ontario" value="{{exhibition.location}}">
+                            </div>
+                            <div class="form-group">
+                                <div class="form-row">
+                                    <div class="col">
+                                        <label for="month">Month</label>
+                                        <select required type="text" class="form-control" name="month" aria-describedby="month">
+                                            {% for key, value in months.items %}
+                                            {% if key == exhibition.month %}
+                                            <option key="{{key}}"  value="{{key}}" selected>{{value}}</option>
+                                            {% else %}
+                                            <option key="{{key}}"  value="{{key}}">{{value}}</option>
+                                            {% endif %}
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    <div class="col">
+                                        <label for="year">Year</label>
+                                        <select required rows="4" type="text" class="form-control" name="year" aria-describedby="year">
+                                            {% for year in years %}
+                                            {% if year == exhibition.year %}
+                                            <option key="{{year}}" selected>{{year}}</option>
+                                            {% else %}
+                                            <option key="{{year}}">{{year}}</option>
+                                            {% endif %}
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="description">Description</label>
+                                <textarea id="ex-des-edit" maxlength="1500" type="text" class="form-control" name="description">{{exhibition.description}}</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="link">Link</label>
+                                <input maxlength="500" id="ex-link-edit" type="url" class="form-control link" name="link" placeholder="https://example.com" value="{{exhibition.link}}">
+                            </div>
+                        </form>
+                        {% endif %}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" form="edit-exhibition-form" class="btn btn-primary submit-btn">Save</button>
+                    </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+            <section class="col-12 col-xxl-9 col-xl-8">
+            <div class="mt-5">
+            {%include 'partials/_alerts.html'%}
+            </div>
+
+            {% if featuredWorks %}
+            <section>
+                <div class="d-flex justify-content-between mb-2 mt-0 mt-xl-5">
+                    <h4>Featured Work</h4>
+                    {% if request.user == user_ %}
+                        <div>
+                            <button data-toggle="modal" {% if featuredWorksCount == 6 %}data-target="#maxFeaturedWorkAlert"{% else %}data-target="#featuredWorkModal"{% endif %} class="fa fa-plus btn btn-light"></button>
+                        </div>
+                    {% endif %}
+                </div>
+
+                    <div class="grid-two">
+                            <div class="grid-sizer-two"></div>
+                            {%for featuredWork in featuredWorks%}
+                            <div class="grid-item-two">
+                                <img src="{{BASE_S3_URL}}{{featuredWork.art_image}}{{img_optimize_param}}" data-toggle="modal" data-target="#featuredwork{{featuredWork.id}}" class="img-fluid">
+                                {% if request.user == user_ %}
+                                <button id="delete-featured-work" class="btn btn-dark fa fa-trash text-light" data-toggle="modal" data-target="#deleteFeaturedWork{{featuredWork.id}}"></button>
+                                {% endif %}
+                            </div>
+                            {%endfor%}
+                        </div>
+            </section>
+            <hr>
+            {% endif %}
+
+
+                    <div class="mb-4 mt-5">
+                        <h4>Buy {{user_.first_name}}'s Art</h4>
+                </div>
+                <div class="col-12 p-0">
+                    {% if products %}
+                    <div class="grid">
+                            <div class="grid-sizer"></div>
+                            {%for product in products%}
+                            <div class="grid-item">
+                                <a href="{%url 'product_view' id=product.id%}">
+                                    {% if product.curator_pick%}<div class="curator-pick">Curator Pick</div>{%endif%}
+                                    <img src="{{BASE_S3_URL}}{{product.image}}{{img_optimize_param}}" class="w-100">
+                                    <h6 class="mt-2 mb-1 text-truncate font-weight-bold">{{product.art_title}}</h6>
+                                    <small class="text-muted">${{product.price | intcomma}}</small> <br/>
+                                    <small class="text-muted">{{product.width}}W x </small> <small class="text-muted"> {{product.height}}H</small>{%if product.depth > 0%}<small class="text-muted"> x {{product.depth}}D</small>{%endif%}<small class="text-muted"> {{product.dim_measure}}</small>
+                                </a>
+                            </div>
+                            {%endfor%}
+                        </div>
+                        {% else %}
+                        <div class='alert alert-primary text-center' role='alert' style='width:100%'>{{user_.first_name}} has no art for sale</div>
+                        {% endif %}
+
+
+
+
+
+				</div>
+            </section>
+
+
+        </div>
+    </main>
+
+{% endblock %}
+
+
+
+
+
+
+{% block jsfile %}
+
+
+
+<script src="{% static 'js/profile.js' %}"></script>
+<script src="{% static 'js/tagify.js' %}"></script>
+<script src="{% static 'js/jQuery.tagify.min.js' %}"></script>
+<script>
+const mediaQuery = window.matchMedia('(max-width: 1200px)')
+
+function handleSectionCollapse(e) {
+    if (mediaQuery.matches) {
+        $("#sections").attr("class", "collapse");
+    } else {
+        $("#sections").removeAttr("class", "collapse");
+
+    }
+}
+
+mediaQuery.addListener(handleSectionCollapse);
+handleSectionCollapse(mediaQuery);
+
+
+</script>
+<script src="//cdn.jsdelivr.net/npm/goodshare.js@6/goodshare.min.js"></script>
+<script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+
+<script>
+$( document ).ready(function() {
+  $('.grid').imagesLoaded().done(function() {
+    $('.grid').masonry({
+    itemSelector: '.grid-item',
+    columnWidth: '.grid-sizer',
+    horizontalOrder: true,
+    gutter: 15,
+    percentPosition: true,
+  });
+});
+});
+</script>
+
+<script>
+$( document ).ready(function() {
+  $('.grid-two').imagesLoaded().done(function() {
+    $('.grid-two').masonry({
+    itemSelector: '.grid-item-two',
+    columnWidth: '.grid-sizer-two',
+    horizontalOrder: true,
+    gutter: 15,
+    percentPosition: true,
+
+
+  });
+});
+});
+</script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script>
+
+<script>
+var skills_input = document.querySelector("textarea[name=skills]"),
+  tagify = new Tagify(skills_input, {
+    pattern: /^.{0,20}$/, // Validate typed tag(s) by Regex. Here maximum chars length is defined as "20"
+    delimiters: ",", // add new tags when a comma is entered
+    keepInvalidTags: false, // do not remove invalid tags (but keep them marked as invalid)
+    editTags: 1, // single click to edit a tag
+    transformTag: transformTag,
+    backspace: "Edit",
+    placeholder: "Add Skills",
+    duplicates: false,
+    originalInputValueFormat: (valuesArr) =>
+      valuesArr.map((item) => item.value).join(","),
+    dropdown: {
+      enabled: 3,
+    },
+  });
+// generate a random color (in HSL format, which I like to use)
+function getRandomColor() {
+  function rand(min, max) {
+    return min + Math.random() * (max - min);
+  }
+  var h = rand(1, 360) | 0,
+    s = rand(40, 70) | 0,
+    l = rand(65, 72) | 0;
+  return "hsl(" + h + "," + s + "%," + l + "%)";
+}
+function transformTag(tagData) {
+  tagData.style = "--tag-bg:" + getRandomColor();
+  if (tagData.value.toLowerCase() == "shit") tagData.value = "s✲✲t";
+}
+
+
+
+var interests_input = document.querySelector("textarea[name=interests]"),
+  tagify = new Tagify(interests_input, {
+    pattern: /^.{0,20}$/, // Validate typed tag(s) by Regex. Here maximum chars length is defined as "20"
+    delimiters: ",", // add new tags when a comma is entered
+    keepInvalidTags: false, // do not remove invalid tags (but keep them marked as invalid)
+    editTags: 1, // single click to edit a tag
+    transformTag: transformTag,
+    backspace: "Edit",
+    placeholder: "Add Interests",
+    duplicates: false,
+    originalInputValueFormat: (valuesArr) =>
+      valuesArr.map((item) => item.value).join(","),
+    dropdown: {
+      enabled: 3,
+    },
+  });
+// generate a random color (in HSL format, which I like to use)
+function getRandomColor() {
+  function rand(min, max) {
+    return min + Math.random() * (max - min);
+  }
+  var h = rand(1, 360) | 0,
+    s = rand(40, 70) | 0,
+    l = rand(65, 72) | 0;
+  return "hsl(" + h + "," + s + "%," + l + "%)";
+}
+function transformTag(tagData) {
+  tagData.style = "--tag-bg:" + getRandomColor();
+  if (tagData.value.toLowerCase() == "shit") tagData.value = "s✲✲t";
+}
+
+
+new ClipboardJS('.share-profile-btn');
+
+  $("#customFile").on('change', function() {
+      $('.custom-file-label').html("Header image selected")
+});
+
+
+
+  $("#upload-featured-work-image").on('change', function() {
+      $('.custom-file-label').html("Image selected")
+});
+
+
+
+
+$(document).on('click','.edit-education',function(){
+    var id = $(this).data('id');
+
+    $.ajax({
+        url:'',
+        type:'POST',
+        data:{
+            'id':id,
+            'section': 'education',
+            'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val(),
+        },
+        success:function(data){
+            $('#editEducation .modal-dialog').html($('#editEducation .modal-dialog',data));
+            $('#editEducation').modal('show');
+        },
+        error:function(){
+            console.log('error')
+        },
+    });
+});
+
+
+$(document).on('click','.delete-education',function(){
+    var id = $(this).data('id');
+
+    $.ajax({
+        url:'',
+        type:'POST',
+        data:{
+            'id':id,
+            'section': 'education',
+            'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val(),
+        },
+        success:function(data){
+            $('#deleteEducation .modal-dialog').html($('#deleteEducation .modal-dialog',data));
+            $('#deleteEducation').modal('show');
+        },
+        error:function(){
+            console.log('error')
+        },
+    });
+});
+
+
+$(document).on('click','.delete-accomplishment',function(){
+    var id = $(this).data('id');
+
+    $.ajax({
+        url:'',
+        type:'POST',
+        data:{
+            'id':id,
+            'section': 'accomplishment',
+            'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val(),
+        },
+        success:function(data){
+            $('#deleteAccomplishment .modal-dialog').html($('#deleteAccomplishment .modal-dialog',data));
+            $('#deleteAccomplishment').modal('show');
+        },
+        error:function(){
+            console.log('error')
+        },
+    });
+});
+
+$(document).on('click','.edit-accomplishment',function(){
+    var id = $(this).data('id');
+
+    $.ajax({
+        url:'',
+        type:'POST',
+        data:{
+            'id':id,
+            'section': 'accomplishment',
+            'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val(),
+        },
+        success:function(data){
+            $('#editAccomplishment .modal-dialog').html($('#editAccomplishment .modal-dialog',data));
+            $('#editAccomplishment').modal('show');
+        },
+        error:function(){
+            console.log('error')
+        },
+    });
+});
+
+
+$(document).on('click','.delete-exhibition',function(){
+    var id = $(this).data('id');
+
+    $.ajax({
+        url:'',
+        type:'POST',
+        data:{
+            'id':id,
+            'section': 'exhibition',
+            'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val(),
+        },
+        success:function(data){
+            $('#deleteExhibition .modal-dialog').html($('#deleteExhibition .modal-dialog',data));
+            $('#deleteExhibition').modal('show');
+        },
+        error:function(){
+            console.log('error')
+        },
+    });
+});
+
+$(document).on('click','.edit-exhibition',function(){
+    var id = $(this).data('id');
+
+    $.ajax({
+        url:'',
+        type:'POST',
+        data:{
+            'id':id,
+            'section': 'exhibition',
+            'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val(),
+        },
+        success:function(data){
+            $('#editExhibition .modal-dialog').html($('#editExhibition .modal-dialog',data));
+            $('#editExhibition').modal('show');
+        },
+        error:function(){
+            console.log('error')
+        },
+    });
+});
+
+
+$(document).on('click','#follow-button',function(){
+    var user_id = $(this).data('id');
+    console.log(user_id)
+
+    $.ajax({
+        url:'/follow-user',
+        type:'POST',
+        data:{
+            'user_id': user_id,
+            'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val(),
+        },
+        success:function(response){
+            if (response.status == "success") {
+                $("#follow-button").html("Unfollow")
+                $("#follow-button").attr("id", "unfollow-button")
+                $('#followers').html(parseInt($('#followers').html(), 10)+1)
+            }
+        },
+        error:function(){
+            console.log('error')
+        },
+    });
+});
+
+
+$(document).on('click','#unfollow-button',function(){
+    var user_id = $(this).data('id');
+    console.log(user_id)
+
+    $.ajax({
+        url:'/unfollow-user',
+        type:'POST',
+        data:{
+            'user_id': user_id,
+            'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val(),
+        },
+        success:function(response){
+            if (response.status == "success") {
+                $("#unfollow-button").html("Follow")
+                $("#unfollow-button").attr("id", "follow-button")
+                $('#followers').html(parseInt($('#followers').html(), 10)-1)
+            }
+        },
+        error:function(){
+            console.log('error')
+        },
+    });
+});
+
+
+
+</script>
+
+{% endblock %}

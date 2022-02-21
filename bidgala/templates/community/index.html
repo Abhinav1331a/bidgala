@@ -1,0 +1,154 @@
+{% extends "base.html" %}
+{% load static %}
+{% load humanize %}
+{% block title %} | Community {% endblock %}  
+{% block more_meta_tags %}
+<meta property="og:type" content="website" />
+<meta property="og:description" content="" />
+<meta property="og:image" content="https://bidgala.com/{% static 'img/email/logo_white_bg.png' %}" />
+<meta property="og:url" content="https://bidgala.com" />
+{% endblock %}
+{% block cssfile %}
+<link rel="stylesheet" href="{% static 'css/community-index.css' %}" rel="stylesheet"/>
+{% endblock %}
+
+{% block content %}
+<main class="container-fluid community-container mt-md-3">
+    <div class="row community-row justify-content-center">
+        <div id="sidepanel" class="col-12 col-sm-12 col-md-3 col-lg-2">
+            <div class="channels-community">
+                <div class="channel">
+                    <a class="wrap d-flex align-items-center" href="{% url 'all_post' %}">
+                        <div class="wrap-img">
+                            <img src="\static\img\about\about_1.jpg" alt=""/>
+                        </div>
+                        <div class="meta">   
+                            <span>ALL CHANNELS</span>
+                        </div>
+                    </a>
+                </div>
+                {%for channel in channels%}
+                <div class="channel">
+                    <a class="wrap d-flex align-items-center" href="{% url 'specific' channel.name%}">
+                        <div class="wrap-img">
+                            <img src="{{BASE_IMG_URL}}{{channel.img}}" alt=""/>
+                        </div>
+                        <div class="meta">
+                            <span>{{channel.name | upper}}</span>
+                        </div>
+                    </a>
+                </div>
+                {%endfor%}
+            </div>
+        </div>
+
+
+        <div class="col-12 col-sm-12 col-md-9 mb-70 col-lg-8">
+            <div class="channel-content channel-name d-flex align-items-center justify-content-between mb-3 px-0">
+                <div class="share-title">
+                <h2 class="m-0">{% if channel_name %}{{channel_name}}{% else %}ALL CHANNELS{% endif %}</h2>
+                <a class="btn dropdown-toggle dropdown-channel" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{% if channel_name %}{{channel_name | upper}}{% else %}ALL CHANNELS{% endif %}</a>
+                <div class="dropdown-menu text-center" aria-labelledby="dropdownMenu2" id="channel-dropdown">
+                  <a class="dropdown-item" href="{% url 'all_post' %}" id="{{obj.id}}"><span>ALL CHANNELS</span></a>
+                  {%for channel in channels%}
+                  <a class="dropdown-item" href="{% url 'specific' channel.name%}" id="{{obj.id}}"><span>{{channel.name | upper}}</span></a>
+                {%endfor%}
+
+                  </div>
+                </div>
+                <div>
+
+                </div>
+                <a href="{%url 'create_page'%}" class="ml-2 p-2 btn btn-dark btn-sm create-page-button">Create Post</a>
+            </div>
+            <p>{% if channel_name %}{{channel_desc}}{% else %}{% endif %}</p>
+            {%include 'partials/_alerts.html'%}
+
+            {% if not all_required_posts%}
+            <div class="alert alert-primary" role="alert">No posts to display</div>
+            {%else%}
+            <div class="threads">
+                {%for obj in all_required_posts%}
+                <div class="thread p-3 mb-3">
+                    <div class="thread-content">
+                        {% if obj.obj.img%}
+                        <div class="left-content p-0 mb-2 mr-3 col-sm-12 col-md-3">
+                            <img src="{{BASE_IMG_URL}}{{obj.obj.img}}" alt="image" draggable="false">
+                        </div>
+                        {%endif%}
+                        <div class="intro-part col-sm-12 p-0">
+                            <div class="thread-info">
+                                <span class="ml-0">Posted in <a href="{% url 'specific' obj.obj.channel_id.name%}" target="blank" class="thread-info-channel text-dark">{{obj.obj.channel_id.name}}</a> by <a href="{% url 'public_profile' obj.obj.user.user.username %}" target="blank" class="text-dark">{{obj.obj.user.user.username}} </a>{%comment%}<a class="thread-info-sub">{{obj.obj.created_date | timesince}}</a> ago{%endcomment%}</span>
+                            </div>
+                            <a href="{% url 'post_details' obj.obj.id %}" target="blank" class="thread-title">{{obj.obj.title}}</a>
+                            <p class="thread-content">{{obj.obj.question |safe}}</p>
+                        </div>
+                    </div>
+                    <div class="thread-function">
+                        <a href="{% url 'post_details' obj.obj.id %}#comment" target="blank">
+                            <i class="fa fa-comment" aria-hidden="true"></i>
+                            <span>{{obj.obj.comment_count}} comments</span>
+                        </a>
+                        {% if user.is_authenticated %}
+                        {% if not obj.liked %}
+                        <div class="like-button">
+                            <button class="like-button like-btn{{obj.obj.id}} like-bt-click" data-status="unlike" data-id={{obj.obj.id}}><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></button>
+                            <div class="down" id="count-{{obj.obj.id}}"><span class="like-count{{obj.obj.id}}">{{obj.obj.like_count}}</span> likes</div>
+                        </div>
+                        {%else%}
+                        <div class="like-button">
+                            <button class="like-button like-btn{{obj.obj.id}} like-bt-click" data-status="like"  data-id={{obj.obj.id}}><i class="fa fa-thumbs-up" aria-hidden="true"></i></button>
+                            <div class="active" id="count-{{obj.obj.id}}"><span class="like-count{{obj.obj.id}}">{{obj.obj.like_count}}</span> likes</div>
+                        </div>
+                        {%endif%}
+                        {%else%}
+                        <div class="login-like-button">
+                            <button class="login-like-button"  data-toggle="modal" data-target="#loginModal"><i class="far fa-thumbs-up text-dark"></i></button>
+                            <div class="down"><span >{{obj.obj.like_count}}</span> likes</div>
+                        </div>
+                        {%endif%}
+                        <div class="dropdown ml-4">
+                            <button onclick="showDropDown(this);" class="dropbtn w-100"><i class="fa fa-share-square-o" aria-hidden="true"></i> Share</button>
+                            <div id="myDropdown1" class="dropdown-content">
+                                <a href="#" data-social="twitter" data-title="Check out this post on Bidgala | {{obj.obj.title}}" data-url="http://bidgala.com/community/post/{{obj.obj.id}}"><i class="fa fa-twitter mr-1"></i>Tweet</a>
+                                <a href="#" data-social="facebook" data-title="Check out this post on Bidgala | {{obj.obj.title}}" data-description="Check out this post on Bidgala | {{obj.obj.title}}" data-url="http://bidgala.com/community/post/{{obj.obj.id}}"><i class="fa fa-facebook"></i>Share</a>
+                                <a href="mailto:?subject=Check%20out%20this%20post%20on%20Bidgala%20|%20{{obj.obj.title}}&body=http://bidgala.com/community/post/{{obj.obj.id}}"><i  class="fa fa-envelope"></i>Email</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {%endfor%}
+            </div>
+            {%endif%}
+
+            <div class="w-100 d-flex justify-content-center mt-50">
+                <ul class="pagination pagination-sm center-block mt-2">
+                    {%for i in paginator.page_range%}
+                    {%if paginator.number == i%}
+                    <li class="page-item active">
+                        <a href="" class="page-link">{{i}}</a>
+                    </li>
+                    {%else%}
+                    <li class="page-item">
+                        <a href="?page={{i}}" class="page-link">{{i}}</a>
+                    </li>
+                    {%endif%}
+                    {%endfor%}
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</main>
+{% endblock %}
+
+{% block jsfile %}
+<script src="//cdn.jsdelivr.net/npm/goodshare.js@6/goodshare.min.js"></script>
+
+<script src="https://kit.fontawesome.com/d9d86e4af4.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="{% static 'js/community-index.js' %}"></script>
+<script>
+
+</script>
+
+{% endblock %}

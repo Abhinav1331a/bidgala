@@ -1,0 +1,415 @@
+.art-details {
+    margin: 30px;
+    max-width: 1200px;
+}
+
+.art-card {
+    width: 200px;
+}
+
+.curator-pick.product-details {
+        position: static;
+        width: 90px;
+        margin: 10px 0px;
+        text-align: center;
+}
+
+.sold-btn {
+    background-color: black;
+    color: white;
+    width: 100%;
+    min-width: 300px;
+    padding: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.shipping {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+}
+
+.custom-select {
+    margin-left: 10px;
+    width: 150px;
+}
+
+.link {
+    color: black;
+}
+
+.link:hover {
+    color: #252525;
+}
+
+/* .user {
+    display: flex;
+    margin-top: 20px;
+    border-top: solid 1px rgb(202, 202, 202);
+    border-bottom: solid 1px rgb(202, 202, 202);
+    padding: 20px;
+    flex-wrap: wrap;
+}
+.user-avatar {
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    object-fit: cover;
+}
+.user-info {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+} */
+
+.btn-group-vertical {
+    width: 100%;
+    margin: 20px 0px;
+}
+
+.art-info-button {
+    background-color: black;
+    margin: 5px;
+    border: solid 1px black;
+    padding: 10px;
+    width: 100%;
+    transition: 0.5s ease-in-out;
+}
+
+.art-info-button:hover {
+    cursor: pointer;
+    background-color: white;
+    color: black;
+}
+
+.outlined {
+    background-color: white;
+    border: solid 1px black;
+    color: black;
+}
+
+.outlined:hover {
+    background-color: black;
+    color: white;
+}
+
+.art-description {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: solid 1px rgb(202, 202, 202);
+}
+
+/* Product slider */
+
+
+.art-slider {
+    position: relative;
+}
+
+
+
+.single-image {
+    height: 600px;
+    width: 100%;
+    cursor: pointer;
+    object-fit: contain;
+}
+
+
+#main-image-container {
+    height: auto;
+    width: 100%;
+
+}
+
+/* Slider Nav */
+
+.slider-nav{
+    height: 85px;
+    margin-top: 10px;
+}
+
+
+
+.nav-image {
+    height: 85px;
+    width: 85px;
+    object-fit: cover;
+    margin-right: 20px;
+}
+
+
+.arrow {
+    background-color: rgba(255,255,255, 0.9);
+    padding: 15px;
+    position: absolute;
+    top: 37%;
+    font-size: 25px;
+    z-index: 2;
+}
+
+.previous-arrow{
+    left: 0;
+    padding: 15px;
+    border-radius: 0px 50px 50px 0px;
+}
+
+.next-arrow {
+    right: 0;
+    padding: 15px;
+    border-radius: 50px 0px 0px 50px;
+}
+
+.pointer:hover {
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 575px) {
+    .art-slider {
+        margin-bottom: 20px;
+    }
+    .single-image {
+        height: 500px;
+    }
+}
+
+@media only screen and (max-width: 575px) {
+    .single-image {
+        height: 350px;
+    }
+}
+
+/* @media only screen and (max-width: 1062px) {
+    .art-images-slider {
+        margin: 0px 0px 20px 0px;
+    }
+    .art-info-section {
+        margin: 0px;
+        width: 100%;
+    }
+}
+@media only screen and (max-width: 650px) {
+    .slider-for {
+        max-width: 400px;
+    }
+
+    .single-image {
+        height: 400px;
+    }
+}
+@media only screen and (max-width: 400px) {
+    .slider-for {
+        max-width: 350px;
+    }
+
+    .single-image {
+        height: 350px;
+    }
+    .custom-select {
+        width: 100%;
+    }
+}
+@media only screen and (max-width: 300px) {
+    .slider-for {
+        max-width: 250px;
+    }
+
+    .single-image {
+        height: 250px;
+    }
+    .user-info {
+        margin: 10px 0px;
+    }
+} */
+
+
+/* Modal */
+
+
+.product_view .modal-dialog{
+    max-width: 1000px;
+    width: 100%;
+    padding-left: 10px;
+}
+
+@media only screen and (max-width: 575px) {
+    .product_view .modal-dialog{
+        padding-right: 10px;
+    }
+}
+
+
+
+.pre-cost{
+    text-decoration: line-through;
+    color: #a5a5a5;
+}
+.space-ten{
+    padding: 10px 0;
+}
+
+.pr-label {
+    font-size: 12px;
+}
+
+.fine-print {
+    font-size: 10px;
+}
+
+.shipping-info label {
+    font-size: 12px;
+}
+
+#inputCountry {
+    width: 65%;
+    margin: 5px;
+}
+
+
+.shipping-input{
+    font-size: 12px;
+}
+
+/* .product-review-img{
+    width: 120px;
+    height: 120px;
+    max-width: 100%;
+    max-height: 100%;
+} */
+
+.input-65{
+    width: 60%;
+}
+
+
+
+.product-name {
+    border-bottom: solid 1px lightgrey;
+}
+
+
+#orderTotal{
+    font-weight: bold;
+}
+
+
+#order-total {
+    border-top: solid 1px lightgrey;
+
+}
+
+.title-shipping{
+    padding: 0 0 0 11px;
+}
+
+
+@media only screen and (max-width: 770px) {
+
+
+    .col-100-mobile {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .col-35 {
+        width: 20%;
+    }
+    .product-info {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+
+
+
+.order-summary-sec {
+    background-color: #f7f7f7;
+    border-radius: 0 0.3rem 0.3rem 0;
+}
+
+.step {
+    border: solid 1px black;
+    padding: 10px;
+    height: 50px;
+    width: 50px;
+    border-radius: 100%;
+}
+
+.modal-content {
+    border: none;
+}
+
+@media only screen and (max-width: 767px) {
+    #p-image {
+        max-height: 250px;
+        width: auto;
+    }
+
+    .order-summary-sec {
+        border-radius: 0.3rem 0.3rem 0 0;
+    }
+
+}
+
+.steps {
+    padding: 5px;
+    border: solid 1px rgb(161, 161, 161);
+    height: 35px;
+    width: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+    border-radius: 100%;
+    color: rgb(161, 161, 161);
+}
+
+
+/*.slider-for {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1s ease;
+    -webkit-transition: opacity 1s ease;
+}
+
+.slider-for.slick-initialized {
+    visibility: visible;
+    opacity: 1;
+}
+*/
+
+
+@keyframes spinner-border {
+    to { transform: rotate(360deg); }
+  }
+  .spinner-border{
+      display: inline-block;
+      width: 1rem;
+      height: 1rem;
+      vertical-align: text-bottom;
+      border: .25em solid currentColor;
+      border-right-color: transparent;
+      border-radius: 50%;
+      -webkit-animation: spinner-border .75s linear infinite;
+      animation: spinner-border .75s linear infinite;
+      margin-right: 5px;
+  }
+  .spinner-border-sm{
+      height: 1rem;
+      border-width: .2em;
+  }
+
+
+#more-from-artist {
+    max-width: 1200px;
+    position: relative;
+}
+
+.checkmark{
+  width: 16px;
+  height: 16px;
+}

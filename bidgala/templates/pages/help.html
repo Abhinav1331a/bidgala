@@ -1,0 +1,184 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} | Help {% endblock %}
+
+{% block cssfile %}
+<link rel="stylesheet" href="{% static 'css/help.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="help-index">
+    <div class="d-flex flex-column justify-content-center align-items-center text-white search">
+        <h2 id="search-heading">Do you have any questions?</h2>
+        <div class="d-flex">
+            <input type="text" placeholder="Enter search term here" class="form-control form-control-lg" aria-labelledby="search-heading">
+            <button class="btn btn-dark">Search</button>
+        </div>
+    </div>
+    <div class="d-flex flex-wrap justify-content-center index">
+        <div class="title">
+            <a href="{% url 'faq' %}?id=purchasing-art" class="heading">
+                <h3>Purchasing Art For Sale</h3>
+            </a>
+            <ul>
+                <li><a href="{% url 'faq'%}?id=what-is-the-process-for-buying-art-on-bidgala">What is the process for buying art on Bidgala?</a></li>
+
+                <li><a href="{% url 'faq'%}?id=why-is-your-website-in-usd-if-you-are-canadian-based">Why is your website in USD if you are Canadian-based?</a></li>
+
+                <li><a href="{% url 'faq'%}?id=where-can-i-find-information-on-my-present-and-past-orders">Where can I find information on my present and past orders?</a></li>
+
+                <li><a href="{% url 'faq'%}?id=why-is-bidgala-the-best-website-to-buy-art-from">Why is Bidgala the best website to buy art from?</a></li>
+
+                <li><a href="{% url 'faq'%}?id=why-are-your-prices-lower-than-other-art-websites">Why are your prices lower than other art websites?</a></li>
+
+                <li><a href="{% url 'faq'%}?id=how-am-i-supporting-artists-by-purchasing-on-bidgala">How am I supporting artists by purchasing on Bidgala?</a></li>
+
+                <li><a href="{% url 'faq'%}?id=how-does-bidgala-community-help-me-as-a-buyer">How does Bidgala’s community help me as a buyer?</a></li>
+
+                <li><a href="{% url 'faq'%}?id=what-is-the-100-money-back-guarantee-on-art-for-sale">What is the 100% money-back guarantee on art for sale?</a></li>
+
+                <li><a href="{% url 'faq'%}?id=what-happens-if-i-buy-art-and-it-is-damaged-or-different-from-advertised">What happens if I buy art and it is damaged or different from advertised?</a></li>
+
+                <li><a href="{% url 'faq'%}?id=what-happens-if-i-purchase-art-and-it-is-lost">What happens if I purchase art and it is lost?</a></li>
+
+                <li><a href="{% url 'faq'%}?id=how-is-artwork-shipped">How is artwork shipped?</a></li>
+
+                <li><a href="{% url 'faq'%}?id=how-long-will-it-take-to-receive-my-order">How long will it take to receive my order?</a></li>
+
+                <li><a href="{% url 'faq'%}?id=when-will-i-be-charged-for-the-artwork-i-purchase-or-bid-on">When will I be charged for the artwork I purchase or bid on?</a></li>
+
+                <li><a href="{% url 'faq'%}?id=are-artworks-already-framed">Are artworks already framed?</a></li>
+
+                <li><a href="{% url 'faq'%}?id=what-countries-can-artworks-be-shipped-to">What countries can artworks be shipped to?</a></li>
+
+                <li><a href="{% url 'faq'%}?id=what-if-the-artist-doesnt-ship-to-my-region">What if the artist doesn’t ship to my region?</a></li>
+
+                <li><a href="{% url 'faq'%}?id=what-about-taxes-and-duties">What about taxes and duties?</a></li>
+            </ul>
+        </div>
+        <div class="title">
+            <a href="{% url 'faq' %}?id=selling-bidgala" class="heading">
+                <h3>Selling On Bidgala</h3>
+            </a>
+            <ul>
+                <li><a href="{% url 'faq'%}?id=why-is-bidgala-the-best-website-to-sell-my-art-on">Why is Bidgala the best website to sell my art on?</a></li>
+
+                <li><a href="{% url 'faq'%}?id=who-can-sell-on-bidgala">Who can sell on Bidgala?</a></li>
+
+                <li><a href="{% url 'faq'%}?id=how-do-i-go-about-selling-my-art-on-bidgala">How do i go about selling my art on Bidgala?</a></li>
+
+                <li><a href="{% url 'faq'%}?id=how-and-when-do-i-get-paid-when-i-sell-my-art">How & when do I get paid when I sell my art?</a></li>
+
+                <li><a href="{% url 'faq'%}?id=what-is-stripe-and-how-does-it-work">What is Stripe & how does it work?</a></li>
+
+                <li><a href="{% url 'faq'%}?id=why-do-you-use-stripe">Why do you use Stripe?</a></li>
+
+                <li><a href="{% url 'faq'%}?id=what-types-of-visual-arts-can-i-sell-on-bidgala">What types of visual arts can I sell on Bidgala?</a></li>
+
+                <li><a href="{% url 'faq'%}?id=can-i-sell-my-digital-art">Can I sell my digital art?</a></li>
+
+
+                <li><a href="{% url 'faq'%}?id=how-do-you-market-my-artwork-and-find-a-client-base">How do you market my artwork and find a client base?</a></li>
+
+
+                <li><a href="{% url 'faq'%}?id=the-amount-of-profit-i-made-was-correct-but-the-total-transaction-amount-was-lower-than-i-expected">The amount of profit I made was correct but the total transaction amount was lower than I expected.</a></li>
+
+
+                <li><a href="{% url 'faq'%}?id=where-is-my-profile-and-how-do-i-use-it-for-my-career">Where is my profile and how do I use it for my career?</a></li>
+
+                <li><a href="{% url 'faq'%}?id=how-can-i-get-more-exposure-with-your-platform">How can I get more exposure with your platform?</a></li>
+
+                <li><a href="{% url 'faq'%}?id=what-are-your-fees-or-commissions">What are your fees or commissions?</a></li>
+
+                <li><a href="{% url 'faq'%}?id=why-do-you-take-commission-on-shipping">Why do you take commission on shipping?</a></li>
+
+                <li><a href="{% url 'faq'%}?id=what-must-i-do-to-fulfill-my-orders">What must I do to fulfill my orders?</a></li>
+
+                <li><a href="{% url 'faq'%}?id=can-i-sell-my-art-on-your-website-if-i-also-want-to-sell-it-elsewhere">Can I sell my art on your website if I also want to sell it elsewhere?</a></li>
+
+                <li><a href="{% url 'faq'%}?id=what-does-it-mean-when-someone-sends-me-an-offer-on-my-art">What does it mean when someone sends me an “offer” on my art?</a></li>
+
+                <li><a href="{% url 'faq'%}?id=how-will-i-know-when-i-sell-my-artwork">How will I know when I sell my artwork?</a></li>
+
+
+                <li><a href="{% url 'faq'%}?id=how-does-artwork-get-from-artist-to-collector">How does artwork get from artist to collector?</a></li>
+
+                <li><a href="{% url 'faq'%}?id=if-a-customer-requests-a-refund,-what-will-happen">If a customer requests a refund, what will happen?</a></li>
+
+                <li><a href="{% url 'faq'%}?id=a-buyer-is-returning-artwork-how-do-i-give-a-buyer-a-refund">A buyer is returning artwork, how do I give a buyer a refund?</a></li>
+
+                <li><a href="{% url 'faq'%}?id=if-the-customer-files-a-dispute-with-their-bank-what-will-happen">If the customer files a dispute with their bank, what will happen?</a></li>
+
+                <li><a href="{% url 'faq'%}?id=my-country-is-not-supported-on-stripe">My country is not supported on Stripe.</a></li>
+            </ul>
+        </div>
+        <div class="title">
+            <a href="{% url 'faq' %}?id=design-professionals" class="heading">
+                <h3>Design Professionals</h3>
+            </a>
+            <ul>
+                <li><a href="{% url 'faq'%}?id=who-qualifies-as-a-design-professional">Who qualifies as a design professional?</a></li>
+
+                <li><a href="{% url 'faq'%}?id=what-added-features-do-i-get-if-i-am-a-design-professional">What added features do I get if I am a design professional?</a></li>
+
+                <li><a href="{% url 'faq'%}?id=how-do-i-get-discounts-as-a-design-professional">How do I get discounts as a design professional?</a></li>
+
+                <li><a href="{% url 'faq'%}?id=how-can-i-apply-to-be-a-design-professional">How can I apply to be a design professional?</a></li>
+
+                <li><a href="{% url 'faq'%}?id=how-can-i-contact-you-for-vip-support-as-a-design-professional">How can I contact you for VIP support as a design professional?</a></li>
+            </ul>
+        </div>
+        <div class="title">
+            <a href="{% url 'faq' %}?id=referral-program" class="heading">
+                <h3>Referral Program</h3>
+            </a>
+            <ul>
+                <li><a href="{% url 'faq'%}?id=how-does-the-referral-program-work">How does the referral program work?</a></li>
+
+                <li><a href="{% url 'faq'%}?id=how-do-i-refer-my-friends">How do I refer my friends?</a></li>
+
+                <li><a href="{% url 'faq'%}?id=where-can-i-find-the-referral-program">Where can I find the Referral Program?</a></li>
+
+                <li><a href="{% url 'faq'%}?id=how-much-money-do-you-donate-for-credits">How much money do you donate for credits?</a></li>
+
+                <li><a href="{% url 'faq'%}?id=which-charity-do-you-donate-to">Which charity do you donate to?</a></li>
+            </ul>
+        </div>
+        <div class="title">
+            <a href="{% url 'faq' %}?id=visual-arts-community" class="heading">
+                <h3>Visual Arts Community</h3>
+            </a>
+            <ul>
+                <li><a href="{% url 'faq'%}?id=what-are-follows">What are follows?</a></li>
+
+                <li><a href="{% url 'faq'%}?id=what-are-chats">What are Chats?</a></li>
+
+                <li><a href="{% url 'faq'%}?id=how-can-i-chat-with-other-users">How can I chat with other users?</a></li>
+
+                <li><a href="{% url 'faq'%}?id=how-can-i-find-an-artists-profile">How can I find an artist’s profile?</a></li>
+            </ul>
+        </div>
+        <div class="title">
+            <a href="{% url 'faq' %}?id=general-faq" class="heading">
+                <h3>General</h3>
+            </a>
+            <ul>
+                <li><a href="{% url 'faq'%}?id=who-founded-bidgala">Who founded Bidgala?</a></li>
+                <li><a href="{% url 'faq'%}?id=where-is-bidgala-based">Where is Bidgala Based?</a></li>
+                <li><a href="{% url 'faq'%}?id=how-do-i-contact-bidgala-as-a-buyer-or-seller">How do I Contact Bidgala as a Buyer or Seller?</a></li>
+                <li><a href="{% url 'faq'%}?id=how-do-i-start-or-stop-receiving-artist-community-emails-from-you">How do I start or stop receiving artist community emails from you?</a></li>
+            </ul>
+        </div>
+        <div class="title">
+            <a href="{% url 'faq' %}?id=policies-faq" class="heading">
+                <h3>Policies</h3>
+            </a>
+            <ul>
+                <li><a href="terms-and-conditions">Terms and Conditions of Use:</a></li>
+                <li><a href="privacy">Privacy Policy:</a></li>
+                <li><a href="cookie">Cookie Policy:</a></li>
+            </ul>
+        </div>
+    </div>
+</section>
+{% endblock %}
