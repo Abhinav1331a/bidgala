@@ -1012,3 +1012,17 @@ p.content{
   width: 16px;
   height: 16px;
 }
+
+.label-tag1{
+	position: absolute;
+	float: right;
+    font-size: 10px;
+    right: 42px;
+    /* left: 12px; */
+	/* bottom: 15px; */
+    background-color: black;
+    color: white;
+    padding: 8px;
+    /* border-radius: 20px; */
+    z-index:1;
+}
