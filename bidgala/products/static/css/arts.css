@@ -372,7 +372,7 @@
 
 .label-tag{
 	position: relative;
-	float: right;
+	float: left;
     font-size: 10px;
     top: 31px;
     /* left: 12px; */
