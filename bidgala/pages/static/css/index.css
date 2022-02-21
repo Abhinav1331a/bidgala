@@ -1014,12 +1014,8 @@ p.content{
 }
 
 .label-tag1{
-	position: absolute;
-	float: right;
+	position: fixed;
     font-size: 10px;
-    right: 42px;
-    /* left: 12px; */
-	/* bottom: 15px; */
     background-color: black;
     color: white;
     padding: 8px;

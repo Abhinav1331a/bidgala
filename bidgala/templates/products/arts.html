@@ -322,18 +322,17 @@
                         {% for product in group %}
                         <div class="grid-item">
 
-                            {% if product.art_obj.curator_pick%} 
+                            {% if product.art_obj.curator_pick%}
                             <div class="label-tag">Curator Pick</div>
-                            {% elif product.art_obj.owner.featured_artist%} 
+                            {% elif product.art_obj.owner.featured_artist%}
                             <div class="label-tag">Featured Artist</div>
                             {%endif%}
 
-                            
-
 
                             <a href="{%url 'product_view' id=product.art_obj.id%}">
+                                
                                 <img src="{{BASE_AWS_IMG_URL}}{{product.art_obj.image}}{{img_optimize_param}}"
-                                    loading="lazy">
+                                    loading="lazy" alt="Picture">
 
                                 <h6 class="mt-2 mb-1 text-truncate font-weight-bold"> <a
                                         href="{% url 'public_profile' product.art_obj.owner.user.username %}">{{product.art_obj.owner.user.first_name}}
@@ -346,18 +345,37 @@
 
 
 
-                                    <small class="text-muted">{{product.art_obj.width}}W x </small>
-                                    <small class="text-muted">
-                                        {{product.art_obj.height}}H</small>{%if product.art_obj.depth > 0%}<small
-                                        class="text-muted"> x
-                                        {{product.art_obj.depth}}D</small>{%endif%}<small class="text-muted">
-                                        {{product.art_obj.dim_measure}}</small><br />
+                                    <small class="text-muted"> {{product.art_obj.width}}W x </small>
+                                    <small class="text-muted"> {{product.art_obj.height}}H x </small>
+
+                                    {%if product.art_obj.depth > 0%}
+                                    <small class="text-muted"> {{product.art_obj.depth}}D</small>
+                                    {%endif%}
+
+                                    <small class="text-muted"> {{product.art_obj.dim_measure}} </small> <br />
+
                                     {%if request.user.is_authenticated%}
 
-                                    <a id="fav-{{product.art_obj.id}}" class="fav-product">{% if product.liked%}<i
-                                            class="fas fa-heart"></i> {%else%}<i class="far fa-heart"></i>{%endif%}
-                                    </a> {%else%} <a href="#" data-toggle="modal" data-target="#loginModal"><i
-                                            class="far fa-heart"></i></a>{%endif%}
+                                    <a id="fav-{{product.art_obj.id}}" class="fav-product">
+
+                                        {% if product.liked%}
+
+                                        <i class="fas fa-heart"></i>
+
+                                        {%else%}
+
+                                        <i class="far fa-heart"></i>
+
+                                        {%endif%}
+
+                                    </a>
+
+                                    {%else%}
+
+                                    <a href="#" data-toggle="modal" data-target="#loginModal"><i
+                                            class="far fa-heart"></i></a>
+
+                                    {%endif%}
 
 
                                 </div>
