@@ -771,5 +771,3 @@ $(document).ready(function () {
        window.location = "/p/" + $(this).data('username');
     })
 });
-
-

@@ -7,7 +7,6 @@ from django.conf import settings
 from datetime import datetime
 import uuid
 import base64
-
 # Related third party imports
 import stripe
 from sendgrid import SendGridAPIClient

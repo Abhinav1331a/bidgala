@@ -290,7 +290,7 @@ var Survey = function Survey() {
     };
 
     var handleClickNextSixth = function handleClickNextSixth() {
-        if (budget >= 1000) {
+        if (budget >= 300) {
             setDisplaySeventh('');
             setDisplaySixth('d-none');
         } else setBudgetErrorMessage(true);
@@ -427,7 +427,7 @@ var Survey = function Survey() {
 
     var handleBudget = function handleBudget(event) {
         var amount = event.target.value;
-        if (amount >= 1000) {
+        if (amount >= 300) {
             setBudget(amount);
             setBudgetErrorMessage(false);
         } else setBudgetErrorMessage(true);
@@ -828,14 +828,14 @@ var Survey = function Survey() {
                 React.createElement(
                     'label',
                     { htmlFor: 'budget', className: 'd-block' },
-                    'Enter Budget* (USD$)'
+                    'Enter Budget* (USD)'
                 ),
-                React.createElement('input', { type: 'number', min: '1000', id: 'budget', placeholder: '1000', className: 'pl-3 pr-4 pt-2 pb-2 mb-3' })
+                React.createElement('input', { type: 'number', min: '300', id: 'budget', placeholder: '300', className: 'pl-3 pr-4 pt-2 pb-2 mb-3' })
             ),
             React.createElement(
                 'p',
                 { className: budgetErrorMessage ? "alert alert-warning" : "d-none" },
-                'Please enter an amount of $1000 or greater'
+                'Please enter an amount of $300 or greater'
             ),
             React.createElement(
                 'div',

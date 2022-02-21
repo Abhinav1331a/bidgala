@@ -1,168 +1,313 @@
 {% load static %}
 <!doctype html>
 <html class="no-js" lang="">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title></title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
 
-    </head>
-    <body>
-        <!--[if lte IE 9]>
+</head>
+
+<body>
+  <!--[if lte IE 9]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
         <![endif]-->
 
-        <!-- Add your site or application content here -->
-        <div class="table-responsive text-nowrap">
-      
-          <table class="table table-bordered">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Total</th>
-      <th scope="col">Past 7 days</th>
-      <th scope="col">Past 30 days</th>
-      <th scope="col">Past 90 days</th>
-      <th scope="col">Total Amount</th>
-      <th scope="col">7 days Amount</th>
-      <th scope="col">30 days Amount</th>
-      <th scope="col">90 days Amount</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">All signup</th>
-      <td>{{overall_users}}</td>
-      <td>{{new_users_7}}</td>
-      <td>{{new_users_30}}</td>
-      <td>{{new_users_90}}</td>
-      <td>n/a</td>
-      <td>n/a</td>
-      <td>n/a</td>
-      <td>n/a</td>
-    </tr>
-    
-   <tr>
-      <th scope="row">Buyer signup</th>
-      <td>{{overall_buyer}}</td>
-      <td>{{new_buyer_7}}</td>
-      <td>{{new_buyer_30}}</td>
-      <td>{{new_buyer_90}}</td>
-      <td>n/a</td>
-      <td>n/a</td>
-      <td>n/a</td>
-      <td>n/a</td>
-    </tr>
+  <!-- Add your site or application content here -->
 
-    
+  <section id="tablesdesigned" style="margin: 2%;">
 
-    <tr>
-      <th scope="row">Artist signup</th>
-      <td>{{overall_artists}}</td>
-      <td>{{new_artists_7}}</td>
-      <td>{{new_artists_30}}</td>
-      <td>{{new_artists_90}}</td>
-      <td>n/a</td>
-      <td>n/a</td>
-      <td>n/a</td>
-      <td>n/a</td>
-    </tr>
+    <div class="accordion" id="accordionExample">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingOne">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+            aria-expanded="true" aria-controls="collapseOne">
+            New Users
+          </button>
+        </h2>
+        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+          data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            <div class="table-responsive text-nowrap">
 
-    <tr>
-      <th scope="row">Artist and Buyer signup</th>
-      <td>{{overall_both}}</td>
-      <td>{{new_both_7}}</td>
-      <td>{{new_both_30}}</td>
-      <td>{{new_both_90}}</td>
-      <td>n/a</td>
-      <td>n/a</td>
-      <td>n/a</td>
-      <td>n/a</td>
-    </tr>
+              <table class="table table-bordered table-striped">
+                <thead class="table-dark">
+                  <tr>
+                    <th scope="col">New Users</th>
+                    
+                    <th scope="col">Past 7 days</th>
+                    <th scope="col">Past 30 days</th>
+                    <th scope="col">Past 90 days</th>
+                    
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">New Total Users</th>
+                    
+                    <td>{{new_users_7}}</td>
+                    <td>{{new_users_30}}</td>
+                    <td>{{new_users_90}}</td>
+                    
+                    
+                  </tr>
 
-    <tr>
-      <th scope="row">Professional signup</th>
-      <td>{{overall_pro}}</td>
-      <td>{{new_pro_7}}</td>
-      <td>{{new_pro_30}}</td>
-      <td>{{new_pro_90}}</td>
-      <td>n/a</td>
-      <td>n/a</td>
-      <td>n/a</td>
-      <td>n/a</td>
-    </tr>
+                  <tr>
+                    <th scope="row">New Artists</th>
+                    
+                    <td>{{new_buyer_7}}</td>
+                    <td>{{new_buyer_30}}</td>
+                    <td>{{new_buyer_90}}</td>
+                    
+                  </tr>
 
 
-     <tr>
-      <th scope="row">Messages</th>
-      <td>{{overall_message}}</td>
-      <td>{{new_message_7}}</td>
-      <td>{{new_message_30}}</td>
-      <td>{{new_message_90}}</td>
-      <td>n/a</td>
-      <td>n/a</td>
-      <td>n/a</td>
-      <td>n/a</td>
-    </tr>
 
-     <tr>
-      <th scope="row">Posts</th>
-      <td>{{overall_post}}</td>
-      <td>{{new_post_7}}</td>
-      <td>{{new_post_30}}</td>
-      <td>{{new_post_90}}</td>
-      <td>n/a</td>
-      <td>n/a</td>
-      <td>n/a</td>
-      <td>n/a</td>
-    </tr>
+                  <tr>
+                    <th scope="row">New Buyers</th>
+                    
+                    <td>{{new_artists_7}}</td>
+                    <td>{{new_artists_30}}</td>
+                    <td>{{new_artists_90}}</td>
+                    
+                  </tr>
 
-     <tr>
-      <th scope="row">Order Holds</th>
-      <td>{{overall_hold}}</td>
-      <td>{{new_post_7}}</td>
-      <td>{{new_post_30}}</td>
-      <td>{{new_post_90}}</td>
-      <td>{{overall_hold_total}}</td>
-      <td>{{new_hold_7_total}}</td>
-      <td>{{new_hold_30_total}}</td>
-      <td>{{new_hold_90_total}}</td>
-    </tr>
+                  <tr>
+                    <th scope="row">New Both</th>
+                    
+                    <td>{{new_both_7}}</td>
+                    <td>{{new_both_30}}</td>
+                    <td>{{new_both_90}}</td>
+                    
+                  </tr>
 
-    <tr>
-      <th scope="row">Accepted Orders</th>
-      <td>{{overall_accept}}</td>
-      <td>{{new_accept_7}}</td>
-      <td>{{new_accept_30}}</td>
-      <td>{{new_accept_90}}</td>
-      <td>{{overall_accept_total}}</td>
-      <td>{{new_accept_7_total}}</td>
-      <td>{{new_accept_30_total}}</td>
-      <td>{{new_accept_90_total}}</td>
-    </tr>
+                  <tr>
+                    <th scope="row">New Professionals</th>
+                   
+                    <td>{{new_pro_7}}</td>
+                    <td>{{new_pro_30}}</td>
+                    <td>{{new_pro_90}}</td>
+                    
+                  </tr>
 
-    <tr>
-      <th scope="row">Tracking provided</th>
-      <td>{{overall_tracking}}</td>
-      <td>{{new_tracking_7}}</td>
-      <td>{{new_tracking_30}}</td>
-      <td>{{new_tracking_90}}</td>
-      <td>{{overall_tracking_total}}</td>
-      <td>{{new_tracking_7_total}}</td>
-      <td>{{new_tracking_30_total}}</td>
-      <td>{{new_tracking_90_total}}</td>
-    </tr>
 
-  </tbody>
-</table>
+                 
+                </tbody>
+              </table>
 
+            </div>
+          </div>
+        </div>
       </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingTwo">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo"
+            aria-expanded="false" aria-controls="collapseTwo">
+            Users
+          </button>
+        </h2>
+        <div id="collapseTwo" class="accordion-collapse collapse " aria-labelledby="headingTwo"
+          data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            <div class="table-responsive text-nowrap">
 
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+              <table class="table table-bordered table-striped">
+                <thead class="table-dark">
+                  <tr>
+                    <th scope="col">Users</th>
+                    
+                    
+                    <th scope="col">Number</th>
+                    
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">Total Users</th>
+                    
+                    <td>{{overall_users}}</td>
+                    
+                    
+                    
+                  </tr>
 
-    </body>
+                  <tr>
+                    <th scope="row">Artists</th>
+                    
+                    <td>{{overall_artists}}</td>
+                    
+                    
+                  </tr>
+
+
+
+                  <tr>
+                    <th scope="row">Buyers</th>
+                    
+                    <td>{{overall_buyer}}</td>
+                    
+                    
+                  </tr>
+
+                  <tr>
+                    <th scope="row">Both</th>
+                    
+                    <td>{{overall_both}}</td>
+                    
+                    
+                  </tr>
+
+                  <tr>
+                    <th scope="row">Professionals</th>
+                   
+                    <td>{{overall_pro}}</td>
+                    
+                    
+                  </tr>
+
+
+                 
+                </tbody>
+              </table>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingThree">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+            Sales
+          </button>
+        </h2>
+        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+          data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            <div class="card-body">
+              <table class="table table-bordered table-striped">
+                <thead class="table-dark">
+                  <tr>
+                    <th scope="col">Sales</th>
+                    <th scope="col">Last 7 days</th>
+                    <th scope="col">Last 30 days</th>
+                    <th scope="col">Last 90 days</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">Total Number of Sales</th>
+                    <td>{{new_tracking_7}}</td>
+                    <td>{{new_tracking_30}}</td>
+                    <td>{{new_tracking_90}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Total Sales Amount</th>
+                    <td>$ {{new_tracking_7_total}}  </td>
+                    <td>$ {{new_tracking_30_total}} </td>
+                    <td>$ {{new_tracking_90_total}} </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingFour">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+            Engagement
+          </button>
+        </h2>
+        <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
+          data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            <div class="card-body">
+              <table class="table table-bordered table-striped">
+                <thead class="table-dark">
+                  <tr>
+                    <th scope="col">Engagement</th>
+                    <th scope="col">Last 7 days</th>
+                    <th scope="col">Last 30 days</th>
+                    <th scope="col">Last 90 days</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">Total Chats Sents</th>
+                    <td>{{new_message_7}}</td>
+                    <td>{{new_message_30}}</td>
+                    <td>{{new_message_90}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Buyers Chatting</th>
+                    <td>{{buyer_message_7}}</td>
+                    <td>{{buyer_message_30}}</td>
+                    <td>{{buyer_message_90}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Artists Chatting</th>
+                    <td>{{artist_message_7}}</td>
+                    <td>{{artist_message_30}}</td>
+                    <td>{{artist_message_90}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Total Visits</th>
+                    <td>{{total_visit_7}}</td>
+                    <td>{{total_visit_30}}</td>
+                    <td>{{total_visit_90}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Buyer Visits</th>
+                    <td>{{buyer_visit_7}}</td>
+                    <td>{{buyer_visit_30}}</td>
+                    <td>{{buyer_visit_90}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Artist Visits</th>
+                    <td>{{artist_visit_7}}</td>
+                    <td>{{artist_visit_30}}</td>
+                    <td>{{artist_visit_90}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Both Visits</th>
+                    <td>{{both_visit_7}}</td>
+                    <td>{{both_visit_30}}</td>
+                    <td>{{both_visit_90}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Professional Visits</th>
+                    <td>{{pro_visit_7}}</td>
+                    <td>{{pro_visit_30}}</td>
+                    <td>{{pro_visit_90}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Non-User Visits</th>
+                    <td>{{nonuser_visit_7}}</td>
+                    <td>{{nonuser_visit_30}}</td>
+                    <td>{{nonuser_visit_90}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+
+</body>
+
 </html>

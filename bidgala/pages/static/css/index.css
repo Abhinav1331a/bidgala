@@ -1012,3 +1012,13 @@ p.content{
   width: 16px;
   height: 16px;
 }
+
+.label-tag1{
+	position: fixed;
+    font-size: 10px;
+    background-color: black;
+    color: white;
+    padding: 8px;
+    /* border-radius: 20px; */
+    z-index:1;
+}

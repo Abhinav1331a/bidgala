@@ -367,3 +367,18 @@
     border: 1px solid #e5e5e5;
     flex-shrink: 0;
 }
+
+/* Curator New Tag */
+
+.label-tag{
+	position: relative;
+	float: right;
+    font-size: 10px;
+    top: 31px;
+    /* left: 12px; */
+	/* bottom: 15px; */
+    background-color: black;
+    color: white;
+    padding: 8px;
+    /* border-radius: 20px; */
+}

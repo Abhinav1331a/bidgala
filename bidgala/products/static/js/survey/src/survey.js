@@ -116,7 +116,7 @@ const Survey = () => {
     }
 
     const handleClickNextSixth = () => {
-        if (budget >= 1000) {
+        if (budget >= 300) {
             setDisplaySeventh('');
             setDisplaySixth('d-none');
         } else setBudgetErrorMessage(true);
@@ -263,7 +263,7 @@ const Survey = () => {
 
     const handleBudget = (event) => {
         const amount = event.target.value;
-        if (amount >= 1000) {
+        if (amount >= 300) {
             setBudget(amount);
             setBudgetErrorMessage(false);
         } else setBudgetErrorMessage(true);
@@ -460,10 +460,10 @@ const Survey = () => {
                 <h3 className="h5 mb-4">Your Budget:</h3>
                 <p>I am comfortable spending up to</p>
                 <form onChange={handleBudget}>
-                    <label htmlFor="budget" className="d-block">Enter Budget* (USD$)</label>
-                    <input type="number" min="1000" id="budget" placeholder="1000" className="pl-3 pr-4 pt-2 pb-2 mb-3" />
+                    <label htmlFor="budget" className="d-block">Enter Budget* (USD)</label>
+                    <input type="number" min="300" id="budget" placeholder="300" className="pl-3 pr-4 pt-2 pb-2 mb-3" />
                 </form>
-                <p className={budgetErrorMessage ? "alert alert-warning" : "d-none"}>Please enter an amount of $1000 or greater</p>
+                <p className={budgetErrorMessage ? "alert alert-warning" : "d-none"}>Please enter an amount of $300 or greater</p>
                 <div className="d-flex justify-content-between w-50 m-auto">
                     <button type="button" className="btn btn-dark text-uppercase" onClick={handleClickBackSixth}>back</button>
                     <button type="button" className="btn btn-dark text-uppercase" onClick={handleClickNextSixth}>next</button>
