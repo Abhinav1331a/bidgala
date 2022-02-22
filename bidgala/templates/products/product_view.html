@@ -17,7 +17,6 @@
 
 
 {% endblock %}
-
 {%if product%}
 <!-- Art images -->
 <section class="product-page">
@@ -304,7 +303,6 @@
 {%endif%}
 
 </section>
-
 
 
 
@@ -1076,4 +1074,13 @@ $.ajax({
   localStorage.setItem("current_product", window.location.href.trim())
 </script>
 {%endif%}
+<script type="text/javascript">
+    $(document).ready(function(){
+        const urlParams = new URLSearchParams(window.location.search);
+        const showModal = urlParams.get('showModal');
+        if((showModal == 1) && (document.getElementById('purchase-btn'))){
+            $('#purchase-review-modal').modal('show');
+        }
+    })
+</script>
 {% endblock %}

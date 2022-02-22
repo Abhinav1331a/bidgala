@@ -4,6 +4,7 @@
 {% block title %} | Arts {% endblock %}
 {% block cssfile %}
 <link rel="stylesheet" href="{% static 'css/arts.css' %}">
+<link rel="stylesheet" href="{% static 'css/product_modal.css' %}">
 {%endblock%}
 
 
@@ -30,10 +31,8 @@
             </button>
             <div class="sort-dropdown-content">
                 <a href="" id="default-sort" data-value="df"><i class="fas fa-check default-check"></i> Default</a>
-                <a href="" id="lowest-first" data-value="lf"><i class="fas fa-check lowest-check visibility-hidden"></i>
-                    Price: Lowest</a>
-                <a href="" id="highest-first" data-value="hf"><i
-                        class="fas fa-check highest-check visibility-hidden"></i> Price: Highest</a>
+                <a href="" id="lowest-first" data-value="lf"><i class="fas fa-check lowest-check visibility-hidden"></i> Price: Lowest</a>
+                <a href="" id="highest-first" data-value="hf"><i class="fas fa-check highest-check visibility-hidden"></i> Price: Highest</a>
             </div>
         </div>
         <!-- sort dropdown -->
@@ -322,21 +321,17 @@
                         {% for product in group %}
                         <div class="grid-item">
 
-                            {% if product.art_obj.curator_pick%} 
+                            {% if product.art_obj.curator_pick%}
                             <div class="label-tag">Curator Pick</div>
-                            {% elif product.art_obj.owner.featured_artist%} 
+                            {% elif product.art_obj.owner.featured_artist%}
                             <div class="label-tag">Featured Artist</div>
                             {%endif%}
 
-                            
-
-
-                            <a href="{%url 'product_view' id=product.art_obj.id%}">
-                                <img src="{{BASE_AWS_IMG_URL}}{{product.art_obj.image}}{{img_optimize_param}}"
-                                    loading="lazy">
-
-                                <h6 class="mt-2 mb-1 text-truncate font-weight-bold"> <a
-                                        href="{% url 'public_profile' product.art_obj.owner.user.username %}">{{product.art_obj.owner.user.first_name}}
+                            <a href="{%url 'product_view' id=product.art_obj.id%}" class="showProduct" data-bs-toggle="modal" data-bs-target="#productModal" id="someid">
+                                <img src="{{BASE_AWS_IMG_URL}}{{product.art_obj.image}}{{img_optimize_param}}" loading="lazy">
+ 
+                                <h6 class="mt-2 mb-1 text-truncate font-weight-bold"> 
+                                    <a href="{% url 'public_profile' product.art_obj.owner.user.username %}" id="usernameData">{{product.art_obj.owner.user.first_name}}
                                         {{product.art_obj.owner.user.last_name}}</a></h6>
 
 
@@ -346,18 +341,37 @@
 
 
 
-                                    <small class="text-muted">{{product.art_obj.width}}W x </small>
-                                    <small class="text-muted">
-                                        {{product.art_obj.height}}H</small>{%if product.art_obj.depth > 0%}<small
-                                        class="text-muted"> x
-                                        {{product.art_obj.depth}}D</small>{%endif%}<small class="text-muted">
-                                        {{product.art_obj.dim_measure}}</small><br />
+                                    <small class="text-muted"> {{product.art_obj.width}}W x </small>
+                                    <small class="text-muted"> {{product.art_obj.height}}H x </small>
+
+                                    {%if product.art_obj.depth > 0%}
+                                    <small class="text-muted"> {{product.art_obj.depth}}D</small>
+                                    {%endif%}
+
+                                    <small class="text-muted"> {{product.art_obj.dim_measure}} </small> <br />
+
                                     {%if request.user.is_authenticated%}
 
-                                    <a id="fav-{{product.art_obj.id}}" class="fav-product">{% if product.liked%}<i
-                                            class="fas fa-heart"></i> {%else%}<i class="far fa-heart"></i>{%endif%}
-                                    </a> {%else%} <a href="#" data-toggle="modal" data-target="#loginModal"><i
-                                            class="far fa-heart"></i></a>{%endif%}
+                                    <a id="fav-{{product.art_obj.id}}" class="fav-product">
+
+                                        {% if product.liked%}
+
+                                        <i class="fas fa-heart"></i>
+
+                                        {%else%}
+
+                                        <i class="far fa-heart"></i>
+
+                                        {%endif%}
+
+                                    </a>
+
+                                    {%else%}
+
+                                    <a href="#" data-toggle="modal" data-target="#loginModal"><i
+                                            class="far fa-heart"></i></a>
+
+                                    {%endif%}
 
 
                                 </div>
@@ -390,5 +404,21 @@
 {% block jsfile %}
 <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
 <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+<script src="{% static 'js/product_modal.js' %}"></script>
 <script src="{% static 'js/arts.js' %}"></script>
+<script>
+    //For comparison of the purchase button
+    {% if request.user.is_authenticated %}
+        currentUser = "{{request.user.is_authenticated}}"
+    {% else %}
+        currentUser = null;
+    {% endif %}
+
+    {% if is_product_owner %}
+        productOwner = "{{is_product_owner}}"
+    {% else %}
+        productOwner = null;
+    {% endif %}
+</script>
+
 {% endblock %}

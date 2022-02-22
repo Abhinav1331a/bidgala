@@ -1,0 +1,131 @@
+{% load static %}
+
+<div class="col-sm-6">
+    <div id="carouselProductControls" class="carousel slide carousel-fade carousel-thumbnails" data-ride="carousel">
+        <div class="carousel-inner">
+                        <!--div class="carousel-item active">
+                        </div-->
+        </div>
+        <a class="carousel-control-prev" href="#carouselProductControls" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselProductControls" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+        <ol class="carousel-indicators">
+        </ol>
+    </div>
+</div>
+<div class="col-sm-6 right">
+
+    <div class="tabContainer">
+        <div class="buttonContainer">
+            <!--button class="btn__tab" onclick="showContent(0)">Current</button-->
+
+
+            <!--button class="btn__tab" onclick="showContent(1)">More from {{ product.art_obj.owner.user.first_name}} {{ product.art_obj.owner.user.last_name }}</button-->
+        </div>
+
+        <div class="tab" id="t1">
+            <h1 id="artTitle"></h1>
+            <p id="artCategory" class="art-category"></p>
+            <a id="artistName" class="art-artist" style="text-decoration: underline"></a>
+            <p id="artState" class="art-state"></p>
+            <p id="artPrice" class="art-price" style="font-weight: bold"></p>
+            <div class="shipping">
+                <p><strong>+ USD <span id="get_shipping_price"></span></strong>Shipping: </p>
+                <select class="custom-select" id="shipping_prices">
+
+                </select>
+            </div>
+            <div class="box" id="sb1">
+                <h2>Satisfaction Guaranteed</h2>
+                <p>Our 7-day, no questions asked, 100% money-back guarantee allows you to purchase with the total peace of mind.</p>
+            </div>
+            <div class="box" id="sb2">
+                <h2>Secure Payments</h2>
+                <p>All payments are 100% secured through our trusted partner Stripe.</p>
+            </div>
+            <div class="box" id="sb3">
+                <h2>Contact Us</h2>
+                <p>Purchase with confidence, knowing our Support Team is always here to help you navigate the experiences.</p>
+            </div>
+            <div class="box" id="sb4">
+                <h2>Support The Artist</h2>
+                <p>Purchase this piece directly from the artist, helping them earn a living doing what they love.</p>
+            </div>
+            <div class="container feature">
+                <div class="row feature">
+                    <div class="col" onclick="openFeatures(this, 'sb1' );">
+                        <img src="{% static "img/free_returns.png"%}" alt="free-returns">
+                        <p>Free Returns</p>
+                    </div>
+                    <div class="col" onclick="openFeatures(this, 'sb2' );">
+                        <img src="{% static "img/secure_payments.png"%}" alt="secure-payments">
+                        <p>Secure Payment</p>
+                    </div>
+                    <div class="col" onclick="openFeatures(this, 'sb3' );">
+                        <img src="{% static "img/support.png"%}" alt="support">
+                        <p>24/7 Support</p>
+                    </div>
+                    <div class="col" onclick="openFeatures(this, 'sb4' );">
+                        <img src="{% static "img/artist_support.png"%}" alt="artist-support">
+                        <p>Support Artists</p>
+                    </div>
+                </div>
+            </div>
+
+            {% if request.user.is_authenticated %}
+
+            <div class="btn-group-vertical">
+                <a href="#" class ="art-info-button text-center" style="color:white;"
+                        onmouseover="this.style.color='black'" id="purchase-btn"
+                        onmouseout="this.style.color='white'"
+                >CONTINUE TO PURCHASE</a>
+
+                <a href="#" type="button" class ="art-info-button outlined text-center" style="color:black;"
+                   onmouseover="this.style.color='white'" id="message_artist"
+                   onmouseout="this.style.color='black'"
+                >MESSAGE ARTIST</a>
+            </div>
+
+            {%else%}
+
+            <div class="btn-group-vertical">
+                <button class="art-info-button text-center" data-toggle="modal" data-target="#loginModal" style="color:white;"
+                        onmouseover="this.style.color='black'" id="purchase-btn"
+                        onmouseout="this.style.color='white'"
+                        onclick="$('#productModal').modal('toggle');"
+                >CONTINUE TO PURCHASE</button>
+
+                <button data-toggle="modal" data-target="#loginModal" class ="art-info-button outlined text-center" style="color:black;"
+                        onmouseover="this.style.color='white'" id="message_artist"
+                        onmouseout="this.style.color='black'"
+                        onclick="$('#productModal').modal('toggle');"
+                >MESSAGE ARTIST</button>
+            </div>
+            {%endif%}
+
+            <div class="container-details" style="text-decoration: underline">
+                <a href="#" class="full-details">View full details</a>
+            </div>
+
+
+        </div>
+
+        <!--div class="tab" id="t2">
+            <div class="row moreFrom">
+                <div class="col one"></div>
+                <div class="col two"></div>
+                <div class="w-100"></div>
+                <div class="col three"></div>
+                <div class="col four"></div>
+            </div>
+        </div-->
+
+    </div>
+
+</div>
+

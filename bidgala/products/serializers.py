@@ -10,7 +10,7 @@ class ProductAndUserSerializer(serializers.ModelSerializer):
 	owner_first_name = serializers.ReadOnlyField(source='owner.user.first_name', read_only=True)
 	owner_last_name = serializers.ReadOnlyField(source='owner.user.last_name', read_only=True)
 	owner_message_id = serializers.ReadOnlyField(source='owner.id', read_only=True)
-
+	
 
 	class Meta:
 		model = Product
@@ -120,6 +120,7 @@ class ProductSerializer(serializers.ModelSerializer):
 			'curator_pick',
 			'comment_count',
 			'favourite_count',
+			
 		]
 		extra_kwargs = {
 			'id' : {'required' : False},

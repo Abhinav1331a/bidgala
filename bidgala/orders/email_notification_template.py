@@ -967,7 +967,7 @@ def trackingNumberTemplate(name, productName, ownerID, trackingID):
                         <div class="text">
 
                           <p style="color: #000">Dear """ + name + """,</p>
-                          <p style="color: #000">Your tracking number for  """ + productName +  """ is <a style='color:#0275d8' href='https://rockmyworldaa8q.aftership.com/""" +trackingID+"""'>"""+trackingID +"""</a>.</p>
+                          <p style="color: #000">Your tracking number for  """ + productName +  """ is <a style='color:#0275d8' href='https://bidgala.aftership.com/""" +trackingID+"""'>"""+trackingID +"""</a>.</p>
 
                           <p style="color: #000">If there's anything you need to know about the purchase, please don't hesitate to contact the <a href='""" + CHAT_URL + """'>artist</a>
 

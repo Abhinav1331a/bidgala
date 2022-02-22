@@ -168,6 +168,9 @@ def index_demo(request):
 	new_products = Product.objects.filter(sold=False, available=True).order_by('-date').order_by('owner__id')[0:10]
 	discover_articles = Article.objects.filter(show=True).order_by('-created_date')[0:10]
 
+	all_art_img = HomePage.objects.filter(value='shop_all_art')[0]
+	advisory_img = HomePage.objects.filter(value='advisory')[0]
+
 	channel_obj = get_channel()
 	featured_artist = get_featured_artist()
 
@@ -184,6 +187,8 @@ def index_demo(request):
 
 	context = {
 		'demo' : True,
+		'all_art_img': all_art_img.image,
+		'advisory_img': advisory_img.image,
 		'discover_articles': discover_articles,
 		'category' : product_choices.category,
 		'subcategory' : product_choices.subcategory,

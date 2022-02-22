@@ -1,6 +1,7 @@
 # Standard library imports
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
+from django.contrib.auth.models import User
 from django.contrib.admin.views.decorators import staff_member_required
 from django.shortcuts import render
 from django.db import models
@@ -12,12 +13,10 @@ from datetime import datetime, timedelta
 from django.db.models import Sum
 import operator
 from functools import reduce 
-from django.contrib.auth.models import User
 
 # Related third party imports
 
 # Local application/library specific imports
-from accounts.models import UserInfo, User
 from .models import *
 from chat.models import Message
 from community.models import Post

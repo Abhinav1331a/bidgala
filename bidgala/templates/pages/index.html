@@ -188,9 +188,9 @@
                     <div class="card ml-1 mr-1">
                         <a href="{%url 'product_view' id=product.id%}">
                             {%if product.curator_pick %}
-                            <div class="curator-pick">Curator Pick</div>
+                            <div class="label-tag1">Curator Pick</div>
                             {%elif product.owner.featured_artist %}
-                            <div class="curator-pick">Featured Artist</div>
+                            <div class="label-tag1">Featured Artist</div>
                             {%endif%}
                             <img class="card-img-top product-img"
                                 src="{{BASE_IMG_URL}}{{product.image}}{{img_optimize_param}}" alt="Card image cap">

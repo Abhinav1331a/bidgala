@@ -211,7 +211,7 @@ def accept_or_decline_order(request):
                                 msg_obj.has_input = False
                                 msg_obj.save()
 
-                                msg_text_decline = get_decline_message(order_hold_obj.buyer, order_hold_obj.product)
+                                msg_text_decline = get_decline_message(order_hold_obj.product.art_title, order_hold_obj.product.id)
                                 decline_message = Message(message_text=msg_text_decline, conversation_id=msg_obj.conversation_id, origin_user=order_hold_obj.seller)
                                 decline_message.save()
                                 messages.success(request, 'Rejected buyer request')
@@ -354,7 +354,7 @@ def submit_tracking(request):
                 msg_obj = Message.objects.filter(order_hold=order_hold_obj).first()
 
                 confirm_payment_intent(product_order.payment_intent, order_hold_obj, product_order)
-                tracking_message = Message(message_text='Tracking Number : <a style="color:#0275d8" href="https://rockmyworldaa8q.aftership.com/'+tracking_number+'">' + tracking_number + '</a>' , conversation_id=msg_obj.conversation_id, origin_user=order_hold_obj.seller)
+                tracking_message = Message(message_text='Tracking Number : <a style="color:#0275d8" href="https://bidgala.aftership.com/'+tracking_number+'">' + tracking_number + '</a>' , conversation_id=msg_obj.conversation_id, origin_user=order_hold_obj.seller)
                 tracking_message.save()
                 sendEmail(order_hold_obj.buyer, order_hold_obj.product, 'TRACKING', tracking_id=tracking_number)
                 messages.success(request, 'Tracking number submitted.')

@@ -507,7 +507,6 @@ def show_search(request, type_, value):
     active_value = None
 
     page = 1
-
     try:
         if type_.strip() == 'country':
             if value == 'shipcan':
@@ -578,8 +577,6 @@ def show_search(request, type_, value):
         art_grouped_list = []
 
         user_wishlist = []
-        
-        
 
         if request.user.is_authenticated:
             user_wishlist = get_user_wish_list_products(UserInfo.objects.get(user=request.user))
@@ -600,9 +597,6 @@ def show_search(request, type_, value):
             art_grouped_list.append(temp)
 
         random.shuffle(art_grouped_list)
-
-        
-
         context = {
                 'category' : product_choices.category,
                 # 'subcategory' : {**product_choices.sub_type_one, **product_choices.sub_type_two},
