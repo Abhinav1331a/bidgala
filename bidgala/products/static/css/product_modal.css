@@ -142,7 +142,7 @@ h1{
    
    .carousel .carousel-inner .carousel-item img{
        object-fit: contain;
-       height: 18rem;
+       height: 15rem;
    }
    .carousel-indicators{
        margin-bottom: -25px;
