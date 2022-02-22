@@ -88,9 +88,9 @@ $(document).ready(function () {
                 }
 
                 $('.carousel-indicators').empty();
-                $('.carousel-indicators').append($('<li data-target="#carouselProductControls" data-slide-to="0" class="active" aria-current="true" style="width: 100px;"><img class="d-block w-100" src='+ obj_m.image +'></li>'));
+                $('.carousel-indicators').append($('<li data-target="#carouselProductControls" data-slide-to="0" class="active" aria-current="true" style="width: 100px;"><img class="d-block w-100 indicator-img" src='+ obj_m.image +'></li>'));
                 for (let j = 0; j < arr.length; j++) {
-                    $('.carousel-indicators').append($('<li data-target="#carouselProductControls" data-slide-to='+ (j+1) + " " +'aria-current="true" style="width: 100px;"><img class="d-block w-100" src='+ arr[j] +'></li>'));
+                    $('.carousel-indicators').append($('<li data-target="#carouselProductControls" data-slide-to='+ (j+1) + " " +'aria-current="true" style="width: 100px;"><img class="d-block w-100 indicator-img" src='+ arr[j] +'></li>'));
                 }
                 /*$('.carousel-inner').append($('<div class="carousel-item active"><img class="d-block w-100" src='  + obj_m.image + '></div>'));*/
                 $('.carousel').carousel();
