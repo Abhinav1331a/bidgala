@@ -1,5 +1,5 @@
 .modal-body{
-     height: 750px !important;
+     height: 46.875rem !important;
  }
 .modal-header {
     padding: 1rem;
@@ -9,18 +9,18 @@
 }
 
 .col-6.right{
-    height: 600px !important;
+    height: 37.5rem !important;
 }
 
 .carousel .carousel-inner .carousel-item img{
     object-fit: contain;
-    height: 500px;
+    height: 31.25rem;
 }
 .carousel-indicators{
     margin-bottom: -25px;
 }
 .carousel .carousel-indicators .indicator-img{
-    height: 100px;
+    height: 6.25rem;
     object-fit: contain;
 }
 /*.carousel-indicators.list-line{
@@ -122,6 +122,41 @@ h1{
         width:auto;
     }
 }
+
+
+@media only screen and (max-width: 550px){
+
+    .modal-body{
+        height: 50rem !important;
+    }
+   .modal-header {
+       padding: 1rem;
+   }
+   .modal-content{
+       overflow:hidden;
+   }
+   
+   .col-6.right{
+       height: 15rem !important;
+   }
+   
+   .carousel .carousel-inner .carousel-item img{
+       object-fit: contain;
+       height: 18rem;
+   }
+   .carousel-indicators{
+       margin-bottom: -25px;
+   }
+   .carousel .carousel-indicators .indicator-img{
+       height: 6.25rem;
+       object-fit: contain;
+   }
+
+}
+
+
+
+
 @media only screen and (max-width: 767px) {
     .tabContainer{
        margin: auto;
