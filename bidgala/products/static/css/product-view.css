@@ -171,6 +171,18 @@
     .single-image {
         height: 500px;
     }
+    .art-info-button{
+      padding: 8px 41.1px;
+      font-size: small;
+    }
+    .outlined{
+        padding: 8px 67px;
+        margin-top: 15px;
+      }
+
+    .btn-group-vertical{
+        padding-bottom: 5px;
+    }
 
 }
 
