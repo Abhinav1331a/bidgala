@@ -107,8 +107,9 @@ h1{
         .box {
             width: 20rem;
             margin: 20px auto;
+            right: 15px;
             background: #F2DFED;
-            padding: 20px 14px 5px 17px;
+            padding: 15px;
             text-align: center;
             color: #000000;
             border-radius: 3px;
@@ -175,7 +176,7 @@ h1{
             position: absolute;
             border-left: 10px solid #F2DFED;
             border-right: 10px solid transparent;
-            border-top: 10px solid #F2DFED;
+            border-top: 20px solid #F2DFED;
             border-bottom: 10px solid transparent;
             bottom: -19px;
         }
@@ -247,6 +248,8 @@ h1{
             width: 175px;
         }
 
+
+
 /*.carousel-item img{
         height: 60vw;
         object-fit: cover;
@@ -258,4 +261,6 @@ h1{
     }
 
 }*/
+
+
 
