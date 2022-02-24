@@ -2,7 +2,7 @@
 {% load socialaccount %}
    
 <header>
-    {%if request.user.is_authenticated%}
+    <!-- {%if request.user.is_authenticated%}
 
     <div id="top-banner-notify">
      {%comment%} {%if not request.session.user_verified%}
@@ -16,16 +16,45 @@
       <p class="text-center" style="color:white;">We'll give 50 credits to charity for every friend you refer! <a href="{%url 'invite'%}" style="text-decoration: underline; color:ghostwhite">Learn more here</a></p>
 
   </div>
-    {%endif%}
+    {%endif%} -->
 
 
     <!-- Header Start -->
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function(){
+  window.addEventListener('scroll', function() {
+      if (window.scrollY > 50) {
+        document.getElementById('navbar_top').classList.add('fixed-top');
+        // add padding top to show content behind navbar
+        navbar_height = document.querySelector('.navbar').offsetHeight;
+        document.body.style.paddingTop = '-200px';
+      } else {
+        document.getElementById('navbar_top').classList.remove('fixed-top');
+         // remove padding top from body
+        document.body.style.paddingTop = '0';
+      } 
+  });
+}); 
+
+</script>
+
+
   
     <div class="header-area">
 
         <div class="main-header ">
             <!-- Main navigation bar -->
-            <div class="header-bottom header-sticky">
+            <!-- COUPON DISPLAY -->
+
+            <div class="coupon" >
+
+                <h6>The Art Marketplace For Art Lovers, By Art Lovers</h6>
+                <h6>10% off all art | <a href="#" style="color: white;"> Code: Artlovers2022</a> | Apply Coupon</h6>
+
+            </div>
+            <div class="header-bottom header-sticky navbarr" id="navbar_top">
                 <div class="container-fluid">
                     <div class="dropdown-container-desktop row align-items-center justify-content-center d-none pt-3 pb-2">
                         <div class="col-md-12 col-lg-10">
@@ -35,18 +64,19 @@
                                         ART MEDIUM
                                     </p>
                                     {% for key, value in category.items %}
-                                     <p class="category-menu">
+                                    <p class="category-menu">
                                         <a href="{%url 'show_search' type_='category' value=key %}">
                                             {{value | upper}}
                                         </a>
-                                     </p>
+                                    </p>
                                     {%endfor%}
-                                     <hr>
+                                    <hr>
                                     <p class="category-menu">
                                         <b><a href="{%url 'show_search' type_='art' value='all' %}"> ALL ART</a></b>
                                     </p>
                                     <p class="category-menu">
-                                        <b><a href="{%url 'show_search' type_='curator' value='none' %}"> CURATOR PICKS</a></b>
+                                        <b><a href="{%url 'show_search' type_='curator' value='none' %}"> CURATOR
+                                                PICKS</a></b>
                                     </p>
                                 </div>
                                 <div class="col-2 offset-1 column">
@@ -164,14 +194,14 @@
                     </div>
                     <div class="menu d-lg-none">
                         <nav class="nav-main pt-5">
-                        {%if request.user.is_authenticated %}
-                          <div class="welcome-user">
-                            Welcome back, {{request.user.first_name}}!
-                          </div>
+                            {%if request.user.is_authenticated %}
+                            <div class="welcome-user">
+                                Welcome back, {{request.user.first_name}}!
+                            </div>
                             <div class="d-inline-block close"><a class="close">×</a></div>
                             {% else %}
                             <div class="d-inline-block close text-dark"><a class="close">×</a></div>
-                          {%endif%}
+                            {%endif%}
 
                             <div class="nav-container">
 
@@ -182,13 +212,17 @@
                                             <div class="d-flex">
                                                 MY ACCOUNT
                                                 {% if request.session.profile_img %}
-                                                        <div  style="width:25px; height:25px; border-radius: 50%;" >
-                                                            <img class="avatar" style="width:100%; height:100%; border-radius: 50%; object-fit:cover;" src="{{request.session.profile_img}}"/>
-                                                        </div>
-                                                    {% else %}
-                                                         <div  style="width:25px; height:25px; border-radius: 50%;" >
-                                                         <img class="avatar" style="width:100%; height:100%; border-radius: 50%; object-fit:cover;" src="{% static 'img/profile-icon.png'%}"/>
-                                                          </div>
+                                                <div style="width:25px; height:25px; border-radius: 50%;">
+                                                    <img class="avatar"
+                                                        style="width:100%; height:100%; border-radius: 50%; object-fit:cover;"
+                                                        src="{{request.session.profile_img}}" />
+                                                </div>
+                                                {% else %}
+                                                <div style="width:25px; height:25px; border-radius: 50%;">
+                                                    <img class="avatar"
+                                                        style="width:100%; height:100%; border-radius: 50%; object-fit:cover;"
+                                                        src="{% static 'img/profile-icon.png'%}" />
+                                                </div>
                                                 {% endif %}
 
 
@@ -196,7 +230,8 @@
                                             <i class="fa fa-angle-right" aria-hidden="true"></i>
                                         </a>
                                         <ul>
-                                            <li><a href="#" class="back pt-4"><i class="fa fa-angle-left" aria-hidden="true"></i>Main Menu</a></li>
+                                            <li><a href="#" class="back pt-4"><i class="fa fa-angle-left"
+                                                        aria-hidden="true"></i>Main Menu</a></li>
                                             <li>
                                                 <a href="{% url 'public_profile' request.user %}">
                                                     MY PROFILE
@@ -232,26 +267,28 @@
                                     </li>
                                     {%endif%}
 
-                                    
+
                                     <li>
                                         <a href="{% url 'art_upload' %}">
                                             SELL
                                         </a>
                                     </li>
-                                   
-                                    <li >
+
+                                    <li>
                                         <a class="second-level d-flex align-items-center">
                                             SHOP
                                             <i class="fa fa-angle-right" aria-hidden="true">
                                             </i>
                                         </a>
                                         <ul>
-                                            <li><a href="#" class="back pt-4"><i class="fa fa-angle-left" aria-hidden="true"></i>Main Menu</a></li>
+                                            <li><a href="#" class="back pt-4"><i class="fa fa-angle-left"
+                                                        aria-hidden="true"></i>Main Menu</a></li>
                                             <li>
                                                 <a href="{%url 'show_search' type_='art' value='all' %}">ALL ART</a>
                                             </li>
                                             <li>
-                                                <a href="{%url 'show_search' type_='curator' value='none' %}">CURATOR PICKS</a>
+                                                <a href="{%url 'show_search' type_='curator' value='none' %}">CURATOR
+                                                    PICKS</a>
                                             </li>
                                             <li class="child-level">
                                                 <a class="child-level d-flex align-items-center">
@@ -260,12 +297,12 @@
                                                     </i>
                                                 </a>
                                                 <div class="dropdown-container">
-                                                     {% for key, value in category.items %}
+                                                    {% for key, value in category.items %}
 
 
-                                                        <a href="{%url 'show_search' type_='category' value=key %}">
-                                                            {{value | upper}}
-                                                        </a>
+                                                    <a href="{%url 'show_search' type_='category' value=key %}">
+                                                        {{value | upper}}
+                                                    </a>
                                                     {%endfor%}
                                                 </div>
                                             </li>
@@ -276,13 +313,13 @@
                                                     </i>
                                                 </a>
                                                 <div class="dropdown-container">
-                                                     <a href="{%url 'show_search' type_='style' value='abstract' %}">
+                                                    <a href="{%url 'show_search' type_='style' value='abstract' %}">
                                                         ABSTRACT
                                                     </a>
-                                                     <a href="{%url 'show_search' type_='style' value='contemporary' %}">
+                                                    <a href="{%url 'show_search' type_='style' value='contemporary' %}">
                                                         CONTEMPORARY
                                                     </a>
-                                                   <a href="{%url 'show_search' type_='style' value='figurative' %}">
+                                                    <a href="{%url 'show_search' type_='style' value='figurative' %}">
                                                         FIGURATIVE
                                                     </a>
                                                     <a href="{%url 'show_search' type_='style' value='minimalist' %}">
@@ -294,13 +331,13 @@
                                                     <a href="{%url 'show_search' type_='style' value='landscape' %}">
                                                         LANDSCAPE
                                                     </a>
-                                                     <a href="{%url 'show_search' type_='style' value='fashion' %}">
+                                                    <a href="{%url 'show_search' type_='style' value='fashion' %}">
                                                         FASHION
                                                     </a>
                                                     <a href="{%url 'show_search' type_='style' value='popart' %}">
                                                         POP ART
                                                     </a>
-                                                   <a href="{%url 'show_search' type_='style' value='other' %}">
+                                                    <a href="{%url 'show_search' type_='style' value='other' %}">
                                                         OTHER
                                                     </a>
                                                 </div>
@@ -312,19 +349,23 @@
                                                     </i>
                                                 </a>
                                                 <div class="dropdown-container">
-                                                    <a href="{%url 'show_search' type_='price' value='price_max-100' %}">
+                                                    <a
+                                                        href="{%url 'show_search' type_='price' value='price_max-100' %}">
                                                         $100 AND UNDER
                                                     </a>
 
-                                                    <a href="{%url 'show_search' type_='price' value='price_max-500' %}">
+                                                    <a
+                                                        href="{%url 'show_search' type_='price' value='price_max-500' %}">
                                                         $500 AND UNDER
                                                     </a>
 
-                                                    <a href="{%url 'show_search' type_='price' value='price_max-1000' %}">
+                                                    <a
+                                                        href="{%url 'show_search' type_='price' value='price_max-1000' %}">
                                                         $1000 AND UNDER
                                                     </a>
 
-                                                    <a href="{%url 'show_search' type_='price' value='price_min-1000' %}">
+                                                    <a
+                                                        href="{%url 'show_search' type_='price' value='price_min-1000' %}">
                                                         $1000 AND OVER
                                                     </a>
                                                 </div>
@@ -371,10 +412,10 @@
 
 
                                     <li>
-                                            <a  href="{% url 'blog' %}" class="desktop-navlinks">BLOG</a>
+                                        <a href="{% url 'blog' %}" class="desktop-navlinks">BLOG</a>
                                     </li>
 
-                                     <li>
+                                    <li>
                                         <a href="{% url 'invite' %}">
                                             INVITE
                                         </a>
@@ -382,8 +423,8 @@
                                     </li>
 
                                     {% if request.user.is_authenticated %}
-                                   
-                                
+
+
                                     {%endif%}
                                     <li>
                                         <a href="mailto:info@bidgala.com">CONTACT</a>
@@ -399,23 +440,25 @@
                                     {%if  request.user.is_authenticated%}
                                     <div class="mt-4 p-2">
 
-                                        <a class="btn btn-dark  w-100 logout-detect" href="javascript:{document.getElementById('logout').submit()}" >
-                                                                LOG OUT
-                                                            </a>
+                                        <a class="btn btn-dark  w-100 logout-detect"
+                                            href="javascript:{document.getElementById('logout').submit()}">
+                                            LOG OUT
+                                        </a>
                                     </div>
                                     {% else %}
 
                                     <div class="mt-4 p-2">
 
-                                        <a class="btn btn-dark  w-100"  href="#" data-toggle="modal" data-target="#loginModal" >
-                                                                LOG IN
-                                                            </a>
+                                        <a class="btn btn-dark  w-100" href="#" data-toggle="modal"
+                                            data-target="#loginModal">
+                                            LOG IN
+                                        </a>
                                     </div>
                                     <div class="p-2">
 
-                                        <a class="btn btn-light  w-100" href="{%url 'register'%}" >
-                                                                REGISTER
-                                                            </a>
+                                        <a class="btn btn-light  w-100" href="{%url 'register'%}">
+                                            REGISTER
+                                        </a>
                                     </div>
                                     {%endif%}
                                 </ul>
@@ -423,25 +466,32 @@
 
                         </nav>
                     </div>
-                 
-                    <div class="row align-items-center justify-content-lg-center justify-content-xl-center p-lg-4 p-md-0 p-sm-0 p-3">
+
+                    
+
+                    <div
+                        class="row align-items-center justify-content-lg-center justify-content-xl-center p-lg-4 p-md-0 p-sm-0 p-3">
                         <div class="col-xl-10 col-lg-10 col-md-12">
                             <div class="row justify-content-between align-items-center">
                                 <!-- Logo -->
                                 <div class="col-xl-3 col-lg-3 col-md-4 col-sm-4 col-6 pl-0" id="logo-demo">
-                                    <div class="logo pt-10 pb-10" >
-                                        <a href="{% url 'index' %}"><img class="logo-img" src="{% static 'img/logo/logo.svg' %}" alt="BIDGALA"></a>
+                                    <div class="logo pt-10 pb-10">
+                                        <a href="{% url 'index' %}"><img class="logo-img"
+                                                src="{% static 'img/logo/logo.svg' %}" alt="BIDGALA"></a>
                                     </div>
                                 </div>
                                 <!-- Search Bar -->
-                                
-                                <form action="{% url 'search' %}" method="POST" id="searchfield" name="searchfield" class="searchfield col-xl-3 col-lg-3 col-md-7 col-sm-7 d-sm-flex">
+
+                                <form action="{% url 'search' %}" method="POST" id="searchfield" name="searchfield"
+                                    class="searchfield col-xl-3 col-lg-3 col-md-7 col-sm-7 d-sm-flex">
                                     {% csrf_token %}
                                     <div class="nav-search ">
                                         <label><i class="fas fa-search special-tag"></i></label>
-                                        <input class="nav-search-input form-control" type="text" placeholder="Search" aria-label="Search" name="keyword" form="searchfield">
+                                        <input class="nav-search-input form-control" type="text" placeholder="Search"
+                                            aria-label="Search" name="keyword" form="searchfield">
                                     </div>
-                                    <button class="btn btn-link text-secondary close d-block d-sm-none ml-2" type="button">x</button>
+                                    <button class="btn btn-link text-secondary close d-block d-sm-none ml-2"
+                                        type="button">x</button>
                                 </form>
                                 <!-- Mobile menu -->
 
@@ -459,37 +509,43 @@
 
                                 <!-- Main-menu -->
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 pr-0">
-                                    <div  class="main-menu f-right d-none d-lg-block w-100">
+                                    <div class="main-menu f-right d-none d-lg-block w-100">
                                         <nav>
-                                            <ul id="navigation" >
+                                            <ul id="navigation">
                                                 <li>
                                                     <button class="shop-button">SHOP</button>
                                                 </li>
 
                                                 <li id="home-demo">
-                                                    <a  href="{% url 'blog' %}" class="desktop-navlinks">BLOG</a>
+                                                    <a href="{% url 'blog' %}" class="desktop-navlinks">BLOG</a>
                                                 </li>
 
 
-                                                <li><a  href="{% url 'all_post' %}" class="desktop-navlinks">ARTIST FORUM</a></li>
+                                                <li><a href="{% url 'all_post' %}" class="desktop-navlinks">ARTIST
+                                                        FORUM</a></li>
 
-                                                 <li id="sell-demo"><a href="{% url 'art_upload' %}" class="desktop-navlinks">SELL</a></li>
+                                                <li id="sell-demo"><a href="{% url 'art_upload' %}"
+                                                        class="desktop-navlinks">SELL</a></li>
 
-                                                 <li id="earn-demo"><a href="{% url 'invite' %}" class="desktop-navlinks">INVITE</a></li>
+                                                <li id="earn-demo"><a href="{% url 'invite' %}"
+                                                        class="desktop-navlinks">INVITE</a></li>
                                                 {% if request.user.is_authenticated == True %}
 
-                                               
 
-                                                
 
-                                                <li><a href="{% url 'wish_list' %}"><i class="fas fa-heart" class="desktop-navlinks"></i></a></li>
+
+
+                                                <li><a href="{% url 'wish_list' %}"><i class="fas fa-heart"
+                                                            class="desktop-navlinks"></i></a></li>
 
                                                 {% comment %} <li><a href="{% url 'show_contacts' %}"> MESSAGES</a></li>
 
-                                                <li ><a href="{% url 'orders' %}">ORDERS</a></li> {% endcomment %}
+                                                <li><a href="{% url 'orders' %}">ORDERS</a></li> {% endcomment %}
 
                                                 <li id="account-demo" tabindex="0">
-                                                    <div id="avatar_image" class="avatar avatar-id-{{request.session.user_info_id}}" style="
+                                                    <div id="avatar_image"
+                                                        class="avatar avatar-id-{{request.session.user_info_id}}"
+                                                        style="
                                                         {% if request.session.profile_img %}
                                                             background-image: url({{request.session.profile_img}});
                                                         {% else %}
@@ -499,17 +555,24 @@
 
                                                     </div>
                                                     <ul class="submenu">
-                                                        <li class="d-flex"><a href="{% url 'public_profile' request.user %}">MY PROFILE</a></li>
-                                                        <li class="d-flex"><a href="{% url 'my_art' %}">MY ARTWORK</a></li>
+                                                        <li class="d-flex"><a
+                                                                href="{% url 'public_profile' request.user %}">MY
+                                                                PROFILE</a></li>
+                                                        <li class="d-flex"><a href="{% url 'my_art' %}">MY ARTWORK</a>
+                                                        </li>
 
 
                                                         <li class="d-flex"><a href="{% url 'orders' %}">ORDERS</a></li>
 
-                                                        <li class="d-flex align-items-center" id="desktop-messages"><a id="right-side-menu" href="{% url 'show_contacts' %}">MESSAGES</a></li>
-                                                        <li class="d-flex"><a href="{% url 'profile' %}">SETTINGS</a></li>
+                                                        <li class="d-flex align-items-center" id="desktop-messages"><a
+                                                                id="right-side-menu"
+                                                                href="{% url 'show_contacts' %}">MESSAGES</a></li>
+                                                        <li class="d-flex"><a href="{% url 'profile' %}">SETTINGS</a>
+                                                        </li>
 
                                                         <li class="d-flex">
-                                                            <a class="logout-detect" href="javascript:{localStorage.clear();document.getElementById('logout').submit()}" >
+                                                            <a class="logout-detect"
+                                                                href="javascript:{localStorage.clear();document.getElementById('logout').submit()}">
                                                                 LOG OUT
                                                             </a>
                                                         </li>
@@ -522,14 +585,22 @@
                                                 <li>
                                                 </li>
                                                 {% else %}
-                                                
-                                                <li><a href="#" data-toggle="modal" data-target="#loginModal" class="desktop-navlinks">LOGIN</a></li>
-                                                <li><a href="{% url 'register' %}" class="desktop-navlinks">REGISTER</a></li>
+
+                                                <div class="signin_up">
+                                                    <li><a href="#" data-toggle="modal" data-target="#loginModal"
+                                                            class="desktop-navlinks ">LOGIN</a></li>
+                                                    <li><a href="{% url 'register' %}"
+                                                            class="desktop-navlinks">REGISTER</a>
+                                                    </li>
+                                                </div>
+
+
                                                 {% endif %}
                                             </ul>
                                         </nav>
                                     </div>
                                 </div>
+
                             </div>
                         </div>
 
@@ -538,66 +609,85 @@
             </div>
 
             {%if 'messages' not in request.path %}
-            {% comment %} <!-- Category nav -->
+            {% comment %}
+            <!-- Category nav -->
             <div class="category-header  d-none d-lg-block">
-                <nav class="category-nav navbar-expand col-12 row align-items-center justify-content-lg-center justify-content-xl-center">
+                <nav
+                    class="category-nav navbar-expand col-12 row align-items-center justify-content-lg-center justify-content-xl-center">
                     <ul class="navbar-nav col-xl-10 col-md-10 pl-15" id="category-navigation">
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          ART MEDIUM
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            {% for key, value in category.items %}
-                 <a class="dropdown-item" href="{%url 'show_search' type_='category' value=key %}">{{value | upper}}</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                ART MEDIUM
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                {% for key, value in category.items %}
+                                <a class="dropdown-item"
+                                    href="{%url 'show_search' type_='category' value=key %}">{{value | upper}}</a>
 
-            {%endfor%}
-
-
-        </div>
-                            </li>
-
-                            <li class="nav-item"> <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    EXPLORE ART BY PRICE</a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-
-                 <a class="dropdown-item" href="{%url 'show_search' type_='price' value='price_max-100' %}">$100 AND UNDER</a>
-
-                 <a class="dropdown-item" href="{%url 'show_search' type_='price' value='price_max-500' %}">$500 AND UNDER</a>
-
-                 <a class="dropdown-item" href="{%url 'show_search' type_='price' value='price_max-1000' %}">$1000 AND UNDER</a>
-
-                 <a class="dropdown-item" href="{%url 'show_search' type_='price' value='price_min-1000' %}">$1000 AND OVER</a>
+                                {%endfor%}
 
 
+                            </div>
+                        </li>
 
-        </div>
-                          </li>
+                        <li class="nav-item"> <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+                                role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                EXPLORE ART BY PRICE</a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 
-                            <li class="nav-item"> <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    LOCAL ART</a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item"
+                                    href="{%url 'show_search' type_='price' value='price_max-100' %}">$100 AND UNDER</a>
 
-                 <a class="dropdown-item" href="{%url 'show_search' type_='country' value='shipcan' %}">CANADA</a>
+                                <a class="dropdown-item"
+                                    href="{%url 'show_search' type_='price' value='price_max-500' %}">$500 AND UNDER</a>
 
-                 <a class="dropdown-item" href="{%url 'show_search' type_='country' value='shipus' %}">US</a>
+                                <a class="dropdown-item"
+                                    href="{%url 'show_search' type_='price' value='price_max-1000' %}">$1000 AND
+                                    UNDER</a>
 
-                 <a class="dropdown-item" href="{%url 'show_search' type_='country' value='shipeurope' %}">EUROPE</a>
-
-                 <a class="dropdown-item" href="{%url 'show_search' type_='country' value='shipuk' %}">UK</a>
-
-                 <a class="dropdown-item" href="{%url 'show_search' type_='country' value='shipasia' %}">ASIA</a>
-
-                 <a class="dropdown-item" href="{%url 'show_search' type_='country' value='shipaunz' %}">NEWZEALAND/AUSTRALIA</a>
+                                <a class="dropdown-item"
+                                    href="{%url 'show_search' type_='price' value='price_min-1000' %}">$1000 AND
+                                    OVER</a>
 
 
 
-        </div>
-                          </li>
+                            </div>
+                        </li>
 
-                            <li class="nav-item"><a class="nav-link" href="{%url 'show_search' type_='curator' value='none' %}">CURATOR PICKS</a> </li>
-                            <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">ABOUT</a> </li>
-                        </ul>
-                    </nav>
+                        <li class="nav-item"> <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+                                role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                LOCAL ART</a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+                                <a class="dropdown-item"
+                                    href="{%url 'show_search' type_='country' value='shipcan' %}">CANADA</a>
+
+                                <a class="dropdown-item"
+                                    href="{%url 'show_search' type_='country' value='shipus' %}">US</a>
+
+                                <a class="dropdown-item"
+                                    href="{%url 'show_search' type_='country' value='shipeurope' %}">EUROPE</a>
+
+                                <a class="dropdown-item"
+                                    href="{%url 'show_search' type_='country' value='shipuk' %}">UK</a>
+
+                                <a class="dropdown-item"
+                                    href="{%url 'show_search' type_='country' value='shipasia' %}">ASIA</a>
+
+                                <a class="dropdown-item"
+                                    href="{%url 'show_search' type_='country' value='shipaunz' %}">NEWZEALAND/AUSTRALIA</a>
+
+
+
+                            </div>
+                        </li>
+
+                        <li class="nav-item"><a class="nav-link"
+                                href="{%url 'show_search' type_='curator' value='none' %}">CURATOR PICKS</a> </li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">ABOUT</a> </li>
+                    </ul>
+                </nav>
             </div> {% endcomment %}
 
             {%endif%}
@@ -605,57 +695,64 @@
     </div>
 
 
-{% if not user.is_authenticated %}
-<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" id="login-modal" role="document">
-        <div class="modal-content">
-            <div class="modal-header border-bottom-0">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body pt-0">
-                <div class="form-title mb-3 text-center">
-                    <h3>Login</h3>
+    {% if not user.is_authenticated %}
+    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" id="login-modal" role="document">
+            <div class="modal-content">
+                <div class="modal-header border-bottom-0">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
-                <div class="d-flex flex-column text-center">
-                    <form action="{% url 'login_user' %}" method="post" name="login-form" id="login-form">
-                        {%csrf_token%}
-                        <div class="form-group">
-                            <input type="email" class="form-control input-md" name="email" placeholder="Email Address" required="required">
+                <div class="modal-body pt-0">
+                    <div class="form-title mb-3 text-center">
+                        <h3>Login</h3>
+                    </div>
+                    <div class="d-flex flex-column text-center">
+                        <form action="{% url 'login_user' %}" method="post" name="login-form" id="login-form">
+                            {%csrf_token%}
+                            <div class="form-group">
+                                <input type="email" class="form-control input-md" name="email"
+                                    placeholder="Email Address" required="required">
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control input-md" name="password" id="password"
+                                    placeholder="Password" required="required">
+                            </div>
+                            <div class="register-form d-flex justify-content-between">
+                                <span class="form-group"><input type="checkbox" onclick="showPassword()">&nbsp;Show
+                                    Password</span>
+                                <span><a class="text-info" href="{% url 'forgot'%}">Forgot Password?</a></span>
+                            </div>
+                            <button type="submit" class="login-info-button btn btn-block">Login</button>
+                        </form>
+                        <div class="text-center text-muted m-3">or use social login</div>
+                        <div class="d-flex justify-content-center social-buttons">
+                            <span>
+                                <a type="button"
+                                    href="{% provider_login_url 'google' method='oauth2' %}&next={{request.path}}"
+                                    class="login-info-button btn btn-block button-appearance">
+                                    <i class="fab fa-google mr-1"></i> Google
+                                </a>
+                            </span>
                         </div>
-                        <div class="form-group">
-                            <input type="password" class="form-control input-md" name="password" id="password" placeholder="Password" required="required">
-                        </div>
-                        <div class="register-form d-flex justify-content-between">
-                            <span class="form-group"><input type="checkbox" onclick="showPassword()">&nbsp;Show Password</span>
-                            <span><a class="text-info" href="{% url 'forgot'%}">Forgot Password?</a></span>
-                        </div>
-                        <button type="submit"  class="login-info-button btn btn-block">Login</button>
-                    </form>
-                    <div class="text-center text-muted m-3">or use social login</div>
-                    <div class="d-flex justify-content-center social-buttons">
-                        <span>
-                            <a type="button" href="{% provider_login_url 'google' method='oauth2' %}&next={{request.path}}" class="login-info-button btn btn-block button-appearance">
-                                <i class="fab fa-google mr-1"></i> Google
-                            </a>
-                        </span>
                     </div>
                 </div>
-            </div>
-            <div class="modal-footer d-flex justify-content-center">
-                <div class="signup-section">Not a member yet? <a href="{% url 'register' %}" class="text-info">Click here to register</a></div>
+                <div class="modal-footer d-flex justify-content-center">
+                    <div class="signup-section">Not a member yet? <a href="{% url 'register' %}" class="text-info">Click
+                            here to register</a></div>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
 
 
 
 
-{%endif%}
+    {%endif%}
 
-<!-- Header End -->
+    <!-- Header End -->
 
 </header>
