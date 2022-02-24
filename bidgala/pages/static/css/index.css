@@ -1148,3 +1148,63 @@ p.content{
     /* border-radius: 20px; */
     z-index:1;
 }
+
+.art-digest-div-inner{
+    display: flex;
+}
+
+.art-digest-email-field{
+    width: 400px;
+    margin-left: 5rem;
+}
+
+.art-digest-btn{
+    width: 200px;
+    border-radius: 3px;
+    margin-left: 1rem;
+}
+.art-digest-btn:hover{
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+    outline-color: black;
+}
+
+.art-digest-text{
+    margin-top: 0.5rem;
+}
+
+@media screen and (max-width: 550px){
+    .art-digest-div{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .art-digest-div-inner{
+        display: block;
+    }
+    .art-digest-text{
+        margin-top: 1rem;
+        padding: 10px;
+        width: 100%;
+    }
+    .art-digest-email-field{
+        margin-top: 1rem;        
+        width: 60%;
+    }
+    
+    .art-digest-btn{
+        margin-top: 1rem; 
+        margin-left: 50%;
+        transform: translateX(-50%); 
+        width: auto;
+        border-radius: 3px;
+    }
+    .art-digest-btn:hover{
+        background-color: white;
+        color: black;
+        border: 1px solid black;
+        outline-color: black;
+    }
+    
+}
