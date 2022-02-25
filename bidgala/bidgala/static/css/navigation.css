@@ -536,3 +536,19 @@ p.category-menu {
   outline: none;
 }
 
+/* NEW CHANGES */
+
+/* COUPON DISPLAY */
+
+.coupon{
+  text-align: center;
+  background-color: #111;
+  padding: 7px 0px;
+  width: 100%;
+}
+
+h6{
+  color: white;
+}
+
+

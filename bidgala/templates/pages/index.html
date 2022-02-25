@@ -16,6 +16,58 @@
 
 {% block content %}
 <main>
+
+    <!-- New Carousel -->
+
+
+    <section id="showcase">
+        <div class="col-lg-8 col-md-9 col-sm-12 img-center">
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators exp-carouselindicators">
+                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="{{BASE_IMG_URL}}{{all_art_img}}{{img_optimize_param}}" class="d-block w-100 " alt="">
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <div class="col-lg-4 col-md-4 col-sm-3 btn-exp">
+        <button type="button" class="btn btn-dark btn-lg">Start Exploring</button>
+    </div>
+
+
+    <!-- NEW BUTTONS -->
+
+    <section id="category-buttons">
+            <button type="button" class="btn btn-outline-dark">Paintings</button>
+            <button type="button" class="btn btn-outline-dark">Abstrtact</button>
+            <button type="button" class="btn btn-outline-dark">Landscape</button>
+            <button type="button" class="btn btn-outline-dark">Under $500</button>
+            <button type="button" class="btn btn-outline-dark">Large Works</button>
+            <button type="button" class="btn btn-outline-dark">Curator Picks</button>
+            <button type="button" class="btn btn-outline-dark">Large Works</button>
+            <button type="button" class="btn btn-outline-dark">All Art</button>
+    </section>
+
+    <section id="mob-category-buttons">
+        
+    </section>
+
+
     <!-- Main Carousel -->
     <div class="carousel-area d-flex align-items-center flex-column-reverse flex-md-row">
         <div class="col-12 col-md-6 pr-3 pr-md-5  mb-4 mb-md-0">
@@ -207,7 +259,7 @@
                 </div>
             </div>
 
-            
+
 
             <div class="container-fluid pl-2 pr-2 p-xl-0">
                 <div class="d-flex">
