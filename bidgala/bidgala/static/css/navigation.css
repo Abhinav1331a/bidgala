@@ -371,7 +371,7 @@ div.show {
   /*display: none;*/
   width: 100vw;
   position: absolute;
-  top: 85px;
+  top: 55px;
   /*left: 0;*/
   background-color: white;
   z-index: 100;
@@ -549,4 +549,20 @@ p.category-menu {
 .shop-button:focus:not(:focus-visible) {
   outline: none;
 }
+
+/* NEW CHANGES */
+
+/* COUPON DISPLAY */
+
+.coupon{
+  text-align: center;
+  background-color: #111;
+  padding: 7px 0px;
+  width: 100%;
+}
+
+h6{
+  color: white;
+}
+
 
