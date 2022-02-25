@@ -755,8 +755,8 @@ p.card-text.date{
     }
 }
 
-.article-img {
-    width: 300px;
+.bloglatest {
+    height: 500px;
 }
 
 .article{
@@ -1207,4 +1207,14 @@ p.content{
         outline-color: black;
     }
     
+}
+
+.discover-div{
+
+margin-top: 2rem;
+margin-bottom: 1rem;  
+}
+
+.discover-inner-div{
+    margin-left: 0.05rem; 
 }

@@ -208,22 +208,22 @@
             </div>
 
             <!-- Articles starts here -->
-            <div class="container-fluid art-carousel p-0" id="Trending-Art-slider">
+            <!-- <div class="container-fluid art-carousel p-0 discover-carousel col-lg-4 col-md-4 col-sm-6" id="Trending-Art-slider">
                 <div class="container-fluid p-0">
-                    <div class="d-flex">
-                        <div class="d-flex flex-column w-100 position-relative">
-                            <div class="d-flex mb-2 mt-5 pl-2 pr-2 p-xl-0">
+                    <div class="">
+                        <div class="">
+                            <div class="">
                                 <h3>Discover</h3>
                             </div>
                             <i class="fas fa-chevron-left prev mt-5" id="prev-articles"></i>
                             <i class="fas fa-chevron-right next mt-5" id="next-articles"></i>
 
-                            <div class="articles d-flex justify-content-between  ">
+                            <div class="articles discover-div">
                                 {%for article in discover_articles %}
                                 <div class="card ml-1 mr-1 bloglatest">
                                     <a href="{% url 'article_details' article.slug %}">
 
-                                        <img class="card-img-top article-img "
+                                        <img class="article-img"
                                             src="{{BASE_IMG_URL}}{{article.img}}{{img_optimize_param}}"
                                             alt="Card image cap">
                                         <div class="card-body">
@@ -237,9 +237,40 @@
                         </div>
                     </div>
                 </div>
+            </div> -->
+
+            <div class="discover-div">
+                <div>
+                    <a href="{% url 'blog' %}" class="desktop-navlinks"><h3>Fresh from the blog <p class="view-all mt-2" style="float: right;">View All →</p></h3> </a>
+                </div>
+                <div class="card-deck discover-inner-div w-100">
+                
+                    <div class="card">
+                      <img class="card-img-top" src="..." alt="Card image cap">
+                      <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                      </div>
+                    </div>
+                    <div class="card">
+                      <img class="card-img-top" src="..." alt="Card image cap">
+                      <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                      </div>
+                    </div>
+                    <div class="card">
+                      <img class="card-img-top" src="..." alt="Card image cap">
+                      <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                      </div>
+                    </div>
+                  </div>
             </div>
-
-
 
 
                     <!-- what is bidgala -->
