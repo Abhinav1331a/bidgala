@@ -1218,6 +1218,15 @@ p.content {
     }
 }
 
+@media screen and (min-width:775px) {
+    .main-carousel-img{
+        height: 625px;
+        object-fit: contain;
+    }
+    
+}
+
+
 /* CATEGORY BUTTONS */
 
 #category-buttons{
