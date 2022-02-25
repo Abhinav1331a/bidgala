@@ -19,7 +19,9 @@
   background-color: white;
 }
 
-
+.dropdown-container-desktop-padding{
+  margin-top: 70px;
+}
 
 .nav-search {
   border-bottom: solid 1px black;
