@@ -20,7 +20,78 @@
     padding: 10px 50px;
 }
 
+.free-returns {
+    background-color: #f8f9fa;
+    padding: 20px;
+    /* text-align: justify; */
+ 
+}
+.free-returns h1 {color: black;}
 
+.returns-btn {
+    width: 100%;
+    padding: 8px;
+    margin-top: 1.25rem;
+    background-color: white;
+    border: 1px double black;
+    color: black;
+    transition: 0.5s ease-in-out;
+    /* margin-top: 15px; */
+}
+.text-return {
+    width: 500px;
+    text-align: center;
+    margin-top: 10px;
+}
+.returns-btn a {
+    color: white;
+}
+
+.returns-btn:hover {
+    background: rgb(26, 26, 26);
+    color: white;
+}
+
+@media screen and (max-width: 550px){
+    
+.free-returns {
+    background-color: #f8f9fa;
+    padding: 30px;
+   
+}
+.returns-btn {
+    width: 100%;
+    padding: 10px;
+    margin-top: 1.5rem;
+    background-color: white;
+    border: 1px double black;
+    color: black;
+    transition: 0.5s ease-in-out;
+    /* margin-top: 15px; */
+}
+
+.returns-btn a {
+    color: white;
+}
+
+.returns-btn:hover {
+    background: rgb(26, 26, 26);
+    color: white;
+}
+.text-return {
+    width: 250px;
+    text-align: center;
+    margin-top: 10px;
+}
+.bidinfo {
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+}
+/* media starts here */
 @media (max-width: 800px) {
     .shop-by-price {
         flex-direction: column;
@@ -34,8 +105,59 @@
         margin: 30px 0;
     }
 }
+.bidgalastory {
+    background-color: #f8f9fa;
+    padding: 30px;
 
-#prices a {
+}
+.bidgalastory h1,h4,h6 {
+    color: black;
+}
+.bidinfo {
+    margin-top: 30px;
+    text-align: justify;
+
+    padding: 20px;
+    display: flex;
+   
+}
+.bidinfo #info-content1 {
+   /* margin-top: 10px; */
+}
+.bidinfo #info-content2,#info-content3 {
+    /* margin-top: 36px; */
+ }
+ 
+
+.info-btn {
+    width: 140px;
+    padding: 8px;
+    margin-top: 10px;
+    background-color: white;
+    border: 1px double black;
+    color: black;
+    transition: 0.5s ease-in-out;
+   
+}
+
+.info-btn a {
+    color: white;
+}
+.info-q #line {
+font-size: medium;
+font-weight: 500;
+color: black;
+}
+
+.info-btn:hover {
+    background: rgb(26, 26, 26);
+    color: white;
+}
+.info-q {
+    margin-top: 20px;
+    padding: 10px;
+}
+#prices a  {
     border: 1px solid #1b1b1b;
     padding: 15px;
     width: 24%;
@@ -45,7 +167,8 @@
     box-shadow: 2px 2px;
 }
 
-@media screen and (max-width: 374px) {
+
+@media screen and (max-width: 374px){
     #prices {
         display: block !important;
     }
@@ -151,6 +274,8 @@
 
 
 
+
+
 .carousel-caption {
     display: flex;
     flex-direction: column;
@@ -183,6 +308,7 @@
 .art-carousel {
     margin-top: 30px;
     position: relative;
+    margin-bottom: 20px;
 }
 
 .next {
@@ -648,13 +774,14 @@ p.card-text.date {
     }
 }
 
-.article-img {
-    width: 300px;
+.bloglatest {
+    height: 500px;
 }
 
 .article {
     width: 300px;
 }
+
 
 .centered {
     position: absolute;
@@ -1098,4 +1225,91 @@ p.content {
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 3%;
+}
+.art-digest-div{
+    margin-top: 2rem;
+}
+
+.art-digest-div-inner{
+    display: flex;
+}
+
+.art-digest-email-field{
+    width: 400px;
+    margin-left: 5rem;
+}
+
+.art-digest-btn{
+    width: 200px;
+    border-radius: 3px;
+    margin-left: 1rem;
+}
+.art-digest-btn:hover{
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+    outline-color: black;
+}
+
+.art-digest-text{
+    margin-top: 0.5rem;
+}
+
+@media screen and (max-width: 550px){
+    .art-digest-div{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .art-digest-div-inner{
+        display: block;
+    }
+    .art-digest-text{
+        margin-top: 1rem;
+        padding: 10px;
+        width: 100%;
+    }
+    .art-digest-email-field{
+        margin-top: 1rem;        
+        width: 60%;
+    }
+    
+    .art-digest-btn{
+        margin-top: 1rem; 
+        margin-left: 50%;
+        transform: translateX(-50%); 
+        width: auto;
+        border-radius: 3px;
+    }
+    .art-digest-btn:hover{
+        background-color: white;
+        color: black;
+        border: 1px solid black;
+        outline-color: black;
+    }
+    
+}
+
+.discover-div{
+
+margin-top: 2rem;
+margin-bottom: rem;  
+}
+
+.discover-div h3,h6{
+    color: #000;
+}
+
+.discover-inner-div{
+    margin-left: 0.05rem; 
+}
+
+.card-img-recent{
+    width: 100%;
+    height:150px;
+}
+
+.card-img-fresh{
+    width: 100%;
+    height: 300px;
 }

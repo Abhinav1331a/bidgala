@@ -189,7 +189,7 @@
             </div>
 
             <div class="container-fluid d-flex flex-column mt-5 mb-5 pl-2 pr-2 p-xl-0">
-                <div>
+                <!-- <div>
                     <h3 class="mb-3">Shop By Price</h3>
                 </div>
                 <div class="d-flex justify-content-between" id="prices">
@@ -213,7 +213,7 @@
                             <p class="price">$1000 AND OVER</p>
                         </div>
                     </a>
-                </div>
+                </div> -->
                 <div class="d-flex mt-5 shop-by-price">
                     <img src="{{BASE_IMG_URL}}{{advisory_img}}{{img_optimize_param}}" alt="">
                     <div class="d-flex flex-column justify-content-center align-items-center">
@@ -259,67 +259,262 @@
                 </div>
             </div>
 
-
-
-            <div class="container-fluid pl-2 pr-2 p-xl-0">
-                <div class="d-flex">
-                    <div class="d-flex flex-column w-100">
-                        <!--Shop by Category-->
-                        <div class="d-flex mb-2 mt-5 ">
-                            <h3>Shop by Category</h3>
-                        </div>
-                        <div class="d-flex flex-wrap justify-content-between">
-                            {% for key, value in category.items %}
-                            {% for cat in category_objs %}
-                            {% if key == cat.category_name %}
-                            <a href="{%url 'show_search' type_='category' value=key %}" class="cat-cont">
-                                <div class="category">
-                                    <img src="{{BASE_IMG_URL}}{{cat.image}}{{img_optimize_param}}" />
-                                </div>
-                                <div class="text-center mt-3 mb-3 cat-title">{{cat.category_val | title}}</div>
-                            </a>
-                            {% endif %}
-                            {%endfor%}
-                            {%endfor%}
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-            {%comment%}
-            <div class="container-fluid p-0">
-                <div class="d-flex">
-                    <div class="d-flex flex-column w-100 position-relative">
-                        <div class="d-flex mb-2 mt-5 pl-2 pr-2 p-xl-0">
-                            <h3>Discover</h3>
-                        </div>
-                        <i class="fas fa-chevron-left prev mt-5" id="prev-articles"></i>
-                        <i class="fas fa-chevron-right next mt-5" id="next-articles"></i>
-                        <div class="articles d-flex justify-content-between ">
-                            {%for article in discover_articles %}
-                            <div class="card ml-1 mr-1">
-                                <a href="{% url 'article_details' article.slug %}">
-                                    <img class="card-img-top article-img"
-                                        src="{{BASE_IMG_URL}}{{article.img}}{{img_optimize_param}}"
-                                        alt="Card image cap">
-                                    <div class="card-body">
-                                        <p class="card-title mb-1 text-muted">{{article.category | title}}</p>
-                                        <p class="card-title mb-1">{{article.title | title}}</p>
-                                    </div>
-                                </a>
+            <!-- Articles starts here -->
+            <!-- <div class="container-fluid art-carousel p-0 discover-carousel col-lg-4 col-md-4 col-sm-6" id="Trending-Art-slider">
+                <div class="container-fluid p-0">
+                    <div class="">
+                        <div class="">
+                            <div class="">
+                                <h3>Discover</h3>
                             </div>
-                            {%endfor%}
+                            <i class="fas fa-chevron-left prev mt-5" id="prev-articles"></i>
+                            <i class="fas fa-chevron-right next mt-5" id="next-articles"></i>
+
+                            <div class="articles discover-div">
+                                {%for article in discover_articles %}
+                                <div class="card ml-1 mr-1 bloglatest">
+                                    <a href="{% url 'article_details' article.slug %}">
+
+                                        <img class="article-img"
+                                            src="{{BASE_IMG_URL}}{{article.img}}{{img_optimize_param}}"
+                                            alt="Card image cap">
+                                        <div class="card-body">
+                                            <p class="card-title mb-1 text-muted">{{article.category | title}}</p>
+                                            <p class="card-title mb-1">{{article.title | title}}</p>
+                                        </div>
+                                    </a>
+                                </div>
+                                {%endfor%}
+                            </div>
                         </div>
                     </div>
                 </div>
+            </div> -->
+
+
+            <!-- Shop by Price -->
+
+            <div class="d-flex flex-row-lg2">
+                <div class="text-center">
+                    <h4>Shop By Price</h4>
+                </div>
+
+                <div class="d-flex flex-row-lg10 w-100 justify-content-between price-buttons" id="prices">
+                    <a href="{%url 'show_search' type_='price' value='price_max-100' %}">
+                        <div>
+                            <p class="price">UNDER $500</p>
+                        </div>
+                    </a>
+                    <a href="{%url 'show_search' type_='price' value='price_max-500' %}">
+                        <div>
+                            <p class="price">$500 - $1000</p>
+                        </div>
+                    </a>
+                    <a href="{%url 'show_search' type_='price' value='price_max-1000' %}">
+                        <div>
+                            <p class="price">$1000 - $2000</p>
+                        </div>
+                    </a>
+                    <a href="{%url 'show_search' type_='price' value='price_min-1000' %}">
+                        <div>
+                            <p class="price">$2000 - $5000</p>
+                        </div>
+                    </a>
+                </div>
+
+            </div>
+            
+            <!-- Fresh from the blog -->
+
+            <div class="discover-div">
+                <div>
+                    <a href="{% url 'blog' %}" class="desktop-navlinks"><h3>Fresh from the blog <p class="view-all mt-2" style="float: right;">View All →</p></h3> </a>
+                </div>
+                <div class="card-deck discover-inner-div w-100">
+                
+                    <div class="card">
+                      <img class="card-img-fresh" src="..." alt="Card image cap">
+                      <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                      </div>
+                    </div>
+                    <div class="card">
+                      <img class="card-img-fresh" src="..." alt="Card image cap">
+                      <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                      </div>
+                    </div>
+                    <div class="card">
+                      <img class="card-img-fresh" src="..." alt="Card image cap">
+                      <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                      </div>
+                    </div>
+                  </div>
             </div>
 
-            {%endcomment%}
 
 
-        </div>
-    </div>
+            <!-- what is bidgala -->
+
+                    <div class=" mt-5 bidgalastory ">
+                        <div class="bidgalainfo text-center">
+                            <h1><b>What is Bidgala</b></h1>
+                            <h6><u> Read our young & bold story </u>
+                                <h6>
+
+                        </div>
+                        <div class=" bidinfo  ">
+
+
+                            <div class="info1 col-md-4 ">
+                                <h4>A fine art marketplace for everyone</h4>
+                                <p id="info-content1">Bidgala is a fine art marketplace, catering to homeowners and
+                                    design professionals. We connect art lovers directly with student and emerging
+                                    artists who sell their original art at lower prices. Our mission is to make art
+                                    accessible by empowering artists one sale, one connection and one story at a time.
+                                </p>
+                            </div>
+                            <div class="info2 col-md-4 ">
+                                <h4>Connecting with the artist</h4>
+                                <p></p>
+                                <p id="info-content2">Knowing who’s artwork is hanging in your home and connecting with
+                                    them on a personal level makes every purchase more meaningful. Purchase confidently
+                                    by connecting with artists through Bidgala DMs or by reading artist stories in their
+                                    profiles.
+                                </p>
+                            </div>
+                            <div class="info3 col-md-4 ">
+                                <h4>Support independent creators</h4>
+                                <p></p>
+                                <p id="info-content3">Artworks are shipped directly from the artists’ studio to your
+                                    home. Each purchase is in support of independent artists and their craft.
+                                </p>
+                            </div>
+
+
+                        </div>
+                        <div class="info-q text-center">
+                            <p id="line">Have a question? For the love of art, get some answers...</p>
+                            <a href="{%url 'show_search' type_='art' value='all' %}"><button class="info-btn">CONTACT
+                                    US</button></a>
+                        </div>
+
+                    </div>
+
+                    <!-- Free Returns starts here -->
+                    <div class=" mt-5 free-returns ">
+                        <div class="d-flex flex-column justify-content-center align-items-center ">
+                            <h1><b>Free Returns</b></h1>
+
+                            <div class="text-return"> 100% Satisfaction Guaranteed. If you're not completely in love
+                                with art
+                                you purchase, return it for free. No questions asked. </div>
+
+                            <a href="{%url 'show_search' type_='art' value='all' %}"><button class="returns-btn">EXPLORE
+                                    ALL ART</button></a>
+                        </div>
+                    </div>
+                    <!-- Shop by category starts here -->
+                    <div class="container-fluid pl-2 pr-2 p-xl-0">
+                        <div class="d-flex">
+                            <div class="d-flex flex-column w-100">
+                                <!--Shop by Category-->
+                                <div class="d-flex mb-2 mt-5 ">
+                                    <h3>Shop by Category</h3>
+                                </div>
+                                <div class="d-flex flex-wrap justify-content-between">
+                                    {% for key, value in category.items %}
+                                    {% for cat in category_objs %}
+                                    {% if key == cat.category_name %}
+                                    <a href="{%url 'show_search' type_='category' value=key %}" class="cat-cont">
+                                        <div class="category">
+                                            <img src="{{BASE_IMG_URL}}{{cat.image}}{{img_optimize_param}}" />
+                                        </div>
+                                        <div class="text-center mt-3 mb-3 cat-title">{{cat.category_val | title}}</div>
+                                    </a>
+                                    {% endif %}
+                                    {%endfor%}
+                                    {%endfor%}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recently viewed -->
+
+                    <div class="discover-div">
+                        <div>
+                            <a href="{% url 'blog' %}" class="desktop-navlinks"><h6>Recently Viewed</h6> </a>
+                            <h3>Grab these before they sell</h3>
+                        </div>
+                        <div class="card-deck discover-inner-div w-100">
+                        
+                            <div class="card">
+                              <img class="card-img-recent" src="..." alt="Card image cap">
+                              <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                              </div>
+                            </div>
+                            <div class="card">
+                              <img class="card-img-recent" src="..." alt="Card image cap">
+                              <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                              </div>
+                            </div>
+                            <div class="card">
+                              <img class="card-img-recent" src="..." alt="Card image cap">
+                              <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                              </div>
+                            </div>
+                            <div class="card"card-img-recent>
+                                <img class="card-img-recent" src="..." alt="Card image cap">
+                                <div class="card-body">
+                                  <h5 class="card-title">Card title</h5>
+                                  <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                </div>
+                              </div>
+                              <div class="card">
+                              <img class="card-img-recent" src="..." alt="Card image cap">
+                              <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                              </div>
+                            </div>
+
+                          </div>
+                    </div>
+
+
+                    <!-- Bidgala Art Digest -->
+
+                    <div class="container-fluid p-0 art-digest-div">
+                        <span class="lead art-digest-heading-text">BIDGALA ART DIGEST</span>
+                        <div class="art-digest-div-inner">
+                            <p class="text text-muted art-digest-text">Discover new art and collections added weekly by
+                                our curators.</p>
+                            <input class="form-control text-center art-digest-email-field" type="email"
+                                placeholder="Email Address">
+                            <button class="btn btn-dark mb-2 art-digest-btn">Sign Up</button>
+                        </div>
+
+                    </div>
+
+
+
+
+                </div>
+            </div>
 
 </main>
 

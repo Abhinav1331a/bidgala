@@ -1,13 +1,27 @@
-.header-area .main-header {
+/* COUPON DISPLAY */
+
+.coupon{
+  text-align: center;
+  background-color: #111;
+  padding: 7px 0px;
+  width: 100%;
+}
+
+.coupon h6{
+  color: white;
+}
+
+.header-area .navbarr{
   width: 100%;
   border-bottom: 1px solid #f3f3f3;
-  position: fixed;
   top: 0;
   z-index: 100;
   background-color: white;
 }
 
-
+.dropdown-container-desktop-padding{
+  margin-top: 70px;
+}
 
 .nav-search {
   border-bottom: solid 1px black;
@@ -449,7 +463,7 @@ p.category-menu {
 @media only screen and (max-width: 575px) {
   .searchfield {
     position: absolute;
-    margin-top: -150px;
+    margin-top: -350px;
     transition: margin-top 0.3s;
   }
   .show-search {
