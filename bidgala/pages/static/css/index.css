@@ -1313,3 +1313,8 @@ margin-bottom: rem;
     width: 100%;
     height: 300px;
 }
+@media screen and (min-width: 775px){
+    .div-shop-price {
+        display: flex;
+    }
+}
