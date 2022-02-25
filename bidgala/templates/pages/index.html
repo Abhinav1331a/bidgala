@@ -21,17 +21,20 @@
 
 
     <section id="showcase">
-        <div class="col-lg-8 col-md-9 col-sm-12 img-center">
-            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                <ol class="carousel-indicators exp-carouselindicators">
-                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                </ol>
+            <div id="carouselExampleIndicators" class="carousel slide img-center w-100 col-lg-9 col-md-9 col-sm-12 " data-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="{{BASE_IMG_URL}}{{all_art_img}}{{img_optimize_param}}" class="main-carousel-img d-block w-100 " alt="">
+                        <img src="{{BASE_IMG_URL}}{{all_art_img}}{{img_optimize_param}}" class="main-carousel-img d-block w-100 h-100" alt="">
+                        <div class="btn-exp col-lg-4 col-md-4 col-sm-3 ">
+                            <button type="button" class="btn btn-dark btn-lg">Start Exploring</button>
+                        </div> 
                     </div>
+                    <div class="carousel-item">
+                        <img src="{% static 'img/Wide.jpg' %}" class="main-carousel-img d-block w-100 h-100" alt="">
+                        <div class="btn-exp col-lg-4 col-md-4 col-sm-3 ">
+                            <button type="button" class="btn btn-dark btn-lg">Fine Art</button>
+                        </div>   
+                    </div>             
                 </div>
                 <a class="carousel-control-prev exp-carousel-arrows" href="#carouselExampleIndicators" role="button" data-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -42,16 +45,9 @@
                     <span class="sr-only">Next</span>
                 </a>
             </div>
-        </div>
     </section>
 
-    <div class="col-lg-4 col-md-4 col-sm-3 btn-exp">
-        <button type="button" class="btn btn-dark btn-lg">Start Exploring</button>
-    </div>
-
-
     <!-- NEW BUTTONS -->
-
     <section id="category-buttons">
         <button type="button" class="btn btn-outline-dark">Paintings</button>
         <button type="button" class="btn btn-outline-dark">Abstrtact</button>

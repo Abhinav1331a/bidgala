@@ -1196,12 +1196,6 @@ p.content {
     margin: auto;
 }
 
-.exp-carouselindicators{
-   position: absolute;
-   margin-left: 80%;
-    
-}
-
 .carousel-control-prev{
     margin-left: 1.5rem;
 }
@@ -1211,7 +1205,8 @@ p.content {
 }
 
 .exp-carousel-arrows{
-    margin-top: 5rem;
+    top: 50%;
+    transform: translateY(-75%);
     height: 50px;
     width: 50px;
     border-radius: 50px;
@@ -1225,7 +1220,7 @@ p.content {
     text-align: center;
     margin-left: auto;
     margin-right: auto;
-    bottom: 3.2rem;
+    bottom: 1.8rem;
     z-index: 1;
 }
 
@@ -1237,18 +1232,18 @@ p.content {
 
 @media screen and (min-width:775px) {
     .main-carousel-img{
-        height: 625px;
+        height: 750px;
         object-fit: contain;
     }
 
     .exp-carousel-arrows{
-        margin-top: 19.5rem;
+        top: 50%;
+        transform: translateY(-50%);
         height: 50px;
         width: 50px;
         border-radius: 50px;
         background-color: black;
-    }
-        
+    }   
 }
 
 
