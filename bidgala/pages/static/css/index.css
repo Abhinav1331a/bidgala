@@ -1352,3 +1352,28 @@ margin-bottom: rem;
         display: flex;
     }
 }
+
+.ratings-left-img {
+    height: 150px;
+    object-fit: contain;
+}
+
+.reviews-carousel-arrow-left{
+    position: absolute;
+    margin-top: 5rem;
+    right: 55rem;
+    z-index: 1;
+}
+
+.reviews-carousel-arrow-right{
+    position: absolute;
+    z-index: 1;
+    margin-left: 55rem;
+    margin-top: 5rem;
+}
+
+@media screen and (max-width: 1024px){
+    .reviews-carousel{
+        display: none;    
+    }
+}
