@@ -1197,8 +1197,26 @@ p.content {
 }
 
 .exp-carouselindicators{
-    float: right;
-    margin-left: 72%;
+   position: absolute;
+   margin-left: 80%;
+    
+}
+
+.carousel-control-prev{
+    margin-left: 2%;
+}
+
+.carousel-control-next{
+    margin-right: 2%;
+}
+
+
+.exp-carousel-arrows{
+    margin-top: 25%;
+    height: 50px;
+    width: 50px;
+    border-radius: 50px;
+    background-color: black;
 }
 
 /* BUTTON ON CAROUSEL */
