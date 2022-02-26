@@ -25,14 +25,13 @@
             data-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="{{BASE_IMG_URL}}{{all_art_img}}{{img_optimize_param}}"
-                        class="main-carousel-img d-block w-100 h-100" alt="">
+                    <img src="{% static 'img/OMEN1.jpg' %}" class="main-carousel-img d-block w-100 h-100" alt="">
                     <div class="btn-exp col-lg-4 col-md-4 col-sm-3 ">
                         <button type="button" class="btn btn-dark btn-lg">Start Exploring</button>
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img src="{% static 'img/Wide.jpg' %}" class="main-carousel-img d-block w-100 h-100" alt="">
+                    <img src="{% static 'img/OMEN2.png' %}" class="main-carousel-img d-block w-100 h-100" alt="">
                     <div class="btn-exp col-lg-4 col-md-4 col-sm-3 ">
                         <button type="button" class="btn btn-dark btn-lg">Fine Art</button>
                     </div>
@@ -63,29 +62,57 @@
         <button type="button" class="btn btn-outline-dark">All Art</button>
     </section>
 
+    <!-- MOBILE KA CAROUSEL -->
+
     <section id="mob-category-buttons">
+
+
 
     </section>
 
+    <!-- Curator Picks -->
+
+    <div class="curator-container">
+        <h3>Shop Original Art From Our Global<br>Community of Independent Artists</h3>
+
+        <div class="row curator-inner">
+            <div class="col-lg-8 col-md-8 col-sm-12 pt-3">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <h4>Handpicked by expert art curators</h4>
+                    </div>
+                    <div class="col-lg-3 col-md-3">
+                        <img src="{% static 'img/OMEN1.jpg' %}" alt="OMEN1" class="d-block w-100 h-100">
+                    </div>
+                    <div class="col-lg-3 col-md-3">
+                        <img src="{% static 'img/OMEN2.png' %}" alt="OMEN2" class="d-block w-100 h-100">
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-lg-3 col-md-6">
+                        <img src="{% static 'img/OMEN1.jpg' %}" alt="OMEN1" class="d-block w-100 h-100">
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <img src="{% static 'img/OMEN2.png' %}" alt="OMEN2" class="d-block w-100 h-100">
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <img src="{% static 'img/OMEN1.jpg' %}" alt="OMEN1" class="d-block w-100 h-100">
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <img src="{% static 'img/OMEN2.png' %}" alt="OMEN2" class="d-block w-100 h-100">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-4 col-sm-12">
+                <img src="{% static 'img/OMEN3.jpg' %}" alt="OMEN3" class="d-block w-100">
+            </div>
+        </div>
+    </div>
+
 
     <!-- Main Carousel -->
-    <div class="carousel-area d-flex align-items-center flex-column-reverse flex-md-row">
-        <div class="col-12 col-md-6 pr-3 pr-md-5  mb-4 mb-md-0">
-            <h1>Explore art from our thriving community of emerging artists</h1>
-            <a href="{%url 'show_search' type_='art' value='all' %}"><button class="shop-btn">EXPLORE ALL
-                    ART</button></a>
-        </div>
-        <div class="img-container col-12 col-md-6 mb-3 mb-md-0">
-            <a href="https://bidgala.com/art/product_view/c9196f6a-3a42-463a-880d-3ccc57c5e370/">
-                <img data-aload="{{BASE_IMG_URL}}{{all_art_img}}{{img_optimize_param}}" class="d-block w-100" alt="">
-            </a>
-        </div>
-    </div>
-
-    <div class="credits justify-content-end d-md-flex d-none">
-        <small class="text-dark">Cotton Candy Sky by Emilie Durocher-Noel</small>
-    </div>
-
     <div class="d-flex flex-column align-items-center">
         <div id="index-sections">
             <!-- Community channels -->

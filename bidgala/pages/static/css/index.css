@@ -1255,6 +1255,25 @@ p.content {
     margin-right: auto;
     margin-bottom: 3rem;
 }
+
+/* CURATOR PICKS */
+
+.curator-container{
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    height: 450px;
+    padding-top: 1.5rem;
+    text-align: center;
+}
+
+.curator-inner{
+    border: 1px solid lightgray;
+    padding: 1rem 0;
+}
+
+
+
 .art-digest-div{
     margin-top: 2rem;
 }
