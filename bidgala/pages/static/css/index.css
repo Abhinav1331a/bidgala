@@ -108,10 +108,15 @@
 .bidgalastory {
     background-color: #f8f9fa;
     padding: 30px;
+    margin-top: 100px;
 
 }
 .bidgalastory h1,h4,h6 {
     color: black;
+}
+.review-main{
+    margin-top: 50px;
+    margin-bottom: 25px;
 }
 .bidinfo {
     margin-top: 30px;
@@ -347,6 +352,19 @@ color: black;
 .card {
     border-radius: 0px;
     border: none;
+}
+.dis-card
+{
+    border-radius: 10px;
+    border: 1px solid grey;
+  
+
+}
+.card-img-fresh{
+    /* border-radius: 10px; */
+    border-top-left-radius:  10px;
+    border-top-right-radius:  10px;
+    /* border: none; */
 }
 
 div.card-body {
@@ -1255,6 +1273,25 @@ p.content {
     margin-right: auto;
     margin-bottom: 3rem;
 }
+
+/* CURATOR PICKS */
+
+.curator-container{
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    height: 450px;
+    padding-top: 1.5rem;
+    text-align: center;
+}
+
+.curator-inner{
+    border: 1px solid lightgray;
+    padding: 1rem 0;
+}
+
+
+
 .art-digest-div{
     margin-top: 2rem;
 }
@@ -1320,9 +1357,8 @@ p.content {
 }
 
 .discover-div{
-
-margin-top: 2rem;
-margin-bottom: rem;  
+    margin-top: 2rem;
+    margin-bottom: rem; 
 }
 
 .discover-div h3,h6{
@@ -1345,7 +1381,13 @@ margin-bottom: rem;
 @media screen and (min-width: 775px){
     .div-shop-price {
         display: flex;
-    }
+
+    } 
+}
+@media screen and (max-width: 550px){
+
+
+
 }
 
 .ratings-left-img {
@@ -1372,3 +1414,47 @@ margin-bottom: rem;
         display: none;    
     }
 }
+
+ .press-inner-div {
+   
+    margin-left: 0.05rem;
+    /* margin-right: 0.085rem; */
+   
+} 
+@media screen and (max-width: 550px){
+
+    .card-img-press {
+        width: 100px;
+        height: 30px;
+    }
+    .press-inner-div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+    }
+}
+/* #new-category a  {
+    border: 1px solid #1b1b1b;
+    padding: 15px;
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 2px 2px;
+} */
+/* @media screen and (max-width: 550px){
+    #new-category   {
+       
+       
+        
+        margin-bottom: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        
+    }
+} */
