@@ -11,6 +11,20 @@
 {% block content %}
 {% csrf_token %}
 
+<script>
+    
+    document.addEventListener("DOMContentLoaded", function(){
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 50) {
+            document.getElementById('filter-sidebar').classList.remove('mt-5');
+
+            } else {
+            document.getElementById('filter-sidebar').classList.add('mt-5');
+
+            } 
+        });
+    }); 
+</script>
 
 <div id="overlay-arts"></div>
 <section class="products-container mt-3">
@@ -75,7 +89,7 @@
 
 
 
-                <div class="single_sedebar mb-1">
+                <div class="single_sedebar mb-1 mt-5" id="filter-sidebar">
                     <div class="select_option">
                         <div class="select_option_list">CATEGORY <i class="right fas fa-caret-down"></i> </div>
                         <div class="select_option_dropdown">
@@ -407,6 +421,8 @@
 <script src="{% static 'js/product_modal.js' %}"></script>
 <script src="{% static 'js/arts.js' %}"></script>
 <script>
+    
+    
     //For comparison of the purchase button
     {% if request.user.is_authenticated %}
         currentUser = "{{request.user.is_authenticated}}"
@@ -420,5 +436,6 @@
         productOwner = null;
     {% endif %}
 </script>
+
 
 {% endblock %}

@@ -20,13 +20,13 @@
 }
 
 .dropdown-container-desktop-padding{
-  margin-top: 70px;
+  margin-top: 65px;
 }
 
 .nav-search {
   border-bottom: solid 1px black;
   padding: 0px 10px;
-  /*margin-left: 30px;*/
+  /* margin-left: 20rem; */
   display: flex;
   justify-content: space-between;
   align-items: baseline;
@@ -34,7 +34,6 @@
 }
 
 /* #searchfield {
-    width: 50%;
 } */
 .nav-search-input {
   border: none;
@@ -371,7 +370,7 @@ div.show {
   /*display: none;*/
   width: 100vw;
   position: absolute;
-  top: 55px;
+  top: 40px;
   /*left: 0;*/
   background-color: white;
   z-index: 100;
