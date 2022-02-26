@@ -108,10 +108,15 @@
 .bidgalastory {
     background-color: #f8f9fa;
     padding: 30px;
+    margin-top: 100px;
 
 }
 .bidgalastory h1,h4,h6 {
     color: black;
+}
+.review-main{
+    margin-top: 50px;
+    margin-bottom: 25px;
 }
 .bidinfo {
     margin-top: 30px;
@@ -347,6 +352,19 @@ color: black;
 .card {
     border-radius: 0px;
     border: none;
+}
+.dis-card
+{
+    border-radius: 10px;
+    border: 1px solid grey;
+  
+
+}
+.card-img-fresh{
+    /* border-radius: 10px; */
+    border-top-left-radius:  10px;
+    border-top-right-radius:  10px;
+    /* border: none; */
 }
 
 div.card-body {
