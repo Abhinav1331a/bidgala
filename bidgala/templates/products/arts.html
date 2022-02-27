@@ -17,8 +17,11 @@
         window.addEventListener('scroll', function() {
             if (window.scrollY > 50) {
             document.getElementById('filter-sidebar').classList.remove('mt-5');
+            document.getElementById('mobile-filter-btn').classList.remove('filter-sidebar-mb');
+
 
             } else {
+            document.getElementById('mobile-filter-btn').classList.add('filter-sidebar-mb');
             document.getElementById('filter-sidebar').classList.add('mt-5');
 
             } 
@@ -30,7 +33,7 @@
 <section class="products-container mt-3">
     <div class="products row m-0">
 
-        <div class="w-100 pl-2 pr-2" id="mobile-filter-btn">
+        <div class="w-100 pl-2 pr-2 filter-sidebar-mb" id="mobile-filter-btn">
             <button class="btn btn-dark d-lg-none d-block w-100" id="filter" type="button">FILTER</button>
         </div>
 

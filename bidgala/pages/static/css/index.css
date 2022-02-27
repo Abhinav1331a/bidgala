@@ -1212,7 +1212,7 @@ p.content {
 
 #showcase{
     position: relative;
-    margin: 1.5rem auto;
+    margin: 0 1.5rem auto;
 }
 
 .img-center{
@@ -1568,4 +1568,10 @@ p.content {
     .new-featured-artists{
         margin-bottom: 20px;
     }
+}
+
+@media screen and (max-width:992px) {
+    .filter-sidebar-mb{
+        margin-top: 69px;
+    }   
 }

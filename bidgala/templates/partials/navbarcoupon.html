@@ -46,7 +46,7 @@
 
     <div class="header-area">
 
-        <div class="main-header ">            
+        <div class="main-header ">
             <!-- COUPON DISPLAY -->
 
             <div class="coupon">
@@ -55,7 +55,7 @@
                 <h6>10% off all art | <a href="#" style="color: white;"> Code: Artlovers2022 </a>| Apply Coupon</h6>
 
             </div>
-            
+
             <!-- Main navigation bar -->
             <div class="header-bottom header-sticky navbarr" id="navbar_top">
                 <div class="container-fluid">
@@ -485,11 +485,10 @@
                                 <li><a href="{% url 'all_post' %}" class="desktop-navlinks">ARTIST
                                         FORUM</a></li>
 
-                                <li id="sell-demo"><a href="{% url 'art_upload' %}"
-                                        class="desktop-navlinks">SELL</a></li>
+                                <li id="sell-demo"><a href="{% url 'art_upload' %}" class="desktop-navlinks">SELL</a>
+                                </li>
 
-                                <li id="earn-demo"><a href="{% url 'invite' %}"
-                                        class="desktop-navlinks">INVITE</a></li>
+                                <li id="earn-demo"><a href="{% url 'invite' %}" class="desktop-navlinks">INVITE</a></li>
                                 {% if request.user.is_authenticated == True %}
 
 
@@ -504,10 +503,8 @@
                                 <li><a href="{% url 'orders' %}">ORDERS</a></li> {% endcomment %}
 
                                 <li id="account-demo" tabindex="0">
-                                    <div id="avatar_image"
-                                        class="avatar avatar-id-{{request.session.user_info_id}}"
-                                        style="
-                                        {% if request.session.profile_img %}
+                                    <div id="avatar_image" class="avatar avatar-id-{{request.session.user_info_id}}"
+                                        style="{% if request.session.profile_img %}
                                             background-image: url({{request.session.profile_img}});
                                         {% else %}
                                             background-image: url({% static 'img/profile-icon.png'%});
@@ -516,8 +513,7 @@
 
                                     </div>
                                     <ul class="submenu">
-                                        <li class="d-flex"><a
-                                                href="{% url 'public_profile' request.user %}">MY
+                                        <li class="d-flex"><a href="{% url 'public_profile' request.user %}">MY
                                                 PROFILE</a></li>
                                         <li class="d-flex"><a href="{% url 'my_art' %}">MY ARTWORK</a>
                                         </li>
@@ -526,8 +522,7 @@
                                         <li class="d-flex"><a href="{% url 'orders' %}">ORDERS</a></li>
 
                                         <li class="d-flex align-items-center" id="desktop-messages"><a
-                                                id="right-side-menu"
-                                                href="{% url 'show_contacts' %}">MESSAGES</a></li>
+                                                id="right-side-menu" href="{% url 'show_contacts' %}">MESSAGES</a></li>
                                         <li class="d-flex"><a href="{% url 'profile' %}">SETTINGS</a>
                                         </li>
 
@@ -550,8 +545,7 @@
                                 <div class="signin_up">
                                     <li><a href="#" data-toggle="modal" data-target="#loginModal"
                                             class="desktop-navlinks ">LOGIN</a></li>
-                                    <li><a href="{% url 'register' %}"
-                                            class="desktop-navlinks">REGISTER</a>
+                                    <li><a href="{% url 'register' %}" class="desktop-navlinks">REGISTER</a>
                                     </li>
                                 </div>
 
@@ -562,60 +556,62 @@
                     </div>
 
                 </div>
-            </div>
-
-            <hr style="height:1.5px;border-width:0;color:gray;background-color:gray; opacity:0.5;"> 
-
-            <div class="header-bottom header-sticky navbarr" id="navbar_top">
-                    <div class="d-flex justify-content-between a    ">
-                                <!-- Logo -->
-                                <div class="logo col-xl-4 col-lg-4 col-md-4 col-sm-4 col-6 pl-2 w-100 pt-10 pb-10" id="logo-demo">
-                                        <a href="{% url 'index' %}"><img class="logo-img mt-2"
-                                                src="{% static 'img/logo/logo.svg' %}" alt="BIDGALA"></a>
-                                </div>
-
-                                <!-- Categories -->
-                                <section id="d-flex justify-content-between align-items-center category-buttons col-xl-4 col-lg-4 ml-5">
-                                    <button type="button" class="btn">All Art</button>
-                                    <button type="button" class="btn">Paintings</button>
-                                    <button type="button" class="btn">Drawings</button>
-                                    <button type="button" class="btn">Prints</button>
-                                    <button type="button" class="btn">Sculptures</button>
-                                    <button type="button" class="btn">Curator Picks</button>
-                                    <button type="button" class="btn">Art Advisory</button>
-                                </section>
-                                
-                                <!-- Search Bar -->
-                                <form action="{% url 'search' %}" method="POST" id="searchfield" name="searchfield"
-                                    class="searchfield col-xl-4 col-lg-4 col-md-7 col-sm-7 d-sm-flex">
-                                    {% csrf_token %}
-                                    <div class="nav-search">
-                                        <label><i class="fas fa-search special-tag"></i></label>
-                                        <input class="nav-search-input form-control" type="text" placeholder="Search"
-                                            aria-label="Search" name="keyword" form="searchfield">
-                                    </div>
-                                    <button class="btn btn-link text-secondary close d-block d-sm-none ml-2"
-                                        type="button">x</button>
-                                </form>
-                                <!-- Mobile menu -->
-                                <div class="d-flex">
-                                    <button class="d-block d-sm-none btn btn-link text-dark" id="mobile-search-btn">
-                                        <span class="fa fa-search"></span>
-                                    </button>
+                <hr class="line-break">
+                <div class="mt-2 mb-1" id="">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <!-- Logo -->
+                        <a href="{% url 'index' %}" class="logo col-xl-4 col-lg-4 pl-3 w-100 pt-10 pb-10"
+                            id="logo-demo">
+                            <img class="logo-img" src="{% static 'img/logo/logo.svg' %}" alt="BIDGALA">
+                        </a>
 
 
-                                    <button class="d-lg-none button-nav-toggle" id="mobile-burger">
-                                        <span class="fa fa-bars"></span>
-                                    </button>
+                        <!-- Categories -->
+                        <div class="nav-category-buttons">
+                            <button type="button" class="btn">All Art</button>
+                            <button type="button" class="btn">Paintings</button>
+                            <button type="button" class="btn">Drawings</button>
+                            <button type="button" class="btn">Prints</button>
+                            <button type="button" class="btn">Sculptures</button>
+                            <button type="button" class="btn">Curator Picks</button>
+                            <button type="button" class="btn">Art Advisory</button>
+                        </div>
 
-                                </div>
+                        <!-- Search Bar -->
+                        <form action="{% url 'search' %}" method="POST" id="searchfield" name="searchfield"
+                            class="searchfield col-lg-2 pb-2 d-sm-flex">
+                            {% csrf_token %}
+                            <div class="nav-search">
+                                <label><i class="fas fa-search special-tag"></i></label>
+                                <input class="nav-search-input form-control" type="text" placeholder="Search"
+                                    aria-label="Search" name="keyword" form="searchfield">
+                            </div>
+                            <button class="btn btn-link text-secondary close d-block d-sm-none ml-2"
+                                type="button">x</button>
+                        </form>
+                        <!-- Mobile menu -->
+                        <div class="d-sm-flex d-lg-none">
+                            <button class="d-block d-sm-none btn btn-link text-dark" id="mobile-search-btn">
+                                <span class="fa fa-search"></span>
+                            </button>
+
+
+                            <button class="d-lg-none button-nav-toggle" id="mobile-burger">
+                                <span class="fa fa-bars"></span>
+                            </button>
+
+                        </div>
                     </div>
+                </div>
             </div>
 
 
 
 
 
+
+
+            <!-- --------------------------------------------------------------------------------------------------------------------------------------------------------- -->
             {%if 'messages' not in request.path %}
             {% comment %}
             <!-- Category nav -->
