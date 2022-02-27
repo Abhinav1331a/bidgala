@@ -568,13 +568,13 @@
 
                         <!-- Categories -->
                         <div class="nav-category-buttons">
-                            <button type="button" class="btn">All Art</button>
-                            <button type="button" class="btn">Paintings</button>
-                            <button type="button" class="btn">Drawings</button>
-                            <button type="button" class="btn">Prints</button>
-                            <button type="button" class="btn">Sculptures</button>
-                            <button type="button" class="btn">Curator Picks</button>
-                            <button type="button" class="btn">Art Advisory</button>
+                            <button type="button" class="btn"><a href="{%url 'show_search' type_='art' value='all' %}"> All Art </a></button>
+                            <button type="button" class="btn"><a href="{%url 'show_search' type_='category' value='paintings' %}"> Paintings </a></button>
+                            <button type="button" class="btn"><a href="{%url 'show_search' type_='category' value='drawingIllustration' %}"> Drawings </a></button>
+                            <button type="button" class="btn"><a href="{%url 'show_search' type_='category' value='prints' %}"> Prints </a></button>
+                            <button type="button" class="btn"><a href="{%url 'show_search' type_='category' value='sculptures' %}"> Sculptures </a></button>
+                            <button type="button" class="btn"><a href="{%url 'show_search' type_='curator' value='none' %}"> Curator Picks </a></button>
+                            <button type="button" class="btn"><a href="{% url 'advisory'%}"> Art Advisory </a></button>
                         </div>
 
                         <!-- Search Bar -->
