@@ -351,6 +351,7 @@ color: black;
 
 .view-all {
     font-size: 12px;
+    color: #000;
 }
 
 .art-cards {
@@ -365,10 +366,25 @@ color: black;
 .dis-card
 {
     border-radius: 10px;
-    border: 1px solid grey;
-  
-
+    border: 1px solid #E8E8E8;
 }
+
+.dis-card:hover{
+    box-shadow: 0 0 0.7rem rgb(0 0 0 / 13%);
+}
+
+@media screen and (max-width:775px) {
+    .discover-inner-div{
+        display: flex;
+        flex-direction: column;
+       align-items: center;
+    }
+
+    .dis-card{
+        width: 80%;
+    }
+}
+
 .card-img-fresh{
     /* border-radius: 10px; */
     border-top-left-radius:  10px;
@@ -393,8 +409,6 @@ p.card-text.date {
     position: relative;
 
 }
-
-
 
 
 .mobile-menu-container {
@@ -1243,9 +1257,20 @@ p.content {
     text-align: center;
     margin-left: auto;
     margin-right: auto;
-    bottom: 1.8rem;
+    bottom: 1.5rem;
     z-index: 1;
 }
+
+.exp-button{
+    width: 200px;
+}
+
+@media screen and (max-width:775px){
+    .exp-button{
+        width: 50%;
+    }
+}
+
 
 @media screen and (max-width:550px) {
     .exp-carouselindicators{
@@ -1320,10 +1345,6 @@ p.content {
     display: flex;
 }
 
-.art-digest-email-field{
-    width: 400px;
-    margin-left: 5rem;
-}
 
 .art-digest-btn{
     width: 200px;
@@ -1341,7 +1362,15 @@ p.content {
     margin-top: 0.5rem;
 }
 
-@media screen and (max-width: 550px){
+
+@media screen and (min-width:775px) {
+    .art-digest-email-field{
+        width: 400px;
+        margin-left: 7.5rem;
+    }
+}
+
+@media screen and (max-width: 775px){
     .art-digest-div{
         display: flex;
         flex-direction: column;
@@ -1373,7 +1402,14 @@ p.content {
         border: 1px solid black;
         outline-color: black;
     }
-    
+
+    .art-digest-heading-text{
+        text-align: center;
+    }
+
+    .art-digest-email-field{
+        margin-left: 5rem;
+    }
 }
 
 .discover-div{
@@ -1387,6 +1423,13 @@ p.content {
 
 .discover-inner-div{
     margin-left: 0.05rem; 
+}
+.recent-view{
+    border-radius: 10px;
+}
+
+.recent-view:hover{
+    box-shadow: 0 0 0.5rem rgb(0 0 0 / 13%);
 }
 
 .card-img-recent{
@@ -1430,7 +1473,7 @@ p.content {
     width: 100%;
     min-width: 100px;
     height: 60px;
-    color: rgb(51, 51, 51);
+    color: #000;
     border: 1px solid rgb(51, 51, 51);
     background: rgb(255, 255, 255);
     font-size: 14px;
@@ -1438,7 +1481,7 @@ p.content {
 }
 
 .div-shop-price h4{
-    color: rgb(51, 51, 51);
+    color: #000;
     font-family: "Crimson Text", serif;
     margin: auto 30px auto 0px;
     font-weight: normal;
@@ -1558,6 +1601,7 @@ p.content {
     border-radius: 50%;
     height: 100px;
     width: 150px;
+    object-fit: cover;
 }
 
 @media screen and (max-width:775px) {
@@ -1573,5 +1617,13 @@ p.content {
 @media screen and (max-width:992px) {
     .filter-sidebar-mb{
         margin-top: 69px;
-    }   
+    } 
+}  
+
+.end{
+    margin-top: 100px;
+}
+
+.art-digest{
+    margin-top: 30px;
 }
