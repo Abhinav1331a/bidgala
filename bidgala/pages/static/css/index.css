@@ -1345,10 +1345,6 @@ p.content {
     display: flex;
 }
 
-.art-digest-email-field{
-    width: 400px;
-    margin-left: 7.5rem;
-}
 
 .art-digest-btn{
     width: 200px;
@@ -1366,7 +1362,15 @@ p.content {
     margin-top: 0.5rem;
 }
 
-@media screen and (max-width: 550px){
+
+@media screen and (min-width:775px) {
+    .art-digest-email-field{
+        width: 400px;
+        margin-left: 7.5rem;
+    }
+}
+
+@media screen and (max-width: 775px){
     .art-digest-div{
         display: flex;
         flex-direction: column;
@@ -1398,7 +1402,14 @@ p.content {
         border: 1px solid black;
         outline-color: black;
     }
-    
+
+    .art-digest-heading-text{
+        text-align: center;
+    }
+
+    .art-digest-email-field{
+        margin-left: 5rem;
+    }
 }
 
 .discover-div{
