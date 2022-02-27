@@ -51,70 +51,62 @@
     </section>
 
     <!-- NEW BUTTONS -->
-    <section id="category-buttons">
+    <section class="category-buttons">
         <button type="button" class="btn btn-outline-dark">Paintings</button>
-        <button type="button" class="btn btn-outline-dark">Abstrtact</button>
-        <button type="button" class="btn btn-outline-dark">Landscape</button>
-        <button type="button" class="btn btn-outline-dark">Under $500</button>
-        <button type="button" class="btn btn-outline-dark">Large Works</button>
-        <button type="button" class="btn btn-outline-dark">Curator Picks</button>
-        <button type="button" class="btn btn-outline-dark">Large Works</button>
-        <button type="button" class="btn btn-outline-dark">All Art</button>
+        <button type="button" class="btn btn-outline-dark ml-2">Abstrtact</button>
+        <button type="button" class="btn btn-outline-dark ml-2">Landscape</button>
+        <button type="button" class="btn btn-outline-dark ml-2">Under $500</button>
+        <button type="button" class="btn btn-outline-dark ml-2">Curator Picks</button>
+        <button type="button" class="btn btn-outline-dark ml-2">Large Works</button>
+        <button type="button" class="btn btn-outline-dark ml-2">All Art</button>
     </section>
-
-    <!-- MOBILE KA CAROUSEL -->
-
-    <section id="mob-category-buttons">
-
-
-
-    </section>
-
-    <!-- Curator Picks -->
-
-    <div class="curator-container">
-        <h3>Shop Original Art From Our Global<br>Community of Independent Artists</h3>
-
-        <div class="row curator-inner">
-            <div class="col-lg-8 col-md-8 col-sm-12 pt-3">
-                <div class="row">
-                    <div class="col-lg-6 col-md-6">
-                        <h4>Handpicked by expert art curators</h4>
-                    </div>
-                    <div class="col-lg-3 col-md-3">
-                        <img src="{% static 'img/OMEN1.jpg' %}" alt="OMEN1" class="d-block w-100 h-100">
-                    </div>
-                    <div class="col-lg-3 col-md-3">
-                        <img src="{% static 'img/OMEN2.png' %}" alt="OMEN2" class="d-block w-100 h-100">
-                    </div>
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col-lg-3 col-md-6">
-                        <img src="{% static 'img/OMEN1.jpg' %}" alt="OMEN1" class="d-block w-100 h-100">
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <img src="{% static 'img/OMEN2.png' %}" alt="OMEN2" class="d-block w-100 h-100">
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <img src="{% static 'img/OMEN1.jpg' %}" alt="OMEN1" class="d-block w-100 h-100">
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <img src="{% static 'img/OMEN2.png' %}" alt="OMEN2" class="d-block w-100 h-100">
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-4 col-sm-12">
-                <img src="{% static 'img/OMEN3.jpg' %}" alt="OMEN3" class="d-block w-100">
-            </div>
-        </div>
-    </div>
-
 
     <!-- Main Carousel -->
     <div class="d-flex flex-column align-items-center">
+
         <div id="index-sections">
+
+            <!-- Curator Picks -->
+            <!-- <div class="container-fluid p-0 curator-container">
+
+                <h3>Shop Original Art From Our Global<br>Community of Independent Artists</h3>
+
+                <div class="row curator-inner">
+                    <div class="col-lg-8 col-md-8 col-sm-12 pt-3">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6">
+                                <h4>Handpicked by expert art curators</h4>
+                            </div>
+                            <div class="col-lg-3 col-md-3">
+                                <img src="{% static 'img/OMEN1.jpg' %}" alt="OMEN1" class="d-block w-100 h-100">
+                            </div>
+                            <div class="col-lg-3 col-md-3">
+                                <img src="{% static 'img/OMEN2.png' %}" alt="OMEN2" class="d-block w-100 h-100">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-lg-3 col-md-6">
+                                <img src="{% static 'img/OMEN1.jpg' %}" alt="OMEN1" class="d-block w-100 h-100">
+                            </div>
+                            <div class="col-lg-3 col-md-6">
+                                <img src="{% static 'img/OMEN2.png' %}" alt="OMEN2" class="d-block w-100 h-100">
+                            </div>
+                            <div class="col-lg-3 col-md-6">
+                                <img src="{% static 'img/OMEN1.jpg' %}" alt="OMEN1" class="d-block w-100 h-100">
+                            </div>
+                            <div class="col-lg-3 col-md-6">
+                                <img src="{% static 'img/OMEN2.png' %}" alt="OMEN2" class="d-block w-100 h-100">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 col-sm-12">
+                        <img src="{% static 'img/OMEN3.jpg' %}" alt="OMEN3" class="d-block w-100">
+                    </div>
+                </div>
+            </div> -->
+
             <!-- Community channels -->
             <div class="container-fluid p-0">
                 <div class="d-flex">
@@ -162,7 +154,7 @@
 
             <!-- Press Logos -->
 
-            <div class="discover-div">
+            <div class="discover-div mt-5 mb-5">
 
                 <div class="card-deck press-inner-div w-100 ">
 
@@ -186,37 +178,41 @@
             </div>
 
 
-           <!-- Shop by Category -->
+            <hr class="line-break">
 
-           <div class="div-shop-price mt-5 ">
-            <div class="text-center col-lg-2  col-sm-2 mt-3">
+            <!-- Shop by Category -->
+
+            <div class="div-shop-price mt-5">
                 <h4>Shop By Category</h4>
+
+                <div class="shop-by-mobile" id="">
+
+                    <a class="shop-by-a" href="{%url 'show_search' type_='price' value='price_max-100' %}">
+                        Paintings
+                    </a>
+                    <a class="shop-by-a" href="{%url 'show_search' type_='price' value='price_max-500' %}">
+
+                        Drawings
+
+                    </a>
+
+                    <a class="shop-by-a" href="{%url 'show_search' type_='price' value='price_max-1000' %}">
+
+                        Photography
+
+                    </a>
+                    <a class="shop-by-a" href="{%url 'show_search' type_='price' value='price_min-1000' %}">
+
+                        Sculptures
+
+                    </a>
+
+                </div>
+
             </div>
 
-            <div class="d-flex col-lg-10 col-sm-10 w-100 justify-content-between price-buttons" id="prices">
-                <a href="{%url 'show_search' type_='price' value='price_max-100' %}">
-                    <div>
-                        <p class="price">PAINTINGS</p>
-                    </div>
-                </a>
-                <a href="{%url 'show_search' type_='price' value='price_max-500' %}">
-                    <div>
-                        <p class="price">PHOTOGRAPHY</p>
-                    </div>
-                </a>
-                <a href="{%url 'show_search' type_='price' value='price_max-1000' %}">
-                    <div>
-                        <p class="price">DRAWINGS</p>
-                    </div>
-                </a>
-                <a href="{%url 'show_search' type_='price' value='price_min-1000' %}">
-                    <div>
-                        <p class="price">SCULPUTRES</p>
-                    </div>
-                </a>
-            </div>
+            <hr class="line-break">
 
-        </div>
 
 
             <!--Featured Artists-->
@@ -378,45 +374,42 @@
                 </div>
             </div> -->
 
+            <hr class="line-break">
 
             <!-- Shop by Price -->
 
-            <div class="div-shop-price mt-4 ">
-                <div class="text-center col-lg-2  col-sm-2 mt-3">
-                    <h4>Shop By Price</h4>
-                </div>
+            <div class="div-shop-price mt-5">
+                <h4>Shop By Price</h4>
 
-                <div class="d-flex col-lg-10 col-sm-10 w-100 justify-content-between price-buttons" id="prices">
-                    <a href="{%url 'show_search' type_='price' value='price_max-100' %}">
-                        <div>
-                            <p class="price">UNDER $500</p>
-                        </div>
+                <div class="shop-by-mobile" id="">
+
+                    <a class="shop-by-a" href="{%url 'show_search' type_='price' value='price_max-100' %}">
+                       Under $500
                     </a>
-                    <a href="{%url 'show_search' type_='price' value='price_max-500' %}">
-                        <div>
-                            <p class="price">$500 - $1000</p>
-                        </div>
+                    <a class="shop-by-a" href="{%url 'show_search' type_='price' value='price_max-500' %}">
+                        $500-$1000
                     </a>
-                    <a href="{%url 'show_search' type_='price' value='price_max-1000' %}">
-                        <div>
-                            <p class="price">$1000 - $2000</p>
-                        </div>
+
+                    <a class="shop-by-a" href="{%url 'show_search' type_='price' value='price_max-1000' %}">
+                        $1000-$2000
                     </a>
-                    <a href="{%url 'show_search' type_='price' value='price_min-1000' %}">
-                        <div>
-                            <p class="price">$2000 - $5000</p>
-                        </div>
+                    <a class="shop-by-a" href="{%url 'show_search' type_='price' value='price_min-1000' %}">
+                        $2000-$5000
                     </a>
+
                 </div>
 
             </div>
+
+            <hr class="line-break">
 
             <!-- Fresh from the blog -->
 
             <div class="discover-div mt-5">
                 <div>
                     <a href="{% url 'blog' %}" class="desktop-navlinks">
-                        <h3 class="ml-3">Fresh from the blog <p class="view-all mt-2" style="float: right;">View All →</p>
+                        <h3 class="ml-3">Fresh from the blog <p class="view-all mt-2" style="float: right;">View All →
+                            </p>
                         </h3>
                     </a>
                 </div>
@@ -639,10 +632,9 @@
             </div>
 
             <!-- Shop by category starts here -->
-            <div class="container-fluid pl-2 pr-2 p-xl-0">
+            <!-- <div class="container-fluid pl-2 pr-2 p-xl-0">
                 <div class="d-flex">
                     <div class=" d-flex flex-column w-100">
-                        <!--Shop by Category-->
                         <div class="d-flex mb-2 mt-5 ">
                             <h3>Shop by Category</h3>
                         </div>
@@ -662,7 +654,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
             <!-- Recently viewed -->
 
