@@ -546,6 +546,8 @@ def show_search(request, type_, value):
                 products = Product.objects.filter(price__lte=int(code_and_price[1]), available=True)
             elif code_and_price[0] == 'price_min':
                 products = Product.objects.filter(price__gt=int(code_and_price[1]), available=True)
+            elif code_and_price[0] == 'price_min_max':
+                products = Product.objects.filter(price__gt=int(code_and_price[1]), price__lte=int(code_and_price[2]), available=True)
             active_value = value
             active_field = type_
 
