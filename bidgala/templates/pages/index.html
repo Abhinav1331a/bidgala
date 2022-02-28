@@ -50,13 +50,13 @@
 
     <!-- NEW BUTTONS -->
     <section class="category-buttons">
-        <button type="button" class="btn btn-outline-dark">Paintings</button>
-        <button type="button" class="btn btn-outline-dark ml-2">Abstrtact</button>
-        <button type="button" class="btn btn-outline-dark ml-2">Landscape</button>
-        <button type="button" class="btn btn-outline-dark ml-2">Under $500</button>
-        <button type="button" class="btn btn-outline-dark ml-2">Curator Picks</button>
+        <button type="button" class="btn btn-outline-dark"><a href="{%url 'show_search' type_='category' value='paintings' %}">Paintings</a></button>
+        <button type="button" class="btn btn-outline-dark ml-2"><a href="{%url 'show_search' type_='style' value='abstract' %}">Abstrtact</a></button>
+        <button type="button" class="btn btn-outline-dark ml-2"><a href="{%url 'show_search' type_='style' value='landscape' %}">Landscape</a></button>
+        <button type="button" class="btn btn-outline-dark ml-2"><a href="{%url 'show_search' type_='price' value='price_max-500' %}">Under $500</a></button>
+        <button type="button" class="btn btn-outline-dark ml-2"><a href="{%url 'show_search' type_='curator' value='none' %}">Curator Picks</a></button>
         <button type="button" class="btn btn-outline-dark ml-2">Large Works</button>
-        <button type="button" class="btn btn-outline-dark ml-2">All Art</button>
+        <button type="button" class="btn btn-outline-dark ml-2"><a href="{%url 'show_search' type_='art' value='all' %}">All Art</a></button>
     </section>
 
     <!-- Main Carousel -->
@@ -195,8 +195,8 @@
                         <img class="artist-img w-100" src="{% static 'img/4.jpg' %}" alt="Card image cap">
 
                         <div class="d-flex w-100 ">
-                            <img class="artist-img pt-1 pr-1 pb-1 d-block w-100"
-                                src="{% static 'img/5.jpg' %}" alt="Card image cap">
+                            <img class="artist-img pt-1 pr-1 pb-1 d-block w-100" src="{% static 'img/5.jpg' %}"
+                                alt="Card image cap">
                             <img class="artist-img pt-1 pb-1 d-block w-100" src="{% static 'img/6.jpg' %}"
                                 alt="Card image cap">
                         </div>
@@ -217,8 +217,8 @@
                         <img class="artist-img w-100" src="{% static 'img/4.jpg' %}" alt="Card image cap">
 
                         <div class="d-flex w-100 ">
-                            <img class="artist-img pt-1 pr-1 pb-1 d-block w-100"
-                                src="{% static 'img/5.jpg' %}" alt="Card image cap">
+                            <img class="artist-img pt-1 pr-1 pb-1 d-block w-100" src="{% static 'img/5.jpg' %}"
+                                alt="Card image cap">
                             <img class="artist-img pt-1 pb-1 d-block w-100" src="{% static 'img/6.jpg' %}"
                                 alt="Card image cap">
                         </div>
@@ -239,8 +239,8 @@
                         <img class="artist-img w-100" src="{% static 'img/4.jpg' %}" alt="Card image cap">
 
                         <div class="d-flex w-100 ">
-                            <img class="artist-img pt-1 pr-1 pb-1 d-block w-100"
-                                src="{% static 'img/5.jpg' %}" alt="Card image cap">
+                            <img class="artist-img pt-1 pr-1 pb-1 d-block w-100" src="{% static 'img/5.jpg' %}"
+                                alt="Card image cap">
                             <img class="artist-img pt-1 pb-1 d-block w-100" src="{% static 'img/6.jpg' %}"
                                 alt="Card image cap">
                         </div>
@@ -261,8 +261,8 @@
                         <img class="artist-img w-100" src="{% static 'img/4.jpg' %}" alt="Card image cap">
 
                         <div class="d-flex w-100 ">
-                            <img class="artist-img pt-1 pr-1 pb-1 d-block w-100"
-                                src="{% static 'img/5.jpg' %}" alt="Card image cap">
+                            <img class="artist-img pt-1 pr-1 pb-1 d-block w-100" src="{% static 'img/5.jpg' %}"
+                                alt="Card image cap">
                             <img class="artist-img pt-1 pb-1 d-block w-100" src="{% static 'img/6.jpg' %}"
                                 alt="Card image cap">
                         </div>
@@ -290,21 +290,21 @@
 
                 <div class="shop-by-mobile" id="">
 
-                    <a class="shop-by-a" href="{%url 'show_search' type_='price' value='price_max-100' %}">
+                    <a class="shop-by-a" href="{%url 'show_search' type_='category' value='paintings' %}">
                         Paintings
                     </a>
-                    <a class="shop-by-a" href="{%url 'show_search' type_='price' value='price_max-500' %}">
+                    <a class="shop-by-a" href="{%url 'show_search' type_='category' value='drawingIllustration' %}">
 
                         Drawings
 
                     </a>
 
-                    <a class="shop-by-a" href="{%url 'show_search' type_='price' value='price_max-1000' %}">
+                    <a class="shop-by-a" href="{%url 'show_search' type_='category' value='photography' %}">
 
                         Photography
 
                     </a>
-                    <a class="shop-by-a" href="{%url 'show_search' type_='price' value='price_min-1000' %}">
+                    <a class="shop-by-a" href="{%url 'show_search' type_='category' value='sculptures' %}">
 
                         Sculptures
 
@@ -406,7 +406,8 @@
                         <p class="text-center">"Bidgala’s art advisors help make the experience of shopping for art easy
                             and enjoyable. Whether you’re looking for a specific piece or want to discover some of our
                             emerging artists, we will walk you through the simple process. "</p>
-                        <a href="{% url 'advisory'%}" class="btn btn-outline-dark text-uppercase" style="color: black;">work with an art
+                        <a href="{% url 'advisory'%}" class="btn btn-outline-dark text-uppercase"
+                            style="color: black;">work with an art
                             advisor</a>
                     </div>
                 </div>
@@ -549,9 +550,8 @@
             <!-- what is bidgala -->
             <div class="  bidgalastory ">
                 <div class="bidgalainfo text-center">
-                    <h1><b>What is Bidgala</b></h1>
-                    <h6><u> Read our young & bold story </u>
-                        <h6>
+                    <h1><b>What is Bidgala?</b></h1>
+                    <h6><u><a href="{% url 'about' %}">Read our young & bold story</a></u><h6>
 
                 </div>
                 <div class=" bidinfo  ">
@@ -586,7 +586,7 @@
                 </div>
                 <div class="info-q text-center">
                     <p id="line">Have a question? For the love of art, get some answers...</p>
-                    <a href="{%url 'show_search' type_='art' value='all' %}"><button class="info-btn">CONTACT
+                    <a href="mailto:info@bidgala.com"><button class="info-btn">CONTACT
                             US</button></a>
                 </div>
 
@@ -818,12 +818,13 @@
             <h4 class="lead art-digest-heading-text">BIDGALA ART DIGEST</h4>
         </div>
         <div class="art-digest-div-inner">
-            <p class="text text-muted art-digest-text">Discover new art and collections added weekly by our curators.</p>
+            <p class="text text-muted art-digest-text">Discover new art and collections added weekly by our curators.
+            </p>
             <input class="form-control text-center art-digest-email-field" type="email" required="" data-status="start"
                 placeholder="Email Address" value="" role="button" aria-label="Email Address">
             <button class="btn btn-dark mb-2 art-digest-btn" type="submit" data-status="start">Sign Up</button>
         </div>
-    
+
     </div>
 </div>
 

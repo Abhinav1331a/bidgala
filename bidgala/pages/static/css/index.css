@@ -1626,3 +1626,28 @@ p.content {
 .art-digest{
     margin-top: 30px;
 }
+
+.new-curator-picks{
+    border-radius: 10px;
+    border: 1px solid #E8E8E8;
+    padding: 0.5rem;
+    height: 400px;
+}
+
+.curator-third-card{
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 15px;
+}
+.new-curator-picks:hover
+{
+    box-shadow: 0 0 0.5rem rgb(0 0 0 / 13%);
+}
+
+.curator-second-card-img{
+    width: 150px;
+    object-fit: cover;
+    border-radius: 0px;
+    position: relative;
+
+}
