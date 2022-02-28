@@ -64,13 +64,19 @@
     <!-- Curator Picks -->
     <div class="container-fluid curator-container">
 
-        <h3>Shop Original Art From Our Global<br>Community of Independent Artists</h3>
+        <h3 style="color: black;">Shop Original Art From Our Global<br>Community of Independent Artists</h3>
+
 
         <div class="row curator-inner">
             <div class="col-lg-9 col-md-12 col-sm-12">
                 <div class="row">
                     <div class="col-lg-6 col-md-12 col-sm-12">
-                        <h4>Handpicked by expert art curators</h4>
+                        <h5 style="text-align:left; color: black;">Curator Picks</h5>
+                        <h4 style="text-align:left; color: black;">Handpicked by expert art curators</h4>
+                        <br>
+                        <a href="{%url 'show_search' type_='curator' value='none' %}">
+                            <p class="view-all mb-2" style="text-align:left; color: black;">View All →</p>
+                        </a>
                     </div>
                     <div class="col-lg-3 col-md-12 col-sm-12">
                         <img src="{% static 'img/OMEN3.jpg' %}" alt="OMEN1" class="d-block w-100 h-100 curator-inner-img">
