@@ -48,6 +48,7 @@
         </div>
     </section>
 
+
     <!-- NEW BUTTONS -->
     <section class="category-buttons">
         <button type="button" class="btn btn-outline-dark">Paintings</button>
@@ -59,52 +60,51 @@
         <button type="button" class="btn btn-outline-dark ml-2">All Art</button>
     </section>
 
-    <!-- Main Carousel -->
-    <div class="d-flex flex-column align-items-center">
 
-        <div id="index-sections">
+    <!-- Curator Picks -->
+    <div class="container-fluid curator-container">
 
-            <!-- Curator Picks -->
-            <!-- <div class="container-fluid p-0 curator-container">
+        <h3>Shop Original Art From Our Global<br>Community of Independent Artists</h3>
 
-                <h3>Shop Original Art From Our Global<br>Community of Independent Artists</h3>
-
-                <div class="row curator-inner">
-                    <div class="col-lg-8 col-md-8 col-sm-12 pt-3">
-                        <div class="row">
-                            <div class="col-lg-6 col-md-6">
-                                <h4>Handpicked by expert art curators</h4>
-                            </div>
-                            <div class="col-lg-3 col-md-3">
-                                <img src="{% static 'img/OMEN1.jpg' %}" alt="OMEN1" class="d-block w-100 h-100">
-                            </div>
-                            <div class="col-lg-3 col-md-3">
-                                <img src="{% static 'img/OMEN2.png' %}" alt="OMEN2" class="d-block w-100 h-100">
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-lg-3 col-md-6">
-                                <img src="{% static 'img/OMEN1.jpg' %}" alt="OMEN1" class="d-block w-100 h-100">
-                            </div>
-                            <div class="col-lg-3 col-md-6">
-                                <img src="{% static 'img/OMEN2.png' %}" alt="OMEN2" class="d-block w-100 h-100">
-                            </div>
-                            <div class="col-lg-3 col-md-6">
-                                <img src="{% static 'img/OMEN1.jpg' %}" alt="OMEN1" class="d-block w-100 h-100">
-                            </div>
-                            <div class="col-lg-3 col-md-6">
-                                <img src="{% static 'img/OMEN2.png' %}" alt="OMEN2" class="d-block w-100 h-100">
-                            </div>
-                        </div>
+        <div class="row curator-inner">
+            <div class="col-lg-9 col-md-12 col-sm-12">
+                <div class="row">
+                    <div class="col-lg-6 col-md-12 col-sm-12">
+                        <h4>Handpicked by expert art curators</h4>
                     </div>
-
-                    <div class="col-lg-4 col-md-4 col-sm-12">
-                        <img src="{% static 'img/OMEN3.jpg' %}" alt="OMEN3" class="d-block w-100">
+                    <div class="col-lg-3 col-md-12 col-sm-12">
+                        <img src="{% static 'img/OMEN3.jpg' %}" alt="OMEN1" class="d-block w-100 h-100 curator-inner-img">
+                    </div>
+                    <div class="col-lg-3 col-md-12 col-sm-12">
+                        <img src="{% static 'img/OMEN4.png' %}" alt="OMEN2" class="d-block w-100 h-100 curator-inner-img">
                     </div>
                 </div>
-            </div> -->
+                <br>
+                <div class="row">
+                    <div class="col-lg-3 col-md-12 col-sm-12">
+                        <img src="{% static 'img/OMEN3.jpg' %}" alt="OMEN1" class="d-block w-100 h-100 curator-inner-img">
+                    </div>
+                    <div class="col-lg-3 col-md-12 col-sm-12">
+                        <img src="{% static 'img/OMEN4.png' %}" alt="OMEN2" class="d-block w-100 h-100 curator-inner-img">
+                    </div>
+                    <div class="col-lg-3 col-md-12 col-sm-12">
+                        <img src="{% static 'img/OMEN3.jpg' %}" alt="OMEN1" class="d-block w-100 h-100 curator-inner-img">
+                    </div>
+                    <div class="col-lg-3 col-md-12 col-sm-12">
+                        <img src="{% static 'img/OMEN4.png' %}" alt="OMEN2" class="d-block w-100 h-100 curator-inner-img">
+                    </div>
+                </div>
+            </div>
 
+            <div class="col-lg-3 col-md-12 col-sm-12">
+                <img src="{% static 'img/OMEN5.jpg' %}" alt="OMEN3" class="d-block w-100 h-100 curator-inner-img">
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Carousel -->
+    <div class="d-flex flex-column align-items-center">
+        <div id="index-sections">
             <!-- Community channels -->
             <!-- <div class="container-fluid p-0">
                 <div class="d-flex">
@@ -195,8 +195,8 @@
                         <img class="artist-img w-100" src="{% static 'img/4.jpg' %}" alt="Card image cap">
 
                         <div class="d-flex w-100 ">
-                            <img class="artist-img pt-1 pr-1 pb-1 d-block w-100"
-                                src="{% static 'img/5.jpg' %}" alt="Card image cap">
+                            <img class="artist-img pt-1 pr-1 pb-1 d-block w-100" src="{% static 'img/5.jpg' %}"
+                                alt="Card image cap">
                             <img class="artist-img pt-1 pb-1 d-block w-100" src="{% static 'img/6.jpg' %}"
                                 alt="Card image cap">
                         </div>
@@ -217,8 +217,8 @@
                         <img class="artist-img w-100" src="{% static 'img/4.jpg' %}" alt="Card image cap">
 
                         <div class="d-flex w-100 ">
-                            <img class="artist-img pt-1 pr-1 pb-1 d-block w-100"
-                                src="{% static 'img/5.jpg' %}" alt="Card image cap">
+                            <img class="artist-img pt-1 pr-1 pb-1 d-block w-100" src="{% static 'img/5.jpg' %}"
+                                alt="Card image cap">
                             <img class="artist-img pt-1 pb-1 d-block w-100" src="{% static 'img/6.jpg' %}"
                                 alt="Card image cap">
                         </div>
@@ -239,8 +239,8 @@
                         <img class="artist-img w-100" src="{% static 'img/4.jpg' %}" alt="Card image cap">
 
                         <div class="d-flex w-100 ">
-                            <img class="artist-img pt-1 pr-1 pb-1 d-block w-100"
-                                src="{% static 'img/5.jpg' %}" alt="Card image cap">
+                            <img class="artist-img pt-1 pr-1 pb-1 d-block w-100" src="{% static 'img/5.jpg' %}"
+                                alt="Card image cap">
                             <img class="artist-img pt-1 pb-1 d-block w-100" src="{% static 'img/6.jpg' %}"
                                 alt="Card image cap">
                         </div>
@@ -261,8 +261,8 @@
                         <img class="artist-img w-100" src="{% static 'img/4.jpg' %}" alt="Card image cap">
 
                         <div class="d-flex w-100 ">
-                            <img class="artist-img pt-1 pr-1 pb-1 d-block w-100"
-                                src="{% static 'img/5.jpg' %}" alt="Card image cap">
+                            <img class="artist-img pt-1 pr-1 pb-1 d-block w-100" src="{% static 'img/5.jpg' %}"
+                                alt="Card image cap">
                             <img class="artist-img pt-1 pb-1 d-block w-100" src="{% static 'img/6.jpg' %}"
                                 alt="Card image cap">
                         </div>
@@ -406,7 +406,8 @@
                         <p class="text-center">"Bidgala’s art advisors help make the experience of shopping for art easy
                             and enjoyable. Whether you’re looking for a specific piece or want to discover some of our
                             emerging artists, we will walk you through the simple process. "</p>
-                        <a href="{% url 'advisory'%}" class="btn btn-outline-dark text-uppercase" style="color: black;">work with an art
+                        <a href="{% url 'advisory'%}" class="btn btn-outline-dark text-uppercase"
+                            style="color: black;">work with an art
                             advisor</a>
                     </div>
                 </div>
@@ -818,12 +819,13 @@
             <h4 class="lead art-digest-heading-text">BIDGALA ART DIGEST</h4>
         </div>
         <div class="art-digest-div-inner">
-            <p class="text text-muted art-digest-text">Discover new art and collections added weekly by our curators.</p>
+            <p class="text text-muted art-digest-text">Discover new art and collections added weekly by our curators.
+            </p>
             <input class="form-control text-center art-digest-email-field" type="email" required="" data-status="start"
                 placeholder="Email Address" value="" role="button" aria-label="Email Address">
             <button class="btn btn-dark mb-2 art-digest-btn" type="submit" data-status="start">Sign Up</button>
         </div>
-    
+
     </div>
 </div>
 
