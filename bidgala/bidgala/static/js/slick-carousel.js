@@ -1,38 +1,72 @@
 // Carousel for Featured Art
 
 $(document).ready(function () {
-  const featuredArtist = document.querySelector('.featured-artists');
+  const featuredArtist = document.querySelector('.new-featured-artist-cards');
   const featuredArtistLinks = featuredArtist.querySelectorAll('a');
   const leftArrow = document.getElementById('pre-top-art');
   const rightArrow = document.getElementById('next-top-art');
-  if (featuredArtistLinks.length > 6) {
-    $(".featured-artists").slick({
+  if (featuredArtistLinks.length > 4) {
+    $(".new-featured-artist-cards").slick({
         dots: false,
         infinite: true,
-        speed: 500,
-        slidesToShow: 6,
-        slidesToScroll: 6,
+        speed: 1000,
+        slidesToShow: 4,
+        slidesToScroll: 4,
         nextArrow: $("#next-top-art"),
         prevArrow: $("#pre-top-art"),
         responsive: [
-        {
+          {
             breakpoint: 1200,
             settings: {
-            // infinite: true,
-            // speed: 500,
-                slidesToShow: 5,
-                slidesToScroll: 5,
-            // dots: false,
-            // centerMode: true,
-            }
-        },
-        {
-            breakpoint: 700,
+              slidesToShow: 4,
+              slidesToScroll: 4,
+              infinite: true,
+              dots: false,
+            },
+          },
+          {
+            breakpoint: 970,
             settings: {
-                slidesToShow: 3,
-                slidesToScroll: 4,
-            }
-        }
+              infinite: true,
+              slidesToShow: 4,
+              slidesToScroll: 1,
+              dots: false,
+              centerMode: true,
+            },
+          },
+          {
+            breakpoint: 840,
+            settings: {
+              infinite: true,
+              slidesToShow: 3,
+              slidesToScroll: 1,
+              dots: false,
+              centerMode: true,
+            },
+          },
+          {
+            breakpoint: 650,
+            settings: {
+              infinite: true,
+              slidesToShow: 2,
+              slidesToScroll: 1,
+              dots: false,
+              centerMode: true,
+            },
+          },
+          {
+            breakpoint: 400,
+            settings: {
+              infinite: true,
+              slidesToShow: 1,
+              slidesToScroll: 1,
+              dots: false,
+              centerMode: true,
+              arrows: true,
+            },
+            
+          },
+          
         ],
     });
   } else {
