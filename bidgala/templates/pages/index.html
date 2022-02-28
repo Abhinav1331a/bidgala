@@ -51,13 +51,19 @@
 
     <!-- NEW BUTTONS -->
     <section class="category-buttons">
-        <button type="button" class="btn btn-outline-dark"><a href="{%url 'show_search' type_='category' value='paintings' %}">Paintings</a></button>
-        <button type="button" class="btn btn-outline-dark ml-2"><a href="{%url 'show_search' type_='style' value='abstract' %}">Abstrtact</a></button>
-        <button type="button" class="btn btn-outline-dark ml-2"><a href="{%url 'show_search' type_='style' value='landscape' %}">Landscape</a></button>
-        <button type="button" class="btn btn-outline-dark ml-2"><a href="{%url 'show_search' type_='price' value='price_max-500' %}">Under $500</a></button>
-        <button type="button" class="btn btn-outline-dark ml-2"><a href="{%url 'show_search' type_='curator' value='none' %}">Curator Picks</a></button>
+        <button type="button" class="btn btn-outline-dark"><a
+                href="{%url 'show_search' type_='category' value='paintings' %}">Paintings</a></button>
+        <button type="button" class="btn btn-outline-dark ml-2"><a
+                href="{%url 'show_search' type_='style' value='abstract' %}">Abstrtact</a></button>
+        <button type="button" class="btn btn-outline-dark ml-2"><a
+                href="{%url 'show_search' type_='style' value='landscape' %}">Landscape</a></button>
+        <button type="button" class="btn btn-outline-dark ml-2"><a
+                href="{%url 'show_search' type_='price' value='price_max-500' %}">Under $500</a></button>
+        <button type="button" class="btn btn-outline-dark ml-2"><a
+                href="{%url 'show_search' type_='curator' value='none' %}">Curator Picks</a></button>
         <button type="button" class="btn btn-outline-dark ml-2">Large Works</button>
-        <button type="button" class="btn btn-outline-dark ml-2"><a href="{%url 'show_search' type_='art' value='all' %}">All Art</a></button>
+        <button type="button" class="btn btn-outline-dark ml-2"><a
+                href="{%url 'show_search' type_='art' value='all' %}">All Art</a></button>
     </section>
 
 
@@ -117,6 +123,7 @@
     <!-- Main Carousel -->
     <div class="d-flex flex-column align-items-center">
         <div id="index-sections">
+
             <!-- Community channels -->
             <!-- <div class="container-fluid p-0">
                 <div class="d-flex">
@@ -201,28 +208,47 @@
 
                 <div class="d-flex justify-content-between new-featured-artist-cards">
 
-
+                    {%for featured_artist in product_featured_artist%}
                     <div class="card new-featured-artists" style="width: 18rem;">
 
-                        <img class="artist-img w-100" src="{% static 'img/4.jpg' %}" alt="Card image cap">
-
-                        <div class="d-flex w-100 ">
-                            <img class="artist-img pt-1 pr-1 pb-1 d-block w-100" src="{% static 'img/5.jpg' %}"
+                        <a href="{% url 'public_profile' featured_artist.0.owner.user.username %}" class="artist-link">
+                            <img class="artist-img w-100"
+                                data-aload="{{BASE_IMG_URL}}{{featured_artist.0.image}}{{img_optimize_param}}"
                                 alt="Card image cap">
-                            <img class="artist-img pt-1 pb-1 d-block w-100" src="{% static 'img/6.jpg' %}"
-                                alt="Card image cap">
-                        </div>
 
-                        <div class="d-flex mt-2">
-                            <img class="artist-logo mr-3" src="{% static 'img/artist1.jpeg' %}" alt="Card image cap">
-                            <div class="d-flex flex-column w-100">
-                                <p class="card-text">Artist Name</p>
-                                <p class="card-text">Region</p>
-                                <i class="far fa-heart"></i>
+                            <div class="d-flex w-100 ">
+                                <img class="artist-img pt-1 pr-1 pb-1 d-block w-100"
+                                    data-aload="{{BASE_IMG_URL}}{{featured_artist.1.image}}{{img_optimize_param}}"
+                                    alt="Card image cap">
+                                <img class="artist-img pt-1 pb-1 d-block w-100"
+                                    data-aload="{{BASE_IMG_URL}}{{featured_artist.2.image}}{{img_optimize_param}}"
+                                    alt="Card image cap">
                             </div>
-                        </div>
 
+
+                            <div class="d-flex mt-2">
+                                <img class="artist-logo mr-3"
+                                    data-aload="{{BASE_IMG_URL}}{{featured_artist.0.owner.profile_img}}{{img_optimize_param}}"
+                                    alt="Card image cap">
+                                <div class="d-flex flex-column w-100">
+                                    <div class="d-flex">
+                                        <p class="card-text">{{featured_artist.0.owner.user.first_name|title}}
+                                            {{featured_artist.0.owner.user.last_name|title}}</p>
+                                        {%if featured_artist.0.owner.special_user%}
+                                        <img class="d-inline text-nowrap checkmark ml-2"
+                                            data-aload="{% static 'img/check.svg' %}" alt="checkmark">
+                                        {% else %}
+                                        <img class="text-nowrap checkmark ml-2" style="visibility: hidden;"
+                                            data-aload="{% static 'img/check.svg' %}" alt="checkmark">
+                                        {%endif%}
+                                    </div>
+                                    <p class="card-text">{{featured_artist.0.owner.country|title}}</p>
+                                    <i class="far fa-heart"></i>
+                                </div>
+                            </div>
+                        </a>
                     </div>
+                    {%endfor%}
 
                     <!-- <div class="card new-featured-artists" style="width: 18rem;">
 
@@ -563,7 +589,8 @@
             <div class="  bidgalastory ">
                 <div class="bidgalainfo text-center">
                     <h1><b>What is Bidgala?</b></h1>
-                    <h6><u><a href="{% url 'about' %}">Read our young & bold story</a></u><h6>
+                    <h6><u><a href="{% url 'about' %}">Read our young & bold story</a></u>
+                        <h6>
 
                 </div>
                 <div class=" bidinfo  ">
