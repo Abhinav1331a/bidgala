@@ -48,6 +48,7 @@
         </div>
     </section>
 
+
     <!-- NEW BUTTONS -->
     <section class="category-buttons">
         <button type="button" class="btn btn-outline-dark"><a href="{%url 'show_search' type_='category' value='paintings' %}">Paintings</a></button>
@@ -59,52 +60,51 @@
         <button type="button" class="btn btn-outline-dark ml-2"><a href="{%url 'show_search' type_='art' value='all' %}">All Art</a></button>
     </section>
 
-    <!-- Main Carousel -->
-    <div class="d-flex flex-column align-items-center">
 
-        <div id="index-sections">
+    <!-- Curator Picks -->
+    <div class="container-fluid curator-container">
 
-            <!-- Curator Picks -->
-            <!-- <div class="container-fluid p-0 curator-container">
+        <h3>Shop Original Art From Our Global<br>Community of Independent Artists</h3>
 
-                <h3>Shop Original Art From Our Global<br>Community of Independent Artists</h3>
-
-                <div class="row curator-inner">
-                    <div class="col-lg-8 col-md-8 col-sm-12 pt-3">
-                        <div class="row">
-                            <div class="col-lg-6 col-md-6">
-                                <h4>Handpicked by expert art curators</h4>
-                            </div>
-                            <div class="col-lg-3 col-md-3">
-                                <img src="{% static 'img/OMEN1.jpg' %}" alt="OMEN1" class="d-block w-100 h-100">
-                            </div>
-                            <div class="col-lg-3 col-md-3">
-                                <img src="{% static 'img/OMEN2.png' %}" alt="OMEN2" class="d-block w-100 h-100">
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-lg-3 col-md-6">
-                                <img src="{% static 'img/OMEN1.jpg' %}" alt="OMEN1" class="d-block w-100 h-100">
-                            </div>
-                            <div class="col-lg-3 col-md-6">
-                                <img src="{% static 'img/OMEN2.png' %}" alt="OMEN2" class="d-block w-100 h-100">
-                            </div>
-                            <div class="col-lg-3 col-md-6">
-                                <img src="{% static 'img/OMEN1.jpg' %}" alt="OMEN1" class="d-block w-100 h-100">
-                            </div>
-                            <div class="col-lg-3 col-md-6">
-                                <img src="{% static 'img/OMEN2.png' %}" alt="OMEN2" class="d-block w-100 h-100">
-                            </div>
-                        </div>
+        <div class="row curator-inner">
+            <div class="col-lg-9 col-md-12 col-sm-12">
+                <div class="row">
+                    <div class="col-lg-6 col-md-12 col-sm-12">
+                        <h4>Handpicked by expert art curators</h4>
                     </div>
-
-                    <div class="col-lg-4 col-md-4 col-sm-12">
-                        <img src="{% static 'img/OMEN3.jpg' %}" alt="OMEN3" class="d-block w-100">
+                    <div class="col-lg-3 col-md-12 col-sm-12">
+                        <img src="{% static 'img/OMEN3.jpg' %}" alt="OMEN1" class="d-block w-100 h-100 curator-inner-img">
+                    </div>
+                    <div class="col-lg-3 col-md-12 col-sm-12">
+                        <img src="{% static 'img/OMEN4.png' %}" alt="OMEN2" class="d-block w-100 h-100 curator-inner-img">
                     </div>
                 </div>
-            </div> -->
+                <br>
+                <div class="row">
+                    <div class="col-lg-3 col-md-12 col-sm-12">
+                        <img src="{% static 'img/OMEN3.jpg' %}" alt="OMEN1" class="d-block w-100 h-100 curator-inner-img">
+                    </div>
+                    <div class="col-lg-3 col-md-12 col-sm-12">
+                        <img src="{% static 'img/OMEN4.png' %}" alt="OMEN2" class="d-block w-100 h-100 curator-inner-img">
+                    </div>
+                    <div class="col-lg-3 col-md-12 col-sm-12">
+                        <img src="{% static 'img/OMEN3.jpg' %}" alt="OMEN1" class="d-block w-100 h-100 curator-inner-img">
+                    </div>
+                    <div class="col-lg-3 col-md-12 col-sm-12">
+                        <img src="{% static 'img/OMEN4.png' %}" alt="OMEN2" class="d-block w-100 h-100 curator-inner-img">
+                    </div>
+                </div>
+            </div>
 
+            <div class="col-lg-3 col-md-12 col-sm-12">
+                <img src="{% static 'img/OMEN5.jpg' %}" alt="OMEN3" class="d-block w-100 h-100 curator-inner-img">
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Carousel -->
+    <div class="d-flex flex-column align-items-center">
+        <div id="index-sections">
             <!-- Community channels -->
             <!-- <div class="container-fluid p-0">
                 <div class="d-flex">
@@ -485,17 +485,17 @@
 
                 <div class="shop-by-mobile" id="">
 
-                    <a class="shop-by-a" href="{%url 'show_search' type_='price' value='price_max-100' %}">
+                    <a class="shop-by-a" href="{%url 'show_search' type_='price' value='price_max-500' %}">
                         Under $500
                     </a>
-                    <a class="shop-by-a" href="{%url 'show_search' type_='price' value='price_max-500' %}">
+                    <a class="shop-by-a" href="{%url 'show_search' type_='price' value='price_max-1000' %}">
                         $500-$1000
                     </a>
 
-                    <a class="shop-by-a" href="{%url 'show_search' type_='price' value='price_max-1000' %}">
+                    <a class="shop-by-a" href="{%url 'show_search' type_='price' value='price_max-2000' %}">
                         $1000-$2000
                     </a>
-                    <a class="shop-by-a" href="{%url 'show_search' type_='price' value='price_min-1000' %}">
+                    <a class="shop-by-a" href="{%url 'show_search' type_='price' value='price_min-2000' %}">
                         $2000-$5000
                     </a>
 
