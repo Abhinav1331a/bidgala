@@ -1671,8 +1671,7 @@ h6 {
 
 @media screen and (max-width:775px) {
     .new-featured-artist-cards {
-        flex-direction: column;
-        align-items: center;
+        padding: 10% 10% 10% 15%;
     }
 
     .new-featured-artists {
@@ -1706,8 +1705,7 @@ h6 {
     padding: 0.5rem;
     border-radius: 15px;
 }
-.new-curator-picks:hover
-{
+.new-curator-picks:hover{
     box-shadow: 0 0 0.5rem rgb(0 0 0 / 13%);
 }
 
