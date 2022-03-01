@@ -1659,6 +1659,7 @@ h6 {
 
 .artist-img {
     height: 140px;
+    object-fit: cover;
 }
 
 .artist-logo {
