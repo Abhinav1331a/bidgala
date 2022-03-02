@@ -1364,15 +1364,23 @@ p.content {
     margin-top: 1.5rem;
 }
 
+
+
 @media only screen and (min-width: 920px) {
     .curator-row {
         height: 180px;
+    }
+    .curator-row-large{
+        height: 384px;
     }
 }
 
 @media only screen and (max-width: 920px) {
     .curator-container {
         max-width: 70%;
+    }
+    .curator-picks-mobile-hide{
+        display: none;
     }
 }
 
