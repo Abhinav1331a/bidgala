@@ -1,5 +1,4 @@
 /* COUPON DISPLAY */
-
 .coupon{
     text-align: center;
     background-color: #111;
@@ -323,8 +322,8 @@
   /*}*/
   div.close {
     position: absolute;
-    right: 1rem;
     top: 1rem;
+    right: 1rem;
     font-size: 36px;
     color: #fff;
     opacity: 1;
@@ -468,12 +467,13 @@
     }
     .show-search {
       position: absolute;
-      top: 0;
+      top: 3.2rem;
       background-color: white;
       margin-top: 0px;
       transition: margin-top 0.3s;
     }
     .nav-search {
+      padding-top: 0.8rem;
       margin: 0px;
     }
     #overlay {
@@ -486,6 +486,7 @@
       opacity: 0.5;
       padding: 0px;
       position: fixed;
+      top: 7rem;
       z-index: 10;
       background-color: black;
     }
