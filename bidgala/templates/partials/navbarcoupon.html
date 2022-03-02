@@ -474,7 +474,10 @@
                         <nav class="w-100">
                             <ul id="navigation">
                                 <li>
-                                    <button class="shop-button">SHOP</button>
+                                    <button class="shop-button">SHOP ART</button>
+                                </li>
+
+                                <li id="sell-demo"><a href="{% url 'art_upload' %}" class="desktop-navlinks">SELL ART</a>
                                 </li>
 
                                 <li id="home-demo">
@@ -484,9 +487,6 @@
 
                                 <li><a href="{% url 'all_post' %}" class="desktop-navlinks">ARTIST
                                         FORUM</a></li>
-
-                                <li id="sell-demo"><a href="{% url 'art_upload' %}" class="desktop-navlinks">SELL</a>
-                                </li>
 
                                 <li id="earn-demo"><a href="{% url 'invite' %}" class="desktop-navlinks">INVITE</a></li>
                                 {% if request.user.is_authenticated == True %}
@@ -586,15 +586,15 @@
                                 <input class="nav-search-input form-control" type="text" placeholder="Search"
                                     aria-label="Search" name="keyword" form="searchfield">
                             </div>
-                            <button class="btn btn-link text-secondary close d-block d-sm-none ml-2"
-                                type="button">x</button>
+                            <button class="d-block d-sm-none btn btn-link text-secondary close ml-2"
+                            type="button">x</button>
                         </form>
                         <!-- Mobile menu -->
                         <div class="d-sm-flex d-lg-none">
+                            
                             <button class="d-sm-none btn btn-link text-dark" id="mobile-search-btn">
                                 <span class="fa fa-search"></span>
                             </button>
-
 
                             <button class="d-lg-none button-nav-toggle" id="mobile-burger">
                                 <span class="fa fa-bars"></span>

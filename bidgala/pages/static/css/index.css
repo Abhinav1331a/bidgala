@@ -1334,6 +1334,8 @@ p.content {
 
 @media screen and (max-width:775px) {
     .category-buttons {
+        order: -1;
+        margin: 0;
         padding: 1rem;
         overflow-x: scroll;
         flex-wrap: nowrap;
@@ -1717,7 +1719,7 @@ h6 {
 
 @media screen and (max-width:775px) {
     .new-featured-artist-cards {
-        padding: 10% 10% 10% 15%;
+        padding: 10% 10% 10% 12%;
     }
 
     .new-featured-artists {

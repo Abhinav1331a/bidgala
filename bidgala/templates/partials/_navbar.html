@@ -515,7 +515,10 @@ document.addEventListener("DOMContentLoaded", function(){
                                         <nav>
                                             <ul id="navigation">
                                                 <li>
-                                                    <button class="shop-button">SHOP</button>
+                                                    <button class="shop-button">SHOP ART</button>
+                                                </li>
+                
+                                                <li id="sell-demo"><a href="{% url 'art_upload' %}" class="desktop-navlinks">SELL ART</a>
                                                 </li>
 
                                                 <li id="home-demo">
@@ -525,9 +528,6 @@ document.addEventListener("DOMContentLoaded", function(){
 
                                                 <li><a href="{% url 'all_post' %}" class="desktop-navlinks">ARTIST
                                                         FORUM</a></li>
-
-                                                <li id="sell-demo"><a href="{% url 'art_upload' %}"
-                                                        class="desktop-navlinks">SELL</a></li>
 
                                                 <li id="earn-demo"><a href="{% url 'invite' %}"
                                                         class="desktop-navlinks">INVITE</a></li>

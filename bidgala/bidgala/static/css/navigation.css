@@ -468,12 +468,12 @@ p.category-menu {
   }
   .show-search {
     position: absolute;
-    top: 0;
     background-color: white;
     margin-top: 0px;
     transition: margin-top 0.3s;
   }
   .nav-search {
+    padding-top: 0.8rem;
     margin: 0px;
   }
   #overlay {
@@ -486,6 +486,7 @@ p.category-menu {
     opacity: 0.5;
     padding: 0px;
     position: fixed;
+    top: 9.6rem;
     z-index: 10;
     background-color: black;
   }
