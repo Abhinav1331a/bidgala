@@ -1422,6 +1422,22 @@ p.content {
 }
 
 
+/* Recently Viewed Price Tag */
+
+.recent-price-tag{
+    font-weight: bold;
+    font-size: 16px;
+    position: absolute;
+    bottom: 8px;
+    left: 10px;
+    background-color: white;
+    color: black;
+    padding: 8px;
+    border-radius: 20px;
+    z-index: 1;
+}
+
+
 /* What is Bidgala */
 
 .bidgalastory {
