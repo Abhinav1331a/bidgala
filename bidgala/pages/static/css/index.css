@@ -124,12 +124,7 @@
     }
 }
 
-.bidgalastory {
-    background-color: #f8f9fa;
-    padding: 30px;
-    margin-top: 100px;
-
-}
+/* s */
 
 .bidgalastory h1,
 h4,
@@ -1367,6 +1362,12 @@ p.content {
     margin-top: 1.5rem;
 }
 
+@media only screen and (min-width: 920px) {
+    .curator-row {
+        height: 180px;
+    }
+}
+
 @media only screen and (max-width: 920px) {
     .curator-container {
         max-width: 70%;
@@ -1388,7 +1389,52 @@ p.content {
     }
 }
 
+/* Curator-Price Tag  */
+
+.price-tag {
+    font-weight: bold;
+    font-size: 16px;
+    position: absolute;
+    bottom: 8px;
+    left: 22px;
+    background-color: white;
+    color: black;
+    padding: 8px;
+    border-radius: 20px;
+    z-index: 1;
+}
+
+@media only screen and (max-width: 920px) {
+    .price-tag {
+        font-weight: bold;
+        font-size: 16px;
+        position: absolute;
+        bottom: 16px;
+        left: 22px;
+        background-color: white;
+        color: black;
+        padding: 8px;
+        border-radius: 20px;
+        z-index: 1;
+    }
+}
+
+
+/* What is Bidgala */
+
+.bidgalastory {
+    background-color: #f8f9fa;
+    padding: 30px;
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+
+.bidgala-details{
+    text-align: center;
+}
+
 /*  */
+
 
 .art-digest-div {
     margin-top: 2rem;
