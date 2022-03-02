@@ -13,7 +13,7 @@
 }
 
 #index-sections {
-    max-width: 1200px;
+    max-width: 1300px;
     width: 100%;
 }
 
@@ -218,7 +218,7 @@ h6 {
 
 /* Main Carousel */
 .carousel-area {
-    max-width: 1200px;
+    max-width: 1300px;
     margin: 0 auto;
     position: relative;
     height: 450px;
@@ -1242,7 +1242,7 @@ p.content {
 
 #showcase {
     position: relative;
-    margin: 0 1.5rem auto;
+    margin: 0 1rem auto;
 }
 
 /* NEW CHANGE  */
@@ -1352,7 +1352,7 @@ p.content {
 /* CURATOR PICKS */
 
 .curator-container {
-    max-width: 1200px;
+    max-width: 1300px;
     margin: auto auto;
     padding-top: 1.5rem;
     text-align: center;
