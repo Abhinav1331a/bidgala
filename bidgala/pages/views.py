@@ -110,13 +110,10 @@ def index(request):
 
     """
 
-    products = Product.objects.filter(
-        curator_pick=True, sold=False, available=True).order_by('-date')[0:10]
+    products = Product.objects.filter(curator_pick=True, sold=False, available=True).order_by('-date')[0:10]
     # .distinct('Owner__id) causing items to shrink. So removed it.
-    new_products = Product.objects.filter(sold=False, available=True).order_by(
-        '-date').order_by('owner__id')[0:10]
-    discover_articles = Article.objects.filter(
-        show=True).order_by('-created_date')[0:10]
+    new_products = Product.objects.filter(sold=False, available=True).order_by('-date').order_by('owner__id')[0:10]
+    discover_articles = Article.objects.filter(show=True).order_by('-created_date')[0:10]
 
     all_art_img = HomePage.objects.filter(value='shop_all_art')[0]
     advisory_img = HomePage.objects.filter(value='advisory')[0]
@@ -125,7 +122,7 @@ def index(request):
     featured_artist = get_featured_artist()
 
     featured_artist_art = []
-    
+
     product_featured_artist = []
 
     for i in featured_artist:
