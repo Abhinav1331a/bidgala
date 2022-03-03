@@ -1307,8 +1307,8 @@ p.content {
 
 @media screen and (min-width:775px) {
     .main-carousel-img {
-        height: 750px;
-        object-fit: contain;
+        height: 650px;
+        object-fit: fill;
     }
 
     .exp-carousel-arrows {
