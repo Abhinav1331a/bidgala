@@ -1370,7 +1370,8 @@ p.content {
     .curator-row {
         height: 180px;
     }
-    .curator-row-large{
+
+    .curator-row-large {
         height: 384px;
     }
 }
@@ -1379,7 +1380,8 @@ p.content {
     .curator-container {
         max-width: 70%;
     }
-    .curator-picks-mobile-hide{
+
+    .curator-picks-mobile-hide {
         display: none;
     }
 }
@@ -1395,9 +1397,12 @@ p.content {
 @media only screen and (max-width: 920px) {
     .curator-inner-img {
         padding: 0.5rem 0;
-        
+
     }
 }
+
+
+
 
 /* Curator-Price Tag  */
 
@@ -1432,7 +1437,7 @@ p.content {
 
 /* Recently Viewed Price Tag */
 
-.recent-price-tag{
+.recent-price-tag {
     font-weight: bold;
     font-size: 16px;
     position: absolute;
@@ -1455,12 +1460,89 @@ p.content {
     margin-bottom: 50px;
 }
 
-.bidgala-details{
+.bidgala-details {
     text-align: center;
 }
 
-/*  */
+/* DESKTOP */
 
+@media only screen and (min-width: 920px) {
+    .bidgala-btns {
+        display: flex;
+        flex-direction: row;
+        /* margin-left: 20rem; */
+        justify-content: center;
+        padding-bottom: 1rem;
+    }
+}
+
+@media only screen and (min-width: 920px) {
+    .pic-bidgala {
+        width: 50%;
+        float: right;
+        margin: 0px 0.5rem 0.75rem;
+    }
+}
+
+@media only screen and (min-width: 920px) {
+    .pic-bidgala1 {
+        width: 50%;
+        float: left;
+        margin: 0px 0.5rem 0.75rem;
+    }
+}
+
+@media only screen and (min-width: 920px) {
+    .bidgala-info {
+        /* width: 50%; */
+        text-align: left;
+        line-height: 2;
+        margin: auto;
+        font-size: large;
+    }
+}
+
+/* MOBILE */
+
+@media only screen and (max-width: 920px) {
+    .bidgala-btns {
+        width: 85%;
+        text-align: center;
+        margin: auto;
+    }
+}
+
+@media only screen and (max-width: 920px) {
+    .bidgala-buttons {
+       margin: 0.5rem 0px;
+    }
+}
+
+@media only screen and (max-width: 920px) {
+    .pic-bidgala {
+        width: 95%;
+        margin: 0px 0.5rem 0.75rem;
+    }
+}
+
+@media only screen and (max-width: 920px) {
+    .pic-bidgala1 {
+        width: 95%;
+        margin: 0px 0.5rem 0.75rem;
+    }
+}
+
+@media only screen and (max-width: 920px) {
+    .bidgala-info {
+        /* width: 50%; */
+        text-align: center;
+        line-height: 2;
+        margin: auto;
+        font-size: medium;
+    }
+}
+
+/*  */
 
 .art-digest-div {
     margin-top: 2rem;
@@ -1765,23 +1847,24 @@ h6 {
     margin-top: 30px;
 }
 
-.new-curator-picks{
+.new-curator-picks {
     border-radius: 10px;
     border: 1px solid #E8E8E8;
     padding: 0.5rem;
     height: 400px;
 }
 
-.curator-third-card{
+.curator-third-card {
     width: 100%;
     padding: 0.5rem;
     border-radius: 15px;
 }
-.new-curator-picks:hover{
+
+.new-curator-picks:hover {
     box-shadow: 0 0 0.5rem rgb(0 0 0 / 13%);
 }
 
-.curator-second-card-img{
+.curator-second-card-img {
     width: 150px;
     object-fit: cover;
     border-radius: 0px;
