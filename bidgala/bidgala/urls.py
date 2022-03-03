@@ -23,7 +23,8 @@ urlpatterns = [
     path('discover/', include('discover.urls')),
     path('blog/', include('discover.urls')),
     path('influencer/', include('influencer.urls')),
-    path('survey/', include('survey.urls'))
+    path('survey/', include('survey.urls')),
+    path('newsletter/', include('newsletter.urls')),
     
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
