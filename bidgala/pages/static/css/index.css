@@ -1773,8 +1773,9 @@ h6 {
 @media screen and (max-width: 550px) {
 
     .card-img-press {
-        width: 100px;
-        height: 30px;
+        width: 40%;
+        /* height: 30px; */
+        margin: auto;
     }
 
     .press-inner-div {
