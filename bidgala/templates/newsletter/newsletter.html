@@ -1,3 +1,4 @@
+{% load static %}
 {% block content %}
 <div class="art-digest d-flex align-items-center justify-content-center mt-3">
     <div class="mt-5 d-flex flex-column">
@@ -8,15 +9,41 @@
             <p class="text text-muted art-digest-text">Discover new art and collections added weekly by our curators.
             </p>
             
-            
-            <form action="newsletter/NewsLetter" method="POST">
+            <form id="bidgala-digest-form" method="POST">
                 {% csrf_token %}
-                <input class="form-control text-center art-digest-email-field" type="email" required="" data-status="start"
-                placeholder="Email Address" value="" role="button" aria-label="Email Address" name="art_digest_email_value">
-                <button class="btn btn-dark mb-2 art-digest-btn" type="submit" data-status="start" value="Post">Sign Up</button>
-                </form>
+                <input class="form-control text-center art-digest-email-field" type="email" id="art-digest-email-value" name="art-digest-email-value" required>
+                <button class="btn btn-dark mb-2 art-digest-btn" type="submit">Sign Up</button>
+            </form>
+
+            <div class="success d-none">
+                <p class="text text-muted">
+                    Successfully subscribed! Thank you! Fuck off now!
+                </p>
+            </div>
         </div>
 
     </div>
+
+    <script src="https://code.jquery.com/jquery-1.9.1.js"></script>
+    
+    <script>
+       $(document).on('submit','#bidgala-digest-form',function(e){
+        e.preventDefault();
+        $.ajax({
+            type:'POST',
+            url:'{% url "NewsLetter" %}',
+            data:
+            {
+                email_value:$("#art-digest-email-value").val(),
+                csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+            },
+            success:function(){
+                $("#bidgala-digest-form").css("display", "none");
+                $(".success").removeClass( "d-none" )
+            }
+            })
+        });
+    </script>
+
 </div>
 {% endblock content %}

@@ -10,5 +10,5 @@ import pages
 from . import views
 
 urlpatterns = [
-    path('NewsLetter', views.NewsLetter, name='NewsLetter'),
+    path('', views.NewsLetter, name='NewsLetter'),
 ]
