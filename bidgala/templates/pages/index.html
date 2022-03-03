@@ -153,7 +153,7 @@
 
             <!-- What is BIDGALA -->
             <div class="bidgalastory">
-                <div class="bidgalainfo text-center">
+                <div class="text-center">
                     <h1><b>What is Bidgala?</b></h1>
                     <h6><u><a href="{% url 'about' %}">Read our young & bold story</a></u>
                         <h6>
@@ -161,64 +161,86 @@
                 <br>
                 <div class="accordion bidgala-details" id="accordionExample">
 
-                   <!-- buttons for what is bidgala -->
-                   <div class="d-flex justify-content-between align-items-center">
-                    <div id="headingOne">
-                        <h2 class="mb-0">
-                          <button class="btn btn-dark btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                            A Fine Art Marketplace
-                          </button>
-                        </h2>
-                      </div>
-                      <div id="headingTwo">
-                        <h2 class="mb-0">
-                          <button class="btn btn-dark btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                            A Fine Art Marketplace
-                          </button>
-                        </h2>
-                      </div>
-                      <div id="headingThree">
-                        <h2 class="mb-0">
-                          <button class="btn btn-dark btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                            A Fine Art Marketplace
-                          </button>
-                        </h2>
-                      </div>
-                   </div>
-                   <!--/ buttons for what is bidgala -->
+                    <!-- buttons for what is bidgala -->
+
+                    <!-- d-flex justify-content-between align-items-center -->
+
+                    <div class="bidgala-btns">
+                        <div id="headingOne" class="bidgala-buttons">
+                            <h2 class="mb-0">
+                                <button class="btn btn-dark btn-block text-center" type="button" data-toggle="collapse"
+                                    data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    A Fine Art Marketplace
+                                </button>
+                            </h2>
+                        </div>
+                        <div id="headingTwo  bidgala-buttons">
+                            <h2 class="mb-0">
+                                <button class="btn btn-dark btn-block text-center collapsed" type="button"
+                                    data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
+                                    aria-controls="collapseTwo">
+                                    Support Independent Creators
+
+                                </button>
+                            </h2>
+                        </div>
+                        <div id="headingThree" class="bidgala-buttons">
+                            <h2 class="mb-0">
+                                <button class="btn btn-dark btn-block text-center collapsed" type="button"
+                                    data-toggle="collapse" data-target="#collapseThree" aria-expanded="false"
+                                    aria-controls="collapseThree">
+                                    Connecting with the Artist
+                                </button>
+                            </h2>
+                        </div>
+                    </div>
+                    <!--/ buttons for what is bidgala -->
 
                     <div class="card">
-                  
-                      <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-                        <div class="card-body">
-                            Bidgala is a fine art marketplace, catering to homeowners and
-                            design professionals. We connect art lovers directly with student and emerging
-                            artists who sell their original art at lower prices. Our mission is to make art
-                            accessible by empowering artists one sale, one connection and one story at a time.
+
+                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                            data-parent="#accordionExample">
+                            <div class="card-body bidgala-info">
+                                <img src="{% static 'img/OMEN1.jpg' %}" class="pic-bidgala" alt="PIC1">
+                                <p style="padding: 0 0.5rem;">
+                                    Bidgala is a fine art marketplace, catering to homeowners and
+                                    design professionals. We connect art lovers directly with student and emerging
+                                    artists who sell their original art at lower prices. Our mission is to make art
+                                    accessible by empowering artists one sale, one connection and one story at a time.
+                                </p>
+                            </div>
+
                         </div>
-                      </div>
                     </div>
                     <div class="card">
 
-                      <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-                        <div class="card-body">
-                            Knowing who’s artwork is hanging in your home and connecting with
-                            them on a personal level makes every purchase more meaningful. Purchase confidently
-                            by connecting with artists through Bidgala DMs or by reading artist stories in their
-                            profiles.
+                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                            data-parent="#accordionExample">
+                            <div class="card-body bidgala-info">
+                                <img src="{% static 'img/OMEN2.png' %}" class="pic-bidgala1" alt="PIC2">
+                                <p style="padding: 0 0.5rem;">
+                                    Artworks are shipped directly from the artists’ studio to your
+                                    home. Each purchase is in support of independent artists and their craft.
+                                </p>
+                            </div>
                         </div>
-                      </div>
                     </div>
                     <div class="card">
 
-                      <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-                        <div class="card-body">
-                            Artworks are shipped directly from the artists’ studio to your
-                            home. Each purchase is in support of independent artists and their craft.
+                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                            data-parent="#accordionExample">
+                            <div class="card-body bidgala-info">
+                                <img src="{% static 'img/OMEN1.jpg' %}" class="pic-bidgala" alt="PIC1">
+                                <p style="padding: 0 0.5rem;">
+                                    Knowing who’s artwork is hanging in your home and connecting with
+                                    them on a personal level makes every purchase more meaningful. Purchase confidently
+                                    by connecting with artists through Bidgala DMs or by reading artist stories in their
+                                    profiles.
+                                </p>
+                            </div>
                         </div>
-                      </div>
                     </div>
-                  </div>
+                </div>
 
             </div>
 
@@ -595,8 +617,8 @@
                 </div>
             </div>
 
-            <!-- what is bidgala -->
-            <div class="bidgalastory ">
+            <!-- what is bidgala OLD -->
+            <!-- <div class="bidgalastory ">
                 <div class="bidgalainfo text-center">
                     <h1><b>What is Bidgala?</b></h1>
                     <h6><u><a href="{% url 'about' %}">Read our young & bold story</a></u>
@@ -639,9 +661,9 @@
                             US</button></a>
                 </div>
 
-            </div>
+            </div> -->
 
-            <hr class="line-break">
+            <hr class="line-break mt-5">
 
             <!-- Reviews -->
             <div class="d-flex review-main">
@@ -762,7 +784,7 @@
 
             </div>
 
-            <hr class="line-break">
+            <hr class="line-break mt-5">
 
             <!-- Free Returns starts here -->
             <div class=" mt-5 free-returns ">
