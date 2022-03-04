@@ -11,13 +11,15 @@
             
             <form id="bidgala-digest-form" method="POST">
                 {% csrf_token %}
-                <input class="form-control text-center art-digest-email-field" type="email" id="art-digest-email-value" name="art-digest-email-value" required>
-                <button class="btn btn-dark mb-2 art-digest-btn" type="submit">Sign Up</button>
+                <div class="email-and-btn">
+                    <input class="form-control text-center art-digest-email-field" type="email" id="art-digest-email-value" placeholder="Email Address" name="art-digest-email-value" required>
+                    <button class="btn btn-dark mb-2 art-digest-btn" type="submit">Sign Up</button>
+                </div>   
             </form>
 
             <div class="success d-none">
                 <p class="text text-muted">
-                    Successfully subscribed! Thank you! Fuck off now!
+                   Thank you for subscribing! 
                 </p>
             </div>
         </div>

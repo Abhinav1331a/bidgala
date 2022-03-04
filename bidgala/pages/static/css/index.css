@@ -1308,7 +1308,7 @@ p.content {
 @media screen and (min-width:775px) {
     .main-carousel-img {
         height: 650px;
-        object-fit: fill;
+        object-fit: cover;
     }
 
     .exp-carousel-arrows {
@@ -1580,6 +1580,10 @@ p.content {
     margin-top: 0.5rem;
 }
 
+.email-and-btn{
+    display: flex;
+    flex-direction: row;
+}
 
 @media screen and (min-width:775px) {
     .art-digest-email-field {
@@ -1589,11 +1593,6 @@ p.content {
 }
 
 @media screen and (max-width: 775px) {
-    .art-digest-div {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
 
     .art-digest-div-inner {
         display: block;
@@ -1605,18 +1604,18 @@ p.content {
         width: 100%;
     }
 
+    .email-and-btn{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
     .art-digest-email-field {
         margin-top: 1rem;
         width: 60%;
+        align-items: center;
     }
 
-    .art-digest-btn {
-        margin-top: 1rem;
-        margin-left: 50%;
-        transform: translateX(-50%);
-        width: auto;
-        border-radius: 3px;
-    }
 
     .art-digest-btn:hover {
         background-color: white;
@@ -1632,6 +1631,7 @@ p.content {
     .art-digest-email-field {
         margin-left: 5rem;
     }
+
 }
 
 .discover-div {
@@ -1880,5 +1880,11 @@ h6 {
     object-fit: cover;
     border-radius: 0px;
     position: relative;
+
+}
+
+.text-muted{
+    text-align: center;
+    justify-content: center;
 
 }
