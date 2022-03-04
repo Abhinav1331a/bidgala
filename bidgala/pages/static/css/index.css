@@ -1566,7 +1566,14 @@ p.content {
 .art-digest-btn {
     width: 200px;
     border-radius: 3px;
-    margin-left: 1rem;
+    margin-top: 2rem;
+}
+
+@media screen and (min-width:995px) {
+    .art-digest-btn {
+       margin-left: 1rem;
+       margin-top: 0;
+    }
 }
 
 .art-digest-btn:hover {
@@ -1585,14 +1592,14 @@ p.content {
     flex-direction: row;
 }
 
-@media screen and (min-width:775px) {
+@media screen and (min-width:995px) {
     .art-digest-email-field {
         width: 400px;
         margin-left: 7.5rem;
     }
 }
 
-@media screen and (max-width: 775px) {
+@media screen and (max-width: 995px) {
 
     .art-digest-div-inner {
         display: block;
@@ -1626,10 +1633,6 @@ p.content {
 
     .art-digest-heading-text {
         text-align: center;
-    }
-
-    .art-digest-email-field {
-        margin-left: 5rem;
     }
 
 }
