@@ -11,4 +11,6 @@ from . import views
 
 urlpatterns = [
     path('', views.NewsLetter, name='NewsLetter'),
+    path('CancelSubscription', views.CancelSubscription, name='CancelSubscription'),
+    path('unsubscribe', views.DeleteNewsLetter, name='DeleteNewsLetter'),
 ]

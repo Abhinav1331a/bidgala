@@ -1,0 +1,65 @@
+{% load static %}
+{% block content %}
+{% block cssfile %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
+crossorigin="anonymous" />
+<link rel="stylesheet" href="{% static 'css/vendor/shepherd.css' %}">
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
+{% endblock %}
+<div class="art-digest d-flex align-items-center justify-content-center mt-3">
+    <div class="mt-5 d-flex flex-column">
+        <div>
+            <h3 class="lead art-digest-heading-text">BIDGALA DIGEST</h3>
+        </div>
+        <div class="art-digest-div-inner">
+            <p class="text text-muted art-digest-text art-digest-text-1">Are you sure you want to cancel your subscription.?
+            </p>
+            
+            <form id="cancel-subscription-form" method="POST" action="newsletter/unsubscribe">  
+                {% csrf_token %}
+                <div class="email-and-btn">
+                    <button class="btn btn-danger mb-2 art-digest-btn" id="cancel-btn" type="submit" value="" name="id_value">Yes, Cancel It</button>
+                </div>   
+            </form>
+
+            <div class="success d-none">
+                <h5 class="text text-muted art-digest-text">
+                   Your subscription is cancelled! <br> <br> We are sad to let you go!<br> <br> You may close this tab now!.
+                </h5>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-1.9.1.js"></script>
+    
+    <script>
+       
+       var current_url = window.location.href
+       var id = current_url.split('?')[1]
+       $('#cancel-btn').val(id);
+       $(document).on('submit','#cancel-subscription-form',function(e){
+        e.preventDefault();
+        $.ajax({
+            type:'POST',
+            url:'{% url "DeleteNewsLetter" %}',
+            data:
+            {
+                id_value: $("#cancel-btn").val(),
+                csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+            },
+            success:function(){
+                $("#cancel-subscription-form").css("display", "none");
+                $(".art-digest-text-1").css("display", "none")
+                $(".success").removeClass( "d-none" )
+                $(".art-digest-heading-text").addClass( "text-center" ) 
+            }
+            })
+        });
+    </script>
+
+</div>
+{% endblock content %}

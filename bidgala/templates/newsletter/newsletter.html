@@ -5,13 +5,12 @@
         <div>
             <h3 class="lead art-digest-heading-text">BIDGALA DIGEST</h3>
         </div>
-        <div class="art-digest-div-inner">
-            <p class="text text-muted art-digest-text art-digest-text-1">Discover new art and collections added weekly by our curators.
-            </p>
-            
+        <div class="art-digest-div-inner d-flex flex-column">          
             <form id="bidgala-digest-form" method="POST">
                 {% csrf_token %}
                 <div class="email-and-btn">
+                    <p class="text text-muted art-digest-text art-digest-text-1">Discover new art and collections added weekly by our curators.
+                    </p>
                     <input class="form-control text-center art-digest-email-field" type="email" id="art-digest-email-value" placeholder="Email Address" name="art-digest-email-value" required>
                     <button class="btn btn-dark mb-2 art-digest-btn" type="submit">Sign Up</button>
                 </div>   
@@ -19,7 +18,12 @@
 
             <div class="success d-none">
                 <h5 class="text text-muted art-digest-text">
-                   Thank you for subscribing! <br> <br> You will now receive updates about our latest collections regularly!
+                </h5>
+            </div>
+            <div class="error d-none">
+                <h5 class="text text-danger text-center art-digest-text">
+                    <br>
+                    There seems to be an error. Please try again later!.
                 </h5>
             </div>
         </div>
@@ -39,10 +43,16 @@
                 email_value:$("#art-digest-email-value").val(),
                 csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
             },
-            success:function(){
-                $("#bidgala-digest-form").css("display", "none");
+            success:function(data){
+                $('.art-digest-text').html(data)
+                $("#bidgala-digest-form").css("display", "none")
                 $(".art-digest-text-1").css("display", "none")
                 $(".success").removeClass( "d-none" )
+                $(".art-digest-heading-text").addClass( "text-center" )
+            }, 
+            error:function(){
+                $(".art-digest-text-1").css("display", "none")
+                $(".error").removeClass( "d-none" )
                 $(".art-digest-heading-text").addClass( "text-center" )
             }
             })

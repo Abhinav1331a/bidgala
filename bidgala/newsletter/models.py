@@ -5,7 +5,8 @@ from accounts.models import UserInfo
 # Create your models here.
 
 class NewsletterUser(models.Model):
-    email = models.EmailField()
+    email = models.EmailField(null=True)
+    confirmed = models.BooleanField(null=True)
     date_added =  models.DateTimeField(default=datetime.now)
 
 
