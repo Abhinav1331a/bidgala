@@ -655,7 +655,7 @@ $("#shipping_prices_popup").on('change', function() {
       }
       return $.ajax({
         method: "POST",
-        url: '{% url 'add_payment_method' %}',
+        url: '{% url "add_payment_method" %}',
         headers: {'X-CSRFToken': generated_csrf_token},
         dataType: "json",
         data: JSON.stringify(data),
@@ -749,7 +749,7 @@ const applyDiscount = () => {
 
     $.ajax({
         method: "POST",
-        url: '{% url 'apply_discount' %}',
+        url: '{% url "apply_discount" %}',
         dataType: "json",
         data: JSON.stringify(discount_code),
         headers: {'X-CSRFToken': generated_csrf_token},
@@ -899,7 +899,7 @@ $(document).ready(autofillShipping)
 
        $.ajax({
         method: "POST",
-        url: '{% url 'submit_purchase_request' %}',
+        url: '{% url "submit_purchase_request" %}',
         dataType: "json",
         data: JSON.stringify(data),
         headers: {'X-CSRFToken': generated_csrf_token},
@@ -952,7 +952,7 @@ $(document).ready(autofillShipping)
 
       return $.ajax({
         method: "POST",
-        url: '{% url 'remove_payment_method' %}',
+        url: '{% url "remove_payment_method" %}',
         dataType: "json",
         data: JSON.stringify(data),
         headers: {'X-CSRFToken': generated_csrf_token},
@@ -982,7 +982,7 @@ $(document).ready(function() {
 
 
             $.ajax({
-                url:'{% url 'add_comment_product' %}',
+                url:'{% url "add_comment_product" %}',
                 type:'POST',
                 data:{
                     'comment': comment,

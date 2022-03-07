@@ -1,10 +1,15 @@
 from django.contrib import admin
 
-from .models import NewsletterUser
+from .models import NewsletterContent, NewsletterUser
 
-# Register your models here.
+def send_newsletter(modeladmin, request, queryset):
+    for newsletter in queryset:
+        newsletter.send(request)
+
+send_newsletter.short_description = "Send selected Newsletters to all subscribers" 
 
 class NewsletterAdmin(admin.ModelAdmin):
-    list_display = ('email', 'date_added', 'confirmed')
+    actions = [send_newsletter] 
 
 admin.site.register(NewsletterUser, NewsletterAdmin)
+admin.site.register(NewsletterContent, NewsletterAdmin)
