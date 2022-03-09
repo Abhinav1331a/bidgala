@@ -9,13 +9,26 @@ crossorigin="anonymous" />
 <link rel="stylesheet" href="{% static 'css/vendor/shepherd.css' %}">
 <link rel="stylesheet" href="{% static 'css/index.css' %}">
 {% endblock %}
-<div class="art-digest d-flex align-items-center justify-content-center mt-3">
-    <div class="mt-5 d-flex flex-column">
-        <div>
-            <h3 class="lead art-digest-heading-text">BIDGALA DIGEST</h3>
+
+<!-- col-xl-3 col-lg-3 col-md-4 col-sm-4 col-6 pl-0 -->
+
+<style> body {background-color: #f1f1f1;} </style>
+
+<div class="art-digest-main mt-3">
+
+    <div class="logo-cancel col-lg-3 col-md-3 col-sm-12" id="logo-demo">
+        <div class="logo pt-10 pb-10">
+            <a href="{% url 'index' %}"><img class="logo-img"
+                    src="{% static 'img/logo/logo.svg' %}" alt="BIDGALA"></a>
         </div>
+    </div>
+    
+    <div class="mt-5 d-flex flex-column align-items-center justify-content-center">
+        <!-- <div>
+            <h3 class="lead art-digest-heading-text">BIDGALA DIGEST</h3>
+        </div> -->
         <div class="art-digest-div-inner">
-            <p class="text text-muted art-digest-text art-digest-text-1">Are you sure you want to cancel your subscription.?
+            <p class="text art-digest-text art-digest-text-1"> <h5>Are you sure you want to cancel your subscription?</h5>
             </p>
             
             <form id="cancel-subscription-form" method="POST" action="newsletter/unsubscribe">  

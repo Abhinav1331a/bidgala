@@ -1503,8 +1503,8 @@ p.content {
 }
 
 @media only screen and (min-width: 920px) {
-    
-    .bidgala-buttons:nth-child(2n+1){
+
+    .bidgala-buttons:nth-child(2n+1) {
         margin-left: 1rem;
         margin-right: 1rem;
     }
@@ -1523,8 +1523,8 @@ p.content {
 
 @media only screen and (max-width: 920px) {
     .bidgala-buttons {
-       margin: 0.5rem 0px;
-       width: 100%;
+        margin: 0.5rem 0px;
+        width: 100%;
     }
 }
 
@@ -1552,15 +1552,30 @@ p.content {
     }
 }
 
+/* CANCEL SUBSCRIPTION */
+
+.art-digest-main {
+    background-color: white;
+    width: 70%;
+    text-align: center;
+    margin: auto;
+    padding: 2rem 0rem 3rem;
+}
+
+
+.logo-cancel {
+    margin: auto;
+}
+
 /*  */
 
 .art-digest-div {
     margin-top: 2rem;
 }
 
-.art-digest-div-inner {
+/* .art-digest-div-inner {
     display: flex;
-}
+} */
 
 
 .art-digest-btn {
@@ -1571,8 +1586,8 @@ p.content {
 
 @media screen and (min-width:995px) {
     .art-digest-btn {
-       margin-left: 1rem;
-       margin-top: 0;
+        margin-left: 1rem;
+        margin-top: 0;
     }
 }
 
@@ -1587,10 +1602,10 @@ p.content {
     margin-top: 0.5rem;
 }
 
-.email-and-btn{
+/* .email-and-btn {
     display: flex;
-    flex-direction: row;
-}
+    flex-direction: column;
+} */
 
 @media screen and (min-width:995px) {
     .art-digest-email-field {
@@ -1611,7 +1626,7 @@ p.content {
         width: 100%;
     }
 
-    .email-and-btn{
+    .email-and-btn {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -1886,7 +1901,7 @@ h6 {
 
 }
 
-.text-muted{
+.text-muted {
     text-align: center;
     justify-content: center;
 
