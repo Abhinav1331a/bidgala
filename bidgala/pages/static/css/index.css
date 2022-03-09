@@ -1641,6 +1641,11 @@ p.content {
     margin-top: 2rem;
 }
 
+.discover-card-body{
+    height: 5rem;
+    overflow: hidden;
+}
+
 .discover-div h3,
 h6 {
     color: #000;

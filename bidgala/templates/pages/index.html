@@ -594,35 +594,21 @@
                     </a>
                 </div>
                 <div class="card-deck discover-inner-div w-100">
-
+                    {%for article in discover_articles %}
+                    
                     <div class="dis-card card">
-                        <img class="card-img-fresh" src="{% static 'img/4.jpg' %}" alt="Card image cap">
+                        <a href="{% url 'article_details' article.slug %}">
+                        <img class="card-img-fresh" src="{{BASE_IMG_URL}}{{article.img}}{{img_optimize_param}}" alt="Card image cap">
                         <div class="card-body p-2">
-                            <h5 class="card-title ">Article 1</h5>
-                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in
-                                to additional content. This content is a little bit longer.</p>
-                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                            <span class="card-text text-muted">{{article.category | title}}</span>
+                            <h5 class="card-title mt-2">{{article.title | title}}</h5>
+                            <p class="card-text discover-card-body">{{article.body}}</p>
+                            <p class="card-text"><small class="text-muted">Created on: {{article.created_date}}</small></p>
                         </div>
+                    </a>
                     </div>
-                    <div class="dis-card card">
-                        <img class="card-img-fresh" src="{% static 'img/5.jpg' %}" alt="Card image cap">
-                        <div class="card-body p-2">
-                            <h5 class="card-title">Article 2</h5>
-                            <p class="card-text">TThis is a longer card with supporting text below as a natural lead-in
-                                to additional content. This content is a little bit longer.</p>
-                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                        </div>
-                    </div>
-                    <div class="dis-card card">
-                        <img class="card-img-fresh" src="{% static 'img/6.jpg' %}" alt="Card image cap">
-                        <div class="card-body p-2">
-                            <h5 class="card-title">Article 3</h5>
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                                additional content. This card has even longer content than the first to show that equal
-                                height action.</p>
-                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                        </div>
-                    </div>
+                    
+                    {%endfor%}
                 </div>
             </div>
 
@@ -905,7 +891,36 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="{% static 'js/app.js' %}"></script>
-</main>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/index.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/LICENSE"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/package.json"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/README.md"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/combine/npm/js-cookie@3.0.1/index.min.js,npm/js-cookie@3.0.1"></script>
 
+
+</main>
+<script>
+product_ids = []
+product_ids.push(JSON.parse(Cookies.get("recently_viewed")))
+
+$(document).ready(function () {
+        $.ajax({
+        type:'POST',
+        url:'{% url "recentlyviewed" %}',
+        data:
+        {
+            'productIDArray[]': product_ids,
+            csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+        },
+        success:function(data){
+            alert(JSON.parse(data))
+        }, 
+        error:function(){
+            
+        }
+        })
+});
+</script>
 
 {% endblock %}

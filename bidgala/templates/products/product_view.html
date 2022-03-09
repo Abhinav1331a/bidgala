@@ -561,8 +561,15 @@
 <script src="{% static 'js/slick-carousel.js' %}" defer></script>
 <script src="{% static 'js/product_view.js' %}" defer></script>
 <script src="{% static 'js/zoom.js' %}" defer></script>
-
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/combine/npm/js-cookie@3.0.1/index.min.js,npm/js-cookie@3.0.1"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/index.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/LICENSE"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/package.json"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/README.md"></script>
 <script src="https://js.stripe.com/v3/"></script>
+
 
 
 
@@ -1082,5 +1089,28 @@ $.ajax({
             $('#purchase-review-modal').modal('show');
         }
     })
+</script>
+
+<script>
+  var productIDArray =  JSON.parse(Cookies.get("recently_viewed") || "null")
+  if(productIDArray == null) productIDArray = [];
+  productID =  window.location.href.split("product_view/")[1].split("/")[0]
+  // alert(productID)
+  if (productIDArray.length < 7){
+    if (productIDArray.indexOf(productID) === -1) {
+          productIDArray.unshift(productID);
+          
+      }
+      
+  }
+  else{
+    if (productIDArray.indexOf(productID) === -1) {
+        productIDArray.pop(productID);
+        productIDArray.unshift(productID);
+        
+      }
+  }
+  
+  Cookies.set("recently_viewed", JSON.stringify(productIDArray), 3, "/");
 </script>
 {% endblock %}

@@ -2,7 +2,7 @@
 from django.shortcuts import render
 from django.views.decorators.cache import cache_page
 from django.conf import settings
-from django.http import JsonResponse
+from django.http import HttpResponse, JsonResponse
 
 # Related third party imports
 
@@ -16,6 +16,8 @@ from discover.models import Article
 from .models import HomePage
 from .utils import get_featured_artist, get_category, get_channel
 from products import choices as product_choices
+import json
+from django.core import serializers
 
 
 def cookie(request):
@@ -109,18 +111,17 @@ def index(request):
             It renders the index.html page.
 
     """
-
     products = Product.objects.filter(curator_pick=True, sold=False, available=True).order_by('-date')[0:10]
     # .distinct('Owner__id) causing items to shrink. So removed it.
     new_products = Product.objects.filter(sold=False, available=True).order_by('-date').order_by('owner__id')[0:10]
-    discover_articles = Article.objects.filter(show=True).order_by('-created_date')[0:10]
+    discover_articles = Article.objects.filter(show=True).order_by('-created_date')[0:3]
 
     all_art_img = HomePage.objects.filter(value='shop_all_art')[0]
     advisory_img = HomePage.objects.filter(value='advisory')[0]
 
     channel_obj = get_channel()
     featured_artist = get_featured_artist()
-
+        
     featured_artist_art = []
 
     product_featured_artist = []
@@ -144,6 +145,7 @@ def index(request):
         # 	featured_artist_products = None
 
     category_obj = get_category()
+    recently_viewed_products = []
     context = {
         'all_art_img': all_art_img.image,
         'advisory_img': advisory_img.image,
@@ -159,7 +161,8 @@ def index(request):
         'BASE_IMG_URL': settings.BASE_AWS_IMG_URL,
         'img_optimize_param': settings.IMG_OPTIMIZE_PARAM,
         'product_featured_artist': product_featured_artist,
-    }
+        'recently_viewed_products':recently_viewed_products,
+}
 
     return render(request, 'pages/index.html', context)
 
@@ -349,3 +352,15 @@ def advisory(request):
 
     """
     return render(request, 'pages/advisory.html')
+
+def recentlyviewed(request):
+        if request.method == 'POST':
+
+                post_input = request.POST.get('productIDArray[]')
+                product_ids = post_input.split(',')
+                for product_id in product_ids:
+                         recently_viewed = (Product.objects.filter(id = product_id))
+                data = serializers.serialize('json', list(recently_viewed))
+                print(recently_viewed)
+                return HttpResponse(json.dumps(data))
+

@@ -16,5 +16,6 @@ urlpatterns = [
 	path('help', views.help, name="help"),
 	path('faq', views.faq, name="faq"),
 	path('advisory', views.advisory, name="advisory"),
+	path('recentlyviewed', views.recentlyviewed, name="recentlyviewed"),
 	
 ]
