@@ -1554,7 +1554,8 @@ p.content {
 
 /* CANCEL SUBSCRIPTION */
 
-.art-digest-main {
+
+.cancel-main{
     background-color: white;
     width: 70%;
     text-align: center;
@@ -1565,7 +1566,40 @@ p.content {
 
 .logo-cancel {
     margin: auto;
+    width: 30%;
 }
+
+@media screen and (max-width:995px){
+    .cancel-main{
+        width: 90%;
+    }
+
+    .logo-img{
+        height: 60px;
+        margin: auto;
+    }
+
+    .logo-cancel{
+        width: 100%;
+    }
+
+    .cancel-text{
+        font-size: xx-large;
+    }
+
+    .cancel-question{
+        padding: 1rem 0;
+    }
+
+    .cancel-button{
+        width: 70%;
+        margin-top: 1rem;
+        padding: 1rem;
+        font-size: xx-large;
+    }
+
+}
+
 
 /*  */
 
@@ -1602,10 +1636,10 @@ p.content {
     margin-top: 0.5rem;
 }
 
-/* .email-and-btn {
+.email-and-btn {
     display: flex;
-    flex-direction: column;
-} */
+    flex-direction: row;
+}
 
 @media screen and (min-width:995px) {
     .art-digest-email-field {
