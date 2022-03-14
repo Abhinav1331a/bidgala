@@ -354,13 +354,16 @@ def advisory(request):
     return render(request, 'pages/advisory.html')
 
 def recentlyviewed(request):
+        recently_viewed = []
         if request.method == 'POST':
 
                 post_input = request.POST.get('productIDArray[]')
                 product_ids = post_input.split(',')
+
                 for product_id in product_ids:
-                         recently_viewed = (Product.objects.filter(id = product_id))
+                         recently_viewed.append(Product.objects.filter(id = product_id).only('price', 'image').first()) 
                 data = serializers.serialize('json', list(recently_viewed))
-                print(recently_viewed)
-                return HttpResponse(json.dumps(data))
+                print(data)
+                return JsonResponse(data, safe=False)
+                        
 
