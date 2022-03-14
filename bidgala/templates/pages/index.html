@@ -823,29 +823,12 @@
             <hr class="line-break">
 
             <!-- Recently viewed -->
-            <!-- <div class="discover-div">
-                <div>
-                    <h6>Recently Viewed</h6>
-                    <h4>Grab these before they sell</h4>
-                    
-                </div>
-                <div class="recently_viewed" id="recently_viewed">
 
-
-                    
-
-
-                </div>
-
-            </div> -->
-
-            <div class="recently-viewed-div mt-5 mb-5">
+            <div class="recently-viewed-div mt-5 mb-5 d-none">
                 <div>
                     <h6>Recently Viewed</h6>
                     <h4>Grab these before they sell</h4>
                 </div>
-
-                <p id="recently_viewed_empty">Nothing to view here!</p>
                 
                 <i class="fas fa-chevron-left recently_viewed-prev" id="pre-recently_viewed-art"></i>
                 <i class="fas fa-chevron-right recently_viewed-next" id="next-recently_viewed-art"></i>
@@ -885,7 +868,7 @@
 
 <script>
     product_ids = []
-    product_ids.push(JSON.parse(Cookies.get("recently_viewed")))
+    product_ids.push(JSON.parse(Cookies.get("recently_viewed")))   
 
     $(document).ready(function () {
         $.ajax({
@@ -898,6 +881,10 @@
             },
             success: function (data) {
                 a = JSON.parse(data)
+
+                if(a.length>=4){
+                    $('.recently-viewed-div').removeClass( "d-none" )
+                }
 
                 $("#recently_viewed_empty").css("display", "none")
 
@@ -919,7 +906,9 @@
                 const recently_viewedLinks = recently_viewed.querySelectorAll('a');
                 const recently_leftArrow = document.getElementById('pre-recently_viewed-art');
                 const recently_rightArrow = document.getElementById('next-recently_viewed-art');
+                
                 if (recently_viewedLinks.length > 4) {
+
                     $(".recently_viewed").slick({
                         dots: false,
                         infinite: true,
