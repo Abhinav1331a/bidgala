@@ -6,6 +6,7 @@ from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 from accounts.utils import random_string, encrypt, decrypt
 from password import constants as const
+from accounts.email import create_message, create_attachment, read_image, sendgrid_send_email
 
 # Create your models here.
 
@@ -47,4 +48,14 @@ class NewsletterContent(models.Model):
                             request.build_absolute_uri('/newsletter'),
                             encrypted_text)
                     )
+
+            IMG_1_PATH = settings.BASE_DIR + '/bidgala/static/img/email/logo_white_bg.png'
+            IMG_2_PATH = settings.BASE_DIR + '/bidgala/static/img/email/bottom.jpg'
+            data1 = read_image(IMG_1_PATH)
+            data2 = read_image(IMG_2_PATH)
+            attachment1 = create_attachment(data1, 'img/jpg', 'logo.jpg', 'logo')
+            attachment2 = create_attachment(data2, 'img/jpg', 'bottom.jpg', 'bottom')
+            message.add_attachment(attachment1)
+            message.add_attachment(attachment2)
+
             sg.send(message)
