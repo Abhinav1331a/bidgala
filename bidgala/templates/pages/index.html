@@ -860,13 +860,12 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/LICENSE"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/package.json"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/README.md"></script>
-    <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/combine/npm/js-cookie@3.0.1/index.min.js,npm/js-cookie@3.0.1"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/combine/npm/js-cookie@3.0.1/index.min.js,npm/js-cookie@3.0.1"></script>
 
 
 </main>
 
-<script>
+<script type="text/javascript">
     product_ids = []
     product_ids.push(JSON.parse(Cookies.get("recently_viewed")))   
 
@@ -888,18 +887,13 @@
 
                 $("#recently_viewed_empty").css("display", "none")
 
-                var htmlTemplate = '<a href="/art/product_view/{link}"><div class="recent-price-tag">${price}</div><img class="card-img-recent recent-view" data-aload="https://thebidgaala.s3.amazonaws.com/{imgs}" alt="Card image cap"></a>'
+                var htmlTemplate = '<a href="/art/product_view/{link}"><div class="recent-price-tag">${price}</div><img class="card-img-recent recent-view" src="{imgs}" alt="Card image cap"/></a>'
 
                 for (var i = 0; i < a.length; i++) {
-                    newHtml = htmlTemplate.replace('{link}', a[i]['pk']).replace('{price}', a[i]['fields']['price']).replace('{imgs}', a[i]['fields']['image'])
-
-                    tempContainer = document.createElement('div');
-                    tempContainer.classList.add('card');
-                    tempContainer.classList.add('recently_viewed_cards');
-                    tempContainer.innerHTML = newHtml;
-
-                    container = document.getElementById('recently_viewed');
-                    container.appendChild(tempContainer);
+                    newHtml = htmlTemplate.replace('{link}', a[i]['pk']).replace('{price}', a[i]['fields']['price']).replace('{imgs}', 'https://thebidgaala.s3.amazonaws.com/'+a[i]['fields']['image']);
+                    
+                    var new1 = $("<div class='card recently_viewed_cards'></div>").html(newHtml);
+                    $('#recently_viewed').append(new1);
                 }
 
                 const recently_viewed = document.querySelector('.recently_viewed');
