@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base_navbarcoupon.html' %}
 {% load static %}
 {% load humanize %}
 {% block title %} | Arts {% endblock %}
@@ -22,7 +22,7 @@
 
             } else {
             document.getElementById('mobile-filter-btn').classList.add('filter-sidebar-mb');
-            document.getElementById('sidebar').classList.add('mt-5');
+            document.getElementById('sidebar').classList.add('');
 
             } 
         });
@@ -30,31 +30,16 @@
 </script>
 
 <div id="overlay-arts"></div>
+
+
 <section class="products-container mt-3">
+
+    
+
     <div class="products row m-0">
 
-        <div class="w-100 pl-2 pr-2 filter-sidebar-mb" id="mobile-filter-btn">
-            <button class="btn btn-dark d-lg-none d-block w-100" id="filter" type="button">FILTER</button>
-        </div>
-
-        <!-- sort dropdown -->
-        <div class="sort-dropdown">
-            <button>
-                <div>
-                    <span>sort by</span>
-                    <span class="button-text">Default</span>
-                </div>
-                <i class="right fas fa-caret-down"></i>
-            </button>
-            <div class="sort-dropdown-content">
-                <a href="" id="default-sort" data-value="df"><i class="fas fa-check default-check"></i> Default</a>
-                <a href="" id="lowest-first" data-value="lf"><i class="fas fa-check lowest-check visibility-hidden"></i> Price: Lowest</a>
-                <a href="" id="highest-first" data-value="hf"><i class="fas fa-check highest-check visibility-hidden"></i> Price: Highest</a>
-            </div>
-        </div>
-        <!-- sort dropdown -->
-
-        <div class="mt-5" id="sidebar">
+        
+        <div class="" id="sidebar">
 
             <button class="btn btn-link text-secondary close d-block d-lg-none mb-4 mr-2" type="button">x</button>
 
@@ -325,6 +310,28 @@
             </div>
         </div>
         </button>
+
+
+        <div class="w-100 pl-2 pr-2 filter-sidebar-mb" id="mobile-filter-btn">
+            <button class="btn btn-dark d-lg-none d-block w-100" id="filter" type="button">FILTER</button>
+        </div>
+
+        <!-- sort dropdown -->
+        <div class="sort-dropdown">
+            <button>
+                <div>
+                    <span>sort by</span>
+                    <span class="button-text">Default</span>
+                </div>
+                <i class="right fas fa-caret-down"></i>
+            </button>
+            <div class="sort-dropdown-content">
+                <a href="" id="default-sort" data-value="df"><i class="fas fa-check default-check"></i> Default</a>
+                <a href="" id="lowest-first" data-value="lf"><i class="fas fa-check lowest-check visibility-hidden"></i> Price: Lowest</a>
+                <a href="" id="highest-first" data-value="hf"><i class="fas fa-check highest-check visibility-hidden"></i> Price: Highest</a>
+            </div>
+        </div>
+        <!-- sort dropdown -->
 
 
 

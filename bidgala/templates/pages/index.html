@@ -24,19 +24,13 @@
                 data-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="{% static 'img/carousel1.jpeg' %}" class="main-carousel-img w-100 d-block" alt="">
+                        <img src="{{BASE_IMG_URL}}{{all_art_img}}{{img_optimize_param}}" class="main-carousel-img w-100 d-block" alt="">
                         <div class="btn-exp col-lg-4 col-md-4 col-sm-3 ">
                             <button type="button" class="btn btn-dark exp-button">Start Exploring</button>
                         </div>
                     </div>
                     <div class="carousel-item">
-                        <img src="{% static 'img/carousel2.jpg' %}" class="main-carousel-img w-100 d-block" alt="">
-                        <div class="btn-exp col-lg-4 col-md-4 col-sm-3 ">
-                            <button type="button" class="btn btn-dark exp-button">Fine Art</button>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="{% static 'img/carousel3.jpg' %}" class="main-carousel-img w-100 d-block" alt="">
+                        <img src="{{BASE_IMG_URL}}{{advisory_img}}{{img_optimize_param}}" class="main-carousel-img w-100 d-block" alt="">
                         <div class="btn-exp col-lg-4 col-md-4 col-sm-3 ">
                             <button type="button" class="btn btn-dark exp-button">Fine Art</button>
                         </div>
@@ -865,8 +859,6 @@
 
 </main>
 
-{{ BASE_IMG_URL|json_script:"BASE_IMG_URL" }}
-
 <script type="text/javascript">
     product_ids = []
     product_ids.push(JSON.parse(Cookies.get("recently_viewed")))   
@@ -889,22 +881,16 @@
                 
                 $("#recently_viewed_empty").css("display", "none")
 
-                const testUrl = JSON.parse(document.getElementById('BASE_IMG_URL').textContent)
-
-                // alert(JSON.parse(document.getElementById('BASE_IMG_URL').textContent))
-
                 var htmlTemplate = '<a href="/art/product_view/{link}"><div class="recent-price-tag">${price}</div><img class="card-img-recent recent-view" src="{imgs}" alt="Card image cap"/></a>'
 
                 for (var i = 0; i < a.length; i++) {
-                    newHtml = htmlTemplate.replace('{link}', a[i]['pk']).replace('{price}', a[i]['fields']['price']).replace('{imgs}', 'https://thebidgaala.s3.amazonaws.com/'+a[i]['fields']['image']);
+                    newHtml = htmlTemplate.replace('{link}', a[i]['pk']).replace('{price}', a[i]['fields']['price']).replace('{imgs}', '{{BASE_IMG_URL}}'+a[i]['fields']['image']);
                     
                     var new1 = $("<div class='card recently_viewed_cards'></div>").html(newHtml);
                     $('#recently_viewed').append(new1);
                 }
 
     
-
-
                 const recently_viewed = document.querySelector('.recently_viewed');
                 const recently_viewedLinks = recently_viewed.querySelectorAll('a');
                 const recently_leftArrow = document.getElementById('pre-recently_viewed-art');
