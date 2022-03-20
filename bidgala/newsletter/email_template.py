@@ -3,7 +3,7 @@ from .models import NewsletterUser
 from accounts.utils import random_string, encrypt, decrypt
 from password import constants as const
 
-def NewsLetterSubscribedTemplate(mail):
+def newsletter_subscribed_template(mail):
   BASE_URL = settings.HOST_BASE_URL
   name = mail.split('@')[0]
   confirmation_str = random_string()
@@ -296,7 +296,7 @@ def NewsLetterSubscribedTemplate(mail):
                           <p style="color: #000">Dear """ + name + """,</p>
                           <p style="color: #000">You are successfully subscribed to Bidgala Art Digest.!</p>
 
-                          <p style="color: #000"> If you wish to unsubscribe, please click <a href='http://""" + BASE_URL + """newsletter/CancelSubscription?""" + encrypted_text + """'>here</a>
+                          <p style="color: #000"> If you wish to unsubscribe, please click <a href='http://""" + BASE_URL + """newsletter/cancel_subscription?""" + encrypted_text + """'>here</a>
 
                           </p>
                           

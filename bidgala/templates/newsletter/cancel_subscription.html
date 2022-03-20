@@ -54,7 +54,7 @@ crossorigin="anonymous" />
         e.preventDefault();
         $.ajax({
             type:'POST',
-            url:'{% url "DeleteNewsLetter" %}',
+            url:'{% url "delete_newsletter" %}',
             data:
             {
                 id_value: $("#cancel-btn").val(),

@@ -14,7 +14,7 @@ from urllib.parse import unquote
 
 
 
-def NewsLetter(request):
+def news_letter(request):
     if request.method == 'POST':
         
         email_input = request.POST.get('email_value')
@@ -49,7 +49,7 @@ def sendEmail(email):
     IMG_1_PATH = settings.BASE_DIR + '/bidgala/static/img/email/logo_white_bg.png'
     data1 = read_image(IMG_1_PATH)
     
-    message_ = create_message(to_email, subject, email_template.NewsLetterSubscribedTemplate(email))
+    message_ = create_message(to_email, subject, email_template.newsletter_subscribed_template(email))
         
     attachment1 = create_attachment(data1, 'img/png', 'logo.png', 'logo')
 
@@ -59,10 +59,10 @@ def sendEmail(email):
     sendgrid_send_email(message_)
         
     
-def CancelSubscription(request):
-    return render(request, "newsletter/CancelSubscription.html")
+def cancel_subscription(request):
+    return render(request, "newsletter/cancel_subscription.html")
 
-def DeleteNewsLetter(request):
+def delete_newsletter(request):
     if request.method == 'POST':
         del_id = request.POST.get('id_value')
         deciper_text = str(decrypt(const.SECRET_KEY, unquote(del_id)), 'utf-8')
@@ -70,4 +70,4 @@ def DeleteNewsLetter(request):
         unsubscribe = NewsletterUser.objects.filter(id= data[0]).first()
         unsubscribe.confirmed = False
         unsubscribe.save()
-    return render(request, "newsletter/CancelSubscription.html")
+    return render(request, "newsletter/cancel_subscription.html")

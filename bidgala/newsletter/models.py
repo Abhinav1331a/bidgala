@@ -44,7 +44,7 @@ class NewsletterContent(models.Model):
                     to_emails=sub.email,
                     subject=self.subject,
                     html_content=contents + (
-                        '<br><a href="{}/CancelSubscription?{}">Unsubscribe</a>.').format(
+                        '<br><a href="{}/cancel_subscription?{}">Unsubscribe</a>.').format(
                             request.build_absolute_uri('/newsletter'),
                             encrypted_text)
                     )
