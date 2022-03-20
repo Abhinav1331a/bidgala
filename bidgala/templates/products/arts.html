@@ -13,17 +13,14 @@
 
 <script>
 
-    document.addEventListener("DOMContentLoaded", function(){
-        window.addEventListener('scroll', function() {
+    document.addEventListener("DOMContentLoaded", function () {
+        window.addEventListener('scroll', function () {
             if (window.scrollY > 50) {
-                document.getElementById('sidebar').classList.remove('mt-5');
                 document.getElementById('mobile-filter-btn').classList.remove('filter-sidebar-mb');
+            }
 
-
-            } else {
+            else {
                 document.getElementById('mobile-filter-btn').classList.add('filter-sidebar-mb');
-                document.getElementById('sidebar').classList.add('');
-
             }
         });
     }); 
@@ -31,38 +28,41 @@
 
 <div id="overlay-arts"></div>
 
-<div class="w-50 mt-2">
-    <p class="small pt-2 pl-3"><a>All Artworks</a> /</p>
-</div>
-
-<div class="d-flex mb-3">
-    <h4 class="pt-2 pl-3" style="margin-top:10px;">Original Paintings For Sale</h4>
-    
-    <!-- sort dropdown -->
-    <div class="sort-dropdown pr-3">
-    
-        <button>
-            <div>
-                <span>sort by</span>
-                <span class="button-text">Default</span>
-            </div>
-            <i class="right fas fa-caret-down"></i>
-        </button>
-        <div class="sort-dropdown-content">
-            <a href="" id="default-sort" data-value="df"><i class="fas fa-check default-check"></i> Default</a>
-            <a href="" id="lowest-first" data-value="lf"><i class="fas fa-check lowest-check visibility-hidden"></i> Price:
-                Lowest</a>
-            <a href="" id="highest-first" data-value="hf"><i class="fas fa-check highest-check visibility-hidden"></i>
-                Price: Highest</a>
-        </div>
+<div class="arts_below_navbar">
+    <div class="w-50 mt-2">
+        <p class="small pt-2 pl-3"><a>All Artworks</a> /</p>
     </div>
-    <!-- sort dropdown -->
+    
+    <div class="d-flex mb-3">
+        <h4 class="pt-1 pl-3" style="margin-top:10px;">Original Paintings For Sale</h4>
+    
+        <!-- sort dropdown -->
+        <div class="sort-dropdown pr-3">
+    
+            <button>
+                <div>
+                    <span>sort by</span>
+                    <span class="button-text">Default</span>
+                </div>
+                <i class="right fas fa-caret-down"></i>
+            </button>
+            <div class="sort-dropdown-content">
+                <a href="" id="default-sort" data-value="df"><i class="fas fa-check default-check"></i> Default</a>
+                <a href="" id="lowest-first" data-value="lf"><i class="fas fa-check lowest-check visibility-hidden"></i>
+                    Price:
+                    Lowest</a>
+                <a href="" id="highest-first" data-value="hf"><i class="fas fa-check highest-check visibility-hidden"></i>
+                    Price: Highest</a>
+            </div>
+        </div>
+        <!-- sort dropdown -->
+    </div>
 </div>
 
 <hr class="line-break">
 
-<div class="mt-4 mb-2">
-    <p class="text-center">Explore thousands of artworks from independent artists around the world.</p>
+<div class="arts-mobile-text mt-4 mb-2">
+    <p class="text-center">Explore thousands of artworks from independent artists around the world. Whether you are looking for an original painting or a high quality art print, Saatchi Art has over 2,372,519 original paintings for sale from emerging artists around the world.</p>
 </div>
 
 <hr class="line-break">

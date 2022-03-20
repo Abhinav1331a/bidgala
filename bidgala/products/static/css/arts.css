@@ -307,7 +307,7 @@
 	background-color: white;
 	left: 0;
 	right: 0;
-	top: 275px;
+	top: 50px;
 	padding-top: 15px;
 	padding-bottom: 15px;
 }
@@ -388,4 +388,27 @@
     color: white;
     padding: 8px;
     /* border-radius: 20px; */
+}
+
+
+.arts_below_navbar{
+    margin-right: 3rem;
+    margin-left: 3rem;
+}
+
+.arts-mobile-text{
+    margin-left: 50%;
+    transform: translateX(-50%);
+    width: 50%;
+}
+
+@media screen and (max-width:992px) {
+    .arts_below_navbar{
+        margin-right: 0rem;
+        margin-left: 0rem;
+    }
+    .arts-mobile-text{
+        display: none;
+    }
+    
 }

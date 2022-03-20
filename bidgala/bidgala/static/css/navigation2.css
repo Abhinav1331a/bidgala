@@ -32,9 +32,6 @@
     width: 100%;
   }
   
-  #searchfield {
-    flex-direction: row-reverse;
-  }
   .nav-search-input {
     border: none;
   }
@@ -61,7 +58,6 @@
       } */
     #logo-demo {
       width: 200px;
-      margin: 0px;
       padding: 0px;
     }
   
@@ -582,3 +578,27 @@
     top: 50px;
   }
   
+
+  .navbar_top_row{
+    margin-right: 1.5rem;
+    padding-right:1rem;
+  }
+
+  #logo-demo {
+    margin-left: 3rem;
+  }
+
+  #searchfield {
+    flex-direction: row-reverse;
+    margin-right: 3rem;
+  }
+
+  @media screen and (max-width:992px) {
+    #logo-demo {
+      margin-left: 0rem;
+    }
+
+    #searchfield {
+      margin-right: 0rem;
+    }
+  }
