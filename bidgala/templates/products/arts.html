@@ -12,33 +12,69 @@
 {% csrf_token %}
 
 <script>
-    
+
     document.addEventListener("DOMContentLoaded", function(){
         window.addEventListener('scroll', function() {
             if (window.scrollY > 50) {
-            document.getElementById('sidebar').classList.remove('mt-5');
-            document.getElementById('mobile-filter-btn').classList.remove('filter-sidebar-mb');
+                document.getElementById('sidebar').classList.remove('mt-5');
+                document.getElementById('mobile-filter-btn').classList.remove('filter-sidebar-mb');
 
 
             } else {
-            document.getElementById('mobile-filter-btn').classList.add('filter-sidebar-mb');
-            document.getElementById('sidebar').classList.add('');
+                document.getElementById('mobile-filter-btn').classList.add('filter-sidebar-mb');
+                document.getElementById('sidebar').classList.add('');
 
-            } 
+            }
         });
     }); 
 </script>
 
 <div id="overlay-arts"></div>
 
+<div class="w-50 mt-2">
+    <p class="small pt-2 pl-3"><a>All Artworks</a> /</p>
+</div>
 
-<section class="products-container mt-3">
-
+<div class="d-flex mb-3">
+    <h4 class="pt-2 pl-3" style="margin-top:10px;">Original Paintings For Sale</h4>
     
+    <!-- sort dropdown -->
+    <div class="sort-dropdown pr-3">
+    
+        <button>
+            <div>
+                <span>sort by</span>
+                <span class="button-text">Default</span>
+            </div>
+            <i class="right fas fa-caret-down"></i>
+        </button>
+        <div class="sort-dropdown-content">
+            <a href="" id="default-sort" data-value="df"><i class="fas fa-check default-check"></i> Default</a>
+            <a href="" id="lowest-first" data-value="lf"><i class="fas fa-check lowest-check visibility-hidden"></i> Price:
+                Lowest</a>
+            <a href="" id="highest-first" data-value="hf"><i class="fas fa-check highest-check visibility-hidden"></i>
+                Price: Highest</a>
+        </div>
+    </div>
+    <!-- sort dropdown -->
+</div>
+
+<hr class="line-break">
+
+<div class="mt-4 mb-2">
+    <p class="text-center">Explore thousands of artworks from independent artists around the world.</p>
+</div>
+
+<hr class="line-break">
+
+
+<section class="products-container">
+
+
 
     <div class="products row m-0">
 
-        
+
         <div class="" id="sidebar">
 
             <button class="btn btn-link text-secondary close d-block d-lg-none mb-4 mr-2" type="button">x</button>
@@ -316,23 +352,6 @@
             <button class="btn btn-dark d-lg-none d-block w-100" id="filter" type="button">FILTER</button>
         </div>
 
-        <!-- sort dropdown -->
-        <div class="sort-dropdown">
-            <button>
-                <div>
-                    <span>sort by</span>
-                    <span class="button-text">Default</span>
-                </div>
-                <i class="right fas fa-caret-down"></i>
-            </button>
-            <div class="sort-dropdown-content">
-                <a href="" id="default-sort" data-value="df"><i class="fas fa-check default-check"></i> Default</a>
-                <a href="" id="lowest-first" data-value="lf"><i class="fas fa-check lowest-check visibility-hidden"></i> Price: Lowest</a>
-                <a href="" id="highest-first" data-value="hf"><i class="fas fa-check highest-check visibility-hidden"></i> Price: Highest</a>
-            </div>
-        </div>
-        <!-- sort dropdown -->
-
 
 
         <div class="col-12 pt-3 w-100" id="products">
@@ -351,12 +370,16 @@
                             <div class="label-tag">Featured Artist</div>
                             {%endif%}
 
-                            <a href="{%url 'product_view' id=product.art_obj.id%}" class="showProduct" data-bs-toggle="modal" data-bs-target="#productModal" id="someid">
-                                <img src="{{BASE_AWS_IMG_URL}}{{product.art_obj.image}}{{img_optimize_param}}" loading="lazy">
- 
-                                <h6 class="mt-2 mb-1 text-truncate font-weight-bold"> 
-                                    <a href="{% url 'public_profile' product.art_obj.owner.user.username %}" id="usernameData">{{product.art_obj.owner.user.first_name}}
-                                        {{product.art_obj.owner.user.last_name}}</a></h6>
+                            <a href="{%url 'product_view' id=product.art_obj.id%}" class="showProduct"
+                                data-bs-toggle="modal" data-bs-target="#productModal" id="someid">
+                                <img src="{{BASE_AWS_IMG_URL}}{{product.art_obj.image}}{{img_optimize_param}}"
+                                    loading="lazy">
+
+                                <h6 class="mt-2 mb-1 text-truncate font-weight-bold">
+                                    <a href="{% url 'public_profile' product.art_obj.owner.user.username %}"
+                                        id="usernameData">{{product.art_obj.owner.user.first_name}}
+                                        {{product.art_obj.owner.user.last_name}}</a>
+                                </h6>
 
 
                                 <small><i>{{product.art_obj.art_title}}</i></small> <br />
@@ -431,19 +454,19 @@
 <script src="{% static 'js/product_modal.js' %}"></script>
 <script src="{% static 'js/arts.js' %}"></script>
 <script>
-    
-    
+
+
     //For comparison of the purchase button
     {% if request.user.is_authenticated %}
-        currentUser = "{{request.user.is_authenticated}}"
+    currentUser = "{{request.user.is_authenticated}}"
     {% else %}
-        currentUser = null;
+    currentUser = null;
     {% endif %}
 
     {% if is_product_owner %}
-        productOwner = "{{is_product_owner}}"
+    productOwner = "{{is_product_owner}}"
     {% else %}
-        productOwner = null;
+    productOwner = null;
     {% endif %}
 </script>
 

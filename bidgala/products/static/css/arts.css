@@ -5,7 +5,7 @@
 #sidebar {
 	position: absolute;
 	width: 300px;
-    margin-top: 5.25rem;
+    margin-top: 1.75rem;
 	overflow: hidden;
 	padding-right: 12px;
 	padding-top: 20px;
@@ -307,7 +307,7 @@
 	background-color: white;
 	left: 0;
 	right: 0;
-	top: 65px;
+	top: 275px;
 	padding-top: 15px;
 	padding-bottom: 15px;
 }
@@ -351,12 +351,12 @@
 
 
 
-@media only screen and (max-width: 575px) {
+/* @media only screen and (max-width: 575px) {
 	#mobile-filter-btn {
 		top: 52px;
 	}
 
-}
+} */
 
 .color-option{
     display: flex;
