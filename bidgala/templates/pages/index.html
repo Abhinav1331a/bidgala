@@ -1,4 +1,4 @@
-{% extends 'base2.html' %}
+{% extends 'base_navbarcoupon.html' %}
 {% load static %}
 {% load humanize %}
 {% block title %} | Welcome {% endblock %}
@@ -824,7 +824,7 @@
 
             <!-- Recently viewed -->
 
-            <div class="recently-viewed-div mt-5 mb-5 d-none">
+            <div class="recently-viewed-div mt-5 mb-5 d-none" id="recently-viewed-div" value="{{BASE_IMG_URL}}">
                 <div>
                     <h6>Recently Viewed</h6>
                     <h4>Grab these before they sell</h4>
@@ -865,6 +865,8 @@
 
 </main>
 
+{{ BASE_IMG_URL|json_script:"BASE_IMG_URL" }}
+
 <script type="text/javascript">
     product_ids = []
     product_ids.push(JSON.parse(Cookies.get("recently_viewed")))   
@@ -884,8 +886,12 @@
                 if(a.length>=4){
                     $('.recently-viewed-div').removeClass( "d-none" )
                 }
-
+                
                 $("#recently_viewed_empty").css("display", "none")
+
+                const testUrl = JSON.parse(document.getElementById('BASE_IMG_URL').textContent)
+
+                // alert(JSON.parse(document.getElementById('BASE_IMG_URL').textContent))
 
                 var htmlTemplate = '<a href="/art/product_view/{link}"><div class="recent-price-tag">${price}</div><img class="card-img-recent recent-view" src="{imgs}" alt="Card image cap"/></a>'
 
@@ -895,6 +901,9 @@
                     var new1 = $("<div class='card recently_viewed_cards'></div>").html(newHtml);
                     $('#recently_viewed').append(new1);
                 }
+
+    
+
 
                 const recently_viewed = document.querySelector('.recently_viewed');
                 const recently_viewedLinks = recently_viewed.querySelectorAll('a');
