@@ -53,8 +53,8 @@
             <div class="coupon">
 
                 <h6>The Art Marketplace For Art Lovers, By Art Lovers</h6>
-                <h6 id="apply_coupon_h6">10% off all art | Code: Artlovers2022 | <a href="#" style="color: white;"
-                        id="apply_coupon" value="Artlovers2022">Apply Coupon</a></h6>
+                <h6 id="apply_coupon_h6">10% off all art | Code: Artlovers2022 | <button style="border: none; outline: none; background-color: transparent; color: white;"
+                        id="apply_coupon" value="Artlovers2022">Apply Coupon</button></h6>
 
             </div>
 
@@ -793,6 +793,7 @@
     $('#apply_coupon').click(function () {
         couponCode = $('#apply_coupon').attr("value")
         Cookies.set("coupon_code", couponCode, { expires: 1 }, "/");
+        $('#apply_coupon').html('Coupon Applied!')
     })
 
 </script>
