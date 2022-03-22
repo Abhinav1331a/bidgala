@@ -30,15 +30,15 @@
 
 <div class="arts_below_navbar">
     <div class="w-50 mt-2">
-        <p class="small pt-2 pl-3"><a>All Artworks</a> /</p>
+        <p class="small pt-2 pl-3" id="path"><a href="{{HOST_BASE_URL}}art/search/art/all/">All Artworks / </a> </p>
     </div>
-    
+
     <div class="d-flex mb-3">
-        <h4 class="pt-1 pl-3" style="margin-top:10px;">Original Paintings For Sale</h4>
-    
+        <h3 class="pt-1 pl-3" style="margin-top:10px;">Original Paintings For Sale</h3>
+
         <!-- sort dropdown -->
         <div class="sort-dropdown pr-3">
-    
+
             <button>
                 <div>
                     <span>sort by</span>
@@ -51,7 +51,8 @@
                 <a href="" id="lowest-first" data-value="lf"><i class="fas fa-check lowest-check visibility-hidden"></i>
                     Price:
                     Lowest</a>
-                <a href="" id="highest-first" data-value="hf"><i class="fas fa-check highest-check visibility-hidden"></i>
+                <a href="" id="highest-first" data-value="hf"><i
+                        class="fas fa-check highest-check visibility-hidden"></i>
                     Price: Highest</a>
             </div>
         </div>
@@ -62,7 +63,9 @@
 <hr class="line-break">
 
 <div class="arts-mobile-text mt-4 mb-2">
-    <p class="text-center">Explore thousands of artworks from independent artists around the world. Whether you are looking for an original painting or a high quality art print, Saatchi Art has over 2,372,519 original paintings for sale from emerging artists around the world.</p>
+    <p class="text-center">Explore thousands of artworks from independent artists around the world. Whether you are
+        looking for an original painting or a high quality art print, Saatchi Art has over 2,372,519 original paintings
+        for sale from emerging artists around the world.</p>
 </div>
 
 <hr class="line-break">
@@ -120,11 +123,9 @@
                             {% for key, value in category.items %}
                             <div class="custom-control form-check custom-checkbox mb-3">
                                 {% if active_field == 'category' and active_value == key %}
-                                <input type="checkbox" class="custom-control-input" name="category"
-                                    id="{{key}}_category" data-value="{{key}}" checked>
+                                <input type="checkbox" class="custom-control-input path" name="category" id="{{key}}_category" data-value="{{key}}" onlyvalue="{{value}}" valuekey = "{{value}}_{{key}}" checked>
                                 {%else%}
-                                <input type="checkbox" class="custom-control-input" name="category"
-                                    id="{{key}}_category" data-value="{{key}}">
+                                <input type="checkbox" class="custom-control-input path" name="category" id="{{key}}_category" onlyvalue="{{value}}" valuekey="{{value}}_{{key}}" data-value="{{key}}">
                                 {%endif%}
                                 <label class="custom-control-label" for="{{key}}_category">{{value}}</label>
                             </div>
@@ -453,6 +454,54 @@
 <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
 <script src="{% static 'js/product_modal.js' %}"></script>
 <script src="{% static 'js/arts.js' %}"></script>
+
+<script>
+    $(document).ready(function () {
+        var arr = []
+        if (window.location.href.includes('category')) {
+            var required = window.location.href.split('category/')[1].split('/')[0]
+            var pathName = '<a href="{{HOST_BASE_URL}}art/search/art/all/">All Artworks / </a>  <a id = "path2">' + required + ' / </a>'
+            $('#path').empty().append(pathName)
+            $('#path2').attr('href', window.location.href)
+        }
+        if (window.location.href.includes('curator')) {
+            var required = window.location.href.split('/search/')[1].split('/none/')[0]
+            var pathName = '<a href="{{HOST_BASE_URL}}art/search/art/all/">All Artworks / </a>  <a id = "path2">' + required + ' / </a>'
+            $('#path').empty().append(pathName)
+            $('#path2').attr('href', window.location.href)
+        }
+        else {
+            $('.path').on('change', function (event) {
+                var checkbox = $(event.target);
+                var pathName = '<a href="{{HOST_BASE_URL}}art/search/art/all/">All Artworks / </a> '
+                var ahref = '{{HOST_BASE_URL}}' + 'art/search/category/' + checkbox.attr('data-value') + '/'
+                
+                if ($(checkbox).is(':checked')) {
+                    arr.unshift(checkbox.attr('valuekey'))
+                    pathNameextra = '<a id = "path2">' + arr[0].split('_')[0] + ' / </a>'
+                    $('#path').empty().append(pathName + pathNameextra)
+                    $('#path2').attr('href', ahref)
+                }
+                else {
+                    if (arr.length > 1) {
+                        var index = arr.indexOf(checkbox.attr('onlyvalue') + '_' + checkbox.attr('data-value'));
+                        arr.splice(index, 1);
+                        pathNameextra = '<a id = "path2">' + arr[0].split('_')[0] + ' / </a>'
+                        ahref = '{{HOST_BASE_URL}}' + 'art/search/category/' + arr[0].split('_')[1] + '/'
+                        $('#path').empty().append(pathName + pathNameextra)
+                        $('#path2').attr('href', ahref)
+                    }
+                    
+                    else if(arr.length <= 1) {
+                        arr.pop()
+                        $('#path2').remove()
+                    }
+                }
+            });
+        }
+    });
+</script>
+
 <script>
 
 
@@ -469,6 +518,8 @@
     productOwner = null;
     {% endif %}
 </script>
+
+
 
 
 {% endblock %}

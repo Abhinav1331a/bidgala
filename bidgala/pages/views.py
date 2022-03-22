@@ -363,7 +363,6 @@ def recentlyviewed(request):
                 for product_id in product_ids:
                          recently_viewed.append(Product.objects.filter(id = product_id).only('price', 'image').first()) 
                 data = serializers.serialize('json', list(recently_viewed))
-                print(data)
                 return JsonResponse(data, safe=False)
                         
 

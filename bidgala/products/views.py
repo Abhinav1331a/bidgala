@@ -609,6 +609,7 @@ def show_search(request, type_, value):
                 'active_value' : active_value,
                 'grouped_art' : art_grouped_list,
                 'BASE_AWS_IMG_URL' : settings.BASE_AWS_IMG_URL,
+                'HOST_BASE_URL' : settings.HOST_BASE_URL,
                 'img_optimize_param' : settings.IMG_OPTIMIZE_PARAM,
                 'color' : product_choices.color,
             }
@@ -626,6 +627,7 @@ def show_search(request, type_, value):
                 'active_value' : active_value,
                 'grouped_art' : None,
                 'BASE_AWS_IMG_URL' : settings.BASE_AWS_IMG_URL,
+                'HOST_BASE_URL' : settings.HOST_BASE_URL,
                 'img_optimize_param' : settings.IMG_OPTIMIZE_PARAM,
             }
 
@@ -1343,6 +1345,7 @@ def get_search_results(request):
             'subcategory' : product_choices.grouped_sub_type,
             'style' : product_choices.styles,
             'BASE_AWS_IMG_URL' : settings.BASE_AWS_IMG_URL,
+            'HOST_BASE_URL' : settings.HOST_BASE_URL,
             'img_optimize_param' : settings.IMG_OPTIMIZE_PARAM,
             'color' : product_choices.color,
         }

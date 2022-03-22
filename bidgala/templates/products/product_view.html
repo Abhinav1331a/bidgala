@@ -1095,7 +1095,6 @@ $.ajax({
   var productIDArray =  JSON.parse(Cookies.get("recently_viewed") || "null")
   if(productIDArray == null) productIDArray = [];
   productID =  window.location.href.split("product_view/")[1].split("/")[0]
-  // alert(productID)
   if (productIDArray.length < 7){
     if (productIDArray.indexOf(productID) === -1) {
           productIDArray.unshift(productID);

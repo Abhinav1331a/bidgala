@@ -232,6 +232,21 @@ $(document).ready(function () {
       },
 
       success: function (result) {
+       
+        // var path_arr = []
+        // for (var a = 0; a < category_selected.length; a++) {
+        //   if (path_arr.indexOf(category_selected[a]) === -1){
+        //     path_arr.unshift(category_selected[a])
+        //   }
+        //   // path_arr.push(category_selected[a])
+        // }
+        // console.log(path_arr)
+        // console.log(category_selected)
+        // if (!($('#path').html().includes(path_arr[0]))){
+        //   $('#path').append(path_arr[0] + ' / ')
+        // }
+        // // $('#path').append(path_arr[0])
+
         if (remove_existing) {
           $(".grid").masonry("remove", $(".grid").find(".grid-item"));
           $(".grid").empty();
