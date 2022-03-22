@@ -1653,14 +1653,18 @@ p.content {
     width: 200px;
     border-radius: 3px;
     margin-top: 2rem;
+    height: 50%;
 }
 
-@media screen and (min-width:995px) {
+@media screen and (min-width:996px) {
     .art-digest-btn {
         margin-left: 1rem;
         margin-top: 0;
     }
 }
+
+
+
 
 .art-digest-btn:hover {
     background-color: white;
@@ -1678,11 +1682,9 @@ p.content {
     flex-direction: row;
 }
 
-@media screen and (min-width:995px) {
-    .art-digest-email-field {
-        width: 400px;
-        margin-left: 7.5rem;
-    }
+.art-digest-email-field {
+    width: 400px;
+    margin-left: 5rem;
 }
 
 @media screen and (max-width: 995px) {
@@ -1707,6 +1709,7 @@ p.content {
         margin-top: 1rem;
         width: 60%;
         align-items: center;
+        margin-left: 0rem;
     }
 
 
@@ -1938,11 +1941,18 @@ h6 {
     }
 }
 
-@media screen and (max-width:992px) {
+@media screen and (max-width:575px) {
     .filter-sidebar-mb {
-        margin-top: 275px;
+        margin-top: 80px;
     }
 }
+
+@media screen and (min-width:576px) and (max-width:992px) {
+    .filter-sidebar-mb {
+        margin-top: 115px;
+    }
+}
+
 
 .end {
     margin-top: 100px;
