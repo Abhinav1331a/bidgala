@@ -524,7 +524,7 @@
                   <div class="input-group mt-3 mb-1" id="discount_input">
                     <input type="text"
                           class="form-control"
-                          placeholder="Discount Code" id="discount_code" name="discount_code">
+                          placeholder="Discount Code" id="discount_code" name="discount_code" >
                     <div class="input-group-append">
                       <button class="btn btn-dark" type="button" id="apply-discount" form="discount_form">Apply</button>
                     </div>
@@ -1112,4 +1112,9 @@ $.ajax({
   
   Cookies.set("recently_viewed", JSON.stringify(productIDArray), { expires: 7 }, "/");
 </script>
+
+<script>
+    $('input#discount_code').attr('value',Cookies.get("coupon_code"))
+</script>
+
 {% endblock %}

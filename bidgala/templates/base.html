@@ -99,6 +99,8 @@
         </div>
     </div>
     {% include 'partials/_navbar.html' %}
+
+    
     {% if 'register-user' not in request.get_full_path %}
     {%if request.session.show_survey%}
     <div class="modal fade" id="info" style=" position: absolute; height: 100%;top: 20%; " tabindex="-1" role="dialog"
@@ -648,7 +650,7 @@
 
     <script type="text/javascript">
         
-    </script>
+    </script>  
 
 </body>
 

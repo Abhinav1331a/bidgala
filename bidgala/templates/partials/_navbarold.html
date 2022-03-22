@@ -1,6 +1,6 @@
 {% load static %}
 {% load socialaccount %}
-
+   
 <header>
     <!-- {%if request.user.is_authenticated%}
 
@@ -21,46 +21,44 @@
 
     <!-- Header Start -->
 
-    <script>
+<script>
 
-        document.addEventListener("DOMContentLoaded", function () {
-            window.addEventListener('scroll', function () {
-                if (window.scrollY > 50) {
-                    document.getElementById('navbar_top').classList.add('fixed-top');
-                    document.getElementById('dropdown-container-desktop').classList.remove('dropdown-container-desktop-padding');
-                    // add padding top to show content behind navbar
-                    navbar_height = document.querySelector('.navbar').offsetHeight;
-                    document.body.style.paddingTop = '-200px';
-                } else {
-                    document.getElementById('navbar_top').classList.remove('fixed-top');
-                    document.getElementById('dropdown-container-desktop').classList.add('dropdown-container-desktop-padding');
-                    // remove padding top from body
-                    document.body.style.paddingTop = '0';
-                }
-            });
-        });
+document.addEventListener("DOMContentLoaded", function(){
+  window.addEventListener('scroll', function() {
+      if (window.scrollY > 50) {
+        document.getElementById('navbar_top').classList.add('fixed-top');
+        document.getElementById('dropdown-container-desktop').classList.remove('dropdown-container-desktop-padding');
+        // add padding top to show content behind navbar
+        navbar_height = document.querySelector('.navbar').offsetHeight;
+        document.body.style.paddingTop = '-200px';
+      } else {
+        document.getElementById('navbar_top').classList.remove('fixed-top');
+        document.getElementById('dropdown-container-desktop').classList.add('dropdown-container-desktop-padding');
+         // remove padding top from body
+        document.body.style.paddingTop = '0';
+      } 
+  });
+}); 
 
-    </script>
+</script>
 
 
-
+  
     <div class="header-area">
 
         <div class="main-header ">
+            <!-- Main navigation bar -->
             <!-- COUPON DISPLAY -->
 
-            <div class="coupon">
+            <div class="coupon" >
 
                 <h6>The Art Marketplace For Art Lovers, By Art Lovers</h6>
                 <h6>10% off all art | <a href="#" style="color: white;"> Code: Artlovers2022 </a>| Apply Coupon</h6>
 
             </div>
-
-            <!-- Main navigation bar -->
             <div class="header-bottom header-sticky navbarr" id="navbar_top">
                 <div class="container-fluid">
-                    <div class="dropdown-container-desktop row align-items-center justify-content-center d-none pt-3 pb-2 dropdown-container-desktop-padding"
-                        id="dropdown-container-desktop">
+                    <div class="dropdown-container-desktop row align-items-center justify-content-center d-none pt-3 pb-2 dropdown-container-desktop-padding" id="dropdown-container-desktop">
                         <div class="col-md-12 col-lg-10">
                             <div class="row">
                                 <div class="col-2 column">
@@ -441,7 +439,7 @@
                                     <!-- <li>
                                         <a>FAQ</a>
                                     </li> -->
-                                    {%if request.user.is_authenticated%}
+                                    {%if  request.user.is_authenticated%}
                                     <div class="mt-4 p-2">
 
                                         <a class="btn btn-dark  w-100 logout-detect"
@@ -470,150 +468,148 @@
 
                         </nav>
                     </div>
-                    <div class="main-menu d-none d-lg-block w-100 p-md-2">
-                        <nav class="navbar_top_row">
-                            <ul id="navigation">
-                                <li>
-                                    <button class="shop-button">SHOP ART</button>
-                                </li>
 
-                                <li id="sell-demo"><a href="{% url 'art_upload' %}" class="desktop-navlinks">SELL ART</a>
-                                </li>
+                    
 
-                                <li id="home-demo">
-                                    <a href="{% url 'blog' %}" class="desktop-navlinks">BLOG</a>
-                                </li>
-
-
-                                <li><a href="{% url 'all_post' %}" class="desktop-navlinks">ARTIST
-                                        FORUM</a></li>
-
-                                <li id="earn-demo"><a href="{% url 'invite' %}" class="desktop-navlinks">INVITE</a></li>
-                                {% if request.user.is_authenticated == True %}
-
-
-
-
-
-                                <li><a href="{% url 'wish_list' %}"><i class="fas fa-heart"
-                                            class="desktop-navlinks"></i></a></li>
-
-                                {% comment %} <li><a href="{% url 'show_contacts' %}"> MESSAGES</a></li>
-
-                                <li><a href="{% url 'orders' %}">ORDERS</a></li> {% endcomment %}
-
-                                <li id="account-demo" tabindex="0">
-                                    <div id="avatar_image" class="avatar avatar-id-{{request.session.user_info_id}}"
-                                        style="{% if request.session.profile_img %}
-                                            background-image: url({{request.session.profile_img}});
-                                        {% else %}
-                                            background-image: url({% static 'img/profile-icon.png'%});
-                                        {% endif %}
-                                    background-size: cover; width:25px; height:25px; border-radius: 50%;">
-
+                    <div
+                        class="row align-items-center justify-content-lg-center justify-content-xl-center p-lg-2 p-md-0 p-sm-0 p-3">
+                        <div class="col-xl-10 col-lg-10 col-md-12">
+                            <div class="row justify-content-between align-items-center">
+                                <!-- Logo -->
+                                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-4 col-6 pl-0" id="logo-demo">
+                                    <div class="logo pt-10 pb-10">
+                                        <a href="{% url 'index' %}"><img class="logo-img"
+                                                src="{% static 'img/logo/logo.svg' %}" alt="BIDGALA"></a>
                                     </div>
-                                    <ul class="submenu">
-                                        <li class="d-flex"><a href="{% url 'public_profile' request.user %}">MY
-                                                PROFILE</a></li>
-                                        <li class="d-flex"><a href="{% url 'my_art' %}">MY ARTWORK</a>
-                                        </li>
+                                </div>
+                                <!-- Search Bar -->
+
+                                <form action="{% url 'search' %}" method="POST" id="searchfield" name="searchfield"
+                                    class="searchfield col-xl-3 col-lg-3 col-md-7 col-sm-7 d-sm-flex">
+                                    {% csrf_token %}
+                                    <div class="nav-search ">
+                                        <label><i class="fas fa-search special-tag"></i></label>
+                                        <input class="nav-search-input form-control" type="text" placeholder="Search"
+                                            aria-label="Search" name="keyword" form="searchfield">
+                                    </div>
+                                    <button class="btn btn-link text-secondary close d-block d-sm-none ml-2"
+                                        type="button">x</button>
+                                </form>
+                                <!-- Mobile menu -->
+
+                                <div class="d-flex">
+                                    <button class="d-block d-sm-none btn btn-link text-dark" id="mobile-search-btn">
+                                        <span class="fa fa-search"></span>
+                                    </button>
 
 
-                                        <li class="d-flex"><a href="{% url 'orders' %}">ORDERS</a></li>
+                                    <button class="d-lg-none button-nav-toggle" id="mobile-burger">
+                                        <span class="fa fa-bars"></span>
+                                    </button>
 
-                                        <li class="d-flex align-items-center" id="desktop-messages"><a
-                                                id="right-side-menu" href="{% url 'show_contacts' %}">MESSAGES</a></li>
-                                        <li class="d-flex"><a href="{% url 'profile' %}">SETTINGS</a>
-                                        </li>
-
-                                        <li class="d-flex">
-                                            <a class="logout-detect"
-                                                href="javascript:{localStorage.clear();document.getElementById('logout').submit()}">
-                                                LOG OUT
-                                            </a>
-                                        </li>
-                                        <form action="{%url 'logout'%}" method="POST" id="logout">
-                                            {%csrf_token%}
-                                            <input type="hidden">
-                                        </form>
-                                    </ul>
-                                </li>
-                                <li>
-                                </li>
-                                {% else %}
-
-                                <div class="signin_up">
-                                    <li><a href="#" data-toggle="modal" data-target="#loginModal"
-                                            class="desktop-navlinks ">LOGIN</a></li>
-                                    <li><a href="{% url 'register' %}" class="desktop-navlinks">REGISTER</a>
-                                    </li>
                                 </div>
 
+                                <!-- Main-menu -->
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 pr-0">
+                                    <div class="main-menu f-right d-none d-lg-block w-100">
+                                        <nav>
+                                            <ul id="navigation">
+                                                <li>
+                                                    <button class="shop-button">SHOP ART</button>
+                                                </li>
+                
+                                                <li id="sell-demo"><a href="{% url 'art_upload' %}" class="desktop-navlinks">SELL ART</a>
+                                                </li>
 
-                                {% endif %}
-                            </ul>
-                        </nav>
-                    </div>
-
-                </div>
-                <hr class="line-break">
-                <div class="mt-2 mb-1" id="">
-                    <div class="d-flex justify-content-between align-items-center">
-
-                        <!-- Logo -->
-                        <a href="{% url 'index' %}" class="logo col-xl-4 col-lg-4 pl-3 w-100 pt-10 pb-10"
-                            id="logo-demo">
-                            <img class="logo-img" src="{% static 'img/logo/logo.svg' %}" alt="BIDGALA">
-                        </a>
+                                                <li id="home-demo">
+                                                    <a href="{% url 'blog' %}" class="desktop-navlinks">BLOG</a>
+                                                </li>
 
 
-                        <!-- Categories -->
-                        <div class="nav-category-buttons">
-                            <button type="button" class="btn"><a href="{%url 'show_search' type_='art' value='all' %}"> All Art </a></button>
-                            <button type="button" class="btn"><a href="{%url 'show_search' type_='category' value='paintings' %}"> Paintings </a></button>
-                            <button type="button" class="btn"><a href="{%url 'show_search' type_='category' value='drawingIllustration' %}"> Drawings </a></button>
-                            <button type="button" class="btn"><a href="{%url 'show_search' type_='category' value='prints' %}"> Prints </a></button>
-                            <button type="button" class="btn"><a href="{%url 'show_search' type_='category' value='sculptures' %}"> Sculptures </a></button>
-                            <button type="button" class="btn"><a href="{%url 'show_search' type_='curator' value='none' %}"> Curator Picks </a></button>
-                            <button type="button" class="btn"><a href="{% url 'advisory'%}"> Art Advisory </a></button>
-                        </div>
+                                                <li><a href="{% url 'all_post' %}" class="desktop-navlinks">ARTIST
+                                                        FORUM</a></li>
 
-                        <!-- Search Bar -->
-                        <form action="{% url 'search' %}" method="POST" id="searchfield" name="searchfield"
-                            class="searchfield col-lg-2 pb-2 d-sm-flex">
-                            {% csrf_token %}
-                            <div class="nav-search">
-                                <label><i class="fas fa-search special-tag"></i></label>
-                                <input class="nav-search-input form-control" type="text" placeholder="Search"
-                                    aria-label="Search" name="keyword" form="searchfield">
+                                                <li id="earn-demo"><a href="{% url 'invite' %}"
+                                                        class="desktop-navlinks">INVITE</a></li>
+                                                {% if request.user.is_authenticated == True %}
+
+
+
+
+
+                                                <li><a href="{% url 'wish_list' %}"><i class="fas fa-heart"
+                                                            class="desktop-navlinks"></i></a></li>
+
+                                                {% comment %} <li><a href="{% url 'show_contacts' %}"> MESSAGES</a></li>
+
+                                                <li><a href="{% url 'orders' %}">ORDERS</a></li> {% endcomment %}
+
+                                                <li id="account-demo" tabindex="0">
+                                                    <div id="avatar_image"
+                                                        class="avatar avatar-id-{{request.session.user_info_id}}"
+                                                        style="
+                                                        {% if request.session.profile_img %}
+                                                            background-image: url({{request.session.profile_img}});
+                                                        {% else %}
+                                                            background-image: url({% static 'img/profile-icon.png'%});
+                                                        {% endif %}
+                                                    background-size: cover; width:25px; height:25px; border-radius: 50%;">
+
+                                                    </div>
+                                                    <ul class="submenu">
+                                                        <li class="d-flex"><a
+                                                                href="{% url 'public_profile' request.user %}">MY
+                                                                PROFILE</a></li>
+                                                        <li class="d-flex"><a href="{% url 'my_art' %}">MY ARTWORK</a>
+                                                        </li>
+
+
+                                                        <li class="d-flex"><a href="{% url 'orders' %}">ORDERS</a></li>
+
+                                                        <li class="d-flex align-items-center" id="desktop-messages"><a
+                                                                id="right-side-menu"
+                                                                href="{% url 'show_contacts' %}">MESSAGES</a></li>
+                                                        <li class="d-flex"><a href="{% url 'profile' %}">SETTINGS</a>
+                                                        </li>
+
+                                                        <li class="d-flex">
+                                                            <a class="logout-detect"
+                                                                href="javascript:{localStorage.clear();document.getElementById('logout').submit()}">
+                                                                LOG OUT
+                                                            </a>
+                                                        </li>
+                                                        <form action="{%url 'logout'%}" method="POST" id="logout">
+                                                            {%csrf_token%}
+                                                            <input type="hidden">
+                                                        </form>
+                                                    </ul>
+                                                </li>
+                                                <li>
+                                                </li>
+                                                {% else %}
+
+                                                <div class="signin_up">
+                                                    <li><a href="#" data-toggle="modal" data-target="#loginModal"
+                                                            class="desktop-navlinks ">LOGIN</a></li>
+                                                    <li><a href="{% url 'register' %}"
+                                                            class="desktop-navlinks">REGISTER</a>
+                                                    </li>
+                                                </div>
+
+
+                                                {% endif %}
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                </div>
+
                             </div>
-                            <button class="d-block d-sm-none btn btn-link text-secondary close ml-2"
-                            type="button">x</button>
-                        </form>
-
-                        <!-- Mobile menu -->
-                        <div class="d-sm-flex d-lg-none">
-                            
-                            <button class="d-sm-none btn btn-link text-dark" id="mobile-search-btn">
-                                <span class="fa fa-search"></span>
-                            </button>
-
-                            <button class="d-lg-none button-nav-toggle" id="mobile-burger">
-                                <span class="fa fa-bars"></span>
-                            </button>
-
                         </div>
+
                     </div>
                 </div>
             </div>
 
-
-
-
-
-
-
-            <!-- --------------------------------------------------------------------------------------------------------------------------------------------------------- -->
             {%if 'messages' not in request.path %}
             {% comment %}
             <!-- Category nav -->
