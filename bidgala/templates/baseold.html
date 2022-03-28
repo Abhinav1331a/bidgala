@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
     <!-- Custom CSS here -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link rel="stylesheet" href="{% static 'css/navigation.css' %}">
+    <link rel="stylesheet" href="{% static 'css/navigationold.css' %}">
     <link rel="stylesheet" href="{% static 'css/index.css' %}">
     <link rel="stylesheet" href="{% static 'css/product-view.css' %}">
     <link rel="stylesheet" href="{% static 'css/notification.css' %}">
@@ -98,7 +98,7 @@
             <p class="mt-3">Success! Redirecting you...</p>
         </div>
     </div>
-    {% include 'partials/_navbar.html' %}
+    {% include 'partials/_navbarold.html' %}
     {% if 'register-user' not in request.get_full_path %}
     {%if request.session.show_survey%}
     <div class="modal fade" id="info" style=" position: absolute; height: 100%;top: 20%; " tabindex="-1" role="dialog"
