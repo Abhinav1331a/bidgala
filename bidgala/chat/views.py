@@ -20,6 +20,7 @@ from ordered_set import OrderedSet
 from accounts.models import UserInfo
 from .models import Conversation, Message
 from products import choices as product_choices
+from influencer.models import Influencer
 
 
 @login_required
