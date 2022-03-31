@@ -51,6 +51,7 @@ from . import choices
 from products import choices as product_choices
 from . import email_marketing
 from .email import create_message, create_attachment, read_image, sendgrid_send_email
+from influencer.models import Influencer
 
 
 def account_verification(request, key):
@@ -646,6 +647,8 @@ def referral_page(request):
 
 	"""
 	context = {}
+	coupon_code = Influencer.objects.first().coupon
+	# print(coupon_code)
 	if request.user.is_authenticated:
 		user_info = UserInfo.objects.get(user = request.user)
 		if request.method == 'POST':
@@ -710,6 +713,7 @@ def referral_page(request):
 
 	context['category'] = product_choices.category
 	context['subcategory'] = product_choices.subcategory
+	context['coupon_code'] = coupon_code
 	return render(request, 'referral/referral.html', context)
 
 
@@ -732,6 +736,7 @@ def register_referral(request, referral, name=''):
 		del request.session['referred_by']
 
 	context = {}
+	coupon_code = Influencer.objects.first().coupon
 	if UserInfo.objects.filter(referral_code = referral.strip()).exists():
 
 		context = {
@@ -739,7 +744,7 @@ def register_referral(request, referral, name=''):
 		'referral_code' : referral.strip(),
 		'name' : name,
 		'category':product_choices.category,
-
+		'coupon_code' : coupon_code
 		}
 
 		request.session["referred_by"] = referral
@@ -1068,7 +1073,7 @@ def user_settings(request):
 	"""
 
 	# If user is not logged in, then redirect to login.html
-
+	coupon_code = Influencer.objects.first().coupon
 	if request.user.is_authenticated:
 		clear_messages(messages, request)
 		context = {
@@ -1185,6 +1190,7 @@ def user_settings(request):
 		context['joined'] = user.date_joined.strftime("%d %b %Y")
 		context['last_login'] = user.last_login
 		context['category'] = product_choices.category
+		context['coupon_code'] = coupon_code
 
 		return render(request, 'profile/user_settings.html', context)
 
@@ -1548,6 +1554,7 @@ def public_profile(request, slug):
 
 
 		# get all followings that the request user has
+		coupon_code = Influencer.objects.first().coupon
 		if request.user.is_authenticated:
 			if UserFollowing.objects.filter(user_id=request.user, following_user_id=user):
 				request_user_follows = True
@@ -1697,7 +1704,7 @@ def public_profile(request, slug):
 			"BASE_URL": settings.HOST_BASE_URL,
 			"BASE_S3_URL": settings.BASE_AWS_IMG_URL,
 			'category' : product_choices.category,
-			
+			'coupon_code': coupon_code,
 			'img_optimize_param' : settings.IMG_OPTIMIZE_PARAM,
 			}
 
