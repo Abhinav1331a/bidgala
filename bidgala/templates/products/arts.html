@@ -32,7 +32,7 @@
 
 <div class="arts_below_navbar">
     <div class="w-50 mt-2">
-        <p class="small pt-2 pl-3" id="path"><a href="{{HOST_BASE_URL}}art/search/art/all/">All Artworks / </a> </p>
+        <p class="small pt-2 pl-3" id="path">  <a href="{{HOST_BASE_URL}}art/search/art/all/">All Artworks  </a>  <a class="category_path_a d-none" >{category_path}</a> <a class="style_path_a d-none">{style_path}</a></p>
     </div>
 
     <div class="d-flex mb-3">
@@ -125,13 +125,35 @@
                             {% for key, value in category.items %}
                             <div class="custom-control form-check custom-checkbox mb-3">
                                 {% if active_field == 'category' and active_value == key %}
-                                <input type="checkbox" class="custom-control-input path" name="category" id="{{key}}_category" data-value="{{key}}" onlyvalue="{{value}}" valuekey = "{{value}}_{{key}}" checked>
+                                <input type="checkbox" class="custom-control-input category_path" name="category" id="{{key}}_category" data-value="{{key}}" onlyvalue="{{value}}" valuekey = "{{value}}_{{key}}" checked>
                                 {%else%}
-                                <input type="checkbox" class="custom-control-input path" name="category" id="{{key}}_category" onlyvalue="{{value}}" valuekey="{{value}}_{{key}}" data-value="{{key}}">
+                                <input type="checkbox" class="custom-control-input category_path" name="category" id="{{key}}_category" onlyvalue="{{value}}" valuekey="{{value}}_{{key}}" data-value="{{key}}">
                                 {%endif%}
                                 <label class="custom-control-label" for="{{key}}_category">{{value}}</label>
                             </div>
                             {% endfor %}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="single_sedebar mb-1">
+                    <div class="select_option">
+                        <div class="select_option_list">STYLE <i class="right fas fa-caret-down"></i> </div>
+                        <div class="select_option_dropdown">
+
+                            {% for key, value in style.items %}
+                            <div class="custom-control form-check custom-checkbox mb-3">
+                                {% if active_field == 'style' and active_value == key %}
+                                <input type="checkbox" class="custom-control-input style_path" id="{{key}}_style"
+                                    data-value="{{key}}" name="style" valuekey = "{{value}}_{{key}}" onlyvalue="{{value}}" checked>
+                                {%else%}
+                                <input type="checkbox" class="custom-control-input style_path" id="{{key}}_style"
+                                    data-value="{{key}}" name="style" onlyvalue="{{value}}" valuekey = "{{value}}_{{key}}">
+                                {%endif%}
+                                <label class="custom-control-label" for="{{key}}_style">{{value}}</label>
+                            </div>
+                            {% endfor %}
+
                         </div>
                     </div>
                 </div>
@@ -154,30 +176,6 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="single_sedebar mb-1">
-                    <div class="select_option">
-                        <div class="select_option_list">STYLE <i class="right fas fa-caret-down"></i> </div>
-                        <div class="select_option_dropdown">
-
-                            {% for key, value in style.items %}
-                            <div class="custom-control form-check custom-checkbox mb-3">
-                                {% if active_field == 'style' and active_value == key %}
-                                <input type="checkbox" class="custom-control-input" id="{{key}}_style"
-                                    data-value="{{key}}" name="style" checked>
-                                {%else%}
-                                <input type="checkbox" class="custom-control-input" id="{{key}}_style"
-                                    data-value="{{key}}" name="style">
-                                {%endif%}
-                                <label class="custom-control-label" for="{{key}}_style">{{value}}</label>
-                            </div>
-                            {% endfor %}
-
-                        </div>
-                    </div>
-                </div>
-
-
 
                 <div class="single_sedebar mb-1">
                     <div class="select_option">
@@ -461,47 +459,80 @@
 
 <script>
     $(document).ready(function () {
-        var arr = []
+        var category_arr = []
+        var style_arr = []
         if (window.location.href.includes('category')) {
             var required = window.location.href.split('category/')[1].split('/')[0]
-            var pathName = '<a href="{{HOST_BASE_URL}}art/search/art/all/">All Artworks / </a>  <a id = "path2">' + required + ' / </a>'
+            var pathName = '<a href="{{HOST_BASE_URL}}art/search/art/all/">All Artworks / </a>  <a id = "path2">' + required.charAt(0).toUpperCase() + required.slice(1) + ' / </a>'
             $('#path').empty().append(pathName)
             $('#path2').attr('href', window.location.href)
         }
         if (window.location.href.includes('curator')) {
             var required = window.location.href.split('/search/')[1].split('/none/')[0]
-            var pathName = '<a href="{{HOST_BASE_URL}}art/search/art/all/">All Artworks / </a>  <a id = "path2">' + required + ' / </a>'
+            var pathName = '<a href="{{HOST_BASE_URL}}art/search/art/all/">All Artworks / </a>  <a id = "path2">' + required.charAt(0).toUpperCase() + required.slice(1) + ' / </a>'
+            $('#path').empty().append(pathName)
+            $('#path2').attr('href', window.location.href)
+        }
+        if (window.location.href.includes('style')) {
+            var required = window.location.href.split('/search/')[1].split('/')[1]
+            var pathName = '<a href="{{HOST_BASE_URL}}art/search/art/all/">All Artworks / </a>  <a id = "path2">' + required.charAt(0).toUpperCase() + required.slice(1) + ' / </a>'
             $('#path').empty().append(pathName)
             $('#path2').attr('href', window.location.href)
         }
         else {
-            $('.path').on('change', function (event) {
+
+            $('.category_path').on('change', function (event) {
                 var checkbox = $(event.target);
-                var pathName = '<a href="{{HOST_BASE_URL}}art/search/art/all/">All Artworks / </a> '
                 var ahref = '{{HOST_BASE_URL}}' + 'art/search/category/' + checkbox.attr('data-value') + '/'
-                
+
                 if ($(checkbox).is(':checked')) {
-                    arr.unshift(checkbox.attr('valuekey'))
-                    pathNameextra = '<a id = "path2">' + arr[0].split('_')[0] + ' / </a>'
-                    $('#path').empty().append(pathName + pathNameextra)
-                    $('#path2').attr('href', ahref)
+                    category_arr.unshift(checkbox.attr('valuekey'))
+                    category = $('.category_path_a').removeClass( "d-none" )
+                    category.text(' / ' + category_arr[0].split('_')[0])
+                    category.attr('href', ahref)
                 }
                 else {
-                    if (arr.length > 1) {
-                        var index = arr.indexOf(checkbox.attr('onlyvalue') + '_' + checkbox.attr('data-value'));
-                        arr.splice(index, 1);
-                        pathNameextra = '<a id = "path2">' + arr[0].split('_')[0] + ' / </a>'
-                        ahref = '{{HOST_BASE_URL}}' + 'art/search/category/' + arr[0].split('_')[1] + '/'
-                        $('#path').empty().append(pathName + pathNameextra)
-                        $('#path2').attr('href', ahref)
+                    if (category_arr.length > 1) {
+                        var index = category_arr.indexOf(checkbox.attr('onlyvalue') + '_' + checkbox.attr('data-value'));
+                        category_arr.splice(index, 1);
+                        category = $('.category_path_a').removeClass( "d-none" )
+                        category.text(' / ' + category_arr[0].split('_')[0])
+                        category.attr('href', ahref)
                     }
                     
-                    else if(arr.length <= 1) {
-                        arr.pop()
-                        $('#path2').remove()
+                    else if(category_arr.length <= 1) {
+                        category_arr.pop()
+                        category = $('.category_path_a').addClass( "d-none" )
                     }
                 }
             });
+
+            $('.style_path').on('change', function (event) {
+                var checkbox = $(event.target);
+                var ahref = '{{HOST_BASE_URL}}' + 'art/search/style/' + checkbox.attr('data-value') + '/'
+
+                if ($(checkbox).is(':checked')) {
+                    style_arr.unshift(checkbox.attr('valuekey'))
+                    category = $('.style_path_a').removeClass( "d-none" )
+                    category.text(' / ' + style_arr[0].split('_')[0])
+                    category.attr('href', ahref)
+                }
+                else {
+                    if (style_arr.length > 1) {
+                        var index = style_arr.indexOf(checkbox.attr('onlyvalue') + '_' + checkbox.attr('data-value'));
+                        style_arr.splice(index, 1);
+                        category = $('.style_path_a').removeClass( "d-none" )
+                        category.text(' / ' + style_arr[0].split('_')[0])
+                        category.attr('href', ahref)
+                    }
+                    
+                    else if(style_arr.length <= 1) {
+                        style_arr.pop()
+                        category = $('.style_path_a').addClass( "d-none" )
+                    }
+                }
+            });
+
         }
     });
 </script>

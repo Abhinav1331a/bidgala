@@ -277,7 +277,7 @@ var ArtUploadForm = function (_React$Component2) {
       crop: {
         unit: '%',
         width: 20,
-        height: 20
+        height: 20,
       },
       img_blob: null,
       showModal: false,
@@ -625,8 +625,10 @@ var ArtUploadForm = function (_React$Component2) {
         reader.onload = function (event) {
           _this5.setState(_defineProperty({}, imgNum, reader.result));
           resolve(reader.result);
+          
         };
         reader.onerror = function (error) {
+          
           return reject(error);
         };
       });
@@ -645,7 +647,7 @@ var ArtUploadForm = function (_React$Component2) {
           croppedImageUrl = _state.croppedImageUrl,
           src = _state.src;
 
-
+      // alert(JSON.stringify(_state.croppedImageUrl))   
       return React.createElement(
         Container,
         { fluid: true, style: { margin: "0 auto", maxWidth: "1100px" } },
@@ -661,6 +663,7 @@ var ArtUploadForm = function (_React$Component2) {
               'Crop image'
             )
           ),
+          // alert(JSON.stringify(src)),
           React.createElement(
             Modal.Body,
             { style: { display: 'flex', justifyContent: 'center', alignItems: 'center' } },
