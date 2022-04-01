@@ -285,6 +285,7 @@ var ArtUploadForm = function (_React$Component2) {
       addImgTwo: null,
       addImgThree: null,
       addImgFour: null,
+      imgZero:null,
       imgOne: null,
       imgTwo: null,
       imgThree: null,
@@ -388,30 +389,39 @@ var ArtUploadForm = function (_React$Component2) {
       _this2.setState({ showModal: false });
     }, _this2.handleShow = function () {
       _this2.setState({ showModal: true });
-    }, _this2.onSelectFile = function (e) {
+    }, 
+    _this2.onSelectFile = function (e) {
       if (e.target.files[0].size > 15000000) {
         _this2.setState({ tooBig: true });
       } else if (e.target.files && e.target.files.length > 0) {
         _this2.setState({ tooBig: false });
         var reader = new FileReader();
         reader.addEventListener('load', function () {
-          return _this2.setState({ src: reader.result });
+          
+          // remove_reactcrop Remove two lines below
+          $('#main_img').val( reader.result )
+          $('#main_img').attr('src', reader.result )
+
+          return _this2.setState({ src : reader.result });
+          
         });
         reader.readAsDataURL(e.target.files[0]);
-        _this2.handleShow();
+        // remove_crop Uncomment Below Line 
+        // _this2.handleShow();
       }
-    }, _this2.onImageLoaded = function (image) {
+    },_this2.onImageLoaded = function (image) {
       _this2.imageRef = image;
-    }, _this2.onCropComplete = function (crop) {
+    },_this2.onCropComplete = function (crop) {
       _this2.makeClientCrop(crop);
     }, _this2.onCropChange = function (crop, percentCrop) {
       // You could also use percentCrop:
       // this.setState({ crop: percentCrop });
       _this2.setState({ crop: crop });
-    }, _this2.onSelectAdditionalImg = function (event) {
+    },_this2.onSelectAdditionalImg = function (event) {
       if (event.target.files[0].size > 15000000) {
         _this2.setState({ tooBig: true });
-      } else if (event.target.id == 'pic1') {
+      }
+      else if (event.target.id == 'pic1') {
         _this2.setState({ tooBig: false });
         URL.revokeObjectURL(event.target.files[0]);
         _this2.setState({ addImgOne: URL.createObjectURL(event.target.files[0]) });
@@ -441,30 +451,38 @@ var ArtUploadForm = function (_React$Component2) {
       if (isChecked) {
         return true;
       }
-    }, _this2.validate = function () {
+    },
+     _this2.validate = function () {
       if (_this2.state.img_blob) {
         _this2.setState({ imgError: false });
-      }if (_this2.state.colorOne || _this2.state.colorTwo || _this2.state.colorThree || _this2.state.colorFour || _this2.state.colorFive) {
+      }
+      if (_this2.state.colorOne || _this2.state.colorTwo || _this2.state.colorThree || _this2.state.colorFour || _this2.state.colorFive) {
         _this2.setState({ colorError: false });
       } else {
         _this2.setState({ colorError: true });
-      }if (_this2.state.materials.length > 0) {
+      }
+      if (_this2.state.materials.length > 0) {
         _this2.setState({ materialsError: false });
-      }if (_this2.state.styles.length > 0) {
+      }
+      if (_this2.state.styles.length > 0) {
         _this2.setState({ stylesError: false });
       }
       if (!_this2.state.img_blob) {
-        _this2.setState({ imgError: true });
-      }if (_this2.state.materials.length < 1) {
+        _this2.setState({ imgError: false });// remove_reactcrop make imgError: true in this if condition
+      }
+      if (_this2.state.materials.length < 1) {
         _this2.setState({ materialsError: true });
-      }if (_this2.state.styles.length < 1) {
+      }
+      if (_this2.state.styles.length < 1) {
         _this2.setState({ stylesError: true });
-      }if (!_this2.state.show_price_asia && !_this2.state.show_price_aunz && !_this2.state.show_price_can && !_this2.state.show_price_europe && !_this2.state.show_price_uk && !_this2.state.show_price_us && !_this2.state.show_price_other) {
+      }
+      if (!_this2.state.show_price_asia && !_this2.state.show_price_aunz && !_this2.state.show_price_can && !_this2.state.show_price_europe && !_this2.state.show_price_uk && !_this2.state.show_price_us && !_this2.state.show_price_other) {
         _this2.setState({ shippingError: "Please enter atleast one shipping price" });
       } else {
         _this2.setState({ shippingError: null });
       }
-      if (!_this2.state.shippingError && _this2.state.img_blob && _this2.state.materials.length > 0 && _this2.state.styles.length > 0 && (_this2.state.colorOne || _this2.state.colorTwo || _this2.state.colorThree || _this2.state.colorFour || _this2.state.colorFive)) {
+      // remove_reactcrop add  _this2.state.img_blob to below if condition
+      if (!_this2.state.shippingError && _this2.state.materials.length > 0 && _this2.state.styles.length > 0 && (_this2.state.colorOne || _this2.state.colorTwo || _this2.state.colorThree || _this2.state.colorFour || _this2.state.colorFive)) {
         return true;
       } else {
         _this2.setState({ errorMsg: "Please fill in missing fields" });
@@ -480,7 +498,10 @@ var ArtUploadForm = function (_React$Component2) {
         if (form.checkValidity() === true) {
           $("#preloader-active").css("display", "block");
           axios.post('/art/add-art', {
-            art_img: _this2.state.img_blob,
+            //remove_reactcrop Uncomment below line
+            // art_img: _this2.state.img_blob,
+            //remove_reactcrop Remove Below Line 
+            art_img:  $('#main_img').val(),
             additional_img_1: _this2.state.imgOne,
             additional_img_2: _this2.state.imgTwo,
             additional_img_3: _this2.state.imgThree,
@@ -647,8 +668,7 @@ var ArtUploadForm = function (_React$Component2) {
           croppedImageUrl = _state.croppedImageUrl,
           src = _state.src;
 
-      // alert(JSON.stringify(_state.croppedImageUrl))   
-      return React.createElement(
+          return React.createElement(
         Container,
         { fluid: true, style: { margin: "0 auto", maxWidth: "1100px" } },
         React.createElement(
@@ -663,18 +683,20 @@ var ArtUploadForm = function (_React$Component2) {
               'Crop image'
             )
           ),
-          // alert(JSON.stringify(src)),
+
+
           React.createElement(
             Modal.Body,
             { style: { display: 'flex', justifyContent: 'center', alignItems: 'center' } },
-            src && React.createElement(ReactCrop, {
-              src: src,
-              crop: crop,
-              ruleOfThirds: true,
-              onImageLoaded: this.onImageLoaded,
-              onComplete: this.onCropComplete,
-              onChange: this.onCropChange
-            })
+            // remove_reactcrop Uncomment below section
+            // src && React.createElement(ReactCrop, {
+            //   src: src,
+            //   crop: crop,
+            //   ruleOfThirds: true,
+            //   onImageLoaded: this.onImageLoaded,
+            //   onComplete: this.onCropComplete,
+            //   onChange: this.onCropChange
+            // })
           ),
           React.createElement(
             Modal.Footer,
@@ -744,7 +766,7 @@ var ArtUploadForm = function (_React$Component2) {
                       { onClick: this.handleShow, id: 'edit-crop' },
                       'Edit Crop'
                     ),
-                    croppedImageUrl && React.createElement('img', { alt: 'Crop', style: { width: '100%', height: '100%', objectFit: 'contain' }, src: croppedImageUrl }) ? React.createElement('img', { alt: 'Crop', style: { width: '100%', height: '100%', objectFit: 'contain' }, src: croppedImageUrl }) : React.createElement('img', { alt: 'Crop', style: { width: '100%', height: '100%', objectFit: 'contain' }, src: 'https://lunawood.com/wp-content/uploads/2018/02/placeholder-image.png' })
+                    croppedImageUrl && React.createElement('img', { id: 'main_img', alt: 'Crop', style: { width: '100%', height: '100%', objectFit: 'contain' }, src: '' /*remove_reactcrop add croppedImgURL to src and remove main_img id to img tags */}) ? React.createElement('img', {id: 'main_img', alt: 'Crop', style: { width: '100%', height: '100%', objectFit: 'contain' }, src: '' /*remove_reactcrop add croppedImgURL to src and remove main_img id to img tags */}) : React.createElement('img', {id: 'main_img', alt: 'Crop', style: { width: '100%', height: '100%', objectFit: 'contain' }, src: 'https://lunawood.com/wp-content/uploads/2018/02/placeholder-image.png' })
                   )
                 )
               ),
