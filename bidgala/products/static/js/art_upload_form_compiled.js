@@ -406,7 +406,7 @@ var ArtUploadForm = function (_React$Component2) {
           
         });
         reader.readAsDataURL(e.target.files[0]);
-        // remove_crop Uncomment Below Line 
+        // remove_reactcrop Uncomment Below Line 
         // _this2.handleShow();
       }
     },_this2.onImageLoaded = function (image) {
