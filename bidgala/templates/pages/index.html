@@ -595,7 +595,7 @@
                             <div class="card-body p-2">
                                 <span class="card-text text-muted">{{article.category | title}}</span>
                                 <h5 class="card-title mt-2">{{article.title | title}}</h5>
-                                <p class="card-text discover-card-body">{{article.body}}</p>
+                                <div class="card-text discover-card-body">{{article.body | safe}}</div>
                                 <p class="card-text"><small class="text-muted">Created on:
                                         {{article.created_date}}</small></p>
                             </div>
@@ -975,3 +975,6 @@
 </script>
 
 {% endblock %}
+
+
+
