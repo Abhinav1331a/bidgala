@@ -52,7 +52,7 @@ lazy-object-proxy==1.4.3
 mailchimp-marketing==3.0.40
 mccabe==0.6.1
 msgpack==1.0.0
-numpy==1.20.2
+numpy==1.21.0
 oauthlib==3.1.0
 ordered-set==4.0.2
 #Pillow==9.0.0
